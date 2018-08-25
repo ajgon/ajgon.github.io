@@ -1,0 +1,23 @@
+.heart-wrap {
+    z-index: -1;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.heart {
+  z-index: 1;
+  left: 50%;
+  height: 3000px;
+  min-width: 1920px;
+  background-color: #fff;
+  will-change: transform;
+  transform: translate3d(-50%,0,0);
+}
+
+.heart, .heart-wrap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+}
