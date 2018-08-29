@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
 import HeartSvg from './Heart.svg'
-import withRoot from '../withRoot';
+import withRoot from '../withRoot'
 
 const styles = {
   heartWrap: {
@@ -33,7 +32,7 @@ const styles = {
 }
 
 class Heart extends React.Component {
-  render() {
+  render () {
     const { classes } = this.props
 
     return (

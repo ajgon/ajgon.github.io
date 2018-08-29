@@ -4,12 +4,12 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require('path');
+const path = require('path')
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
-  const { createPage } = boundActionCreators;
+  const { createPage } = boundActionCreators
 
-  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`);
+  const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
 
   return graphql(`{
     allMarkdownRemark(
@@ -43,7 +43,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
   }`).then(result => {
     if (result.errors) {
-      return Promise.reject(result.errors);
+      return Promise.reject(result.errors)
     }
 
     result.data.allMarkdownRemark.edges
@@ -52,7 +52,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           path: node.frontmatter.path,
           component: blogPostTemplate,
           context: {} // additional data can be passed via context
-        });
-      });
-  });
+        })
+      })
+  })
 }

@@ -1,3 +1,4 @@
+/* global graphql */
 import 'typeface-roboto'
 import 'prismjs/themes/prism-tomorrow.css'
 
@@ -5,20 +6,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import grey from '@material-ui/core/colors/grey';
-import withRoot from '../withRoot';
+import CssBaseline from '@material-ui/core/CssBaseline'
+import withRoot from '../withRoot'
 
 import MenuAppBar from '../components/MenuAppBar'
 import Heart from '../components/Heart'
 import Container from '../components/Container'
 
 class Layout extends React.Component {
-  render() {
+  render () {
     const { children, data, location } = this.props
 
-    return(
+    return (
       <React.Fragment>
         <Helmet
           title={data.site.siteMetadata.title}
@@ -26,8 +25,9 @@ class Layout extends React.Component {
             { name: 'description', content: data.site.siteMetadata.description }
           ]}
         >
-          <html lang="en" />
+          <html lang='en' />
         </Helmet>
+        <CssBaseline />
         <MenuAppBar location={location} />
         <Heart />
         <Container>
@@ -39,7 +39,7 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.func
 }
 
 export default withRoot(Layout)

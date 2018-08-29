@@ -11,3 +11,4 @@
 * PWA icon
 * chrome lighthouse
 * sitemap
+* 404

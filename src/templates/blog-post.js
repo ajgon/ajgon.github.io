@@ -1,12 +1,12 @@
-import React from 'react';
-import Helmet from 'react-helmet';
+/* global graphql */
+import React from 'react'
 
-import withRoot from '../withRoot';
+import withRoot from '../withRoot'
 
 import BlogPost from '../components/BlogPost'
 
 class BlogPostTemplate extends React.Component {
-  render() {
+  render () {
     const { data } = this.props
     const avatars = data.allImageSharp.edges
     const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${data.markdownRemark.frontmatter.author}.png`))).node
@@ -48,4 +48,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

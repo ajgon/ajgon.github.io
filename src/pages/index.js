@@ -1,11 +1,11 @@
+/* global graphql */
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 
 import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
-import withRoot from '../withRoot';
+import withRoot from '../withRoot'
 
 const styles = (theme) => {
   return ({
@@ -19,34 +19,34 @@ const styles = (theme) => {
 }
 
 class Index extends React.Component {
-  render() {
+  render () {
     const { classes, data } = this.props
     const files = data.allFile.edges
 
     return (
       <React.Fragment>
-        <Typography variant="display4" className={classes.strong}>Hello!</Typography>
+        <Typography variant='display4' className={classes.strong}>Hello!</Typography>
         <Hidden smUp>
-          <Typography variant="display1" gutterBottom>
+          <Typography variant='display1' gutterBottom>
             I handle impossible cases on the spot, miracles take me a few minutes.
           </Typography>
         </Hidden>
         <Hidden xsDown>
-          <Typography variant="display3" gutterBottom>
+          <Typography variant='display3' gutterBottom>
             I handle impossible cases on the spot, miracles take me a few minutes.
           </Typography>
         </Hidden>
-        <Typography variant="headline" gutterBottom>Summary</Typography>
-        <Typography component="ul" gutterBottom>
+        <Typography variant='headline' gutterBottom>Summary</Typography>
+        <Typography component='ul' gutterBottom>
           <li>More than 10 years of experience in Front-end development (HTML/CSS/JS)</li>
           <li>More than 8 years of experience in Ruby and RoR</li>
           <li>More than 8 years of experience in PHP software development</li>
           <li>3 years of experience as Linux admin (mostly AWS services)</li>
         </Typography>
-        <Typography variant="headline" gutterBottom>Work Experience</Typography>
-        <Typography component="ul" gutterBottom>
+        <Typography variant='headline' gutterBottom>Work Experience</Typography>
+        <Typography component='ul' gutterBottom>
           {data.allJobsJson.edges.map(job => {
-            return(
+            return (
               <li key={job.node.id}>
                 <a href={job.node.url}>{job.node.name}</a> ({job.node.start} - {job.node.end || 'present day'})<br />
                 {job.node.description}
@@ -54,10 +54,10 @@ class Index extends React.Component {
             )
           })}
         </Typography>
-        <Typography variant="headline" gutterBottom>Notable projects</Typography>
-        <Typography component="ul" gutterBottom>
+        <Typography variant='headline' gutterBottom>Notable projects</Typography>
+        <Typography component='ul' gutterBottom>
           {data.allProjectsJson.edges.map(project => {
-            return(
+            return (
               <li key={project.node.id}>
                 <a href={project.node.url}>{project.node.name}</a> ({project.node.year})<br />
                 {project.node.description}
@@ -65,42 +65,42 @@ class Index extends React.Component {
             )
           })}
         </Typography>
-        <Typography variant="headline" gutterBottom>Academic Record</Typography>
-        <Typography component="ul" gutterBottom>
+        <Typography variant='headline' gutterBottom>Academic Record</Typography>
+        <Typography component='ul' gutterBottom>
           {data.allEducationJson.edges.map(edu => {
             const file = files.find(item => item.node.id.match(RegExp(edu.node.thesis.url)))
-            let thesis_url = edu.node.thesis.url
+            let thesisUrl = edu.node.thesis.url
 
             if (file) {
-              thesis_url = file.node.publicURL
+              thesisUrl = file.node.publicURL
             }
 
-            return(
+            return (
               <li key={edu.node.id}>
                 <a href={edu.node.url}>{edu.node.name}</a> ({edu.node.year})<br />
                 <ul>
-                {edu.node.titles.map((title, index) => {
-                  return(<li key={index}>{title}</li>)
-                })}
-                  <li><a href={thesis_url}>{edu.node.thesis.name}</a></li>
+                  {edu.node.titles.map((title, index) => {
+                    return (<li key={index}>{title}</li>)
+                  })}
+                  <li><a href={thesisUrl}>{edu.node.thesis.name}</a></li>
                 </ul>
               </li>
             )
           })}
         </Typography>
-        <Typography variant="headline" gutterBottom>Skills</Typography>
-      {data.allSkillsJson.edges.map(skill => {
-        return (
-          <div key={skill.node.id}>
-            <Typography variant="subheading" gutterBottom>{skill.node.name}</Typography>
-            <Typography component="ul" gutterBottom>
-            {skill.node.list.map((title, index) => {
-              return(<li key={index}>{title}</li>)
-            })}
-            </Typography>
-          </div>
-        )
-      })}
+        <Typography variant='headline' gutterBottom>Skills</Typography>
+        {data.allSkillsJson.edges.map(skill => {
+          return (
+            <div key={skill.node.id}>
+              <Typography variant='subheading' gutterBottom>{skill.node.name}</Typography>
+              <Typography component='ul' gutterBottom>
+                {skill.node.list.map((title, index) => {
+                  return (<li key={index}>{title}</li>)
+                })}
+              </Typography>
+            </div>
+          )
+        })}
       </React.Fragment>
     )
   }

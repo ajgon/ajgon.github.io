@@ -1,12 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
 const styles = (theme) => {
-  return({
+  return ({
     root: {
       '& a': {
         color: theme.palette.secondary.main,
@@ -21,11 +20,11 @@ const styles = (theme) => {
 }
 
 class Container extends React.Component {
-  render() {
+  render () {
     const { classes } = this.props
 
     return (
-      <Grid container justify="center" className={classes.root}>
+      <Grid container justify='center' className={classes.root}>
         <Grid item xs={10} className={classes.limitedContainer}>
           {this.props.children}
         </Grid>

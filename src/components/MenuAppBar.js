@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 
@@ -16,7 +15,6 @@ import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import withRoot from '../withRoot';
 
 const styles = {
   flex: {
@@ -28,70 +26,69 @@ const styles = {
 }
 
 class MenuAppBar extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
-    const pathTabValue = this.pathTabsMap[props.location.pathname.split('/').slice(0, 2).join('/')]
-    if (pathTabValue) {
-      this.state.value = pathTabValue
+    const pathTabsMap = {
+      '/': 0,
+      '/blog': 1
+    }
+    const pathTabValue = pathTabsMap[props.location.pathname.split('/').slice(0, 2).join('/')]
+
+    this.state = {
+      value: pathTabValue || 0,
+      drawer: false
+    }
+
+    this.handleChange = (event, value) => {
+      this.setState({ value })
     }
   }
 
-  state = {
-    value: 0,
-    drawer: false
+  switchTab (tabNumber) {
+    return () => {
+      this.setState({ value: tabNumber })
+      this.toggleDrawer(false)()
+    }
   }
 
-  pathTabsMap = {
-    '/': 0,
-    '/blog': 1
+  toggleDrawer (newState) {
+    return () => {
+      this.setState({
+        drawer: newState
+      })
+    }
   }
 
-  handleChange = (event, value) => {
-    this.setState({ value })
-  }
-
-  switchTab = (tabNumber) => () => {
-    console.log({ value: tabNumber })
-    this.setState({ value: tabNumber })
-    this.toggleDrawer(false)()
-  }
-
-  toggleDrawer = (newState) => () => {
-    this.setState({
-      drawer: newState
-    })
-  }
-
-  render() {
+  render () {
     const { value } = this.state
-    const { classes, location } = this.props
+    const { classes } = this.props
 
     return (
       <React.Fragment>
         <AppBar>
           <Toolbar>
             <Hidden smUp>
-              <IconButton onClick={this.toggleDrawer(true)} aria-label="Menu">
+              <IconButton onClick={this.toggleDrawer(true)} aria-label='Menu'>
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            <Link to="/" className={`${classes.flex} ${classes.noUnderline}`} onClick={this.switchTab(0)}><Typography variant="title">Igor Rzegocki</Typography></Link>
+            <Link to='/' className={`${classes.flex} ${classes.noUnderline}`} onClick={this.switchTab(0)}><Typography variant='title'>Igor Rzegocki</Typography></Link>
             <Hidden xsDown>
               <Tabs value={value} onChange={this.handleChange}>
-                <Tab label="About" component={Link} to="/" />
-                <Tab label="Blog" component={Link} to="/blog/" />
+                <Tab label='About' component={Link} to='/' />
+                <Tab label='Blog' component={Link} to='/blog/' />
               </Tabs>
             </Hidden>
           </Toolbar>
         </AppBar>
-        <Drawer anchor="bottom" open={this.state.drawer} onClose={this.toggleDrawer(false)}>
-          <List component="nav">
-            <ListItem button component={Link} to="/" onClick={this.switchTab(0)}>
-              <ListItemText primary="About" />
+        <Drawer anchor='bottom' open={this.state.drawer} onClose={this.toggleDrawer(false)}>
+          <List component='nav'>
+            <ListItem button component={Link} to='/' onClick={this.switchTab(0)}>
+              <ListItemText primary='About' />
             </ListItem>
-            <ListItem button component={Link} to="/blog/" onClick={this.switchTab(2)}>
-              <ListItemText primary="Blog" />
+            <ListItem button component={Link} to='/blog/' onClick={this.switchTab(2)}>
+              <ListItemText primary='Blog' />
             </ListItem>
           </List>
         </Drawer>
@@ -104,4 +101,4 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withRoot(withStyles(styles)(MenuAppBar))
+export default withStyles(styles)(MenuAppBar)

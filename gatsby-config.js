@@ -16,38 +16,38 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images/avatars`,
-        name: 'avatars',
-      },
+        name: 'avatars'
+      }
     }, {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images/covers`,
-        name: 'covers',
-      },
+        name: 'covers'
+      }
     }, {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images/upload`,
         name: 'upload'
-      },
+      }
     }, {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data`,
-        name: 'data',
-      },
+        name: 'data'
+      }
     }, {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/files`,
         name: 'files'
-      },
+      }
     }, {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/posts`,
-        name: 'posts',
-      },
+        name: 'posts'
+      }
     }, {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -61,10 +61,10 @@ module.exports = {
               maxWidth: 800
             }
           }, {
-            resolve: "gatsby-remark-copy-linked-files",
+            resolve: 'gatsby-remark-copy-linked-files',
             options: {
               destinationDir: 'files',
-              ignoreFileExtensions: ['png', 'jpg', 'bmp', 'tiff'],
+              ignoreFileExtensions: ['png', 'jpg', 'bmp', 'tiff']
             }
           }
         ]
@@ -80,7 +80,7 @@ module.exports = {
         display: 'minimal-ui',
         icon: 'src/images/icon.png'
       }
-    },
-    //'gatsby-plugin-offline'
-  ],
+    }
+    // 'gatsby-plugin-offline'
+  ]
 }

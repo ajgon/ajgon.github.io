@@ -1,24 +1,25 @@
+/* global graphql */
 import React from 'react'
 
-import withRoot from '../withRoot';
+import withRoot from '../withRoot'
 
 import BlogExcerpt from '../components/BlogExcerpt'
 
 class Blog extends React.Component {
-  render() {
+  render () {
     const { data } = this.props
     const posts = data.allMarkdownRemark.edges
     const avatars = data.allImageSharp.edges
 
     return (
       <React.Fragment>
-      {posts.map(post => {
-        const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
+        {posts.map(post => {
+          const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
 
-        return (
-          <BlogExcerpt post={post.node} avatar={avatar} key={post.node.id}/>
-        )
-      })}
+          return (
+            <BlogExcerpt post={post.node} avatar={avatar} key={post.node.id} />
+          )
+        })}
       </React.Fragment>
     )
   }

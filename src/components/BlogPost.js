@@ -1,17 +1,14 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 
 import Image from 'gatsby-image'
-import Disqus from 'disqus-react';
+import Disqus from 'disqus-react'
 
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid'
+import Avatar from '@material-ui/core/Avatar'
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
 import IconButton from '@material-ui/core/IconButton'
 import ShareIcon from '@material-ui/icons/Share'
 import Typography from '@material-ui/core/Typography'
@@ -27,7 +24,7 @@ const styles = {
 }
 
 class BlogPost extends React.Component {
-  render() {
+  render () {
     const { classes, post, avatar } = this.props
     const disqusShortname = 'ajgon'
     const disqusConfig = {
@@ -35,7 +32,6 @@ class BlogPost extends React.Component {
       identifier: post.id,
       title: post.title
     }
-    console.log(post.frontmatter.path)
 
     return (
       <Card className={classes.cardSpacing}>
@@ -46,7 +42,7 @@ class BlogPost extends React.Component {
           avatar={
             <Avatar sizes={avatar.sizes.sizes}
               src={avatar.sizes.src}
-              srcSet={avatar.sizes.srcSet}/>
+              srcSet={avatar.sizes.srcSet} />
           }
         />
         <CardMedia
@@ -69,5 +65,3 @@ BlogPost.propTypes = {
 }
 
 export default withStyles(styles)(BlogPost)
-
-

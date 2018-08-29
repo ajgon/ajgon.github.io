@@ -1,9 +1,9 @@
 import React from 'react'
 
-import withRoot from '../withRoot';
+import withRoot from '../withRoot'
 
 class OpenSource extends React.Component {
-  render() {
+  render () {
     return (
       <React.Fragment>
         <div>Open Source</div>
@@ -13,4 +13,3 @@ class OpenSource extends React.Component {
 }
 
 export default withRoot(OpenSource)
-
