@@ -21,13 +21,30 @@ import withRoot from '../withRoot';
 const styles = {
   flex: {
     flexGrow: 1
+  },
+  noUnderline: {
+    textDecoration: 'none'
   }
 }
 
 class MenuAppBar extends React.Component {
+  constructor(props) {
+    super(props)
+
+    const pathTabValue = this.pathTabsMap[props.location.pathname.split('/').slice(0, 2).join('/')]
+    if (pathTabValue) {
+      this.state.value = pathTabValue
+    }
+  }
+
   state = {
     value: 0,
     drawer: false
+  }
+
+  pathTabsMap = {
+    '/': 0,
+    '/blog': 1
   }
 
   handleChange = (event, value) => {
@@ -35,6 +52,7 @@ class MenuAppBar extends React.Component {
   }
 
   switchTab = (tabNumber) => () => {
+    console.log({ value: tabNumber })
     this.setState({ value: tabNumber })
     this.toggleDrawer(false)()
   }
@@ -47,7 +65,7 @@ class MenuAppBar extends React.Component {
 
   render() {
     const { value } = this.state
-    const { classes } = this.props
+    const { classes, location } = this.props
 
     return (
       <React.Fragment>
@@ -58,11 +76,10 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            <Typography className={classes.flex} variant="title">Igor Rzegocki</Typography>
+            <Link to="/" className={`${classes.flex} ${classes.noUnderline}`} onClick={this.switchTab(0)}><Typography variant="title">Igor Rzegocki</Typography></Link>
             <Hidden xsDown>
               <Tabs value={value} onChange={this.handleChange}>
                 <Tab label="About" component={Link} to="/" />
-                <Tab label="Open Source" component={Link} to="/open-source/" />
                 <Tab label="Blog" component={Link} to="/blog/" />
               </Tabs>
             </Hidden>
@@ -72,9 +89,6 @@ class MenuAppBar extends React.Component {
           <List component="nav">
             <ListItem button component={Link} to="/" onClick={this.switchTab(0)}>
               <ListItemText primary="About" />
-            </ListItem>
-            <ListItem button component={Link} to="/open-source/" onClick={this.switchTab(1)}>
-              <ListItemText primary="Open Source" />
             </ListItem>
             <ListItem button component={Link} to="/blog/" onClick={this.switchTab(2)}>
               <ListItemText primary="Blog" />

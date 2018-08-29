@@ -1,0 +1,30 @@
+[
+  {
+    "id":"e09fcf57-2135-46b6-b6c3-fe21df8a963f",
+    "url":"https://www.agh.edu.pl/en",
+    "name":"AGH University of Science and Technology in Cracow",
+    "year":"2003-2008",
+    "titles":[
+      "Faculty of Electrical Engineering, Automatics, Computer Science and Electronics",
+      "Department of Telecommunications",
+      "Master of Science in Engineering"
+    ],
+    "thesis":{
+      "name":"MSc. Thesis",
+      "url":"https://github.com/ajgon/agh-thesis"
+    }
+  },
+  {
+    "id":"b59aa2b4-2fea-4189-bafc-fb842b553db3",
+    "url":"https://bit.ly/2KhOvUP",
+    "name":"Technical School of Electronics in Rzeszow",
+    "year":"1998-2003",
+    "titles":[
+      "Electronic Technican, specialized in Computer Systems"
+    ],
+    "thesis":{
+      "name":"Thesis",
+      "url":"files/zse-thesis.pdf"
+    }
+  }
+]

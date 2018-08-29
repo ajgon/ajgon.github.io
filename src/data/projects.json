@@ -1,0 +1,82 @@
+[
+  {
+    "id":"86c5cf03-e75a-4ff2-84fa-55a791158845",
+    "name":"MPIRICA Health Inc.",
+    "url":"https://www.mpirica.com/",
+    "year":"2014-2016",
+    "description":"Lead Back-End developer, AWS DevOps",
+    "job_id":"4666cbed-3177-4559-987f-302f3e72feb9"
+  },
+  {
+    "id":"fddda47f-f72b-43d4-a24e-30d9344ebb84",
+    "name":"The X-Factor USA",
+    "url":"https://www.thexfactorusa.com/",
+    "year":"2013",
+    "description":"Lead Back-End developer, JavaScript services integration (Gigya, Livefyre, CrowdTwist)",
+    "job_id":"39958402-d2a9-464c-966a-8979b88795e6"
+  },
+  {
+    "id":"4dbef238-29e9-4839-bcb2-fc2b6a49d9df",
+    "name":"So You Think You Can Dance",
+    "url":"https://www.fox.com/dance/",
+    "year":"2013",
+    "description":"Back-End developer, JavaScript developer",
+    "job_id":"39958402-d2a9-464c-966a-8979b88795e6"
+  },
+  {
+    "id":"b937505e-9fd3-49be-bcb7-58fc73983863",
+    "name":"American Idol",
+    "url":"https://www.americanidol.com/",
+    "year":"2013",
+    "description":"Back-End developer, JavaScript developer",
+    "job_id":"39958402-d2a9-464c-966a-8979b88795e6"
+  },
+  {
+    "id":"31e6c7a7-c0c3-446c-b7de-e9e1021c0f1e",
+    "name":"FOX.com",
+    "url":"https://www.fox.com/",
+    "year":"2012-2013",
+    "description":"Support",
+    "job_id":"39958402-d2a9-464c-966a-8979b88795e6"
+  },
+  {
+    "id":"62c5bc8d-f359-4945-a5bc-e043376232d4",
+    "name":"Copernicus Science Centre",
+    "url":"https://bit.ly/2tPRrN0",
+    "year":"2011",
+    "description":"Lead Front-End developer, Back-End improvements",
+    "job_id":null
+  },
+  {
+    "id":"6c44a8ff-c88d-4427-bc34-21b9868f31f4",
+    "name":"WordWatch",
+    "url":"https://www.wordwatch.com/",
+    "year":"2011",
+    "description":"Lead Front-End developer, Back-End developer",
+    "job_id":"d81c6a11-371d-469e-a6ba-5537c0eade0c"
+  },
+  {
+    "id":"8dd659bc-67bf-4701-adfc-3e7e026369f0",
+    "name":"Stalexport Autostrada A4",
+    "url":"https://www.autostrada-a4.com.pl/",
+    "year":"2010",
+    "description":"HTML & CSS development",
+    "job_id":null
+  },
+  {
+    "id":"cae48da2-921e-469a-9077-46bfb3801ac9",
+    "name":"Schiphol",
+    "url":"https://www.schiphol.nl/",
+    "year":"2009",
+    "description":"HTML & CSS development",
+    "job_id":"878cc459-d835-4c2b-9591-b22583deeedf"
+  },
+  {
+    "id":"ee4672c9-52c5-4f79-adc8-cd0bafcf7880",
+    "name":"Respectance",
+    "url":"https://www.respectance.com/",
+    "year":"2008",
+    "description":"Lead Front-End developer, Back-End improvements",
+    "job_id":"91e6608c-2104-4b50-8e7a-1dda536ceb03"
+  }
+]

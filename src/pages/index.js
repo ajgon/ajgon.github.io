@@ -21,6 +21,7 @@ const styles = (theme) => {
 class Index extends React.Component {
   render() {
     const { classes, data } = this.props
+    const files = data.allFile.edges
 
     return (
       <React.Fragment>
@@ -44,49 +45,56 @@ class Index extends React.Component {
         </Typography>
         <Typography variant="headline" gutterBottom>Work Experience</Typography>
         <Typography component="ul" gutterBottom>
-          {data.site.siteMetadata.jobs.map(job => {
+          {data.allJobsJson.edges.map(job => {
             return(
-              <li key={job.id}>
-                <Link to={job.url} className={classes.secondaryColor}>{job.name}</Link> ({job.start} - {job.end || 'present day'})<br />
-                {job.description}
+              <li key={job.node.id}>
+                <a href={job.node.url}>{job.node.name}</a> ({job.node.start} - {job.node.end || 'present day'})<br />
+                {job.node.description}
               </li>
             )
           })}
         </Typography>
         <Typography variant="headline" gutterBottom>Notable projects</Typography>
         <Typography component="ul" gutterBottom>
-          {data.site.siteMetadata.projects.map(project => {
+          {data.allProjectsJson.edges.map(project => {
             return(
-              <li key={project.id}>
-                <Link to={project.url} className={classes.secondaryColor}>{project.name}</Link> ({project.year})<br />
-                {project.description}
+              <li key={project.node.id}>
+                <a href={project.node.url}>{project.node.name}</a> ({project.node.year})<br />
+                {project.node.description}
               </li>
             )
           })}
         </Typography>
         <Typography variant="headline" gutterBottom>Academic Record</Typography>
         <Typography component="ul" gutterBottom>
-          {data.site.siteMetadata.education.map(edu => {
+          {data.allEducationJson.edges.map(edu => {
+            const file = files.find(item => item.node.id.match(RegExp(edu.node.thesis.url)))
+            let thesis_url = edu.node.thesis.url
+
+            if (file) {
+              thesis_url = file.node.publicURL
+            }
+
             return(
-              <li key={edu.id}>
-                <Link to={edu.url} className={classes.secondaryColor}>{edu.name}</Link> ({edu.year})<br />
+              <li key={edu.node.id}>
+                <a href={edu.node.url}>{edu.node.name}</a> ({edu.node.year})<br />
                 <ul>
-                {edu.titles.map((title, index) => {
+                {edu.node.titles.map((title, index) => {
                   return(<li key={index}>{title}</li>)
                 })}
-                  <li><Link to={edu.thesis.url} className={classes.secondaryColor}>{edu.thesis.name}</Link></li>
+                  <li><a href={thesis_url}>{edu.node.thesis.name}</a></li>
                 </ul>
               </li>
             )
           })}
         </Typography>
         <Typography variant="headline" gutterBottom>Skills</Typography>
-      {data.site.siteMetadata.skills.map(skill => {
+      {data.allSkillsJson.edges.map(skill => {
         return (
-          <div key={skill.id}>
-            <Typography variant="subheading" gutterBottom>{skill.name}</Typography>
+          <div key={skill.node.id}>
+            <Typography variant="subheading" gutterBottom>{skill.node.name}</Typography>
             <Typography component="ul" gutterBottom>
-            {skill.list.map((title, index) => {
+            {skill.node.list.map((title, index) => {
               return(<li key={index}>{title}</li>)
             })}
             </Typography>
@@ -106,9 +114,17 @@ export default withRoot(withStyles(styles)(Index))
 
 export const query = graphql`
   query SiteJobsProjectsQuery {
-    site {
-      siteMetadata {
-        jobs {
+    allFile(filter: {id: {regex: "/files/"}}) {
+      edges {
+        node {
+          id
+          publicURL
+        }
+      }
+    }
+    allJobsJson {
+      edges {
+        node {
           id
           name
           description
@@ -116,24 +132,37 @@ export const query = graphql`
           start(formatString: "DD.MM.YYYY")
           end(formatString: "DD.MM.YYYY")
         }
-        projects {
+      }
+    }
+    allProjectsJson {
+      edges {
+        node {
           id
           name
           url
           year
           description
         }
-        education {
+      }
+    }
+    allEducationJson {
+      edges {
+        node {
           id
           name
           year
           titles
+          url
           thesis {
             name
             url
           }
         }
-        skills {
+      }
+    }
+    allSkillsJson {
+      edges {
+        node {
           id
           name
           list

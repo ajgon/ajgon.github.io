@@ -5,11 +5,19 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-const styles = {
-  limitedContainer: {
-    maxWidth: '1000px',
-    marginTop: '150px'
-  }
+const styles = (theme) => {
+  return({
+    root: {
+      '& a': {
+        color: theme.palette.secondary.main,
+        textDecoration: 'none'
+      }
+    },
+    limitedContainer: {
+      maxWidth: '1000px',
+      marginTop: '150px'
+    }
+  })
 }
 
 class Container extends React.Component {
@@ -17,7 +25,7 @@ class Container extends React.Component {
     const { classes } = this.props
 
     return (
-      <Grid container justify="center">
+      <Grid container justify="center" className={classes.root}>
         <Grid item xs={10} className={classes.limitedContainer}>
           {this.props.children}
         </Grid>

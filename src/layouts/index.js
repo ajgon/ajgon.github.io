@@ -1,4 +1,6 @@
 import 'typeface-roboto'
+import 'prismjs/themes/prism-tomorrow.css'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
@@ -12,24 +14,28 @@ import MenuAppBar from '../components/MenuAppBar'
 import Heart from '../components/Heart'
 import Container from '../components/Container'
 
-const Layout = ({ children, data }) => {
-  return(
-    <React.Fragment>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[
-          { name: 'description', content: data.site.siteMetadata.description }
-        ]}
-      >
-        <html lang="en" />
-      </Helmet>
-      <MenuAppBar />
-      <Heart />
-      <Container>
-        {children()}
-      </Container>
-    </React.Fragment>
-  )
+class Layout extends React.Component {
+  render() {
+    const { children, data, location } = this.props
+
+    return(
+      <React.Fragment>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          meta={[
+            { name: 'description', content: data.site.siteMetadata.description }
+          ]}
+        >
+          <html lang="en" />
+        </Helmet>
+        <MenuAppBar location={location} />
+        <Heart />
+        <Container>
+          {children()}
+        </Container>
+      </React.Fragment>
+    )
+  }
 }
 
 Layout.propTypes = {

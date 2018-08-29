@@ -1,0 +1,50 @@
+[
+  {
+    "id":"15eff438-c8c7-4da5-ad10-d6d9cde8b2ee",
+    "name":"Joist",
+    "description":"Ruby (RoR) & JavaScript developer",
+    "url":"https://www.joist.com/",
+    "start":"2017-02-28T23:00:00.000Z",
+    "end":null
+  },
+  {
+    "id":"4666cbed-3177-4559-987f-302f3e72feb9",
+    "name":"xfive",
+    "description":"Ruby (Ruby on Rails) & JavaScript developer, AWS DevOps",
+    "url":"https://www.xfive.co/",
+    "start":"2011-10-31T23:00:00.000Z",
+    "end":"2017-01-30T23:00:00.000Z"
+  },
+  {
+    "id":"39958402-d2a9-464c-966a-8979b88795e6",
+    "name":"X-Team",
+    "description":"PHP (WordPress) developer",
+    "url":"https://www.x-team.com/",
+    "start":"2011-10-31T23:00:00.000Z",
+    "end":"2014-03-30T22:00:00.000Z"
+  },
+  {
+    "id":"d81c6a11-371d-469e-a6ba-5537c0eade0c",
+    "name":"WordWatch Inc.",
+    "description":"Front-End & Ruby developer",
+    "url":"https://www.wordwatch.com/",
+    "start":"2010-10-31T23:00:00.000Z",
+    "end":"2011-10-30T23:00:00.000Z"
+  },
+  {
+    "id":"878cc459-d835-4c2b-9591-b22583deeedf",
+    "name":"IIZT Poland",
+    "description":"Front-End, PHP (Zend Framework, WordPress), Ruby (Ruby on Rails) developer",
+    "url":"https://www.iizt.com/",
+    "start":"2009-02-28T23:00:00.000Z",
+    "end":"2010-10-30T22:00:00.000Z"
+  },
+  {
+    "id":"91e6608c-2104-4b50-8e7a-1dda536ceb03",
+    "name":"Respectance Inc.",
+    "description":"Front-End & PHP (Zend Framework) developer",
+    "url":"https://www.respectance.com/",
+    "start":"2006-10-14T22:00:00.000Z",
+    "end":"2009-02-27T23:00:00.000Z"
+  }
+]
