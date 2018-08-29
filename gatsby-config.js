@@ -72,13 +72,13 @@ module.exports = {
     }, {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'rzegocki.pl',
+        name: 'Igor Rzegocki personal page',
         short_name: 'rzegocki.pl',
         start_url: '.',
         background_color: '#9f95c8',
         theme_color: '#9f95c8',
         display: 'minimal-ui',
-        icon: 'src/images/icon.png'
+        icon: 'src/images/favicon.png'
       }
     }
     // 'gatsby-plugin-offline'

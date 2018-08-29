@@ -1,25 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Image from 'gatsby-image'
 import Link from 'gatsby-link'
 
-import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
-import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import IconButton from '@material-ui/core/IconButton'
-import ShareIcon from '@material-ui/icons/Share'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
+import BlogPostHeader from './BlogPostHeader'
+
 const styles = {
-  cardCover: {
-    maxHeight: '280px'
-  },
   cardSpacing: {
     marginBottom: '2.5em'
   },
@@ -34,21 +27,8 @@ class BlogExcerpt extends React.Component {
 
     return (
       <Card className={classes.cardSpacing}>
-        <CardHeader
-          title={post.frontmatter.title}
-          subheader={post.frontmatter.date}
-          action={<IconButton><ShareIcon /></IconButton>}
-          avatar={<Avatar sizes={avatar.sizes.sizes}
-            src={avatar.sizes.src}
-            srcSet={avatar.sizes.srcSet} />}
-        />
         <Link to={post.frontmatter.path}>
-          <CardMedia
-            component={Image}
-            sizes={post.frontmatter.cover.childImageSharp.sizes}
-            className={classes.cardCover}
-            src={post.frontmatter.cover.childImageSharp.sizes.base64}
-          />
+          <BlogPostHeader post={post} avatar={avatar} />
         </Link>
         <CardContent>
           <Typography component='p'>
