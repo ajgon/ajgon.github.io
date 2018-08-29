@@ -18,14 +18,14 @@ const styles = {
 
 class BlogPostHeader extends React.Component {
   render () {
-    const { classes, post, avatar } = this.props
+    const { classes, post, avatar, siteUrl } = this.props
 
     return (
       <React.Fragment>
         <CardHeader
           title={post.frontmatter.title}
           subheader={post.frontmatter.date}
-          action={<BlogPostShare post={post} />}
+          action={<BlogPostShare post={post} siteUrl={siteUrl} />}
           avatar={
             <Avatar sizes={avatar.sizes.sizes}
               src={avatar.sizes.src}

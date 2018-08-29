@@ -32,9 +32,9 @@ class BlogPostShare extends React.Component {
   }
 
   render () {
-    const { classes, post } = this.props
+    const { classes, post, siteUrl } = this.props
     const { anchorEl } = this.state
-    const encodedPostUrl = encodeURIComponent(`https://www.rzegocki.pl${post.frontmatter.path}`)
+    const encodedPostUrl = encodeURIComponent(`${siteUrl}${post.frontmatter.path}`)
 
     return (
       <React.Fragment>

@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Igor Rzegocki',
-    description: 'Personal webpage, CV and blog'
+    description: 'Personal webpage, CV and blog',
+    siteUrl: 'https://www.rzegocki.pl'
   },
   pathPrefix: '/minefield',
   plugins: [
@@ -12,7 +13,44 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-svg',
+    'gatsby-plugin-sitemap',
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    }, {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        feeds: [
+          {
+            query: `
+              {
+                allMarkdownRemark(
+                  limit: 1000,
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields:frontmatter {
+                        slug:path
+                      }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml'
+          }
+        ]
+      }
+    }, {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/images/avatars`,

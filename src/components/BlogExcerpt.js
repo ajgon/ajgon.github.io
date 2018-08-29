@@ -23,12 +23,12 @@ const styles = {
 
 class BlogExcerpt extends React.Component {
   render () {
-    const { classes, post, avatar } = this.props
+    const { classes, post, avatar, siteUrl } = this.props
 
     return (
       <Card className={classes.cardSpacing}>
         <Link to={post.frontmatter.path}>
-          <BlogPostHeader post={post} avatar={avatar} />
+          <BlogPostHeader post={post} avatar={avatar} siteUrl={siteUrl} />
         </Link>
         <CardContent>
           <Typography component='p'>

@@ -6,12 +6,14 @@
 * Share icon
 * favicon
 * PWA icon
-
+* sitemap & robots.txt
 * extract https://www.rzegocki.pl from compoenents to site metadata
+* remove withRoot from components
+* RSS
+
+* fix share in blogexcerpt (new window size)
 * blog pagination
 * chrome lighthouse
-* sitemap
 * 404
 * standard linter
-* RSS
 * CSP

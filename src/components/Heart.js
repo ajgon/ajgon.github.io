@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
 import HeartSvg from './Heart.svg'
-import withRoot from '../withRoot'
 
 const styles = {
   heartWrap: {
@@ -47,4 +46,4 @@ Heart.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withRoot(withStyles(styles)(Heart))
+export default withStyles(styles)(Heart)

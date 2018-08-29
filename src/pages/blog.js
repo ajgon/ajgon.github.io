@@ -10,6 +10,7 @@ class Blog extends React.Component {
     const { data } = this.props
     const posts = data.allMarkdownRemark.edges
     const avatars = data.allImageSharp.edges
+    const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
       <React.Fragment>
@@ -17,7 +18,7 @@ class Blog extends React.Component {
           const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
 
           return (
-            <BlogExcerpt post={post.node} avatar={avatar} key={post.node.id} />
+            <BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} />
           )
         })}
       </React.Fragment>
@@ -29,6 +30,11 @@ export default withRoot(Blog)
 
 export const query = graphql`
   query BlogPosts {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     allImageSharp(filter:{ id: { regex: "/avatars/" }} ) {
       edges {
         node {

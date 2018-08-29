@@ -10,9 +10,10 @@ class BlogPostTemplate extends React.Component {
     const { data } = this.props
     const avatars = data.allImageSharp.edges
     const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${data.markdownRemark.frontmatter.author}.png`))).node
+    const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
-      <BlogPost post={data.markdownRemark} avatar={avatar} />
+      <BlogPost post={data.markdownRemark} avatar={avatar} siteUrl={siteUrl} />
     )
   }
 }
@@ -21,6 +22,11 @@ export default withRoot(BlogPostTemplate)
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     allImageSharp(filter:{ id: { regex: "/avatars/" }} ) {
       edges {
         node {
