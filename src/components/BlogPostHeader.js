@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import Image from 'gatsby-image'
 
-import Avatar from '@material-ui/core/Avatar'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardMedia from '@material-ui/core/CardMedia'
 import { withStyles } from '@material-ui/core/styles'
@@ -21,7 +20,7 @@ const styles = {
 
 class BlogPostHeader extends React.Component {
   render () {
-    const { classes, post, avatar, siteUrl, showShare, heading } = this.props
+    const { classes, post, siteUrl, showShare, heading } = this.props
 
     return (
       <React.Fragment>

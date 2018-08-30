@@ -40,7 +40,7 @@ class BlogPostShare extends React.Component {
 
     return (
       <nav aria-labelledby={shareButtonId}>
-        <IconButton aria-label="Share" id={shareButtonId} aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={this.handleClick}>
+        <IconButton aria-label='Share' id={shareButtonId} aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={this.handleClick}>
           <ShareIcon />
         </IconButton>
         <Menu

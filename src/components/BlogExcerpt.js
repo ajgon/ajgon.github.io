@@ -24,10 +24,10 @@ const styles = {
 class BlogExcerpt extends React.Component {
   render () {
     const { classes, post, avatar, siteUrl, showSummary } = this.props
-    let cardContent;
+    let cardContent
 
-    if(showSummary) {
-      cardContent = <CardContent><Typography component="p">{post.excerpt}</Typography></CardContent>
+    if (showSummary) {
+      cardContent = <CardContent><Typography component='p'>{post.excerpt}</Typography></CardContent>
     }
 
     return (

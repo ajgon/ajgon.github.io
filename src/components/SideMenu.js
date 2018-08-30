@@ -26,16 +26,16 @@ class SideMenu extends React.Component {
     const { classes, mainPage, menuItems } = this.props
 
     return (
-      <Paper className={classes.sideMenu} role="navigation">
+      <Paper className={classes.sideMenu} role='navigation'>
         <MenuList>
-        {menuItems.map(menuItem => {
-          if (mainPage) {
-            return(
-              <ScrollLink to={menuItem.node.to} smooth={true} hasSpy={true} key={menuItem.node.id}><MenuItem>{menuItem.node.name}</MenuItem></ScrollLink>
-            )
-          }
-          return(<MenuItem component={Link} to={`/#${menuItem.node.to}`} key={menuItem.node.id}>{menuItem.node.name}</MenuItem>)
-        })}
+          {menuItems.map(menuItem => {
+            if (mainPage) {
+              return (
+                <ScrollLink to={menuItem.node.to} smooth hashSpy key={menuItem.node.id}><MenuItem>{menuItem.node.name}</MenuItem></ScrollLink>
+              )
+            }
+            return (<MenuItem component={Link} to={`/#${menuItem.node.to}`} key={menuItem.node.id}>{menuItem.node.name}</MenuItem>)
+          })}
         </MenuList>
       </Paper>
     )
@@ -47,6 +47,3 @@ SideMenu.propTypes = {
 }
 
 export default withStyles(styles)(SideMenu)
-
-
-

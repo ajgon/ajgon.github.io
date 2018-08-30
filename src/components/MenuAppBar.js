@@ -11,12 +11,10 @@ import IconButton from '@material-ui/core/IconButton'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import Tab from '@material-ui/core/Tab'
-import Tabs from '@material-ui/core/Tabs'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -25,29 +23,23 @@ import SideMenu from '../components/SideMenu.js'
 import Social from '../components/Social.js'
 
 const styles = (theme) => {
-  return({
-		flex: {
-			flexGrow: 1
-		},
-		noUnderline: {
-			textDecoration: 'none'
-		},
-		cleanBar: {
-			background: theme.palette.background.paper,
-			boxShadow: 'none'
-		}
+  return ({
+    flex: {
+      flexGrow: 1
+    },
+    noUnderline: {
+      textDecoration: 'none'
+    },
+    cleanBar: {
+      background: theme.palette.background.paper,
+      boxShadow: 'none'
+    }
   })
 }
 
 class MenuAppBar extends React.Component {
   constructor (props) {
     super(props)
-
-    const pathTabsMap = {
-      '/': 0,
-      '/blog': 1
-    }
-    const pathTabValue = pathTabsMap[props.location.pathname.split('/').slice(0, 2).join('/')]
 
     this.state = {
       drawer: false
@@ -69,8 +61,8 @@ class MenuAppBar extends React.Component {
 
     if (location.pathname.match(/\/blog\/.+/)) {
       backButton = (
-        <Link to="/blog" aria-label="Go back" id="back-button">
-          <IconButton aria-labelledby="back-button">
+        <Link to='/blog' aria-label='Go back' id='back-button'>
+          <IconButton aria-labelledby='back-button'>
             <ArrowBackIcon />
           </IconButton>
         </Link>
@@ -93,13 +85,13 @@ class MenuAppBar extends React.Component {
         </AppBar>
         <Drawer anchor='bottom' open={this.state.drawer} onClose={this.toggleDrawer(false)}>
           <List component='nav'>
-          {menuItems.map((menuItem) => {
-            return(
-              <ListItem button component={mainPage ? ScrollLink : Link} to={`${mainPage ? '' : '/#'}${menuItem.node.to}`} smooth={true} key={menuItem.node.id} onClick={this.toggleDrawer(false)}>
-                <ListItemText primary={menuItem.node.name} />
-              </ListItem>
-            )
-          })}
+            {menuItems.map((menuItem) => {
+              return (
+                <ListItem button component={mainPage ? ScrollLink : Link} to={`${mainPage ? '' : '/#'}${menuItem.node.to}`} smooth hashSpy key={menuItem.node.id} onClick={this.toggleDrawer(false)}>
+                  <ListItemText primary={menuItem.node.name} />
+                </ListItem>
+              )
+            })}
           </List>
         </Drawer>
         <Hidden smDown>

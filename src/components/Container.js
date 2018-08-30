@@ -8,7 +8,7 @@ const styles = (theme) => {
   return ({
     root: {
       '& a': {
-        //color: theme.palette.secondary.main,
+        // color: theme.palette.secondary.main,
         color: '#b3003d',
         textDecoration: 'none'
       }
@@ -30,7 +30,7 @@ class Container extends React.Component {
     const { classes } = this.props
 
     return (
-      <Grid container justify='center' className={classes.root} role="main">
+      <Grid container justify='center' className={classes.root} role='main'>
         <Grid item xs={12} sm={10} md={9} className={classes.containerPositioner}>
           <div className={classes.limitedContainer}>
             {this.props.children}

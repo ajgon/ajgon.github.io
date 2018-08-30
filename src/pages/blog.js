@@ -14,12 +14,12 @@ class Blog extends React.Component {
     const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
-      <Section headline="Blog">
+      <Section headline='Blog'>
         {posts.map(post => {
           const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
 
           return (
-            <BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} showShare={true} showSummary={true} />
+            <BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} showShare showSummary />
           )
         })}
       </Section>

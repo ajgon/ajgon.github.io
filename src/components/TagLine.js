@@ -13,17 +13,17 @@ const styles = {
 
 class TagLine extends React.Component {
   render () {
-		const { classes } = this.props
+    const { classes } = this.props
 
     return (
       <React.Fragment>
         <Hidden smUp>
-          <Typography variant='headline' gutterBottom component="h2">
+          <Typography variant='headline' gutterBottom component='h2'>
             I handle impossible cases on the spot, miracles take me a few minutes.
           </Typography>
         </Hidden>
         <Hidden xsDown>
-          <Typography variant='display3' className={classes.tagLineSize} gutterBottom component="h2">
+          <Typography variant='display3' className={classes.tagLineSize} gutterBottom component='h2'>
             I handle impossible cases on the spot, miracles take me a few minutes.
           </Typography>
         </Hidden>
@@ -37,6 +37,3 @@ TagLine.propTypes = {
 }
 
 export default withStyles(styles)(TagLine)
-
-
-

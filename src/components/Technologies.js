@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 import IconAWS from '../icons/amazonwebservices/amazonwebservices-plain-wordmark.svg'
 import IconCSS from '../icons/css3/css3-plain-wordmark.svg'
-import IconDebian from '../icons/debian/debian-plain.svg'
 import IconDocker from '../icons/docker/docker-plain-wordmark.svg'
 import IconGit from '../icons/git/git-plain-wordmark.svg'
 import IconHtml from '../icons/html5/html5-plain-wordmark.svg'
@@ -39,7 +38,7 @@ class Technologies extends React.Component {
       <Grid container spacing={24} className={classes.cardSpacing}>
         <Grid item xs={3} sm={2}>
           <Paper className={classes.cellPadding}>
-            <IconRuby className={classes.block} className={classes.block} />
+            <IconRuby className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={3} sm={2}>
@@ -107,4 +106,3 @@ Technologies.propTypes = {
 }
 
 export default withStyles(styles)(Technologies)
-
