@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Link from 'gatsby-link'
+import { Link as ScrollLink } from 'react-scroll'
 
 import MenuItem from '@material-ui/core/MenuItem'
 import MenuList from '@material-ui/core/MenuList'
@@ -22,10 +23,21 @@ const styles = {
 
 class SideMenu extends React.Component {
   render () {
-    const { classes } = this.props
+    const { classes, mainPage } = this.props
+    let menuList
 
-    return (
-      <Paper className={classes.sideMenu}>
+    if(mainPage) {
+      menuList = (
+        <MenuList>
+          <ScrollLink to="about" smooth={true} hashSpy={true}><MenuItem>About</MenuItem></ScrollLink>
+          <ScrollLink to="technologies" smooth={true} hashSpy={true}><MenuItem>Technologies</MenuItem></ScrollLink>
+          <ScrollLink to="projects" smooth={true} hashSpy={true}><MenuItem>Projects</MenuItem></ScrollLink>
+          <ScrollLink to="blog" smooth={true} hashSpy={true}><MenuItem>Blog</MenuItem></ScrollLink>
+          <ScrollLink to="contact" smooth={true} hashSpy={true}><MenuItem>Contact</MenuItem></ScrollLink>
+        </MenuList>
+      )
+    } else {
+      menuList = (
         <MenuList>
           <Link to="/"><MenuItem>About</MenuItem></Link>
           <Link to="/#technologies"><MenuItem>Technologies</MenuItem></Link>
@@ -33,6 +45,12 @@ class SideMenu extends React.Component {
           <Link to="/#blog"><MenuItem>Blog</MenuItem></Link>
           <Link to="/#contact"><MenuItem>Contact</MenuItem></Link>
         </MenuList>
+      )
+    }
+
+    return (
+      <Paper className={classes.sideMenu}>
+        {menuList}
       </Paper>
     )
   }

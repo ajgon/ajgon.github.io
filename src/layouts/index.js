@@ -16,8 +16,24 @@ import Container from '../components/Container'
 import FavIcon from '../images/favicon.png'
 
 class Layout extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      mainPage: props.location.pathname == '/'
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname == this.props.location.pathname) {
+      return
+    }
+
+    const { location } = this.props
+    const mainPage = location.pathname == '/'
+    this.setState({ mainPage })
+  }
   render () {
     const { children, data, location } = this.props
+    const { mainPage } = this.state
 
     return (
       <React.Fragment>
@@ -31,10 +47,11 @@ class Layout extends React.Component {
           ]}
         >
           <html lang='en' />
+          <body id="about" />
           <style type="text/css">{`body { position: relative }`}</style>
         </Helmet>
         <CssBaseline />
-        <MenuAppBar location={location} />
+        <MenuAppBar location={location} mainPage={mainPage} />
         <Heart />
         <Container>
           {children()}

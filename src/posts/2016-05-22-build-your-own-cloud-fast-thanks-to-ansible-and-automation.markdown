@@ -8,7 +8,7 @@ categories: Administration
 path: /blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation
 ---
 
-Last year I wrote an [article about installing custom linux distro on Raspberry Pi 2](/blog/2015/04/19/installing-custom-linux-on-raspberry-pi-2/).
+Last year I wrote an [article about installing custom linux distro on Raspberry Pi 2](/blog/installing-custom-linux-on-raspberry-pi-2/).
 Since then I configured it as my personal cloud, with [email daemon](http://www.postfix.org/),
 [dropbox alternative](https://owncloud.org/), [webmail](https://roundcube.net/),
 [backup system](http://duplicity.nongnu.org/) and some other tools. However it appeared, that

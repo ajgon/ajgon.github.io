@@ -60,13 +60,12 @@ class MenuAppBar extends React.Component {
   }
 
   render () {
-    const { classes, location } = this.props
+    const { classes, location, mainPage } = this.props
     let backButton = null
 
     if (location.pathname.match(/\/blog\/.+/)) {
       backButton = <Link to="/blog"><IconButton><ArrowBackIcon /></IconButton></Link>
     }
-    console.log(location)
 
     return (
       <React.Fragment>
@@ -93,7 +92,7 @@ class MenuAppBar extends React.Component {
           </List>
         </Drawer>
         <Hidden smDown>
-          <SideMenu />
+          <SideMenu mainPage={mainPage} />
         </Hidden>
       </React.Fragment>
     )
