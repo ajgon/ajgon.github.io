@@ -18,7 +18,7 @@ const styles = {
 
 class BlogPost extends React.Component {
   render () {
-    const { classes, post, avatar, siteUrl } = this.props
+    const { classes, post, siteUrl } = this.props
     const disqusShortname = 'ajgon'
     const disqusConfig = {
       url: `https://www.rzegocki.pl${post.frontmatter.path}`,
@@ -28,7 +28,7 @@ class BlogPost extends React.Component {
 
     return (
       <Card className={classes.cardSpacing}>
-        <BlogPostHeader post={post} avatar={avatar} siteUrl={siteUrl} showShare heading='h1' />
+        <BlogPostHeader post={post} siteUrl={siteUrl} showShare heading='h1' />
         <CardContent>
           <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
           <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />

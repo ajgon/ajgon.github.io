@@ -18,7 +18,11 @@ const styles = {
 class Section extends React.Component {
   render () {
     const { children, classes, headline, idName } = this.props
-    const headlineLabel = `arialabel-${headline.toLowerCase().replace(/[^a-z0-9]/g, '')}`
+    const headlineLabel = `arialabel-${(headline || '').toLowerCase().replace(/[^a-z0-9]/g, '')}`
+
+    if (!headline) {
+      return (<section className={classes.root} role='region'>{children}</section>)
+    }
 
     return (
       <section className={classes.root} id={idName || headline.toLowerCase()} role='region' aria-labelledby={headlineLabel}>

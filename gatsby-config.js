@@ -13,9 +13,13 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-svg',
-    'gatsby-plugin-sitemap',
     'gatsby-plugin-sri',
     {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: ['/avatar*']
+      }
+    }, {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-65616575-1',
@@ -57,12 +61,6 @@ module.exports = {
             output: '/feed.xml'
           }
         ]
-      }
-    }, {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/images/avatars`,
-        name: 'avatars'
       }
     }, {
       resolve: `gatsby-source-filesystem`,

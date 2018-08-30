@@ -14,15 +14,16 @@
 * aria
 * Pomysly z dokumentacji gatsby
 * fix share on blog excerpt (preventdefault)
+* /avatar
+* blog pagination (gatsby-paginate)
 
+* structured data (rdf)
 * fix share in blogexcerpt (new window sizes for facebook/twitter/etc.)
 * public-key.txt
-* /avatar
 * Potestowac na roznych web-performance checkach
 * Stopka
 * Open Source/Projects
 * Zrodlo strony na github
-* blog pagination (gatsby-paginate)
 * chrome lighthouse
 * 404
 * standard linter

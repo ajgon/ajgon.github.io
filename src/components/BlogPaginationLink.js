@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "gatsby-link";
+import React from 'react'
+import Link from 'gatsby-link'
 
 import IconButton from '@material-ui/core/IconButton'
 
@@ -7,12 +7,12 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 class BlogPaginationLink extends React.Component {
-  render() {
+  render () {
     const { rel, test, url } = this.props
 
     if (!test) {
       if (rel === 'prev') {
-        return(
+        return (
           <React.Fragment>
             <Link to={url} aria-label='Newer posts' id='blog-newer-posts'>
               <IconButton aria-labelledby='blog-newer-posts'>
@@ -23,7 +23,7 @@ class BlogPaginationLink extends React.Component {
         )
       }
 
-      if (rel == 'next') {
+      if (rel === 'next') {
         return (
           <React.Fragment>
             <Link to={url} aria-label='Older posts' id='blog-older-posts'>
@@ -36,7 +36,7 @@ class BlogPaginationLink extends React.Component {
       }
     }
 
-    return(<React.Fragment />)
+    return (<React.Fragment />)
   }
 }
 

@@ -1,21 +1,17 @@
-import React from "react";
-import Link from "gatsby-link";
+import React from 'react'
 
 import withRoot from '../withRoot'
-
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 
 import BlogExcerpt from '../components/BlogExcerpt'
 import BlogPaginationLink from '../components/BlogPaginationLink'
 import Section from '../components/Section'
 
 class BlogIndex extends React.Component {
-  render() {
-    const { group, index, first, last, pageCount } = this.props.pathContext;
-    const previousUrl = index - 1 == 1 ? "" : (index - 1).toString();
-    const nextUrl = (index + 1).toString();
-    const siteUrl = ''
+  render () {
+    const { group, index, first, last, additionalContext } = this.props.pathContext
+    const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
+    const nextUrl = (index + 1).toString()
+    const siteUrl = additionalContext.siteUrl
 
     return (
       <Section headline='Blog'>
@@ -27,7 +23,7 @@ class BlogIndex extends React.Component {
 
         <div style={{display: 'flex'}}>
           <BlogPaginationLink test={first} url={`/blog/${previousUrl}`} rel='prev' />
-          <div style={{flexGrow: '1'}}></div>
+          <div style={{flexGrow: '1'}} />
           <BlogPaginationLink test={last} url={`/blog/${nextUrl}`} rel='next' />
         </div>
       </Section>
@@ -35,4 +31,4 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default withRoot(BlogIndex);
+export default withRoot(BlogIndex)
