@@ -9,7 +9,7 @@ path: /blog/25-awesome-tools-every-developer-should-have
 ---
 
 <blockquote>
-    This is a repost of my <a href="http://x-team.com/2013/11/25-awesome-tools-every-developer-should-have/">original post</a> on <a href="http://x-team.com/">X-Team</a> blog. I'm putting it here for consistency.
+    This is a repost of my [original post](http://x-team.com/2013/11/25-awesome-tools-every-developer-should-have/) on [X-Team](http://x-team.com/) blog. I'm putting it here for consistency.
 </blockquote>
 
 <!-- more -->

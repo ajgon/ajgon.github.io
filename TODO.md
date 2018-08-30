@@ -11,11 +11,17 @@
 * remove withRoot from components
 * RSS
 * fix share in blogexcerpt (new window size)
+* responsive
+* aria
 
+* /avatar
+* Pomysly z dokumentacji gatsby
+* Potestowac na roznych web-performance checkach
+* Stopka
+* Open Source/Projects
+* Zrodlo strony na github
 * blog pagination
 * chrome lighthouse
 * 404
 * standard linter
 * CSP
-* responsive
-* aria

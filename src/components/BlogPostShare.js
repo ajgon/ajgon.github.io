@@ -7,6 +7,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import ShareIcon from '@material-ui/icons/Share'
 import { withStyles } from '@material-ui/core/styles'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const styles = {
   menuItemLink: {
@@ -49,9 +50,9 @@ class BlogPostShare extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}><a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl};display=popup`} target='_blank' className={classes.menuItemLink}>Facebook</a></MenuItem>
-          <MenuItem onClick={this.handleClose}><a href={`https://www.linkedin.com/shareArticle?mini=true&amp;url=${encodedPostUrl}&amp;title=`} target='_blank' className={classes.menuItemLink}>LinkedIn</a></MenuItem>
-          <MenuItem onClick={this.handleClose}><a href={`https://twitter.com/share?url=${encodedPostUrl}&amp;text=`} target='_blank' className={classes.menuItemLink}>Twitter</a></MenuItem>
+          <MenuItem onClick={this.handleClose}><OutboundLink href={`https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl};display=popup`} target='_blank' className={classes.menuItemLink}>Facebook</OutboundLink></MenuItem>
+          <MenuItem onClick={this.handleClose}><OutboundLink href={`https://www.linkedin.com/shareArticle?mini=true&amp;url=${encodedPostUrl}&amp;title=`} target='_blank' className={classes.menuItemLink}>LinkedIn</OutboundLink></MenuItem>
+          <MenuItem onClick={this.handleClose}><OutboundLink href={`https://twitter.com/share?url=${encodedPostUrl}&amp;text=`} target='_blank' className={classes.menuItemLink}>Twitter</OutboundLink></MenuItem>
         </Menu>
       </nav>
     )

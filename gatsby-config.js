@@ -15,6 +15,13 @@ module.exports = {
     'gatsby-plugin-react-svg',
     'gatsby-plugin-sitemap',
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-65616575-1',
+        head: false,
+        anonymize: true
+      }
+    }, {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         policy: [{ userAgent: '*', allow: '/' }]
@@ -124,7 +131,7 @@ module.exports = {
         display: 'minimal-ui',
         icon: 'src/images/favicon.png'
       }
-    }
-    // 'gatsby-plugin-offline'
+    },
+    'gatsby-plugin-offline'
   ]
 }
