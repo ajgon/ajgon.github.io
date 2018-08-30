@@ -1,0 +1,27 @@
+[
+  {
+    "id": "2e6028ce-fad1-487b-bace-6117f33e393f",
+    "name": "About",
+    "to": "about"
+  },
+  {
+    "id": "27dd36a1-f8af-4d43-8bab-c37310058c1e",
+    "name": "Technologies",
+    "to": "technologies"
+  },
+  {
+    "id": "cba9e50e-1406-4ce1-8518-5c33cc517784",
+    "name": "Projects",
+    "to": "projects"
+  },
+  {
+    "id": "447e8185-ac1a-42bc-a28c-4bc90e52735a",
+    "name": "Blog",
+    "to": "blog"
+  },
+  {
+    "id": "a9fc4afa-7b78-44d2-b015-4dac2ac2afe8",
+    "name": "Contact",
+    "to": "contact"
+  }
+]

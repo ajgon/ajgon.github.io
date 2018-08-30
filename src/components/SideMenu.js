@@ -23,34 +23,20 @@ const styles = {
 
 class SideMenu extends React.Component {
   render () {
-    const { classes, mainPage } = this.props
-    let menuList
-
-    if(mainPage) {
-      menuList = (
-        <MenuList>
-          <ScrollLink to="about" smooth={true} hashSpy={true}><MenuItem>About</MenuItem></ScrollLink>
-          <ScrollLink to="technologies" smooth={true} hashSpy={true}><MenuItem>Technologies</MenuItem></ScrollLink>
-          <ScrollLink to="projects" smooth={true} hashSpy={true}><MenuItem>Projects</MenuItem></ScrollLink>
-          <ScrollLink to="blog" smooth={true} hashSpy={true}><MenuItem>Blog</MenuItem></ScrollLink>
-          <ScrollLink to="contact" smooth={true} hashSpy={true}><MenuItem>Contact</MenuItem></ScrollLink>
-        </MenuList>
-      )
-    } else {
-      menuList = (
-        <MenuList>
-          <Link to="/"><MenuItem>About</MenuItem></Link>
-          <Link to="/#technologies"><MenuItem>Technologies</MenuItem></Link>
-          <Link to="/#projects"><MenuItem>Projects</MenuItem></Link>
-          <Link to="/#blog"><MenuItem>Blog</MenuItem></Link>
-          <Link to="/#contact"><MenuItem>Contact</MenuItem></Link>
-        </MenuList>
-      )
-    }
+    const { classes, mainPage, menuItems } = this.props
 
     return (
-      <Paper className={classes.sideMenu}>
-        {menuList}
+      <Paper className={classes.sideMenu} role="navigation">
+        <MenuList>
+        {menuItems.map(menuItem => {
+          if (mainPage) {
+            return(
+              <ScrollLink to={menuItem.node.to} smooth={true} hasSpy={true} key={menuItem.node.id}><MenuItem>{menuItem.node.name}</MenuItem></ScrollLink>
+            )
+          }
+          return(<MenuItem component={Link} to={`/#${menuItem.node.to}`} key={menuItem.node.id}>{menuItem.node.name}</MenuItem>)
+        })}
+        </MenuList>
       </Paper>
     )
   }

@@ -51,7 +51,7 @@ class Layout extends React.Component {
           <style type="text/css">{`body { position: relative }`}</style>
         </Helmet>
         <CssBaseline />
-        <MenuAppBar location={location} mainPage={mainPage} />
+        <MenuAppBar location={location} mainPage={mainPage} menuItems={data.allMenuJson.edges} />
         <Heart />
         <Container>
           {children()}
@@ -74,6 +74,15 @@ export const query = graphql`
         title
         description
         siteUrl
+      }
+    }
+    allMenuJson {
+      edges {
+        node {
+          id
+          name
+          to
+        }
       }
     }
   }

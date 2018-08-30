@@ -36,7 +36,7 @@ class Heart extends React.Component {
 
     return (
       <div className={classes.heartWrap}>
-        <HeartSvg className={classes.heart} />
+        <HeartSvg className={classes.heart} alt="" role="presentation" />
       </div>
     )
   }

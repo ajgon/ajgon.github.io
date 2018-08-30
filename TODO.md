@@ -10,8 +10,8 @@
 * extract https://www.rzegocki.pl from compoenents to site metadata
 * remove withRoot from components
 * RSS
-
 * fix share in blogexcerpt (new window size)
+
 * blog pagination
 * chrome lighthouse
 * 404

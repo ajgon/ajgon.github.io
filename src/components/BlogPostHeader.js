@@ -21,7 +21,7 @@ const styles = {
 
 class BlogPostHeader extends React.Component {
   render () {
-    const { classes, post, avatar, siteUrl, showShare } = this.props
+    const { classes, post, avatar, siteUrl, showShare, heading } = this.props
 
     return (
       <React.Fragment>
@@ -33,6 +33,7 @@ class BlogPostHeader extends React.Component {
         />
         <CardHeader
           title={post.frontmatter.title}
+          titleTypographyProps={{component: heading || 'span'}}
           subheader={post.frontmatter.date}
           action={showShare ? <BlogPostShare post={post} siteUrl={siteUrl} /> : null}
         />

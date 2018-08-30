@@ -32,7 +32,7 @@ class Index extends React.Component {
 
     return (
       <React.Fragment>
-        <Section headline="Yo Developers!" idName="about">
+        <Section headline="Yo Developers!" idName="yodevelopers">
 					<TagLine />
         </Section>
         <Section headline="Technologies">

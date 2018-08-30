@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
 
-import { withStyles } from '@material-ui/core/styles'
+import Link from 'gatsby-link'
+import { Link as ScrollLink } from 'react-scroll'
+
 import AppBar from '@material-ui/core/AppBar'
 import Drawer from '@material-ui/core/Drawer'
 import Hidden from '@material-ui/core/Hidden'
@@ -14,6 +15,8 @@ import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles'
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -60,16 +63,23 @@ class MenuAppBar extends React.Component {
   }
 
   render () {
-    const { classes, location, mainPage } = this.props
+    const { classes, location, mainPage, menuItems } = this.props
+    const largeScreen = isWidthUp('md', this.props.width)
     let backButton = null
 
     if (location.pathname.match(/\/blog\/.+/)) {
-      backButton = <Link to="/blog"><IconButton><ArrowBackIcon /></IconButton></Link>
+      backButton = (
+        <Link to="/blog" aria-label="Go back" id="back-button">
+          <IconButton aria-labelledby="back-button">
+            <ArrowBackIcon />
+          </IconButton>
+        </Link>
+      )
     }
 
     return (
       <React.Fragment>
-        <AppBar position="static" className={classes.cleanBar}>
+        <AppBar position={largeScreen ? 'static' : 'fixed'} className={largeScreen ? classes.cleanBar : ''}>
           <Toolbar>
             <Hidden mdUp>
               <IconButton onClick={this.toggleDrawer(true)} aria-label='Menu'>
@@ -83,16 +93,17 @@ class MenuAppBar extends React.Component {
         </AppBar>
         <Drawer anchor='bottom' open={this.state.drawer} onClose={this.toggleDrawer(false)}>
           <List component='nav'>
-            <ListItem button component={Link} to='/'>
-              <ListItemText primary='About' />
-            </ListItem>
-            <ListItem button component={Link} to='/blog/'>
-              <ListItemText primary='Blog' />
-            </ListItem>
+          {menuItems.map((menuItem) => {
+            return(
+              <ListItem button component={mainPage ? ScrollLink : Link} to={`${mainPage ? '' : '/#'}${menuItem.node.to}`} smooth={true} key={menuItem.node.id} onClick={this.toggleDrawer(false)}>
+                <ListItemText primary={menuItem.node.name} />
+              </ListItem>
+            )
+          })}
           </List>
         </Drawer>
         <Hidden smDown>
-          <SideMenu mainPage={mainPage} />
+          <SideMenu mainPage={mainPage} menuItems={menuItems} />
         </Hidden>
       </React.Fragment>
     )
@@ -103,4 +114,4 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(MenuAppBar)
+export default withWidth()(withStyles(styles)(MenuAppBar))

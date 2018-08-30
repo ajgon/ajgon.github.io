@@ -4,6 +4,7 @@ import React from 'react'
 import withRoot from '../withRoot'
 
 import BlogExcerpt from '../components/BlogExcerpt'
+import Section from '../components/Section'
 
 class Blog extends React.Component {
   render () {
@@ -13,7 +14,7 @@ class Blog extends React.Component {
     const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
-      <React.Fragment>
+      <Section headline="Blog">
         {posts.map(post => {
           const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
 
@@ -21,7 +22,7 @@ class Blog extends React.Component {
             <BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} showShare={true} showSummary={true} />
           )
         })}
-      </React.Fragment>
+      </Section>
     )
   }
 }

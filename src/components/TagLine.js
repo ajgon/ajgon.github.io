@@ -18,12 +18,12 @@ class TagLine extends React.Component {
     return (
       <React.Fragment>
         <Hidden smUp>
-          <Typography variant='display1' gutterBottom>
+          <Typography variant='headline' gutterBottom component="h2">
             I handle impossible cases on the spot, miracles take me a few minutes.
           </Typography>
         </Hidden>
         <Hidden xsDown>
-          <Typography variant='display3' className={classes.tagLineSize} gutterBottom>
+          <Typography variant='display3' className={classes.tagLineSize} gutterBottom component="h2">
             I handle impossible cases on the spot, miracles take me a few minutes.
           </Typography>
         </Hidden>

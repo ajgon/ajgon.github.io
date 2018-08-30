@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import sha1 from 'sha1'
 
 import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
@@ -35,10 +36,11 @@ class BlogPostShare extends React.Component {
     const { classes, post, siteUrl } = this.props
     const { anchorEl } = this.state
     const encodedPostUrl = encodeURIComponent(`${siteUrl}${post.frontmatter.path}`)
+    const shareButtonId = `share-button-${sha1(post.id)}`
 
     return (
-      <React.Fragment>
-        <IconButton aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={this.handleClick}>
+      <nav aria-labelledby={shareButtonId}>
+        <IconButton aria-label="Share" id={shareButtonId} aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={this.handleClick}>
           <ShareIcon />
         </IconButton>
         <Menu
@@ -51,7 +53,7 @@ class BlogPostShare extends React.Component {
           <MenuItem onClick={this.handleClose}><a href={`https://www.linkedin.com/shareArticle?mini=true&amp;url=${encodedPostUrl}&amp;title=`} target='_blank' className={classes.menuItemLink}>LinkedIn</a></MenuItem>
           <MenuItem onClick={this.handleClose}><a href={`https://twitter.com/share?url=${encodedPostUrl}&amp;text=`} target='_blank' className={classes.menuItemLink}>Twitter</a></MenuItem>
         </Menu>
-      </React.Fragment>
+      </nav>
     )
   }
 }
