@@ -22,12 +22,12 @@ receive lots emails from lists, friends and organizations every day. Setting
 filtering for all of that once, was a big pain. Setting it multiple times on
 all the machines, and then be consistent about it was enormous P.I.T.A. So I
 started looking for solution for that problem and found
-[Sieve](http://sieve.info/) (and its
-[dovecot plugin](http://wiki.dovecot.org/LDA/Sieve)).
+[Sieve](https://bit.ly/2LHCioh) (and its
+[dovecot plugin](https://wiki.dovecot.org/LDA/Sieve)).
 
 Ok, so how to do it? Firstly, as for dovecot 1.2.x, sieve was completely
 rewritten as a new plugin. It can be obtained from
-[rename-it.nl website](http://www.rename-it.nl/dovecot/1.2/). At the time of
+[rename-it.nl website](https://bit.ly/2MC58eS). At the time of
 writing this post, there is no `*.deb` package in repositories, so I have to
 build it manually. I also had to install `dovecot-dev` package, because of
 sieve configurator, which needs a `dovecot-config` file.
@@ -59,15 +59,15 @@ protocol lda {
 There is a possibility to make some adjustments for plugin itself (filters
 paths and so on), but I didn't find it necessary. However, if you want to - you
 can check them on
-[LDA/Sieve documentation page](http://wiki.dovecot.org/LDA/Sieve/Dovecot).
+[LDA/Sieve documentation page](https://wiki.dovecot.org/LDA/Sieve/Dovecot).
 After that, just restart postfix and everything is set.
 
 The last step is setting all the filters properly. They should be stored in
 `~/.dovecot.sieve` (if you use `mailbox_command`) or in
 `/home/vmail/user@domain/.dovecot.sieve` (if you use `mailbox_transport`).
-Sieve uses it's own [pseudo-language](http://www.ietf.org/rfc/rfc5228.txt) for
+Sieve uses it's own [pseudo-language](https://www.ietf.org/rfc/rfc5228.txt) for
 filtering, but below is a part of my file which should provide a
-[good example](http://wiki.dovecot.org/LDA/Sieve/) for start:
+[good example](https://wiki.dovecot.org/LDA/Sieve/) for start:
 
 `.dovecot.sieve`
 ```bash

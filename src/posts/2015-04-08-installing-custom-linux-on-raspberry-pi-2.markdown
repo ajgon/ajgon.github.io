@@ -246,7 +246,7 @@ And that's it. It's getting more complicated if you want to configure a WiFi net
 
 ### Configuring Wi-Fi
 
-In my case, I used a [WiPi](http://www.element14.com/community/docs/DOC-48541?ICID=rpiaccsy-access-products#) WiFi
+In my case, I used a [WiPi](https://www.element14.com/community/docs/DOC-48541?ICID=rpiaccsy-access-products#) WiFi
 adapter. If you have a different one, you need to use a [proper firmware](https://packages.debian.org/source/wheezy/firmware-nonfree)
 instead of the one which I used.
 
@@ -313,7 +313,7 @@ diskutil eject /dev/diskX
 ```
 
 Notice, that for `dd` I'm using `/dev/rdiskX` instead of the `/dev/diskX`. It's because how OSX handles disk devices.
-[You can read more here](http://superuser.com/questions/631592/why-is-dev-rdisk-about-20-times-faster-than-dev-disk-in-mac-os-x)
+[You can read more here](https://superuser.com/questions/631592/why-is-dev-rdisk-about-20-times-faster-than-dev-disk-in-mac-os-x)
 if you are intereseted.
 
 In Linux it's as simple as typing:

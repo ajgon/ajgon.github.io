@@ -8,7 +8,7 @@ categories: Administration
 path: /blog/setting-secure-cloud-based-backup-system-using-git-and-box-com
 ---
 
-After giving up my [spying e-mail provider](http://gmail.com/), and moving
+After giving up my [spying e-mail provider](https://gmail.com/), and moving
 everything to my own [DeeDee server](https://github.com/ajgon/DeeDee), I moved
 smoothly from one paranoia to another. Ok, my e-mail is not read anymore by
 anyone except me, but on the other hand it's on an ATOM machine staying in my
@@ -16,7 +16,7 @@ room. Which unfortunatelly, is not fire, burglar, lightning and UFO protected.
 So idea of backups was born. Firstly, I was using an external drive, which I
 was keeping in the same room, most of the time even attached to the machine.
 But I thought, that it is still
-[not a best solution](http://www.youtube.com/watch?v=U4oB28ksiIo#t=286s). So I
+[not a best solution](https://www.youtube.com/watch?v=U4oB28ksiIo#t=286s). So I
 started swinging in the clouds.
 
 <!--more-->

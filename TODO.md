@@ -14,6 +14,7 @@
 * responsive
 * aria
 
+* public-key.txt
 * /avatar
 * Pomysly z dokumentacji gatsby
 * Potestowac na roznych web-performance checkach
@@ -25,3 +26,4 @@
 * 404
 * standard linter
 * CSP
+* hardenize

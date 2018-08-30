@@ -22,11 +22,11 @@ I wanted to integrate it somehow with my existing configuration - so, when
 message is parsed by spam filter, it needs to be filtered further by sieve.
 Thanks to that, I can have full control over spam and even categorize it (yeah,
 I'm a picky bastard ;)). Thankfully
-[SpamAssassin](http://spamassassin.apache.org/) can do this, so I didn't have
+[SpamAssassin](https://spamassassin.apache.org/) can do this, so I didn't have
 to look further. I also decided to inlcude
-[Pyzor](http://sourceforge.net/apps/trac/pyzor/),
-[Razor](http://razor.sourceforge.net/) and
-[DCC](http://www.dcc-servers.net/dcc/). No mercy!
+[Pyzor](https://sourceforge.net/apps/trac/pyzor/),
+[Razor](https://razor.sourceforge.net/) and
+[DCC](https://www.dcc-servers.net/dcc/). No mercy!
 
 ## Installing packets
 
@@ -159,7 +159,7 @@ if header :contains "X-Spam-Flag" ["YES"] { fileinto "Junk"; stop; }
 
 To test it, just send an email to protected account and look into the headers.
 You should see a SpamAssassin magic added there. To test filtering, use
-[GTUBE](http://spamassassin.apache.org/gtube/) message format - your email
+[GTUBE](https://spamassassin.apache.org/gtube/) message format - your email
 should land in Junk.
 
 ## Conclusion
@@ -173,4 +173,4 @@ chance, that you'll find your answers there.
 
 ### Sources
 
-* [http://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/](http://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/)
+* [https://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/](https://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/)

@@ -13,7 +13,7 @@ those who make backups, and those who will. I strongly believe into that,
 that's why despite that I trust my mailserver setup completely, I still want to
 keep them in some other safe place. Probably somewhere, where somebody else
 takes care of everything :) That's why I chose
-[ZOHO MAIL](http://mail.zoho.com/) as my backup server.
+[ZOHO MAIL](https://mail.zoho.com/) as my backup server.
 
 <!--more-->
 
@@ -28,7 +28,7 @@ messages as it does currently, but also forward them to zoho.com. Of course I
 wasn't THAT crazy, to send my private emails over the Internet as they are, so
 I also needed some kind of encryption before that. It appeared that somebody
 had the same problem, and there is a tool for that called
-[gpg-mailgate](http://code.google.com/p/gpg-mailgate/). Unfortunately it's a
+[gpg-mailgate](https://code.google.com/p/gpg-mailgate/). Unfortunately it's a
 very unfinished application, and lots of things doesn't work (multipart
 messages support, attachmenets encryption, extra email encryption and so on),
 so I needed to do
@@ -157,4 +157,4 @@ shiny and secure backup :)
 
 ### Sources
 
-* [http://ultramegaman.wordpress.com/tag/gpg-mailgate/](http://ultramegaman.wordpress.com/tag/gpg-mailgate/)
+* [https://ultramegaman.wordpress.com/tag/gpg-mailgate/](https://ultramegaman.wordpress.com/tag/gpg-mailgate/)

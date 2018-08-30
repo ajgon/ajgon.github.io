@@ -8,7 +8,7 @@ categories: Lifehack
 path: /blog/turn-your-raspberry-pi-to-powerful-htpc-with-osmc
 ---
 
-I am big fan of TV series. There were times (mostly in college), when I watched them almost continuously. Recently I got tired of laptop screen, and moved to [something bigger](http://www.samsung.com/uk/consumer/tv-audio-video/televisions/hd-tvs/UE32H5500AKXXU). I also had a spare Raspberry PI, so naturally the conslusion came - why not connect them together, and create a genuine Mediacenter.
+I am big fan of TV series. There were times (mostly in college), when I watched them almost continuously. Recently I got tired of laptop screen, and moved to [something bigger](https://www.samsung.com/uk/consumer/tv-audio-video/televisions/hd-tvs/UE32H5500AKXXU). I also had a spare Raspberry PI, so naturally the conslusion came - why not connect them together, and create a genuine Mediacenter.
 
 <!--more-->
 
@@ -18,7 +18,7 @@ If you plan to build a HTPC here are some general guidelines regarding hardware:
 
 * make sure, that TV supports [HDMI CEC](https://en.wikipedia.org/wiki/HDMI#CEC)
 * you have a proper HDMI cable, with CEC pins
-* if you plan to use WiFi on Raspberry, it's a good idea to use dongle with external antenna and 5GHz support (I strongly recommend [this one](http://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_ac600_dual-band/ew-7811uac))
+* if you plan to use WiFi on Raspberry, it's a good idea to use dongle with external antenna and 5GHz support (I strongly recommend [this one](https://www.edimax.com/edimax/merchandise/merchandise_detail/data/edimax/global/wireless_adapters_ac600_dual-band/ew-7811uac))
 * and last but not least, use a reliable power source for your PI (2A is a must)
 
 With this setup, you should be able to enjoy a nice and smooth media experience.
@@ -104,7 +104,7 @@ After installation of basic extensions it is a good idea to tune up some setting
 
 ## Configuring the Remote Control
 
-If you have proper HDMI cable and TV supporting CEC, your remote should "just work" with the OSMC. However, it's very unlikely that you'll be happy with default configuration. For example, in my case - the "Back" button was displaying context menu, instead of going back. To fix this, first thing you need to find out is what each button on the remote maps to in Kodi. There is a [great thread](http://forum.kodi.tv/showthread.php?tid=139145&pid=1285390#pid1285390) providing step-by-step instruction, but in a nutsheel, you need to SSH to your OSMC machine and create a `.kodi/userdata/keymaps/remote.xml` file with [given contents](https://gist.github.com/ajgon/59a73b8b8e236e30ab33).
+If you have proper HDMI cable and TV supporting CEC, your remote should "just work" with the OSMC. However, it's very unlikely that you'll be happy with default configuration. For example, in my case - the "Back" button was displaying context menu, instead of going back. To fix this, first thing you need to find out is what each button on the remote maps to in Kodi. There is a [great thread](https://forum.kodi.tv/showthread.php?tid=139145&pid=1285390#pid1285390) providing step-by-step instruction, but in a nutsheel, you need to SSH to your OSMC machine and create a `.kodi/userdata/keymaps/remote.xml` file with [given contents](https://gist.github.com/ajgon/59a73b8b8e236e30ab33).
 
 ```bash
 curl -o ~/.kodi/userdata/keymaps/remote.xml https://gist.githubusercontent.com/ajgon/59a73b8b8e236e30ab33/raw/d9fbf3c20edbff85d71b99b47d202d8a0ab1a8d9/remote.xml
@@ -118,13 +118,13 @@ Next copy the default `remote.xml` file over the current one, and start configur
 cp /usr/share/kodi/system/keymaps/remote.xml ~/.kodi/userdata/keymaps/remote.xml
 ```
 
-The file is pretty self-explanatory. The XML node name is they key name you noted minute ago, and the value is either [Kodi Action](http://kodi.wiki/view/Action_IDs) or [Kodi Function](http://kodi.wiki/view/List_of_built-in_functions). For reference, you [can check the diff](https://gist.github.com/ajgon/17e7553a599669f39694/revisions?diff=split) between my config (for Samsung Remote) and default one.
+The file is pretty self-explanatory. The XML node name is they key name you noted minute ago, and the value is either [Kodi Action](https://kodi.wiki/view/Action_IDs) or [Kodi Function](https://kodi.wiki/view/List_of_built-in_functions). For reference, you [can check the diff](https://gist.github.com/ajgon/17e7553a599669f39694/revisions?diff=split) between my config (for Samsung Remote) and default one.
 
 ## OSD Auto-hide
 
 Discovering that, was a big suprise for me. At the time of writing this post there is no easy way to auto-hide OSD. When you display it - it will remain on screen until you "unclick" it away. However, you can fix this behavior with a little hack.
 
-First of all, you need to download and install a Titan skin helper service - either from [Kodi Repository](http://kodi.wiki/view/Add-on:Titan_skin_helper_service), or from its [GitHub Page](https://github.com/marcelveldt/script.skin.helper.service/releases). This neat tool adds many extra options for skin makers, and one of them is [AutoCloseVideoOSD property](https://github.com/marcelveldt/script.skin.helper.service/blob/master/resources/lib/ListItemMonitor.py#L81). All you need to do, is to add it to the current skin. If you're using OSMC Skin, the easiest way is to edit its `Startup.xml` file, and add it as `<onload>` property.
+First of all, you need to download and install a Titan skin helper service - either from [Kodi Repository](https://kodi.wiki/view/Add-on:Titan_skin_helper_service), or from its [GitHub Page](https://github.com/marcelveldt/script.skin.helper.service/releases). This neat tool adds many extra options for skin makers, and one of them is [AutoCloseVideoOSD property](https://github.com/marcelveldt/script.skin.helper.service/blob/master/resources/lib/ListItemMonitor.py#L81). All you need to do, is to add it to the current skin. If you're using OSMC Skin, the easiest way is to edit its `Startup.xml` file, and add it as `<onload>` property.
 
 ```bash
 sed -i'~' 's@</window>@        <onload>Skin.SetString(SkinHelper.AutoCloseVideoOSD, 4)</onload>\n</window>@' /usr/share/kodi/addons/skin.osmc/16x9/Startup.xml
@@ -134,7 +134,7 @@ where `4` is time in seconds you wish to OSD appear on screen, before fading out
 
 ## Buffering
 
-If you plan to use some remote data-storage (NAS, another Pi with HDD, or any tool involving remote file system) it's a good idea to increase buffer size of the video player. Don't set it too large though, since it will occupy [3 times more RAM than the value set](http://kodi.wiki/view/HOW-TO:Modify_the_video_cache) (so if you set it to 100M it will occupy 300M of RAM, etc.). For Raspberry Pi 2 with its 1GB RAM, a safe value is approx. 150MB. And it should be more than sufficient, even for 1080p videos. Increasing buffer size is quite simple - just create a `.kodi/userdata/advancedsettings.xml` file on your OSMC, and fill it as below (altering `cachemembuffersize` to your needs).
+If you plan to use some remote data-storage (NAS, another Pi with HDD, or any tool involving remote file system) it's a good idea to increase buffer size of the video player. Don't set it too large though, since it will occupy [3 times more RAM than the value set](https://kodi.wiki/view/HOW-TO:Modify_the_video_cache) (so if you set it to 100M it will occupy 300M of RAM, etc.). For Raspberry Pi 2 with its 1GB RAM, a safe value is approx. 150MB. And it should be more than sufficient, even for 1080p videos. Increasing buffer size is quite simple - just create a `.kodi/userdata/advancedsettings.xml` file on your OSMC, and fill it as below (altering `cachemembuffersize` to your needs).
 
 `.kodi/userdata/advancedsettings.xml`
 ```xml
@@ -195,7 +195,7 @@ Interested? Continue... :)
 
 ### Transmission
 
-First thing you need is a torrent client. I strongly recommend [Transmission](http://www.transmissionbt.com/) since it does its job pretty well, and provides a nice web interface. Since we don't need GUI, we can narrow down the installotion to three packages:
+First thing you need is a torrent client. I strongly recommend [Transmission](https://www.transmissionbt.com/) since it does its job pretty well, and provides a nice web interface. Since we don't need GUI, we can narrow down the installotion to three packages:
 
 ```bash
 apt-get install transmission-cli transmission-common transmission-daemon
@@ -211,13 +211,13 @@ invoke-rc.d transmission-daemon reload
 
 ### RSS Feed
 
-First thing you need, is the data source of new premieres. The easiest solution is an RSS channel - in this example I will use [showrss.info](http://showrss.info/), since they're doing exactly that.
+First thing you need, is the data source of new premieres. The easiest solution is an RSS channel - in this example I will use [showrss.info](https://showrss.info/), since they're doing exactly that.
 
-Whole process is rather simple - create an account, add all the shows you wish to be noted on, and create a feed URL on [Feeds](http://showrss.info/?cs=feeds) page. Put this URL somewhere, you will need it in a minute.
+Whole process is rather simple - create an account, add all the shows you wish to be noted on, and create a feed URL on [Feeds](https://showrss.info/?cs=feeds) page. Put this URL somewhere, you will need it in a minute.
 
 ### Subliminal
 
-Next thing, is some tool which will download subtitles for you. I strongly recommend [Subliminal](http://subliminal.readthedocs.org/en/latest/), since it's easy to use and supports many providers.
+Next thing, is some tool which will download subtitles for you. I strongly recommend [Subliminal](https://subliminal.readthedocs.org/en/latest/), since it's easy to use and supports many providers.
 
 Subliminal is a python package. However OSMC doesn't come with any python package managing tool (which is understandable). In my personal opinion, the easiest one to use is [pip](https://pip.pypa.io/en/stable/), so let's install it:
 
@@ -270,7 +270,7 @@ subliminal download --help | grep provider
 
 ### FlexGet
 
-And now... the biggest star. A tool, which glue all this stuff together: [FlexGet](http://flexget.com/). When properly configured, will parse showrss.info RSS feed, add all new shows to the transmission queue, after finished download move them to proper directory, and finally fetch subtitles. It will also keep an eye on shows which does not have subtitles when downloaded (very common situation for freshest episodes), and try to fetch them when they appear.
+And now... the biggest star. A tool, which glue all this stuff together: [FlexGet](https://flexget.com/). When properly configured, will parse showrss.info RSS feed, add all new shows to the transmission queue, after finished download move them to proper directory, and finally fetch subtitles. It will also keep an eye on shows which does not have subtitles when downloaded (very common situation for freshest episodes), and try to fetch them when they appear.
 
 #### FlexGet - Installation
 
@@ -285,7 +285,7 @@ The second package is necessary for all FlexGet transmission-related plugins.
 
 #### FlexGet - napiprojekt
 
-If you wish to use napiprojekt and [subliminal plugin](http://flexget.com/wiki/Plugins/subliminal), you need to monkey patch it (however, you can safely skip this step, despite the fact you will use subliminal - see below). Also before applying the patch, check the `PROVIDERS` constant in `~/.local/lib/python2.7/site-packages/flexget/plugins/output/subtitles_subliminal.py` file. At the time of writing this article `napiprojekt` wasn't there, so if it's absent, do:
+If you wish to use napiprojekt and [subliminal plugin](https://flexget.com/wiki/Plugins/subliminal), you need to monkey patch it (however, you can safely skip this step, despite the fact you will use subliminal - see below). Also before applying the patch, check the `PROVIDERS` constant in `~/.local/lib/python2.7/site-packages/flexget/plugins/output/subtitles_subliminal.py` file. At the time of writing this article `napiprojekt` wasn't there, so if it's absent, do:
 
 ```bash
 sed -i'~' "s@'opensubtitles',@'opensubtitles',\n    'napiprojekt',@" ~/.local/lib/python2.7/site-packages/flexget/plugins/output/subtitles_subliminal.py
@@ -293,7 +293,7 @@ sed -i'~' "s@'opensubtitles',@'opensubtitles',\n    'napiprojekt',@" ~/.local/li
 
 #### FlexGet - configuration
 
-The most important step - we need to tell FlexGet what to do, what to fetch and where to put it. You should really, REALLY read the [FlexGet Configuration documenatation](http://flexget.com/wiki/Configuration) so you know what you're doing. After that, you can use this template for a good start (put it to `~/.flexget/config.yml`):
+The most important step - we need to tell FlexGet what to do, what to fetch and where to put it. You should really, REALLY read the [FlexGet Configuration documenatation](https://flexget.com/wiki/Configuration) so you know what you're doing. After that, you can use this template for a good start (put it to `~/.flexget/config.yml`):
 
 `~/.flexget/config.yml`
 ```yaml
@@ -359,7 +359,7 @@ So what this scripts does?
 
 * `download-tv-shows` - checks ShowRSS feed for new shows, and if found - adds them to tranmission.
 * `sort-tv-shows` - checks transmission downloads directory for new shows. If found, moves them to tv shows directory, and tries to determine proper show and episode name in file path. So `GreatShow.S01E03.720p.h264.PROPER.mkv` from tranmission downloads would become `GreatShow/GreatShow.S01E03 - Episode Name.mkv`.
-* `download-subtitles` - this task is pretty bizzare, I can tell. I tried to use [subliminal plugin](http://flexget.com/wiki/Plugins/subliminal) for this example, however it never worked as expected. Instead, I used the bash script which looks for all files without corresponding `*.srt`s and fires subliminal on them.
+* `download-subtitles` - this task is pretty bizzare, I can tell. I tried to use [subliminal plugin](https://flexget.com/wiki/Plugins/subliminal) for this example, however it never worked as expected. Instead, I used the bash script which looks for all files without corresponding `*.srt`s and fires subliminal on them.
 * `clean-up` - pretty obvious - clean transmission queue when file is finished processing.
 
 #### FlexGet - cron

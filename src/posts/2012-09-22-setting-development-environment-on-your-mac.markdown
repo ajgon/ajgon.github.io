@@ -9,14 +9,14 @@ path: /blog/setting-development-environment-on-your-mac
 ---
 
 Recently I bought an
-[awesome piece of hardware](http://www.anandtech.com/show/4253/the-crucial-m4-micron-c400-ssd-review)
+[awesome piece of hardware](https://www.anandtech.com/show/4253/the-crucial-m4-micron-c400-ssd-review)
 to my MacBook Pro. Unfortunatelly
-[to install it](http://www.ifixit.com/Guide/Installing-MacBook-Pro-13-Inch-Unibody-Early-2011-Hard-Drive-Replacement/5119/1),
+[to install it](https://www.ifixit.com/Guide/Installing-MacBook-Pro-13-Inch-Unibody-Early-2011-Hard-Drive-Replacement/5119/1),
 I had to remove my old HDD and all system files with it as well. So for that
 occasion I made myself double gift (Christmas are earlier this year ;)) and
-also bought a [new OS](http://www.apple.com/osx/). After smooth installation,
-[some tweaks](http://blog.alutam.com/2012/04/01/optimizing-macos-x-lion-for-ssd/)
-and [huge performance boost](http://mobilityupdate.com/mac/crucal-m4-macbook-pro-2011/)
+also bought a [new OS](https://www.apple.com/osx/). After smooth installation,
+[some tweaks](https://bit.ly/1HWbY6S)
+and [huge performance boost](https://bit.ly/2omWcLS)
 I started setting my developer environment once again - nice and clean.
 
 <!--more-->
@@ -24,12 +24,12 @@ I started setting my developer environment once again - nice and clean.
 ## Installing developer "must-have" applications
 
 Firstly, two most important things are a terminal emulator - in my case, it is
-[iTerm2](http://www.iterm2.com/#/section/home), and
+[iTerm2](https://www.iterm2.com/#/section/home), and
 [XCode](https://developer.apple.com/technologies/tools/) with
-[command line tools](http://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools).
+[command line tools](https://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools).
 Next thing is of course package manager. After alot of nasty fighting and bad
-experiences with [macports](http://www.macports.org/) I switched to
-[Homebrew](http://mxcl.github.com/homebrew/) and I love it. To install it,
+experiences with [macports](https://www.macports.org/) I switched to
+[Homebrew](https://mxcl.github.com/homebrew/) and I love it. To install it,
 simply type:
 
 ```bash
@@ -41,7 +41,7 @@ instructions if something unexpected occurs. However, in clean
 Mountain Lion+XCode+command line tools installation I didn't get any warnings,
 so you shouldn't as well.
 
-Next important thing is [git](http://git-scm.com/). Even if you don't plan to
+Next important thing is [git](https://git-scm.com/). Even if you don't plan to
 use it (but I strongly recommend this tool), install it, because a lot of
 software depends on it these days. Especially if you are a Ruby developer.
 So just type:
@@ -51,7 +51,7 @@ brew install git
 ```
 
 and you're set. Another thing, which I really like is
-[Z Shell](http://www.zsh.org/) with it's excellent extension
+[Z Shell](https://www.zsh.org/) with it's excellent extension
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). Words can't describe
 how awesome it is, so watch
 [this video](https://www.youtube.com/watch?v=m07MiM6rmMc), and then type:
@@ -62,8 +62,8 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 
 ## Installing dnsmasq and nginx
 
-The next step is installing [nginx](http://nginx.org/), which is a great
-alternative to [apache](http://www.apache.org/).
+The next step is installing [nginx](https://nginx.org/), which is a great
+alternative to [apache](https://www.apache.org/).
 
 ```bash
 brew install nginx
@@ -108,7 +108,7 @@ Now type `sudo /usr/local/sbin/nginx -t` - if eveyrhing is okay, you should see
 a proper message.
 
 Next thing we need to do is to make those wp.dev and php.dev domains work. To
-do this, install [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html):
+do this, install [dnsmasq](https://bit.ly/1XAorA4):
 
 ```bash
 brew install dnsmasq

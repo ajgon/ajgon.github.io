@@ -14,9 +14,9 @@ thing happening is similar to zero, but hey - tell this to my Paranoid me. :)
 I also sign every mail I could (they can be easily verified using
 [my public key](/public-key.txt)), but still - DKIM seems to be a fine
 solution. And besides, I love to play with new things. So after many
-experiments with [dkim-milter](http://sourceforge.net/projects/dkim-milter/),
-[DKIMProxy](http://sourceforge.net/projects/dkimproxy/) and
-[opendkim](http://www.opendkim.org/) I finally decided to use the last one.
+experiments with [dkim-milter](https://sourceforge.net/projects/dkim-milter/),
+[DKIMProxy](https://sourceforge.net/projects/dkimproxy/) and
+[opendkim](https://bit.ly/2PRstaj) I finally decided to use the last one.
 Mostly because it's easiest to configure and is still maintained.
 
 <!--more-->
@@ -72,7 +72,7 @@ localhost
 
 Next, we need to create a key and DNS TXT record pair for each domain we want
 to be signed. I suggest to use strong key (`-b` parameter), to avoid
-[some company's failure](http://www.wired.com/threatlevel/2012/10/dkim-vulnerability-widespread).
+[some company's failure](https://www.wired.com/threatlevel/2012/10/dkim-vulnerability-widespread).
 To do this:
 
 ```bash
@@ -223,5 +223,5 @@ The possibilities are endless :)
 
 ### Sources
 
-* [http://blog.tjitjing.com/index.php/2012/03/guide-to-install-opendkim-for-multiple-domains-with-postfix-and-debian.html](http://blog.tjitjing.com/index.php/2012/03/guide-to-install-opendkim-for-multiple-domains-with-postfix-and-debian.html)
-* [http://syslog.tv/2011/09/17/postfix-dk-dkim-spf/](http://syslog.tv/2011/09/17/postfix-dk-dkim-spf/)
+* [http://blog.tjitjing.com/index.php/2012/03/guide-to-install-opendkim-for-multiple-domains-with-postfix-and-debian.html](https://bit.ly/1uCt6pY)
+* [https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/](https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/)

@@ -9,13 +9,13 @@ path: /blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation
 ---
 
 Last year I wrote an [article about installing custom linux distro on Raspberry Pi 2](/blog/installing-custom-linux-on-raspberry-pi-2/).
-Since then I configured it as my personal cloud, with [email daemon](http://www.postfix.org/),
+Since then I configured it as my personal cloud, with [email daemon](https://bit.ly/2LGNWiS),
 [dropbox alternative](https://owncloud.org/), [webmail](https://roundcube.net/),
-[backup system](http://duplicity.nongnu.org/) and some other tools. However it appeared, that
+[backup system](https://bit.ly/2qrPX8W) and some other tools. However it appeared, that
 configuration like that is a real SDCard killer (tons of small files), and in a past year
 I had to replace it twice, each time redoing the whole configure &amp; install again.
 
-This was always a real time consuming [PITA](http://www.netlingo.com/word/pita.php), so
+This was always a real time consuming [PITA](https://www.netlingo.com/word/pita.php), so
 I decided to automate the whole process, thus the [self-hosted-mailserver](https://github.com/ajgon/self-hosted-mailserver)
 project was born.
 
@@ -81,7 +81,7 @@ echo "mysql_root_password: \"$(pwgen 30 1)\"" > roles/base/vars/main.yml
 
 ### roles/duplicity/vars/main.yml
 
-[Duplicity](http://duplicity.nongnu.org/) is a tool for automated backups.
+[Duplicity](https://duplicity.nongnu.org/) is a tool for automated backups.
 It is known that all people can be divided into two groups: those who have never lost important data
 and those who regularly perform data backups. This task, encrypts all the important
 data (emails, owncloud files etc.) and stores them on WebDav-based remote (personally
@@ -113,7 +113,7 @@ this file is most complicated. So let's go through it line by line.
   following keys:
   * `name` - the name of the domain (without user), i.e. for `user@example.com` it will be `example.com`.
   * `primary` - `yes` or `no`. A primary domain (in those scripts context) is a domain you wish to receive
-    [Z-Push](http://z-push.org/) notifications from. If you configure only one domain (most common case),
+    [Z-Push](https://z-push.org/) notifications from. If you configure only one domain (most common case),
     set it to true.
   * `users` - an array of email/password hashes which will become user accounts. Configure "real" accounts
     here only. There is a separate section for aliases.
@@ -187,7 +187,7 @@ them to the corresponding `/etc` directories on the server and you're set.
 ### SSL keys
 
 Since all communication would (and should) be handled via SSL, you need to create proper certificates.
-The easiest solution are [self signed ones](http://www.akadia.com/services/ssh_test_certificate.html),
+The easiest solution are [self signed ones](https://www.akadia.com/services/ssh_test_certificate.html),
 but I strongly encourage you to use [StartSSL](https://www.startssl.com/) or
 [Let's Encrypt](https://letsencrypt.org/) and issue yourself a valid, properly recognized certificate.
 
@@ -206,7 +206,7 @@ If you don't want to use this feature (or have a Static IP), just remove `ddclie
 ## Deploy
 
 Phew! After all this configuration, you are ready to deploy. First, you need to set an
-[Ansible Inventory](http://docs.ansible.com/ansible/intro_inventory.html) files. Since we set our public
+[Ansible Inventory](https://docs.ansible.com/ansible/intro_inventory.html) files. Since we set our public
 key as authorized on the remote host, all we have to put in this file is:
 
 ```ini
