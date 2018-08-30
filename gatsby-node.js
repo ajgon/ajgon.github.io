@@ -5,6 +5,7 @@
  */
 
 const path = require('path')
+const createPaginatedPages = require("gatsby-paginate")
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
@@ -46,12 +47,21 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       return Promise.reject(result.errors)
     }
 
+    createPaginatedPages({
+      edges: result.data.allMarkdownRemark.edges,
+      createPage: createPage,
+      pageTemplate: 'src/templates/blog-index.js',
+      pageLength: 5,
+      pathPrefix: "blog",
+      context: {}
+    });
+
     result.data.allMarkdownRemark.edges
       .forEach(({ node }) => {
         createPage({
           path: node.frontmatter.path,
           component: blogPostTemplate,
-          context: {} // additional data can be passed via context
+          context: {}
         })
       })
   })

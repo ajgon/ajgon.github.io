@@ -25,6 +25,7 @@ class BlogPostShare extends React.Component {
     }
 
     this.handleClick = event => {
+      event.preventDefault()
       this.setState({ anchorEl: event.currentTarget })
     }
 

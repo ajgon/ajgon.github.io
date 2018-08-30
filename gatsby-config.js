@@ -14,6 +14,7 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-svg',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-sri',
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -132,6 +133,7 @@ module.exports = {
         icon: 'src/images/favicon.png'
       }
     },
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    'gatsby-plugin-remove-trailing-slashes'
   ]
 }

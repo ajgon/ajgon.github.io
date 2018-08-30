@@ -10,18 +10,19 @@
 * extract https://www.rzegocki.pl from compoenents to site metadata
 * remove withRoot from components
 * RSS
-* fix share in blogexcerpt (new window size)
 * responsive
 * aria
+* Pomysly z dokumentacji gatsby
+* fix share on blog excerpt (preventdefault)
 
+* fix share in blogexcerpt (new window sizes for facebook/twitter/etc.)
 * public-key.txt
 * /avatar
-* Pomysly z dokumentacji gatsby
 * Potestowac na roznych web-performance checkach
 * Stopka
 * Open Source/Projects
 * Zrodlo strony na github
-* blog pagination
+* blog pagination (gatsby-paginate)
 * chrome lighthouse
 * 404
 * standard linter
