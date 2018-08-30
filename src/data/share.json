@@ -1,0 +1,26 @@
+[
+  {
+    "id": "2f0a723b-2772-40bf-9edc-70dd70337f10",
+    "slug": "facebook",
+    "name": "Facebook",
+    "url": "https://www.facebook.com/sharer/sharer.php?u=%POSTURL%;display=popup",
+    "width": 626,
+    "height": 457
+  },
+  {
+    "id": "f5678f7f-ae05-444a-af1a-1167a30d0cce",
+    "slug": "linkedin",
+    "name": "LinkedIn",
+    "url": "https://www.linkedin.com/shareArticle?mini=true&amp;url=%POSTURL%&amp;title=",
+    "width": 600,
+    "height": 450
+  },
+  {
+    "id": "4cbf0a18-d389-4583-98ac-501e59f1be18",
+    "slug": "twitter",
+    "name": "Twitter",
+    "url": "https://twitter.com/share?url=%POSTURL%&amp;text=",
+    "width": 500,
+    "height": 550
+  }
+]

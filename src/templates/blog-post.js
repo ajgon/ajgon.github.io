@@ -11,7 +11,7 @@ class BlogPostTemplate extends React.Component {
     const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
-      <BlogPost post={data.markdownRemark} siteUrl={siteUrl} />
+      <BlogPost post={data.markdownRemark} siteUrl={siteUrl} shares={data.allShareJson.edges} />
     )
   }
 }
@@ -23,6 +23,18 @@ export const query = graphql`
     site {
       siteMetadata {
         siteUrl
+      }
+    }
+    allShareJson {
+      edges {
+        node {
+          id
+          slug
+          name
+          url
+          width
+          height
+        }
       }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {

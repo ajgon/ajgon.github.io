@@ -16,9 +16,11 @@
 * fix share on blog excerpt (preventdefault)
 * /avatar
 * blog pagination (gatsby-paginate)
-
-* structured data (rdf)
 * fix share in blogexcerpt (new window sizes for facebook/twitter/etc.)
+
+* wyciagnac share pointy (fb/in/tw) do graphql
+* looking for job easter egg (HTTP header, page source, console.log)
+* structured data (rdf)
 * public-key.txt
 * Potestowac na roznych web-performance checkach
 * Stopka

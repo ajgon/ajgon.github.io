@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import sha1 from 'sha1'
+import NewWindow from 'react-new-window'
 
 import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
@@ -21,40 +22,75 @@ class BlogPostShare extends React.Component {
     super(props)
 
     this.state = {
-      anchorEl: null
+      anchorEl: null,
+      opened: {}
     }
 
-    this.handleClick = event => {
-      event.preventDefault()
-      this.setState({ anchorEl: event.currentTarget })
-    }
+    props.shares.forEach(share => {
+      this.state.opened[share.node.slug] = false
+    })
+  }
 
-    this.handleClose = () => {
-      this.setState({ anchorEl: null })
-    }
+  handleOpenShareMenu(event) {
+    event.preventDefault()
+    this.setState({ anchorEl: event.currentTarget })
+  }
+
+  handleClose() {
+    this.setState({ anchorEl: null })
+  }
+
+  toggleOpened(site) {
+    this.setState(prevState => {
+      prevState.opened[site] = !prevState.opened[site]
+      return prevState
+    })
+  }
+
+  newWindowUnloaded(site) {
+    let opened = JSON.parse(JSON.stringify(this.state.opened))
+    opened[site] = false
+    this.setState({ opened })
   }
 
   render () {
-    const { classes, post, siteUrl } = this.props
-    const { anchorEl } = this.state
+    const { classes, post, siteUrl, shares } = this.props
+    const { anchorEl, opened } = this.state
     const encodedPostUrl = encodeURIComponent(`${siteUrl}${post.frontmatter.path}`)
     const shareButtonId = `share-button-${sha1(post.id)}`
 
     return (
       <nav aria-labelledby={shareButtonId}>
-        <IconButton aria-label='Share' id={shareButtonId} aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={this.handleClick}>
+        <IconButton aria-label='Share' id={shareButtonId} aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={(event) => this.handleOpenShareMenu(event)}>
           <ShareIcon />
         </IconButton>
         <Menu
           id='share-menu'
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={this.handleClose}
+          onClose={() => this.handleClose()}
         >
-          <MenuItem onClick={this.handleClose}><OutboundLink href={`https://www.facebook.com/sharer/sharer.php?u=${encodedPostUrl};display=popup`} target='_blank' className={classes.menuItemLink}>Facebook</OutboundLink></MenuItem>
-          <MenuItem onClick={this.handleClose}><OutboundLink href={`https://www.linkedin.com/shareArticle?mini=true&amp;url=${encodedPostUrl}&amp;title=`} target='_blank' className={classes.menuItemLink}>LinkedIn</OutboundLink></MenuItem>
-          <MenuItem onClick={this.handleClose}><OutboundLink href={`https://twitter.com/share?url=${encodedPostUrl}&amp;text=`} target='_blank' className={classes.menuItemLink}>Twitter</OutboundLink></MenuItem>
+          {shares.map(share => {
+            return(
+              <MenuItem onClick={() => this.handleClose()} key={share.node.id}>
+                <a className={classes.menuItemLink} onClick={() => this.toggleOpened(share.node.slug)}>
+                  {share.node.name}
+                </a>
+              </MenuItem>
+
+            )
+          })}
         </Menu>
+        {shares.map(share => {
+          return(
+            opened[share.node.slug] &&
+            <NewWindow
+              url={share.node.url.replace('%POSTURL%', encodedPostUrl)}
+              features={{width: share.node.width, height: share.node.height}}
+              onUnload={() => this.newWindowUnloaded(share.node.slug)}
+            />
+          )
+        })}
       </nav>
     )
   }

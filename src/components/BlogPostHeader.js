@@ -20,7 +20,7 @@ const styles = {
 
 class BlogPostHeader extends React.Component {
   render () {
-    const { classes, post, siteUrl, showShare, heading } = this.props
+    const { classes, post, siteUrl, showShare, heading, shares } = this.props
 
     return (
       <React.Fragment>
@@ -34,7 +34,7 @@ class BlogPostHeader extends React.Component {
           title={post.frontmatter.title}
           titleTypographyProps={{component: heading || 'span'}}
           subheader={post.frontmatter.date}
-          action={showShare ? <BlogPostShare post={post} siteUrl={siteUrl} /> : null}
+          action={showShare ? <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} /> : null}
         />
       </React.Fragment>
     )
