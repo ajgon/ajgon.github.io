@@ -17,3 +17,5 @@
 * 404
 * standard linter
 * CSP
+* responsive
+* aria

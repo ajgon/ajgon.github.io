@@ -31,6 +31,7 @@ class Layout extends React.Component {
           ]}
         >
           <html lang='en' />
+          <style type="text/css">{`body { position: relative }`}</style>
         </Helmet>
         <CssBaseline />
         <MenuAppBar location={location} />

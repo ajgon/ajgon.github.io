@@ -18,7 +18,7 @@ class Blog extends React.Component {
           const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
 
           return (
-            <BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} />
+            <BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} showShare={true} showSummary={true} />
           )
         })}
       </React.Fragment>

@@ -23,18 +23,19 @@ const styles = {
 
 class BlogExcerpt extends React.Component {
   render () {
-    const { classes, post, avatar, siteUrl } = this.props
+    const { classes, post, avatar, siteUrl, showSummary } = this.props
+    let cardContent;
+
+    if(showSummary) {
+      cardContent = <CardContent><Typography component="p">{post.excerpt}</Typography></CardContent>
+    }
 
     return (
       <Card className={classes.cardSpacing}>
         <Link to={post.frontmatter.path}>
-          <BlogPostHeader post={post} avatar={avatar} siteUrl={siteUrl} />
+          <BlogPostHeader post={post} avatar={avatar} siteUrl={siteUrl} showShare={showSummary} />
         </Link>
-        <CardContent>
-          <Typography component='p'>
-            {post.excerpt}
-          </Typography>
-        </CardContent>
+        {cardContent}
         <CardActions>
           <div className={classes.pushRight} />
           <Link to={post.frontmatter.path}>

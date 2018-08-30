@@ -28,7 +28,7 @@ class BlogPost extends React.Component {
 
     return (
       <Card className={classes.cardSpacing}>
-        <BlogPostHeader post={post} avatar={avatar} siteUrl={siteUrl} />
+        <BlogPostHeader post={post} avatar={avatar} siteUrl={siteUrl} showShare={true} />
         <CardContent>
           <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
           <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />

@@ -12,9 +12,14 @@ const styles = (theme) => {
         textDecoration: 'none'
       }
     },
+    containerPositioner: {
+      marginTop: '2.5rem',
+      justifyContent: 'center',
+      display: 'flex'
+    },
     limitedContainer: {
       maxWidth: '1000px',
-      marginTop: '150px'
+      overflow: 'hidden'
     }
   })
 }
@@ -25,8 +30,10 @@ class Container extends React.Component {
 
     return (
       <Grid container justify='center' className={classes.root}>
-        <Grid item xs={10} className={classes.limitedContainer}>
-          {this.props.children}
+        <Grid item xs={12} sm={10} md={9} className={classes.containerPositioner}>
+          <div className={classes.limitedContainer}>
+            {this.props.children}
+          </div>
         </Grid>
       </Grid>
     )

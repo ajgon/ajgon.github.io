@@ -46,7 +46,7 @@ module.exports = {
                 }
               }
             `,
-            output: '/rss.xml'
+            output: '/feed.xml'
           }
         ]
       }
@@ -79,6 +79,12 @@ module.exports = {
       options: {
         path: `${__dirname}/src/files`,
         name: 'files'
+      }
+    }, {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/icons`,
+        name: 'icons'
       }
     }, {
       resolve: `gatsby-source-filesystem`,

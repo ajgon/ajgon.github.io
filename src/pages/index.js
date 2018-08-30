@@ -4,16 +4,20 @@ import PropTypes from 'prop-types'
 
 import { withStyles } from '@material-ui/core/styles'
 import Hidden from '@material-ui/core/Hidden'
+import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import withRoot from '../withRoot'
 
+import BlogExcerpt from '../components/BlogExcerpt'
+import Section from '../components/Section.js'
+import TagLine from '../components/TagLine.js'
+import Technologies from '../components/Technologies.js'
+
 const styles = (theme) => {
   return ({
-    strong: {
-      fontWeight: 'bold'
-    },
-    secondaryColor: {
-      color: theme.palette.secondary.main
+    strongHeader: {
+      fontWeight: 'bold',
+      marginBottom: '20px'
     }
   })
 }
@@ -22,85 +26,36 @@ class Index extends React.Component {
   render () {
     const { classes, data } = this.props
     const files = data.allFile.edges
+    const posts = data.allMarkdownRemark.edges
+    const avatars = data.allImageSharp.edges
+    const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
       <React.Fragment>
-        <Typography variant='display4' className={classes.strong}>Hello!</Typography>
-        <Hidden smUp>
-          <Typography variant='display1' gutterBottom>
-            I handle impossible cases on the spot, miracles take me a few minutes.
-          </Typography>
-        </Hidden>
-        <Hidden xsDown>
-          <Typography variant='display3' gutterBottom>
-            I handle impossible cases on the spot, miracles take me a few minutes.
-          </Typography>
-        </Hidden>
-        <Typography variant='headline' gutterBottom>Summary</Typography>
-        <Typography component='ul' gutterBottom>
-          <li>More than 10 years of experience in Front-end development (HTML/CSS/JS)</li>
-          <li>More than 8 years of experience in Ruby and RoR</li>
-          <li>More than 8 years of experience in PHP software development</li>
-          <li>3 years of experience as Linux admin (mostly AWS services)</li>
-        </Typography>
-        <Typography variant='headline' gutterBottom>Work Experience</Typography>
-        <Typography component='ul' gutterBottom>
-          {data.allJobsJson.edges.map(job => {
-            return (
-              <li key={job.node.id}>
-                <a href={job.node.url}>{job.node.name}</a> ({job.node.start} - {job.node.end || 'present day'})<br />
-                {job.node.description}
-              </li>
-            )
-          })}
-        </Typography>
-        <Typography variant='headline' gutterBottom>Notable projects</Typography>
-        <Typography component='ul' gutterBottom>
-          {data.allProjectsJson.edges.map(project => {
-            return (
-              <li key={project.node.id}>
-                <a href={project.node.url}>{project.node.name}</a> ({project.node.year})<br />
-                {project.node.description}
-              </li>
-            )
-          })}
-        </Typography>
-        <Typography variant='headline' gutterBottom>Academic Record</Typography>
-        <Typography component='ul' gutterBottom>
-          {data.allEducationJson.edges.map(edu => {
-            const file = files.find(item => item.node.id.match(RegExp(edu.node.thesis.url)))
-            let thesisUrl = edu.node.thesis.url
+        <Section headline="Yo Developers!" idName="about">
+					<TagLine />
+        </Section>
+        <Section headline="Technologies">
+					<Typography variant='headline' gutterBottom>Over 10 years of professional experience.</Typography>
+					<Technologies />
+        </Section>
+        <Section headline="Projects">
+        </Section>
+        <Section headline="Blog">
+					<Grid container spacing={24}>
+						{posts.map(post => {
+							const avatar = avatars.find(item => item.node.id.match(RegExp(`avatars/${post.node.frontmatter.author}.png`))).node
 
-            if (file) {
-              thesisUrl = file.node.publicURL
-            }
-
-            return (
-              <li key={edu.node.id}>
-                <a href={edu.node.url}>{edu.node.name}</a> ({edu.node.year})<br />
-                <ul>
-                  {edu.node.titles.map((title, index) => {
-                    return (<li key={index}>{title}</li>)
-                  })}
-                  <li><a href={thesisUrl}>{edu.node.thesis.name}</a></li>
-                </ul>
-              </li>
-            )
-          })}
-        </Typography>
-        <Typography variant='headline' gutterBottom>Skills</Typography>
-        {data.allSkillsJson.edges.map(skill => {
-          return (
-            <div key={skill.node.id}>
-              <Typography variant='subheading' gutterBottom>{skill.node.name}</Typography>
-              <Typography component='ul' gutterBottom>
-                {skill.node.list.map((title, index) => {
-                  return (<li key={index}>{title}</li>)
-                })}
-              </Typography>
-            </div>
-          )
-        })}
+							return (
+							<Grid item xs={12} md={4} key={post.node.id}>
+								<BlogExcerpt post={post.node} avatar={avatar} siteUrl={siteUrl} key={post.node.id} />
+							</Grid>
+							)
+						})}
+					</Grid>
+        </Section>
+        <Section headline="Contact">
+        </Section>
       </React.Fragment>
     )
   }
@@ -122,50 +77,42 @@ export const query = graphql`
         }
       }
     }
-    allJobsJson {
-      edges {
-        node {
-          id
-          name
-          description
-          url
-          start(formatString: "DD.MM.YYYY")
-          end(formatString: "DD.MM.YYYY")
-        }
+    site {
+      siteMetadata {
+        siteUrl
       }
     }
-    allProjectsJson {
+    allImageSharp(filter:{ id: { regex: "/avatars/" }} ) {
       edges {
         node {
           id
-          name
-          url
-          year
-          description
-        }
-      }
-    }
-    allEducationJson {
-      edges {
-        node {
-          id
-          name
-          year
-          titles
-          url
-          thesis {
-            name
-            url
+          sizes(maxWidth: 128) {
+            ...GatsbyImageSharpSizes
           }
         }
       }
     }
-    allSkillsJson {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 3
+    ) {
       edges {
         node {
+          excerpt(pruneLength: 250)
           id
-          name
-          list
+          frontmatter {
+            title
+            author
+            path
+            date(formatString:"MMMM DD, YYYY")
+            cover {
+              childImageSharp {
+                sizes(maxWidth: 1000) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
+          }
         }
       }
     }

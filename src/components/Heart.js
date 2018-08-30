@@ -10,7 +10,7 @@ const styles = {
     left: 0,
     height: '100%',
     overflow: 'hidden',
-    position: 'fixed',
+    position: 'absolute',
     top: 0,
     width: '100%',
     pointerEvents: 'none'

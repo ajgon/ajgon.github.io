@@ -11,32 +11,30 @@ import { withStyles } from '@material-ui/core/styles'
 import BlogPostShare from './BlogPostShare'
 
 const styles = {
-  cardCover: {
+  cardCoverSmall: {
+    maxHeight: '140px'
+  },
+  cardCoverLarge: {
     maxHeight: '280px'
   }
 }
 
 class BlogPostHeader extends React.Component {
   render () {
-    const { classes, post, avatar, siteUrl } = this.props
+    const { classes, post, avatar, siteUrl, showShare } = this.props
 
     return (
       <React.Fragment>
-        <CardHeader
-          title={post.frontmatter.title}
-          subheader={post.frontmatter.date}
-          action={<BlogPostShare post={post} siteUrl={siteUrl} />}
-          avatar={
-            <Avatar sizes={avatar.sizes.sizes}
-              src={avatar.sizes.src}
-              srcSet={avatar.sizes.srcSet} />
-          }
-        />
         <CardMedia
           component={Image}
           sizes={post.frontmatter.cover.childImageSharp.sizes}
-          className={classes.cardCover}
+          className={showShare ? classes.cardCoverLarge : classes.cardCoverSmall}
           src={post.frontmatter.cover.childImageSharp.sizes.base64}
+        />
+        <CardHeader
+          title={post.frontmatter.title}
+          subheader={post.frontmatter.date}
+          action={showShare ? <BlogPostShare post={post} siteUrl={siteUrl} /> : null}
         />
       </React.Fragment>
     )
