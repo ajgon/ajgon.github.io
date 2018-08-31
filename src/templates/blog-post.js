@@ -6,13 +6,18 @@ import React from 'react'
 import withRoot from '../withRoot'
 
 import BlogPost from '../components/BlogPost'
+import Section from '../components/Section'
+import SEO from '../components/SEO'
 
 class BlogPostTemplate extends React.Component {
   render () {
     const { data } = this.props
 
     return (
-      <BlogPost post={data.markdownRemark} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} shares={data.allShareJson.edges} />
+      <Section>
+        <SEO postPath={data.markdownRemark.frontmatter.path} postNode={data.markdownRemark} postSEO />
+        <BlogPost post={data.markdownRemark} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} shares={data.allShareJson.edges} />
+      </Section>
     )
   }
 }
@@ -35,6 +40,7 @@ export const query = graphql`
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      excerpt
       id
       frontmatter {
         title

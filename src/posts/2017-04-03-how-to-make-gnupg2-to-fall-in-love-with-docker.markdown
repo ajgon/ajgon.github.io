@@ -2,7 +2,7 @@
 layout: post
 title: "How to make gnupg2 to fall in love with Docker"
 date: 2017-04-03T22:19:00+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/how-to-make-gnupg2-to-fall-in-love-with-docker.png"
 tags:
  - administration

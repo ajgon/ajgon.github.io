@@ -2,7 +2,7 @@
 layout: post
 title: "25 awesome tools every developer should have"
 date: 2013-11-13T11:09:37+02:00
-author: programajor
+author: Igor Rzegocki
 cover: "../images/covers/25-awesome-tools-every-developer-should-have.jpg"
 tags:
   - workflow

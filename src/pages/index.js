@@ -9,6 +9,7 @@ import withRoot from '../withRoot'
 
 import BlogExcerpt from '../components/BlogExcerpt'
 import Section from '../components/Section.js'
+import SEO from '../components/SEO.js'
 import TagLine from '../components/TagLine.js'
 import Technologies from '../components/Technologies.js'
 
@@ -19,6 +20,7 @@ class Index extends React.Component {
 
     return (
       <React.Fragment>
+        <SEO />
         <Section headline='Yo Developers!' idName='yodevelopers'>
           <TagLine />
         </Section>

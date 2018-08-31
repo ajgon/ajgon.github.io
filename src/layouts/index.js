@@ -39,9 +39,6 @@ class Layout extends React.Component {
       <React.Fragment>
         <Helmet
           title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: data.site.siteMetadata.description }
-          ]}
           link={[
             { rel: 'shortcut icon', type: 'image/png', href: `${FavIcon}` }
           ]}

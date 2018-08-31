@@ -7,6 +7,7 @@ import withRoot from '../withRoot'
 import BlogExcerpt from '../components/BlogExcerpt'
 import BlogPaginationLink from '../components/BlogPaginationLink'
 import Section from '../components/Section'
+import SEO from '../components/SEO.js'
 
 class BlogIndex extends React.Component {
   render () {
@@ -18,6 +19,7 @@ class BlogIndex extends React.Component {
 
     return (
       <Section headline='Blog'>
+        <SEO />
         {group.map(post => {
           return (
             <BlogExcerpt post={post.node} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} key={post.node.id} showShare showSummary shares={additionalContext.shares} />

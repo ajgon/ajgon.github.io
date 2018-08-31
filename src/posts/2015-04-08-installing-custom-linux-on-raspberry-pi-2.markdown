@@ -2,7 +2,7 @@
 layout: post
 title: "Installing custom Linux on Raspberry Pi 2"
 date: 2015-04-19T20:00:00+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/installing-custom-linux-on-raspberry-pi-2.jpg"
 tags:
  - administration

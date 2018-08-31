@@ -2,7 +2,7 @@
 layout: post
 title: "Setting secure, cloud-based backup system using git and box.com"
 date: 2012-10-14T12:57:00+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/setting-secure-cloud-based-backup-system-using-git-and-box-com.jpg"
 tags:
   - administration

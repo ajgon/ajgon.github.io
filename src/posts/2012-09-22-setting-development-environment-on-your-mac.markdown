@@ -2,7 +2,7 @@
 layout: post
 title: "Setting development environment on your Mac"
 date: 2012-09-22T12:33:00+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/setting-development-environment-on-your-mac.jpg"
 tags:
   - PHP

@@ -2,7 +2,7 @@
 layout: post
 title: "Adding a little bit of SpamAssassin into Postfix/Dovecot/Sieve soup"
 date: 2012-07-21T12:16:00+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/adding-a-little-bit-of-spamassassin-into-postfix-slash-dovecot-slash-sieve-soup.jpg"
 tags:
   - administration

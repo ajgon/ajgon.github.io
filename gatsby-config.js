@@ -1,5 +1,5 @@
 const config = require('./src/config.js')
-const urljoin = require("url-join")
+const urljoin = require('url-join')
 
 module.exports = {
   pathPrefix: config.pathPrefix,
@@ -30,7 +30,7 @@ module.exports = {
     'gatsby-plugin-react-svg',
     'gatsby-plugin-sri',
     {
-      resolve: "gatsby-plugin-nprogress",
+      resolve: 'gatsby-plugin-nprogress',
       options: {
         color: config.themeColor
       }
@@ -52,13 +52,13 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }]
       }
     }, {
-      resolve: "gatsby-plugin-feed",
+      resolve: 'gatsby-plugin-feed',
       options: {
-        setup(ref) {
-          const ret = ref.query.site.siteMetadata.rssMetadata;
-          ret.allMarkdownRemark = ref.query.allMarkdownRemark;
-          ret.generator = "GatsbyJS";
-          return ret;
+        setup (ref) {
+          const ret = ref.query.site.siteMetadata.rssMetadata
+          ret.allMarkdownRemark = ref.query.allMarkdownRemark
+          ret.generator = 'GatsbyJS'
+          return ret
         },
         query: `
         {
@@ -79,8 +79,8 @@ module.exports = {
       `,
         feeds: [
           {
-            serialize(ctx) {
-              const { rssMetadata } = ctx.query.site.siteMetadata;
+            serialize (ctx) {
+              const { rssMetadata } = ctx.query.site.siteMetadata
               return ctx.query.allMarkdownRemark.edges.map(edge => ({
                 categories: edge.node.frontmatter.tags,
                 date: edge.node.frontmatter.date,
@@ -89,8 +89,8 @@ module.exports = {
                 author: rssMetadata.author,
                 url: rssMetadata.site_url + edge.node.frontmatter.path,
                 guid: rssMetadata.site_url + edge.node.frontmatter.path,
-                custom_elements: [{ "content:encoded": edge.node.html }]
-              }));
+                custom_elements: [{ 'content:encoded': edge.node.html }]
+              }))
             },
             query: `
             {

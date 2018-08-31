@@ -2,7 +2,7 @@
 layout: post
 title: "Build Your Own Cloud Fast, Thanks to Ansible and Automation"
 date: 2016-05-22T11:43:06+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/build-your-own-cloud-fast-thanks-to-ansible-and-automation.png"
 tags:
  - administration

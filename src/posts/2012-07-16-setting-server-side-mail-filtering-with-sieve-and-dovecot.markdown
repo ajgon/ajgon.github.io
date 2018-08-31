@@ -2,7 +2,7 @@
 layout: post
 title: "Setting server-side mail filtering with sieve and dovecot"
 date: 2012-07-16T11:43:00+02:00
-author: ajgon
+author: Igor Rzegocki
 cover: "../images/covers/setting-server-side-mail-filtering-with-sieve-and-dovecot.jpg"
 tags:
   - administration
