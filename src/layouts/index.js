@@ -1,6 +1,7 @@
 /* global graphql */
 import 'typeface-roboto'
 import 'prismjs/themes/prism-tomorrow.css'
+import config from '../config'
 
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -38,7 +39,7 @@ class Layout extends React.Component {
     return (
       <React.Fragment>
         <Helmet
-          title={data.site.siteMetadata.title}
+          title={config.siteTitle}
           link={[
             { rel: 'shortcut icon', type: 'image/png', href: `${FavIcon}` }
           ]}
@@ -68,8 +69,6 @@ export const query = graphql`
   query SiteTitleQuery {
     site {
       siteMetadata {
-        title
-        description
         siteUrl
       }
     }

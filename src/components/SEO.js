@@ -23,7 +23,7 @@ class SEO extends Component {
     } else {
       title = config.siteTitle
       description = config.siteDescription
-      image = '/icons/icon-512x512.png'
+      image = urljoin(config.pathPrefix, '/icons/icon-512x512.png')
     }
 
     image = urljoin(config.siteUrl, image)

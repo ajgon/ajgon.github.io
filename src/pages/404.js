@@ -1,10 +1,18 @@
+import config from '../config'
 import React from 'react'
+import withRoot from '../withRoot'
 
-const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-)
+import './404.css'
 
-export default NotFoundPage
+class PageNotFound extends React.Component {
+  render () {
+    return (
+      <div className='info'>
+        <h1>404 - Page Not Found</h1>
+        <a href={config.pathPrefix}>Take Me Back</a>
+      </div>
+    )
+  }
+}
+
+export default withRoot(PageNotFound)

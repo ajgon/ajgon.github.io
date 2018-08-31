@@ -4,8 +4,6 @@ const urljoin = require('url-join')
 module.exports = {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
-    title: config.siteTitle,
-    description: config.siteDescription,
     siteUrl: urljoin(config.siteUrl, config.pathPrefix),
     rssMetadata: {
       site_url: urljoin(config.siteUrl, config.pathPrefix),

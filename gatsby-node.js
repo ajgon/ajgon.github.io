@@ -8,6 +8,12 @@ const path = require('path')
 const createPaginatedPages = require('gatsby-paginate')
 const config = require('./src/config.js')
 
+exports.onCreatePage = ({ page }) => {
+  if (page.path.startsWith('/404')) {
+    page.layout = '404.index'
+  }
+}
+
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
 

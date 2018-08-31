@@ -20,6 +20,7 @@
 * wyciagnac share pointy (fb/in/tw) do graphql
 * blog post tags
 * structured data (rdf)
+* 404
 
 * looking for job easter egg (HTTP header, page source, console.log)
 * public-key.txt
@@ -28,7 +29,6 @@
 * Open Source/Projects
 * Zrodlo strony na github
 * chrome lighthouse
-* 404
 * standard linter
 * CSP
 * hardenize
