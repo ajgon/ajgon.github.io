@@ -21,9 +21,10 @@
 * blog post tags
 * structured data (rdf)
 * 404
-
-* looking for job easter egg (HTTP header, page source, console.log)
 * public-key.txt
+
+* keybase.txt
+* looking for job easter egg (HTTP header, page source, console.log)
 * Potestowac na roznych web-performance checkach
 * Stopka
 * Open Source/Projects

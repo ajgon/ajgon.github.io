@@ -7,8 +7,9 @@ import { withStyles } from '@material-ui/core/styles'
 import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import IconGithub from '../icons/social-github.svg'
-import IconTwitter from '../icons/social-twitter.svg'
+import IconKeybase from '../icons/social-keybase.svg'
 import IconLinkedIn from '../icons/social-linkedin.svg'
+import IconTwitter from '../icons/social-twitter.svg'
 
 const styles = {
   mediumIcon: {
@@ -36,6 +37,11 @@ class Social extends React.Component {
         <OutboundLink href='https://twitter.com/ajgon' target='_blank' aria-label='Twitter' id='link-twitter' rel='noopener'>
           <IconButton aria-labelledby='link-twitter'>
             <SvgIcon className={classes.mediumIcon}><IconTwitter /></SvgIcon>
+          </IconButton>
+        </OutboundLink>
+        <OutboundLink href='https://keybase.io/ajgon' target='_blank' aria-label='Keybase' id='link-keybase' rel='noopener'>
+          <IconButton aria-labelledby='link-keybase'>
+            <SvgIcon className={classes.mediumIcon}><IconKeybase /></SvgIcon>
           </IconButton>
         </OutboundLink>
       </React.Fragment>

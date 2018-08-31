@@ -13,7 +13,7 @@ The next thing my paranoid me couldn't stand of is that my emails can be easily
 spoofed. Yeah, I know I'm not a very famous person, so probability of such
 thing happening is similar to zero, but hey - tell this to my Paranoid me. :)
 I also sign every mail I could (they can be easily verified using
-[my public key](/public-key.txt)), but still - DKIM seems to be a fine
+[my public key](../files/public-key.txt)), but still - DKIM seems to be a fine
 solution. And besides, I love to play with new things. So after many
 experiments with [dkim-milter](https://sourceforge.net/projects/dkim-milter/),
 [DKIMProxy](https://sourceforge.net/projects/dkimproxy/) and

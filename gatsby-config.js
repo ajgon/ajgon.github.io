@@ -47,7 +47,8 @@ module.exports = {
     }, {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: '*', allow: '/' }]
+        policy: [{ userAgent: '*', allow: '/' }],
+        sitemap: `${urljoin(config.siteUrl, config.pathPrefix)}/sitemap.xml`
       }
     }, {
       resolve: 'gatsby-plugin-feed',
@@ -151,6 +152,18 @@ module.exports = {
       options: {
         path: `${__dirname}/src/posts`,
         name: 'posts'
+      }
+    }, {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/raw`,
+        name: 'raw'
+      }
+    }, {
+      resolve: 'gatsby-plugin-copy-files',
+      options: {
+        source: `${__dirname}/src/raw`,
+        destination: ''
       }
     }, {
       resolve: 'gatsby-transformer-remark',
