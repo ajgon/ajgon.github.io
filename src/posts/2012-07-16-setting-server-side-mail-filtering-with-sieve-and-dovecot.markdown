@@ -4,7 +4,8 @@ title: "Setting server-side mail filtering with sieve and dovecot"
 date: 2012-07-16T11:43:00+02:00
 author: ajgon
 cover: "../images/covers/setting-server-side-mail-filtering-with-sieve-and-dovecot.jpg"
-categories: Administration
+tags:
+  - administration
 path: /blog/setting-server-side-mail-filtering-with-sieve-and-dovecot
 ---
 

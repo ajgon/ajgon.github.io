@@ -4,7 +4,8 @@ title: "Installing custom Linux on Raspberry Pi 2"
 date: 2015-04-19T20:00:00+02:00
 author: ajgon
 cover: "../images/covers/installing-custom-linux-on-raspberry-pi-2.jpg"
-categories: Administration
+tags:
+ - administration
 path: /blog/installing-custom-linux-on-raspberry-pi-2
 ---
 

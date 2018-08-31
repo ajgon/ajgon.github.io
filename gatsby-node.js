@@ -6,6 +6,7 @@
 
 const path = require('path')
 const createPaginatedPages = require('gatsby-paginate')
+const config = require('./src/config.js')
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
@@ -13,9 +14,16 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
 
   return graphql(`{
-    site {
-      siteMetadata {
-        siteUrl
+    allShareJson {
+      edges {
+        node {
+          id
+          slug
+          name
+          url
+          width
+          height
+        }
       }
     }
     allMarkdownRemark(
@@ -59,8 +67,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       pageLength: 5,
       pathPrefix: 'blog',
       context: {
-        wut: '123',
-        siteUrl: result.data.site.siteMetadata.siteUrl
+        siteUrl: config.siteUrl,
+        shares: result.data.allShareJson.edges
       }
     })
 

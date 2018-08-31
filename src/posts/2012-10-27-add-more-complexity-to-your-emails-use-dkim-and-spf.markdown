@@ -4,7 +4,8 @@ title: "Add more complexity to your Emails - use DKIM and SPF"
 date: 2012-10-27T13:15:00+02:00
 author: ajgon
 cover: "../images/covers/add-more-complexity-to-your-emails-use-dkim-and-spf.jpg"
-categories: Administration
+tags:
+  - administration
 path: /blog/add-more-complexity-to-your-emails-use-dkim-and-spf
 ---
 

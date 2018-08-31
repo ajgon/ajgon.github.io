@@ -4,7 +4,8 @@ title: "Setting encrypted backup Email server"
 date: 2013-04-14T13:34:00+02:00
 author: ajgon
 cover: "../images/covers/setting-encrypted-backup-email-server.jpg"
-categories: Administration
+tags:
+  - administration
 path: /blog/setting-encrypted-backup-email-server
 ---
 

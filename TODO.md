@@ -17,8 +17,9 @@
 * /avatar
 * blog pagination (gatsby-paginate)
 * fix share in blogexcerpt (new window sizes for facebook/twitter/etc.)
-
 * wyciagnac share pointy (fb/in/tw) do graphql
+
+* blog post tags
 * looking for job easter egg (HTTP header, page source, console.log)
 * structured data (rdf)
 * public-key.txt

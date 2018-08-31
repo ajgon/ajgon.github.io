@@ -4,7 +4,8 @@ title: "25 awesome tools every developer should have"
 date: 2013-11-13T11:09:37+02:00
 author: programajor
 cover: "../images/covers/25-awesome-tools-every-developer-should-have.jpg"
-categories: Workflow
+tags:
+  - workflow
 path: /blog/25-awesome-tools-every-developer-should-have
 ---
 

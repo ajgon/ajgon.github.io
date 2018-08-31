@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import sha1 from 'sha1'
-import NewWindow from 'react-new-window'
+import NewWindow from 'react-new-window/umd/react-new-window'
 
 import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import ShareIcon from '@material-ui/icons/Share'
 import { withStyles } from '@material-ui/core/styles'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const styles = {
   menuItemLink: {
@@ -31,23 +30,23 @@ class BlogPostShare extends React.Component {
     })
   }
 
-  handleOpenShareMenu(event) {
+  handleOpenShareMenu (event) {
     event.preventDefault()
     this.setState({ anchorEl: event.currentTarget })
   }
 
-  handleClose() {
+  handleClose () {
     this.setState({ anchorEl: null })
   }
 
-  toggleOpened(site) {
+  toggleOpened (site) {
     this.setState(prevState => {
       prevState.opened[site] = !prevState.opened[site]
       return prevState
     })
   }
 
-  newWindowUnloaded(site) {
+  newWindowUnloaded (site) {
     let opened = JSON.parse(JSON.stringify(this.state.opened))
     opened[site] = false
     this.setState({ opened })
@@ -71,7 +70,7 @@ class BlogPostShare extends React.Component {
           onClose={() => this.handleClose()}
         >
           {shares.map(share => {
-            return(
+            return (
               <MenuItem onClick={() => this.handleClose()} key={share.node.id}>
                 <a className={classes.menuItemLink} onClick={() => this.toggleOpened(share.node.slug)}>
                   {share.node.name}
@@ -82,7 +81,7 @@ class BlogPostShare extends React.Component {
           })}
         </Menu>
         {shares.map(share => {
-          return(
+          return (
             opened[share.node.slug] &&
             <NewWindow
               url={share.node.url.replace('%POSTURL%', encodedPostUrl)}

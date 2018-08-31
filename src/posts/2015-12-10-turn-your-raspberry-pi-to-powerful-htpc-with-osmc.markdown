@@ -4,7 +4,8 @@ title: "Turn your Raspberry Pi to powerful HTPC with OSMC"
 date: 2015-12-10T22:15:00+02:00
 author: ajgon
 cover: "../images/covers/turn-your-raspberry-pi-to-powerful-htpc-with-osmc.png"
-categories: Lifehack
+tags:
+ - lifehacking
 path: /blog/turn-your-raspberry-pi-to-powerful-htpc-with-osmc
 ---
 

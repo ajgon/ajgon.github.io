@@ -1,3 +1,5 @@
+import config from '../config'
+import urljoin from 'url-join'
 import React from 'react'
 
 import withRoot from '../withRoot'
@@ -11,13 +13,14 @@ class BlogIndex extends React.Component {
     const { group, index, first, last, additionalContext } = this.props.pathContext
     const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
     const nextUrl = (index + 1).toString()
-    const siteUrl = additionalContext.siteUrl
+
+    console.log(additionalContext)
 
     return (
       <Section headline='Blog'>
         {group.map(post => {
           return (
-            <BlogExcerpt post={post.node} siteUrl={siteUrl} key={post.node.id} showShare showSummary />
+            <BlogExcerpt post={post.node} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} key={post.node.id} showShare showSummary shares={additionalContext.shares} />
           )
         })}
 

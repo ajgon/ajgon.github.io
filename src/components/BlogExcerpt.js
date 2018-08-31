@@ -23,7 +23,7 @@ const styles = {
 
 class BlogExcerpt extends React.Component {
   render () {
-    const { classes, post, siteUrl, showSummary } = this.props
+    const { classes, post, siteUrl, showSummary, shares } = this.props
     let cardContent
 
     if (showSummary) {
@@ -33,7 +33,7 @@ class BlogExcerpt extends React.Component {
     return (
       <Card className={classes.cardSpacing}>
         <Link to={post.frontmatter.path}>
-          <BlogPostHeader post={post} siteUrl={siteUrl} showShare={showSummary} />
+          <BlogPostHeader post={post} siteUrl={siteUrl} showShare={showSummary} shares={shares} />
         </Link>
         {cardContent}
         <CardActions>

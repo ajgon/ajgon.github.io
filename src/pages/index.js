@@ -1,4 +1,6 @@
 /* global graphql */
+import config from '../config'
+import urljoin from 'url-join'
 import React from 'react'
 
 import Grid from '@material-ui/core/Grid'
@@ -14,7 +16,6 @@ class Index extends React.Component {
   render () {
     const { data } = this.props
     const posts = data.allMarkdownRemark.edges
-    const siteUrl = data.site.siteMetadata.siteUrl
 
     return (
       <React.Fragment>
@@ -31,7 +32,7 @@ class Index extends React.Component {
             {posts.map(post => {
               return (
                 <Grid item xs={12} md={4} key={post.node.id}>
-                  <BlogExcerpt post={post.node} siteUrl={siteUrl} key={post.node.id} />
+                  <BlogExcerpt post={post.node} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} key={post.node.id} />
                 </Grid>
               )
             })}
@@ -47,11 +48,6 @@ export default withRoot(Index)
 
 export const query = graphql`
   query SiteJobsProjectsQuery {
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       limit: 3

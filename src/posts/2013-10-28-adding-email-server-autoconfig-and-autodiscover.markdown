@@ -4,7 +4,8 @@ title: "Adding Email server autoconfig and autodiscover"
 date: 2013-10-28T14:57:00+02:00
 author: ajgon
 cover: "../images/covers/adding-email-server-autoconfig-and-autodiscover.jpg"
-categories: Administration
+tags:
+  - administration
 path: /blog/adding-email-server-autoconfig-and-autodiscover
 ---
 
