@@ -19,7 +19,8 @@ import IconReact from '../icons/react/react-original-wordmark.svg'
 import IconRuby from '../icons/ruby/ruby-plain-wordmark.svg'
 
 const styles = {
-  cardSpacing: {
+  root: {
+    marginTop: '1em',
     marginBottom: '2.5em'
   },
   cellPadding: {
@@ -35,7 +36,7 @@ class Technologies extends React.Component {
     const { classes } = this.props
 
     return (
-      <Grid container spacing={24} className={classes.cardSpacing}>
+      <Grid container spacing={24} className={classes.root}>
         <Grid item xs={3} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconRuby className={classes.block} />

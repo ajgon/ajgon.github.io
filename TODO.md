@@ -22,12 +22,13 @@
 * structured data (rdf)
 * 404
 * public-key.txt
-
 * keybase.txt
+* doczytywac kafelki na glownej z blogiem
+* hover na igor@rzegocki.pl (underline) i link do mailto:
+
 * looking for job easter egg (HTTP header, page source, console.log)
 * Potestowac na roznych web-performance checkach
 * Stopka
-* Open Source/Projects
 * Zrodlo strony na github
 * chrome lighthouse
 * standard linter

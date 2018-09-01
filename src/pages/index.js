@@ -2,9 +2,12 @@
 import config from '../config'
 import urljoin from 'url-join'
 import React from 'react'
+import PropTypes from 'prop-types'
 
+import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import { withStyles } from '@material-ui/core/styles'
 import withRoot from '../withRoot'
 
 import BlogExcerpt from '../components/BlogExcerpt'
@@ -13,46 +16,73 @@ import SEO from '../components/SEO.js'
 import TagLine from '../components/TagLine.js'
 import Technologies from '../components/Technologies.js'
 
+const styles = {
+  noTop: {
+    paddingTop: '5rem',
+    marginTop: '0'
+  },
+  hidden: {
+    display: 'none'
+  }
+}
+
 class Index extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      showMoreBlogPosts: false
+    }
+  }
+
+  showMoreBlogPosts () {
+    this.setState({ showMoreBlogPosts: true })
+  }
+
   render () {
-    const { data } = this.props
+    const { classes, data } = this.props
     const posts = data.allMarkdownRemark.edges
 
     return (
       <React.Fragment>
         <SEO />
-        <Section headline='Yo Developers!' idName='yodevelopers'>
+        <Section headline='Yo Developers!' idName='yodevelopers' className={classes.noTop}>
           <TagLine />
         </Section>
         <Section headline='Technologies'>
-          <Typography variant='headline' gutterBottom>Over 10 years of professional experience.</Typography>
+          <Typography variant='headline' gutterBottom>I have over 10 years of professional experience with Ruby, Rails, JavaScript and Linux, but&nbsp;I'm also familiar with other cool technologies.</Typography>
           <Technologies />
         </Section>
-        <Section headline='Projects' />
         <Section headline='Blog'>
           <Grid container spacing={24}>
-            {posts.map(post => {
+            {posts.map((post, index) => {
               return (
-                <Grid item xs={12} md={4} key={post.node.id}>
+                <Grid item xs={12} md={4} key={post.node.id} className={index < 3 || this.state.showMoreBlogPosts ? '' : classes.hidden}>
                   <BlogExcerpt post={post.node} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} key={post.node.id} />
                 </Grid>
               )
             })}
           </Grid>
+          <Grid container justify='center' className={this.state.showMoreBlogPosts ? classes.hidden : ''}>
+            <Button variant='outlined' style={{color: '#fff', background: '#424242', width: '50%'}} onClick={() => this.showMoreBlogPosts()}>Read More</Button>
+          </Grid>
         </Section>
-        <Section headline='Contact' />
       </React.Fragment>
     )
   }
 }
 
-export default withRoot(Index)
+Index.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withRoot(withStyles(styles)(Index))
 
 export const query = graphql`
-  query SiteJobsProjectsQuery {
+  query BlogPostsQuery {
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
-      limit: 3
+      limit: 1000
     ) {
       edges {
         node {

@@ -7,7 +7,8 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
   root: {
-    paddingTop: '5rem'
+    padding: '3rem 5px 0',
+    marginTop: '12rem'
   },
   strongHeader: {
     fontWeight: 'bold',
@@ -17,15 +18,15 @@ const styles = {
 
 class Section extends React.Component {
   render () {
-    const { children, classes, headline, idName } = this.props
+    const { children, classes, headline, idName, className } = this.props
     const headlineLabel = `arialabel-${(headline || '').toLowerCase().replace(/[^a-z0-9]/g, '')}`
 
     if (!headline) {
-      return (<section className={classes.root} role='region'>{children}</section>)
+      return (<section className={`${classes.root} ${className || ''}`} role='region'>{children}</section>)
     }
 
     return (
-      <section className={classes.root} id={idName || headline.toLowerCase()} role='region' aria-labelledby={headlineLabel}>
+      <section className={`${classes.root} ${className || ''}`} id={idName || headline.toLowerCase()} role='region' aria-labelledby={headlineLabel}>
         <Hidden smUp>
           <Typography variant='display2' className={classes.strongHeader} id={headlineLabel}>{headline}</Typography>
         </Hidden>

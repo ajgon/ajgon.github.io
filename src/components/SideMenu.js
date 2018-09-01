@@ -15,8 +15,13 @@ const styles = {
     right: '0',
     top: '20%',
     zIndex: '100',
+    background: '#424242',
     '& a': {
-      textDecoration: 'none'
+      textDecoration: 'none',
+      color: '#fff'
+    },
+    '& a li': {
+      color: '#fff'
     }
   }
 }

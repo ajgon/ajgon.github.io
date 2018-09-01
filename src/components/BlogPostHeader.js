@@ -33,7 +33,7 @@ class BlogPostHeader extends React.Component {
         <CardHeader
           title={post.frontmatter.title}
           titleTypographyProps={{component: heading || 'span'}}
-          subheader={post.frontmatter.date}
+          subheader={showShare ? post.frontmatter.date : null}
           action={showShare ? <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} /> : null}
         />
       </React.Fragment>

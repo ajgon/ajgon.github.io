@@ -10,9 +10,10 @@ import Helmet from 'react-helmet'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import withRoot from '../withRoot'
 
-import MenuAppBar from '../components/MenuAppBar'
-import Heart from '../components/Heart'
 import Container from '../components/Container'
+import Heart from '../components/Heart'
+import MenuAppBar from '../components/MenuAppBar'
+import Footer from '../components/Footer'
 
 import FavIcon from '../images/favicon.png'
 
@@ -46,7 +47,7 @@ class Layout extends React.Component {
         >
           <html lang='en' />
           <body id='about' />
-          <style type='text/css'>{`body { position: relative }`}</style>
+          <style type='text/css'>{`body, #___gatsby { position: relative }`}</style>
         </Helmet>
         <CssBaseline />
         <MenuAppBar location={location} mainPage={mainPage} menuItems={data.allMenuJson.edges} />
@@ -54,6 +55,7 @@ class Layout extends React.Component {
         <Container>
           {children()}
         </Container>
+        <Footer />
       </React.Fragment>
     )
   }

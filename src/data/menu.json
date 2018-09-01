@@ -10,11 +10,6 @@
     "to": "technologies"
   },
   {
-    "id": "cba9e50e-1406-4ce1-8518-5c33cc517784",
-    "name": "Projects",
-    "to": "projects"
-  },
-  {
     "id": "447e8185-ac1a-42bc-a28c-4bc90e52735a",
     "name": "Blog",
     "to": "blog"

@@ -16,7 +16,6 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth'
 
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import SideMenu from '../components/SideMenu.js'
@@ -55,19 +54,8 @@ class MenuAppBar extends React.Component {
   }
 
   render () {
-    const { classes, location, mainPage, menuItems } = this.props
+    const { classes, mainPage, menuItems } = this.props
     const largeScreen = isWidthUp('md', this.props.width)
-    let backButton = null
-
-    if (location.pathname.match(/\/blog\/.+/)) {
-      backButton = (
-        <Link to='/blog' aria-label='Go back' id='back-button'>
-          <IconButton aria-labelledby='back-button'>
-            <ArrowBackIcon />
-          </IconButton>
-        </Link>
-      )
-    }
 
     return (
       <React.Fragment>
@@ -78,7 +66,6 @@ class MenuAppBar extends React.Component {
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            {backButton}
             <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}><Typography variant='title'>Igor Rzegocki</Typography></Link>
             <Social />
           </Toolbar>
