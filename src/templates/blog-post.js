@@ -23,8 +23,6 @@ class BlogPostTemplate extends React.Component {
   render () {
     const { classes, data } = this.props
 
-    console.log(classes.noTop)
-
     return (
       <Section className={classes.noTop}>
         <Helmet title={`${data.markdownRemark.frontmatter.title} | ${config.siteTitle}`} />

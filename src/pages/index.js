@@ -18,7 +18,7 @@ import Technologies from '../components/Technologies.js'
 
 const styles = {
   noTop: {
-    paddingTop: '5rem',
+    paddingTop: '10rem',
     marginTop: '0'
   },
   hidden: {

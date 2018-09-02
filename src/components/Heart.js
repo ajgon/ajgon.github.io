@@ -13,7 +13,8 @@ const styles = {
     position: 'absolute',
     top: 0,
     width: '100%',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
+    backgroundColor: '#ffffff'
   },
   heart: {
     zIndex: 1,

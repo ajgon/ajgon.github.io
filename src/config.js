@@ -4,7 +4,7 @@ module.exports = {
   siteTitleAlt: 'Igor Rzegocki Personal Page',
   siteLogo: 'src/images/favicon.png',
   siteUrl: 'https://www.rzegocki.pl',
-  pathPrefix: '/minefield',
+  pathPrefix: '/',
   siteDescription: 'Igor Rzegocki personal webpage and blog',
   siteRss: '/feed.xml',
   googleAnalyticsID: 'UA-65616575-1',

@@ -7,8 +7,8 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = {
   root: {
-    padding: '3rem 5px 0',
-    marginTop: '12rem'
+    padding: '5rem 5px 0',
+    marginTop: '15rem'
   },
   strongHeader: {
     fontWeight: 'bold',

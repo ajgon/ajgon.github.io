@@ -74,7 +74,7 @@ class MenuAppBar extends React.Component {
           <List component='nav'>
             {menuItems.map((menuItem) => {
               return (
-                <ListItem button component={mainPage ? ScrollLink : Link} to={`${mainPage ? '' : '/#'}${menuItem.node.to}`} smooth hashSpy key={menuItem.node.id} onClick={this.toggleDrawer(false)}>
+                <ListItem button component={mainPage ? ScrollLink : Link} to={`${mainPage ? '' : '/#'}${menuItem.node.to}`} smooth key={menuItem.node.id} onClick={this.toggleDrawer(false)}>
                   <ListItemText primary={menuItem.node.name} />
                 </ListItem>
               )

@@ -36,7 +36,7 @@ class SideMenu extends React.Component {
           {menuItems.map(menuItem => {
             if (mainPage) {
               return (
-                <ScrollLink to={menuItem.node.to} smooth hashSpy key={menuItem.node.id}><MenuItem>{menuItem.node.name}</MenuItem></ScrollLink>
+                <ScrollLink to={menuItem.node.to} smooth key={menuItem.node.id}><MenuItem>{menuItem.node.name}</MenuItem></ScrollLink>
               )
             }
             return (<MenuItem component={Link} to={`/#${menuItem.node.to}`} key={menuItem.node.id}>{menuItem.node.name}</MenuItem>)
