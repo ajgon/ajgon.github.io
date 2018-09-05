@@ -21,11 +21,15 @@ class Layout extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      mainPage: props.location.pathname === `${config.pathPrefix}/`.replace('//', '/')
+      mainPage:
+        props.location.pathname === `${config.pathPrefix}/`.replace('//', '/')
     }
   }
   componentDidUpdate (prevProps) {
-    if (prevProps.location.pathname === this.props.location.pathname.replace('//', '/')) {
+    if (
+      prevProps.location.pathname ===
+      this.props.location.pathname.replace('//', '/')
+    ) {
       return
     }
 
@@ -50,11 +54,13 @@ class Layout extends React.Component {
           <style type='text/css'>{`body, #___gatsby { position: relative }`}</style>
         </Helmet>
         <CssBaseline />
-        <MenuAppBar location={location} mainPage={mainPage} menuItems={data.allMenuJson.edges} />
+        <MenuAppBar
+          location={location}
+          mainPage={mainPage}
+          menuItems={data.allMenuJson.edges}
+        />
         <Heart />
-        <Container>
-          {children()}
-        </Container>
+        <Container location={location}>{children()}</Container>
         <Footer />
       </React.Fragment>
     )

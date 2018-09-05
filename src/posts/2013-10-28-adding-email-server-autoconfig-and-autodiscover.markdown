@@ -1,4 +1,5 @@
 ---
+id: 60b24bcb-7bd8-4279-bc5b-8f20be330fa7
 layout: post
 title: "Adding Email server autoconfig and autodiscover"
 date: 2013-10-28T14:57:00+02:00

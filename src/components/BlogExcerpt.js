@@ -27,21 +27,28 @@ class BlogExcerpt extends React.Component {
     let cardContent
 
     if (showSummary) {
-      cardContent = <CardContent><Typography component='p'>{post.excerpt}</Typography></CardContent>
+      cardContent = (
+        <CardContent>
+          <Typography component='p'>{post.excerpt}</Typography>
+        </CardContent>
+      )
     }
 
     return (
       <Card className={classes.cardSpacing}>
         <Link to={post.frontmatter.path}>
-          <BlogPostHeader post={post} siteUrl={siteUrl} showShare={showSummary} shares={shares} />
+          <BlogPostHeader
+            post={post}
+            siteUrl={siteUrl}
+            showShare={showSummary}
+            shares={shares}
+          />
         </Link>
         {cardContent}
         <CardActions>
           <div className={classes.pushRight} />
           <Link to={post.frontmatter.path}>
-            <Button size='small'>
-              View More
-            </Button>
+            <Button size='small'>View More</Button>
           </Link>
         </CardActions>
       </Card>

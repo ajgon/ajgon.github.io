@@ -1,4 +1,5 @@
 ---
+id: 97a11075-4624-46b6-a691-5e1f5d828c77
 layout: post
 title: "Turn your Raspberry Pi to powerful HTPC with OSMC"
 date: 2015-12-10T22:15:00+02:00

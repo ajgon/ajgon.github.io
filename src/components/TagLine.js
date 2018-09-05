@@ -19,12 +19,19 @@ class TagLine extends React.Component {
       <React.Fragment>
         <Hidden smUp>
           <Typography variant='headline' gutterBottom component='h2'>
-            I handle impossible cases on the spot, miracles take me a few minutes.
+            I handle impossible cases on the spot, miracles take me a few
+            minutes.
           </Typography>
         </Hidden>
         <Hidden xsDown>
-          <Typography variant='display3' className={classes.tagLineSize} gutterBottom component='h2'>
-            I handle impossible cases on the spot, miracles take me a few minutes.
+          <Typography
+            variant='display3'
+            className={classes.tagLineSize}
+            gutterBottom
+            component='h2'
+          >
+            I handle impossible cases on the spot, miracles take me a few
+            minutes.
           </Typography>
         </Hidden>
       </React.Fragment>

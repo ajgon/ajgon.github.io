@@ -1,4 +1,5 @@
 ---
+id: f4cf8477-a1cf-4749-a8e9-a519eeba2d34
 layout: post
 title: "How to make gnupg2 to fall in love with Docker"
 date: 2017-04-03T22:19:00+02:00

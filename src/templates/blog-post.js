@@ -14,7 +14,7 @@ import SEO from '../components/SEO'
 
 const styles = {
   noTop: {
-    paddingTop: '5rem',
+    padding: '5rem 0 0',
     marginTop: '0'
   }
 }
@@ -25,9 +25,21 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Section className={classes.noTop}>
-        <Helmet title={`${data.markdownRemark.frontmatter.title} | ${config.siteTitle}`} />
-        <SEO postPath={data.markdownRemark.frontmatter.path} postNode={data.markdownRemark} postSEO />
-        <BlogPost post={data.markdownRemark} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} shares={data.allShareJson.edges} />
+        <Helmet
+          title={`${data.markdownRemark.frontmatter.title} | ${
+            config.siteTitle
+          }`}
+        />
+        <SEO
+          postPath={data.markdownRemark.frontmatter.path}
+          postNode={data.markdownRemark}
+          postSEO
+        />
+        <BlogPost
+          post={data.markdownRemark}
+          siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
+          shares={data.allShareJson.edges}
+        />
       </Section>
     )
   }
@@ -56,7 +68,6 @@ export const query = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       excerpt
-      id
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

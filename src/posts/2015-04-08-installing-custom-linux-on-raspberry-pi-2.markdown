@@ -1,4 +1,5 @@
 ---
+id: 0a723566-c7b4-4ddf-b1db-f60c15f39bc0
 layout: post
 title: "Installing custom Linux on Raspberry Pi 2"
 date: 2015-04-19T20:00:00+02:00

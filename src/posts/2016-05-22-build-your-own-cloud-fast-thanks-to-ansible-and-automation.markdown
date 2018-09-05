@@ -1,4 +1,5 @@
 ---
+id: a306aa91-c90e-4cdb-a411-1245ac18cdad
 layout: post
 title: "Build Your Own Cloud Fast, Thanks to Ansible and Automation"
 date: 2016-05-22T11:43:06+02:00

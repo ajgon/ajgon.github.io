@@ -24,24 +24,56 @@ class Social extends React.Component {
 
     return (
       <React.Fragment>
-        <OutboundLink href='https://github.com/ajgon' target='_blank' aria-label='GitHub' id='link-github' rel='noopener'>
+        <OutboundLink
+          href='https://github.com/ajgon'
+          target='_blank'
+          aria-label='GitHub'
+          id='link-github'
+          rel='noopener'
+        >
           <IconButton aria-labelledby='link-github'>
-            <SvgIcon className={classes.mediumIcon}><IconGithub /></SvgIcon>
+            <SvgIcon className={classes.mediumIcon}>
+              <IconGithub />
+            </SvgIcon>
           </IconButton>
         </OutboundLink>
-        <OutboundLink href='https://www.linkedin.com/in/ajgon' target='_blank' aria-label='LinkedIn' id='link-linkedin' rel='noopener'>
+        <OutboundLink
+          href='https://www.linkedin.com/in/ajgon'
+          target='_blank'
+          aria-label='LinkedIn'
+          id='link-linkedin'
+          rel='noopener'
+        >
           <IconButton aria-labelledby='link-linkedin'>
-            <SvgIcon className={classes.mediumIcon}><IconLinkedIn /></SvgIcon>
+            <SvgIcon className={classes.mediumIcon}>
+              <IconLinkedIn />
+            </SvgIcon>
           </IconButton>
         </OutboundLink>
-        <OutboundLink href='https://twitter.com/ajgon' target='_blank' aria-label='Twitter' id='link-twitter' rel='noopener'>
+        <OutboundLink
+          href='https://twitter.com/ajgon'
+          target='_blank'
+          aria-label='Twitter'
+          id='link-twitter'
+          rel='noopener'
+        >
           <IconButton aria-labelledby='link-twitter'>
-            <SvgIcon className={classes.mediumIcon}><IconTwitter /></SvgIcon>
+            <SvgIcon className={classes.mediumIcon}>
+              <IconTwitter />
+            </SvgIcon>
           </IconButton>
         </OutboundLink>
-        <OutboundLink href='https://keybase.io/ajgon' target='_blank' aria-label='Keybase' id='link-keybase' rel='noopener'>
+        <OutboundLink
+          href='https://keybase.io/ajgon'
+          target='_blank'
+          aria-label='Keybase'
+          id='link-keybase'
+          rel='noopener'
+        >
           <IconButton aria-labelledby='link-keybase'>
-            <SvgIcon className={classes.mediumIcon}><IconKeybase /></SvgIcon>
+            <SvgIcon className={classes.mediumIcon}>
+              <IconKeybase />
+            </SvgIcon>
           </IconButton>
         </OutboundLink>
       </React.Fragment>

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 
-const styles = (theme) => {
-  return ({
+const styles = theme => {
+  return {
     root: {
       '& a': {
         // color: theme.palette.secondary.main,
@@ -22,19 +22,22 @@ const styles = (theme) => {
       maxWidth: '1000px',
       overflow: 'hidden'
     }
-  })
+  }
 }
 
 class Container extends React.Component {
   render () {
-    const { classes } = this.props
+    const { classes, location } = this.props
 
     return (
       <Grid container justify='center' className={classes.root} role='main'>
-        <Grid item xs={10} sm={10} md={9} className={classes.containerPositioner}>
-          <div className={classes.limitedContainer}>
-            {this.props.children}
-          </div>
+        <Grid
+          item
+          xs={location.pathname.match(/\/blog\/.+/) ? 12 : 10}
+          md={9}
+          className={classes.containerPositioner}
+        >
+          <div className={classes.limitedContainer}>{this.props.children}</div>
         </Grid>
       </Grid>
     )

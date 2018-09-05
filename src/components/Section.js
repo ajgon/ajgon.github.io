@@ -24,19 +24,42 @@ const styles = theme => ({
 class Section extends React.Component {
   render () {
     const { children, classes, headline, idName, className } = this.props
-    const headlineLabel = `arialabel-${(headline || '').toLowerCase().replace(/[^a-z0-9]/g, '')}`
+    const headlineLabel = `arialabel-${(headline || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, '')}`
 
     if (!headline) {
-      return (<section className={`${classes.root} ${className || ''}`} role='region'>{children}</section>)
+      return (
+        <section className={`${classes.root} ${className || ''}`} role='region'>
+          {children}
+        </section>
+      )
     }
 
     return (
-      <section className={`${classes.root} ${className || ''}`} id={idName || headline.toLowerCase()} role='region' aria-labelledby={headlineLabel}>
+      <section
+        className={`${classes.root} ${className || ''}`}
+        id={idName || headline.toLowerCase()}
+        role='region'
+        aria-labelledby={headlineLabel}
+      >
         <Hidden smUp>
-          <Typography variant='display2' className={classes.strongHeader} id={headlineLabel}>{headline}</Typography>
+          <Typography
+            variant='display2'
+            className={classes.strongHeader}
+            id={headlineLabel}
+          >
+            {headline}
+          </Typography>
         </Hidden>
         <Hidden xsDown>
-          <Typography variant='display4' className={classes.strongHeader} id={headlineLabel}>{headline}</Typography>
+          <Typography
+            variant='display4'
+            className={classes.strongHeader}
+            id={headlineLabel}
+          >
+            {headline}
+          </Typography>
         </Hidden>
         {children}
       </section>

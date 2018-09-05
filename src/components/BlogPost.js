@@ -22,16 +22,24 @@ class BlogPost extends React.Component {
     const disqusShortname = 'ajgon'
     const disqusConfig = {
       url: `${siteUrl}${post.frontmatter.path}`,
-      identifier: post.id,
       title: post.title
     }
 
     return (
       <Card className={classes.cardSpacing}>
-        <BlogPostHeader post={post} siteUrl={siteUrl} shares={shares} showShare heading='h1' />
+        <BlogPostHeader
+          post={post}
+          siteUrl={siteUrl}
+          shares={shares}
+          showShare
+          heading='h1'
+        />
         <CardContent>
           <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
-          <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+          <Disqus.DiscussionEmbed
+            shortname={disqusShortname}
+            config={disqusConfig}
+          />
         </CardContent>
       </Card>
     )

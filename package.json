@@ -12,7 +12,7 @@
     "gatsby-link": "^1.6.46",
     "gatsby-paginate": "^1.0.16",
     "gatsby-plugin-catch-links": "^1.0.24",
-    "gatsby-plugin-copy-files": "^1.0.1",
+    "gatsby-plugin-copy": "0.0.1",
     "gatsby-plugin-feed": "^1.3.25",
     "gatsby-plugin-google-analytics": "^1.0.31",
     "gatsby-plugin-manifest": "^1.0.27",
@@ -23,6 +23,7 @@
     "gatsby-plugin-react-svg": "^1.1.1",
     "gatsby-plugin-remove-trailing-slashes": "^1.0.9",
     "gatsby-plugin-robots-txt": "^1.3.0",
+    "gatsby-plugin-sentry": "^0.1.0",
     "gatsby-plugin-sharp": "^1.6.48",
     "gatsby-plugin-sitemap": "^1.2.25",
     "gatsby-plugin-sri": "^1.0.3",
@@ -42,7 +43,6 @@
     "react-new-window": "0.0.7",
     "react-obfuscate": "^2.1.7",
     "react-scroll": "^1.7.10",
-    "sha1": "^1.1.1",
     "standard": "^11.0.1",
     "typeface-roboto": "0.0.54",
     "uglifycss": "0.0.29",
@@ -53,12 +53,13 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "rm -rf .cache public && gatsby build --prefix-paths && sed -i '' \"s@$(pwd)/@./@g\" public/*.map",
     "develop": "gatsby develop",
     "lint": "standard",
     "format": "prettier --write 'src/**/*.js'",
+    "cleancode": "npm run format && standard --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public -b master"
+    "deploy": "npm run build && gh-pages -d public -b master -t"
   },
   "devDependencies": {
     "prettier": "^1.14.2",

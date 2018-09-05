@@ -1,4 +1,5 @@
 ---
+id: ab3d929b-4fb1-4452-bd81-37846947bee9
 layout: post
 title: "25 awesome tools every developer should have"
 date: 2013-11-13T11:09:37+02:00

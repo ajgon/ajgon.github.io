@@ -13,8 +13,8 @@ class SEO extends Component {
     let postURL
     let postMeta
     if (postSEO) {
-      postMeta = postNode.frontmatter;
-      ({ title } = postMeta)
+      postMeta = postNode.frontmatter
+      ;({ title } = postMeta)
       description = postMeta.description
         ? postMeta.description
         : postNode.excerpt
@@ -98,7 +98,7 @@ class SEO extends Component {
 
         {/* OpenGraph tags */}
         <meta property='og:url' content={postSEO ? postURL : blogURL} />
-        {postSEO ? <meta property='og:type' content='article' /> : null}
+        <meta property='og:type' content={postSEO ? 'article' : 'webpage'} />
         <meta property='og:title' content={title} />
         <meta property='og:description' content={description} />
         <meta property='og:image' content={image} />

@@ -1,4 +1,5 @@
 ---
+id: 47c37fd8-9947-4c2e-9229-b4f7704eb20d
 layout: post
 title: "Setting development environment on your Mac"
 date: 2012-09-22T12:33:00+02:00

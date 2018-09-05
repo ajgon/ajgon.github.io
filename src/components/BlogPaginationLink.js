@@ -36,7 +36,7 @@ class BlogPaginationLink extends React.Component {
       }
     }
 
-    return (<React.Fragment />)
+    return <React.Fragment />
   }
 }
 

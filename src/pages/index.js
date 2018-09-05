@@ -16,15 +16,20 @@ import SEO from '../components/SEO.js'
 import TagLine from '../components/TagLine.js'
 import Technologies from '../components/Technologies.js'
 
-const styles = {
+const styles = theme => ({
   noTop: {
-    paddingTop: '10rem',
-    marginTop: '0'
+    marginTop: '0',
+    [theme.breakpoints.down('xs')]: {
+      paddingTop: '5rem'
+    },
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: '10rem'
+    }
   },
   hidden: {
     display: 'none'
   }
-}
+})
 
 class Index extends React.Component {
   constructor (props) {
@@ -46,25 +51,57 @@ class Index extends React.Component {
     return (
       <React.Fragment>
         <SEO />
-        <Section headline='Yo Developers!' idName='yodevelopers' className={classes.noTop}>
+        <Section
+          headline='Yo Developers!'
+          idName='yodevelopers'
+          className={classes.noTop}
+        >
           <TagLine />
         </Section>
         <Section headline='Technologies'>
-          <Typography variant='headline' gutterBottom>I have over 10 years of professional experience with Ruby, Rails, JavaScript and Linux, but&nbsp;I'm also familiar with other cool technologies.</Typography>
+          <Typography variant='headline' gutterBottom>
+            I have over 10 years of professional experience with Ruby, Rails,
+            JavaScript and Linux, but&nbsp;I'm also familiar with other cool
+            technologies.
+          </Typography>
           <Technologies />
         </Section>
         <Section headline='Blog'>
           <Grid container spacing={24}>
             {posts.map((post, index) => {
               return (
-                <Grid item xs={12} md={4} key={post.node.id} className={index < 3 || this.state.showMoreBlogPosts ? '' : classes.hidden}>
-                  <BlogExcerpt post={post.node} siteUrl={urljoin(config.siteUrl, config.pathPrefix)} key={post.node.id} />
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  key={post.node.frontmatter.id}
+                  className={
+                    index < 3 || this.state.showMoreBlogPosts
+                      ? ''
+                      : classes.hidden
+                  }
+                >
+                  <BlogExcerpt
+                    post={post.node}
+                    siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
+                    key={post.node.frontmatter.id}
+                  />
                 </Grid>
               )
             })}
           </Grid>
-          <Grid container justify='center' className={this.state.showMoreBlogPosts ? classes.hidden : ''}>
-            <Button variant='outlined' style={{color: '#fff', background: '#424242', width: '50%'}} onClick={() => this.showMoreBlogPosts()}>Read More</Button>
+          <Grid
+            container
+            justify='center'
+            className={this.state.showMoreBlogPosts ? classes.hidden : ''}
+          >
+            <Button
+              variant='outlined'
+              style={{ color: '#fff', background: '#424242', width: '50%' }}
+              onClick={() => this.showMoreBlogPosts()}
+            >
+              Read More
+            </Button>
           </Grid>
         </Section>
       </React.Fragment>
@@ -87,12 +124,12 @@ export const query = graphql`
       edges {
         node {
           excerpt(pruneLength: 250)
-          id
           frontmatter {
+            id
             title
             author
             path
-            date(formatString:"MMMM DD, YYYY")
+            date(formatString: "MMMM DD, YYYY")
             cover {
               childImageSharp {
                 sizes(maxWidth: 1000) {

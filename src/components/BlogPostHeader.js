@@ -27,14 +27,20 @@ class BlogPostHeader extends React.Component {
         <CardMedia
           component={Image}
           sizes={post.frontmatter.cover.childImageSharp.sizes}
-          className={showShare ? classes.cardCoverLarge : classes.cardCoverSmall}
+          className={
+            showShare ? classes.cardCoverLarge : classes.cardCoverSmall
+          }
           src={post.frontmatter.cover.childImageSharp.sizes.base64}
         />
         <CardHeader
           title={post.frontmatter.title}
-          titleTypographyProps={{component: heading || 'span'}}
+          titleTypographyProps={{ component: heading || 'span' }}
           subheader={showShare ? post.frontmatter.date : null}
-          action={showShare ? <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} /> : null}
+          action={
+            showShare ? (
+              <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} />
+            ) : null
+          }
         />
       </React.Fragment>
     )

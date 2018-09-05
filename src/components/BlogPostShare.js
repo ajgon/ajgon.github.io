@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import sha1 from 'sha1'
 import NewWindow from 'react-new-window/umd/react-new-window'
 
 import IconButton from '@material-ui/core/IconButton'
@@ -55,12 +54,20 @@ class BlogPostShare extends React.Component {
   render () {
     const { classes, post, siteUrl, shares } = this.props
     const { anchorEl, opened } = this.state
-    const encodedPostUrl = encodeURIComponent(`${siteUrl}${post.frontmatter.path}`)
-    const shareButtonId = `share-button-${sha1(post.id)}`
+    const encodedPostUrl = encodeURIComponent(
+      `${siteUrl}${post.frontmatter.path}`
+    )
+    const shareButtonId = `share-button-${post.frontmatter.id}`
 
     return (
       <nav aria-labelledby={shareButtonId}>
-        <IconButton aria-label='Share' id={shareButtonId} aria-haspopup='true' aria-owns={anchorEl ? 'share-menu' : null} onClick={(event) => this.handleOpenShareMenu(event)}>
+        <IconButton
+          aria-label='Share'
+          id={shareButtonId}
+          aria-haspopup='true'
+          aria-owns={anchorEl ? 'share-menu' : null}
+          onClick={event => this.handleOpenShareMenu(event)}
+        >
           <ShareIcon />
         </IconButton>
         <Menu
@@ -72,22 +79,28 @@ class BlogPostShare extends React.Component {
           {shares.map(share => {
             return (
               <MenuItem onClick={() => this.handleClose()} key={share.node.id}>
-                <a className={classes.menuItemLink} onClick={() => this.toggleOpened(share.node.slug)}>
+                <a
+                  className={classes.menuItemLink}
+                  onClick={() => this.toggleOpened(share.node.slug)}
+                >
                   {share.node.name}
                 </a>
               </MenuItem>
-
             )
           })}
         </Menu>
         {shares.map(share => {
           return (
-            opened[share.node.slug] &&
-            <NewWindow
-              url={share.node.url.replace('%POSTURL%', encodedPostUrl)}
-              features={{width: share.node.width, height: share.node.height}}
-              onUnload={() => this.newWindowUnloaded(share.node.slug)}
-            />
+            opened[share.node.slug] && (
+              <NewWindow
+                url={share.node.url.replace('%POSTURL%', encodedPostUrl)}
+                features={{
+                  width: share.node.width,
+                  height: share.node.height
+                }}
+                onUnload={() => this.newWindowUnloaded(share.node.slug)}
+              />
+            )
           )
         })}
       </nav>

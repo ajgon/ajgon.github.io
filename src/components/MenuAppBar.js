@@ -21,8 +21,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 import SideMenu from '../components/SideMenu.js'
 import Social from '../components/Social.js'
 
-const styles = (theme) => {
-  return ({
+const styles = theme => {
+  return {
     flex: {
       flexGrow: 1
     },
@@ -33,7 +33,7 @@ const styles = (theme) => {
       background: theme.palette.background.paper,
       boxShadow: 'none'
     }
-  })
+  }
 }
 
 class MenuAppBar extends React.Component {
@@ -59,22 +59,38 @@ class MenuAppBar extends React.Component {
 
     return (
       <React.Fragment>
-        <AppBar position={largeScreen ? 'static' : 'fixed'} className={largeScreen ? classes.cleanBar : ''}>
+        <AppBar
+          position={largeScreen ? 'static' : 'fixed'}
+          className={largeScreen ? classes.cleanBar : ''}
+        >
           <Toolbar>
             <Hidden mdUp>
               <IconButton onClick={this.toggleDrawer(true)} aria-label='Menu'>
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}><Typography variant='title'>Igor Rzegocki</Typography></Link>
+            <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}>
+              <Typography variant='title'>Igor Rzegocki</Typography>
+            </Link>
             <Social />
           </Toolbar>
         </AppBar>
-        <Drawer anchor='top' open={this.state.drawer} onClose={this.toggleDrawer(false)}>
+        <Drawer
+          anchor='top'
+          open={this.state.drawer}
+          onClose={this.toggleDrawer(false)}
+        >
           <List component='nav'>
-            {menuItems.map((menuItem) => {
+            {menuItems.map(menuItem => {
               return (
-                <ListItem button component={mainPage ? ScrollLink : Link} to={`${mainPage ? '' : '/#'}${menuItem.node.to}`} smooth key={menuItem.node.id} onClick={this.toggleDrawer(false)}>
+                <ListItem
+                  button
+                  component={mainPage ? ScrollLink : Link}
+                  to={`${mainPage ? '' : '/#'}${menuItem.node.to}`}
+                  smooth
+                  key={menuItem.node.id}
+                  onClick={this.toggleDrawer(false)}
+                >
                   <ListItemText primary={menuItem.node.name} />
                 </ListItem>
               )

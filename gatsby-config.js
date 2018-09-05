@@ -1,19 +1,17 @@
 const config = require('./src/config.js')
 const urljoin = require('url-join')
+const siteUrl = urljoin(config.siteUrl, config.pathPrefix).replace(/\/+$/, '')
 
 module.exports = {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
-    siteUrl: urljoin(config.siteUrl, config.pathPrefix),
+    siteUrl: siteUrl,
     rssMetadata: {
-      site_url: urljoin(config.siteUrl, config.pathPrefix),
+      site_url: siteUrl,
       feed_url: urljoin(config.siteUrl, config.pathPrefix, config.siteRss),
       title: config.siteTitle,
       description: config.siteDescription,
-      image_url: `${urljoin(
-        config.siteUrl,
-        config.pathPrefix
-      )}/icons/icon-512.png`,
+      image_url: `${siteUrl}/icons/icon-512.png`,
       author: config.userName,
       copyright: config.copyright
     }
@@ -28,6 +26,11 @@ module.exports = {
     'gatsby-plugin-react-svg',
     'gatsby-plugin-sri',
     {
+      resolve: 'gatsby-plugin-sentry',
+      options: {
+        dsn: 'https://7da25cbb214e4f2f9874a9dffc895d99@sentry.io/1275167'
+      },
+    }, {
       resolve: 'gatsby-plugin-nprogress',
       options: {
         color: config.themeColor
@@ -47,8 +50,8 @@ module.exports = {
     }, {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: '*', allow: '/' }],
-        sitemap: `${urljoin(config.siteUrl, config.pathPrefix)}/sitemap.xml`
+        policy: [{ userAgent: '*', disallow: ['/v1', '/v2', '/v3', '/v4', '/v5', '/v6', '/v7', '/v8', '/v9'] }],
+        sitemap: urljoin(config.siteUrl, config.pathPrefix, '/sitemap.xml')
       }
     }, {
       resolve: 'gatsby-plugin-feed',
@@ -160,11 +163,16 @@ module.exports = {
         name: 'raw'
       }
     }, {
-      resolve: 'gatsby-plugin-copy-files',
+      resolve: 'gatsby-plugin-copy',
       options: {
-        source: `${__dirname}/src/raw`,
-        destination: ''
-      }
+        verbose: true,
+        'src/raw/CNAME': 'public/CNAME',
+        'src/raw/googlea7d520b1962f2846.html': 'public/googlea7d520b1962f2846.html',
+        'src/raw/hackers.txt': 'public/hackers.txt',
+        'src/raw/keybase.txt': 'public/keybase.txt',
+        'src/raw/.well-known/security.txt': 'public/.well-known/security.txt',
+        'src/raw/.well-known/security.txt.sig': 'public/.well-known/security.txt.sig'
+      },
     }, {
       resolve: 'gatsby-transformer-remark',
       options: {

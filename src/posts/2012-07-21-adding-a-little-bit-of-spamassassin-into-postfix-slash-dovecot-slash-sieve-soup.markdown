@@ -1,4 +1,5 @@
 ---
+id: 2b8aa887-ec53-4920-bc16-48f4a05091c5
 layout: post
 title: "Adding a little bit of SpamAssassin into Postfix, Dovecot, Sieve soup"
 date: 2012-07-21T12:16:00+02:00
