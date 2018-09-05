@@ -7,12 +7,17 @@ import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = {
+const styles = theme => ({
   root: {
-    marginTop: '15rem',
     background: '#ffc400',
     padding: '7.5rem 5px',
-    textAlign: 'center'
+    textAlign: 'center',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '10rem'
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '15rem'
+    }
   },
   strongHeader: {
     fontWeight: 'bold',
@@ -24,7 +29,7 @@ const styles = {
       textDecoration: 'underline'
     }
   }
-}
+})
 
 class Footer extends React.Component {
   render () {

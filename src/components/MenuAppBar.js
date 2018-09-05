@@ -70,7 +70,7 @@ class MenuAppBar extends React.Component {
             <Social />
           </Toolbar>
         </AppBar>
-        <Drawer anchor='bottom' open={this.state.drawer} onClose={this.toggleDrawer(false)}>
+        <Drawer anchor='top' open={this.state.drawer} onClose={this.toggleDrawer(false)}>
           <List component='nav'>
             {menuItems.map((menuItem) => {
               return (

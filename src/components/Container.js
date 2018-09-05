@@ -31,7 +31,7 @@ class Container extends React.Component {
 
     return (
       <Grid container justify='center' className={classes.root} role='main'>
-        <Grid item xs={11} sm={10} md={9} className={classes.containerPositioner}>
+        <Grid item xs={10} sm={10} md={9} className={classes.containerPositioner}>
           <div className={classes.limitedContainer}>
             {this.props.children}
           </div>

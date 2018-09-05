@@ -5,16 +5,21 @@ import Hidden from '@material-ui/core/Hidden'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = {
+const styles = theme => ({
   root: {
     padding: '5rem 5px 0',
-    marginTop: '15rem'
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '5rem'
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '15rem'
+    }
   },
   strongHeader: {
     fontWeight: 'bold',
     marginBottom: '20px'
   }
-}
+})
 
 class Section extends React.Component {
   render () {

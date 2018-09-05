@@ -37,62 +37,62 @@ class Technologies extends React.Component {
 
     return (
       <Grid container spacing={24} className={classes.root}>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconRuby className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconRails className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconJavaScript className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconReact className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconAWS className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconDocker className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconGit className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconHtml className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconCSS className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconLinux className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconPostgreSql className={classes.block} />
           </Paper>
         </Grid>
-        <Grid item xs={3} sm={2}>
+        <Grid item xs={4} sm={2}>
           <Paper className={classes.cellPadding}>
             <IconNginx className={classes.block} />
           </Paper>
