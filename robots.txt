@@ -1,4 +1,12 @@
 User-agent: *
-Allow: /
+Disallow: /v1
+Disallow: /v2
+Disallow: /v3
+Disallow: /v4
+Disallow: /v5
+Disallow: /v6
+Disallow: /v7
+Disallow: /v8
+Disallow: /v9
 Sitemap: https://www.rzegocki.pl/sitemap.xml
 Host: https://www.rzegocki.pl
