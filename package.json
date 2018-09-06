@@ -55,6 +55,7 @@
   "scripts": {
     "build": "rm -rf .cache public && gatsby build --prefix-paths && sed -i '' \"s@$(pwd)/@./@g\" public/*.map",
     "develop": "gatsby develop",
+    "serve": "npm run build && gatsby serve",
     "lint": "standard",
     "format": "prettier --write 'src/**/*.js'",
     "cleancode": "npm run format && standard --fix",

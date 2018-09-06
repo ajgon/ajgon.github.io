@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import HeartSvg from './Heart.svg'
 
-const styles = {
+const styles = theme => ({
   heartWrap: {
     zIndex: -1,
     left: 0,
@@ -14,7 +14,10 @@ const styles = {
     top: 0,
     width: '100%',
     pointerEvents: 'none',
-    backgroundColor: '#ffffff'
+    backgroundColor: '#ffffff',
+    [theme.breakpoints.down('xs')]: {
+      top: '-40vh'
+    }
   },
   heart: {
     zIndex: 1,
@@ -29,7 +32,7 @@ const styles = {
     width: '100%',
     pointerEvents: 'none'
   }
-}
+})
 
 class Heart extends React.Component {
   render () {

@@ -8,6 +8,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import ShareIcon from '@material-ui/icons/Share'
 import { withStyles } from '@material-ui/core/styles'
 
+import WebShare from './WebShare'
+
 const styles = {
   menuItemLink: {
     color: 'inherit',
@@ -54,22 +56,32 @@ class BlogPostShare extends React.Component {
   render () {
     const { classes, post, siteUrl, shares } = this.props
     const { anchorEl, opened } = this.state
-    const encodedPostUrl = encodeURIComponent(
-      `${siteUrl}${post.frontmatter.path}`
-    )
+    const postUrl = `${siteUrl}${post.frontmatter.path}`
+    const encodedPostUrl = encodeURIComponent(postUrl)
     const shareButtonId = `share-button-${post.frontmatter.id}`
 
     return (
       <nav aria-labelledby={shareButtonId}>
-        <IconButton
-          aria-label='Share'
-          id={shareButtonId}
-          aria-haspopup='true'
-          aria-owns={anchorEl ? 'share-menu' : null}
-          onClick={event => this.handleOpenShareMenu(event)}
+        <WebShare
+          title={post.frontmatter.title}
+          text=''
+          url={postUrl}
+          fallbackComponent={
+            <IconButton
+              aria-label='Share'
+              id={shareButtonId}
+              aria-haspopup='true'
+              aria-owns={anchorEl ? 'share-menu' : null}
+              onClick={event => this.handleOpenShareMenu(event)}
+            >
+              <ShareIcon />
+            </IconButton>
+          }
         >
-          <ShareIcon />
-        </IconButton>
+          <IconButton aria-label='Share' id={shareButtonId}>
+            <ShareIcon />
+          </IconButton>
+        </WebShare>
         <Menu
           id='share-menu'
           anchorEl={anchorEl}

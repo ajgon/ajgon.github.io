@@ -29,7 +29,7 @@ module.exports = {
       resolve: 'gatsby-plugin-sentry',
       options: {
         dsn: 'https://7da25cbb214e4f2f9874a9dffc895d99@sentry.io/1275167'
-      },
+      }
     }, {
       resolve: 'gatsby-plugin-nprogress',
       options: {
@@ -50,7 +50,7 @@ module.exports = {
     }, {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: '*', disallow: ['/v1', '/v2', '/v3', '/v4', '/v5', '/v6', '/v7', '/v8', '/v9'] }],
+        policy: [{ userAgent: '*', disallow: ['/v1', '/v2', '/v3', '/v4', '/v5', '/v6', '/v7', '/v8', '/v9', '/DeeDee'] }],
         sitemap: urljoin(config.siteUrl, config.pathPrefix, '/sitemap.xml')
       }
     }, {
@@ -172,7 +172,7 @@ module.exports = {
         'src/raw/keybase.txt': 'public/keybase.txt',
         'src/raw/.well-known/security.txt': 'public/.well-known/security.txt',
         'src/raw/.well-known/security.txt.sig': 'public/.well-known/security.txt.sig'
-      },
+      }
     }, {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -203,7 +203,58 @@ module.exports = {
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
         display: 'minimal-ui',
-        icon: config.siteLogo
+        icon: config.siteLogo,
+        icons: [
+          {
+            src: `icons/icon-48x48.png`,
+            sizes: `48x48`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-70x70.png`,
+            sizes: `70x70`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-72x72.png`,
+            sizes: `72x72`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-96x96.png`,
+            sizes: `96x96`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-144x144.png`,
+            sizes: `144x144`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-150x150.png`,
+            sizes: `150x150`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-310x150.png`,
+            sizes: `310x150`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-256x256.png`,
+            sizes: `256x256`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-310x310.png`,
+            sizes: `310x310`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-384x384.png`,
+            sizes: `384x384`,
+            type: `image/png`
+          }, {
+            src: `icons/icon-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`
+          }
+        ]
       }
     },
     'gatsby-plugin-offline',

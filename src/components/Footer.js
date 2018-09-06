@@ -13,7 +13,7 @@ const styles = theme => ({
     padding: '7.5rem 5px',
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
-      marginTop: '10rem'
+      marginTop: '3rem'
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: '15rem'

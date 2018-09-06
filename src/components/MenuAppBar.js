@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth'
 
+import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 
 import SideMenu from '../components/SideMenu.js'
@@ -23,11 +24,28 @@ import Social from '../components/Social.js'
 
 const styles = theme => {
   return {
+    root: {
+      zIndex: '1500',
+      paddingLeft: 'env(safe-area-inset-left)',
+      paddingRight: 'env(safe-area-inset-right)'
+    },
     flex: {
       flexGrow: 1
     },
+    center: {
+      justifyContent: 'center'
+    },
+    hidden: {
+      display: 'none'
+    },
     noUnderline: {
       textDecoration: 'none'
+    },
+    underAppBar: {
+      marginTop: '56px',
+      '& > div': {
+        marginTop: '56px'
+      }
     },
     cleanBar: {
       background: theme.palette.background.paper,
@@ -61,24 +79,34 @@ class MenuAppBar extends React.Component {
       <React.Fragment>
         <AppBar
           position={largeScreen ? 'static' : 'fixed'}
-          className={largeScreen ? classes.cleanBar : ''}
+          className={`${largeScreen ? classes.cleanBar : ''} ${classes.root}`}
         >
           <Toolbar>
             <Hidden mdUp>
-              <IconButton onClick={this.toggleDrawer(true)} aria-label='Menu'>
-                <MenuIcon />
+              <IconButton
+                onClick={this.toggleDrawer(!this.state.drawer)}
+                aria-label='Menu'
+                style={{ justifyContent: 'left' }}
+              >
+                <CloseIcon
+                  className={this.state.drawer ? '' : classes.hidden}
+                />
+                <MenuIcon className={this.state.drawer ? classes.hidden : ''} />
               </IconButton>
             </Hidden>
             <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}>
               <Typography variant='title'>Igor Rzegocki</Typography>
             </Link>
-            <Social />
+            <Hidden xsDown>
+              <Social />
+            </Hidden>
           </Toolbar>
         </AppBar>
         <Drawer
           anchor='top'
           open={this.state.drawer}
           onClose={this.toggleDrawer(false)}
+          className={classes.underAppBar}
         >
           <List component='nav'>
             {menuItems.map(menuItem => {
@@ -95,6 +123,13 @@ class MenuAppBar extends React.Component {
                 </ListItem>
               )
             })}
+            <ListItem
+              button
+              onClick={this.toggleDrawer(false)}
+              className={classes.center}
+            >
+              <Social />
+            </ListItem>
           </List>
         </Drawer>
         <Hidden smDown>

@@ -52,6 +52,10 @@ class Layout extends React.Component {
           <html lang='en' />
           <body id='about' />
           <style type='text/css'>{`body, #___gatsby { position: relative }`}</style>
+          <meta
+            name='msapplication-config'
+            content={data.allFile.edges[0].node.publicURL}
+          />
         </Helmet>
         <CssBaseline />
         <MenuAppBar
@@ -74,7 +78,14 @@ Layout.propTypes = {
 export default withRoot(Layout)
 
 export const query = graphql`
-  query SiteTitleQuery {
+  query SiteDataQuery {
+    allFile(filter: { id: { regex: "/browserconfig.xml/" } }) {
+      edges {
+        node {
+          publicURL
+        }
+      }
+    }
     site {
       siteMetadata {
         siteUrl

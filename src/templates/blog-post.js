@@ -12,12 +12,17 @@ import BlogPost from '../components/BlogPost'
 import Section from '../components/Section'
 import SEO from '../components/SEO'
 
-const styles = {
+const styles = theme => ({
   noTop: {
-    padding: '5rem 0 0',
+    [theme.breakpoints.up('md')]: {
+      padding: '5rem 0 0'
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: '0'
+    },
     marginTop: '0'
   }
-}
+})
 
 class BlogPostTemplate extends React.Component {
   render () {

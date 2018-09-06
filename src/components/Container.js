@@ -11,7 +11,9 @@ const styles = theme => {
         // color: theme.palette.secondary.main,
         color: '#b3003d',
         textDecoration: 'none'
-      }
+      },
+      paddingLeft: 'env(safe-area-inset-left)',
+      paddingRight: 'env(safe-area-inset-right)'
     },
     containerPositioner: {
       marginTop: '2.5rem',
@@ -33,7 +35,7 @@ class Container extends React.Component {
       <Grid container justify='center' className={classes.root} role='main'>
         <Grid
           item
-          xs={location.pathname.match(/\/blog\/.+/) ? 12 : 10}
+          xs={location.pathname.match(/\/blog\/.+/) ? 12 : 11}
           md={9}
           className={classes.containerPositioner}
         >

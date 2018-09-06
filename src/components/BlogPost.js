@@ -10,11 +10,22 @@ import { withStyles } from '@material-ui/core/styles'
 
 import BlogPostHeader from './BlogPostHeader'
 
-const styles = {
+const styles = theme => ({
   cardSpacing: {
-    marginBottom: '2.5em'
+    marginBottom: '2.5em',
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '0'
+    }
+  },
+  postContent: {
+    [theme.breakpoints.down('sm')]: {
+      '& p': {
+        fontSize: '1.125rem',
+        lineHeight: '1.46429em'
+      }
+    }
   }
-}
+})
 
 class BlogPost extends React.Component {
   render () {
@@ -35,7 +46,10 @@ class BlogPost extends React.Component {
           heading='h1'
         />
         <CardContent>
-          <Typography dangerouslySetInnerHTML={{ __html: post.html }} />
+          <Typography
+            dangerouslySetInnerHTML={{ __html: post.html }}
+            className={classes.postContent}
+          />
           <Disqus.DiscussionEmbed
             shortname={disqusShortname}
             config={disqusConfig}
