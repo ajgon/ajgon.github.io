@@ -8,5 +8,6 @@ Disallow: /v6
 Disallow: /v7
 Disallow: /v8
 Disallow: /v9
+Disallow: /DeeDee
 Sitemap: https://www.rzegocki.pl/sitemap.xml
 Host: https://www.rzegocki.pl
