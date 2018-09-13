@@ -170,6 +170,7 @@ module.exports = {
         'src/raw/googlea7d520b1962f2846.html': 'public/googlea7d520b1962f2846.html',
         'src/raw/hackers.txt': 'public/hackers.txt',
         'src/raw/keybase.txt': 'public/keybase.txt',
+        'src/raw/public-key.txt': 'public/public-key.txt',
         'src/raw/.well-known/security.txt': 'public/.well-known/security.txt',
         'src/raw/.well-known/security.txt.sig': 'public/.well-known/security.txt.sig'
       }
@@ -256,8 +257,12 @@ module.exports = {
           }
         ]
       }
+    }, {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/],
+      }
     },
-    'gatsby-plugin-offline',
     'gatsby-plugin-remove-trailing-slashes'
   ]
 }
