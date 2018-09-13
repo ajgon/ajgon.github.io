@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/app-caf6e1c64ff517b6ee0c.js","c1739594618d216f7a74b1e160d3ce4c"],["/commons-8d3a311733fe1c602aa5.js","2eef3540701056ffa0352de6f51f31a8"],["/index.html","41c8126c8ec3b73518419714e280ed5b"],["/manifest.webmanifest","adcc0c66654401be5d9253d6f1f5de7c"],["/offline-plugin-app-shell-fallback/index.html","97ab51e1ee9fee63b050c2f01837ba71"]];
+var precacheConfig = [["/app-ec70af572f195a426468.js","50a7444efbd29abc5bff4e9bfcf3f722"],["/commons-8d3a311733fe1c602aa5.js","2eef3540701056ffa0352de6f51f31a8"],["/index.html","04ab77596534eab823407c23f3bcc9e7"],["/manifest.webmanifest","adcc0c66654401be5d9253d6f1f5de7c"],["/offline-plugin-app-shell-fallback/index.html","f12dcfe2b724894d62339b885ec22180"]];
 var cacheName = 'sw-precache-v3-gatsby-plugin-offline-' + (self.registration ? self.registration.scope : '');
 
 
@@ -233,7 +233,7 @@ self.addEventListener('fetch', function(event) {
     if (!shouldRespond &&
         navigateFallback &&
         (event.request.mode === 'navigate') &&
-        isPathWhitelisted(["^.*([^.]{5}|.html)$"], event.request.url)) {
+        isPathWhitelisted(["^.*(?!\\.\\w?$)","^\\/v[0-9]+\\/?.*$"], event.request.url)) {
       url = new URL(navigateFallback, self.location).toString();
       shouldRespond = urlsToCacheKeys.has(url);
     }
