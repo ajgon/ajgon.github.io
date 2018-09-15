@@ -53,7 +53,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf .cache public && gatsby build --prefix-paths && sed -i '' \"s@$(pwd)/@./@g\" public/*.map",
+    "build": "rm -rf .cache public && gatsby build --prefix-paths && ruby alter_build.rb",
     "develop": "gatsby develop",
     "serve": "npm run build && gatsby serve",
     "lint": "standard",
