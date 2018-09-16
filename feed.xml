@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Sat, 15 Sep 2018 09:55:50 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2018. Igor Rzegocki]]></copyright><item><title><![CDATA[How to make gnupg2 to fall in love with Docker]]></title><description><![CDATA[While developing my  new replacement  of  self-hosted-mailserver ,
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Sep 2018 08:42:53 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2018. Igor Rzegocki]]></copyright><item><title><![CDATA[Custom HTTP headers with GitHub pages]]></title><description><![CDATA[At some point when I was developing  my new homepage  I ran into an issue with GitHub Pages. What I wanted, was to follow security best…]]></description><link>https://www.rzegocki.pl/blog/custom-http-headers-with-gihub-pages</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/custom-http-headers-with-gihub-pages</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Fri, 14 Sep 2018 15:06:00 GMT</pubDate><content:encoded>&lt;p&gt;At some point when I was developing &lt;a href=&quot;https://www.rzegocki.pl/&quot;&gt;my new homepage&lt;/a&gt; I ran into an issue with GitHub Pages. What I wanted, was to follow security best practices, and serve &lt;a href=&quot;https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers&quot;&gt;OWASP recommended Security Headers&lt;/a&gt;. Unfortunatelly, it looks like &lt;a href=&quot;https://stackoverflow.com/questions/14798589/github-pages-http-headers&quot;&gt;GitHub Pages does not support setting anything like this&lt;/a&gt;, which is kinda dissapointing. But hey! We are re developers, and we love to solve problems!&lt;/p&gt;
+&lt;p&gt;And sure I did - with a help of a small chunk of third party services.&lt;/p&gt;
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;To make this work you would need:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A custom domain name - it is not mandatory, but strongly recommended - otherwise you would end up with &lt;code class=&quot;language-text&quot;&gt;*.herokuapp.com&lt;/code&gt; url to your page. You can get one for free at &lt;a href=&quot;http://www.dot.tk/&quot;&gt;dot.tk&lt;/a&gt; however I strongly encourage you to buy proper one - it&apos;s not that expensive, and looks way better.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://dash.cloudflare.com/sign-up&quot;&gt;Cloudflare account&lt;/a&gt; - it&apos;s only necessary when you want to use a custom domain, otherwise you can skip it. Their free plan is excellent, covers all our needs and as bonus, provides free SSL out of the box.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://signup.heroku.com/&quot;&gt;Heroku account&lt;/a&gt; - this is where all the magic happens.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://uptimerobot.com/signUp&quot;&gt;UptimeRobot account&lt;/a&gt; - or pingdom, or any other service which checks if your site is alive in short time intervals. It&apos;s not mandatory, but helps us avoid some heroku limitations.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/join&quot;&gt;GitHub account&lt;/a&gt; - obviously.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;A guide&lt;/h2&gt;
+&lt;h3&gt;Step 1: Create your GitHub page&lt;/h3&gt;
+&lt;p&gt;This is pretty obvious, as this is the whole point of this guide. Create a page and deploy it to GitHub. Don&apos;t forget to &lt;a href=&quot;https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/&quot;&gt;configure the custom domain&lt;/a&gt; on GitHub side. Few things to remember:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The configured domain should be YOUR domain, not heroku or github.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Important!&lt;/em&gt; This setup needs to use a &lt;code class=&quot;language-text&quot;&gt;CNAME&lt;/code&gt; record set for heroku app, which can&apos;t be set on a root domain. Which means, we need GitHub to force redirection to that record. I&apos;m using &lt;code class=&quot;language-text&quot;&gt;www.&lt;/code&gt; in this example, which means, you should set the domain on GitHub side to &lt;code class=&quot;language-text&quot;&gt;www.your-custom-domain.com&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Don&apos;t worry about DNS settings yet.&lt;/li&gt;
+&lt;li&gt;If you don&apos;t want to use a custom domain, then you need o set it up to &lt;code class=&quot;language-text&quot;&gt;name-of-your-heroku-app.herokuapp.com&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Step 2: Create the custom HTTP reverse proxy on heroku&lt;/h3&gt;
+&lt;p&gt;This is the place where we add our custom headers. We&apos;ll leverage the power of &lt;a href=&quot;https://devcenter.heroku.com/articles/buildpack-api&quot;&gt;heroku custom buildpacks&lt;/a&gt;. What we need, is a nginx reverse proxy with one purpose only - route all traffic back and forth to our GitHub page, and append extra information (which are our headers) to response.&lt;/p&gt;
+&lt;p&gt;Fortunatelly, I already did most of the work and created a buildpack just for that. All you need to do is add it to your app and properly configure it. Let&apos;s do this!&lt;/p&gt;
+&lt;h4&gt;Create a heroku app&lt;/h4&gt;
+&lt;p&gt;You need a &lt;a href=&quot;https://devcenter.heroku.com/articles/heroku-cli&quot;&gt;heroku CLI&lt;/a&gt; installed and configured. If you have never used heroku before, please refer to the documentation on how to do this. On OSX it&apos;s as easy as:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; heroku/brew/heroku &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; heroku login&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;After that you need to create a custom heroku app (the most basic one is free of charge) and attach custom buildpack to it.&lt;/p&gt;
+&lt;p&gt;The buildpack would do all the job for you, however, to trigger it, some &quot;application&quot; needs to be deployed. It doesn&apos;t really matter what you put there, as the buildpack would never reach it. So add a file, push it to heroku and you&apos;re good to go.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; my-heroku-app &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; my-heroku-app
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init
+heroku apps:create --buildpack https://github.com/ajgon/github-proxy-buildpack &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; .keep
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add -A &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&apos;Initial commit&apos;&lt;/span&gt;
+heroku git:remote --app name-of-your-heroku-app
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push heroku master&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Configure GitHub page URL&lt;/h4&gt;
+&lt;p&gt;First of all, you need to tell the buildpack, where to route the whole traffic. You can do this by setting &lt;code class=&quot;language-text&quot;&gt;ROUTE_TO_URL&lt;/code&gt; environment variable. You can even use a path here, so you can have a root domain pointing to custom GitHub project - you don&apos;t have to create &lt;code class=&quot;language-text&quot;&gt;login.github.io&lt;/code&gt; one!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io/my-project
+&lt;span class=&quot;token comment&quot;&gt;# or just&lt;/span&gt;
+heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Configure headers&lt;/h4&gt;
+&lt;p&gt;The most sane configuration of the headers is &lt;a href=&quot;https://github.com/ajgon/github-proxy-buildpack/blob/master/config/nginx.conf.erb#L52&quot;&gt;already included in the buildpack&lt;/a&gt;, however you can customize it any way you like, using the environment variables. The format is &lt;code class=&quot;language-text&quot;&gt;HTTP_YOUR_HEADER_UNDERSCORED&lt;/code&gt;. For example: &lt;code class=&quot;language-text&quot;&gt;X-Frame-Options&lt;/code&gt; becomes &lt;code class=&quot;language-text&quot;&gt;HTTP_X_FRAME_OPTIONS&lt;/code&gt;. You can set it, using the following command:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HTTP_X_FRAME_OPTIONS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;deny --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Configure CSP nonce&lt;/h4&gt;
+&lt;p&gt;There is also a CSP nonce rewrite support included, which is based on this &lt;a href=&quot;https://scotthelme.co.uk/csp-nonce-support-in-nginx/&quot;&gt;excellent article by Scott Helme&lt;/a&gt;, however, configuring it is slightly more complicated.&lt;/p&gt;
+&lt;p&gt;First of all you need to name the &quot;ID&quot; of your nonce. This is a string which will be replaced in your HTML output by the actual nonce generated by nginx.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set CSP_NONCE_ID&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;**CSP_NONCE**&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;The actual CSP nonce will be held by nginx in &lt;code class=&quot;language-text&quot;&gt;$cspNonce&lt;/code&gt; variable. Which means, you need to use this variable, when you set a CSP header:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HTTP_CONTENT_SECURITY_POLICY&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;default-src &apos;self&apos;; script-src &apos;self&apos; &apos;nonce-&lt;span class=&quot;token variable&quot;&gt;$cspNonce&lt;/span&gt;&apos;;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Lastly, you need add the &quot;ID&quot; string as a nonce to all the &lt;code class=&quot;language-text&quot;&gt;&amp;lt;script /&amp;gt;&lt;/code&gt; tags in your HTML:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;
+      &lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;nonce&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;**CSP_NONCE**&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World!!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Sprinkle on top&lt;/h4&gt;
+&lt;p&gt;As a bonus, you can tell the buildpack, to completely hide the custom GitHub headers in response, to completely disguise your site. Nice!&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HIDE_GITHUB_HEADERS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1 --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h4&gt;Attaching domain to heroku&lt;/h4&gt;
+&lt;p&gt;Last thing you need to do, is tell heroku load balancer to attach your appllication to your domain, by invoking:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku domains:add your-custom-domain.com --app name-of-your-heroku-app&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;This feature is completely free, however heroku requires you to confirm your credit card (without charging it). You can do this in &lt;a href=&quot;https://dashboard.heroku.com/account/billing&quot;&gt;heroku billing section&lt;/a&gt;. The good news is, the card information doesn&apos;t have to be there all the time. Which means, you can verify your card, add a domain and then remove it from the system.&lt;/p&gt;
+&lt;h4&gt;Testing the setup&lt;/h4&gt;
+&lt;p&gt;After setting all necessary data, test your setup to check the headers and response:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -I -v https://name-of-your-heroku-app.herokuapp.com/ &lt;span class=&quot;token comment&quot;&gt;# to check headers&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; https://name-of-your-heroku-app.herokuapp.com/ &lt;span class=&quot;token comment&quot;&gt;# to see if page responds correctly&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;Step 3: Glue heroku with your domain using cloudflare&lt;/h3&gt;
+&lt;p&gt;Technically you can do this with your DNS provider and completely skip this step. However Cloudflare provides SSL certificate, and powerful CDN free of charge. I don&apos;t see any reason why you shouldn&apos;t use it.&lt;/p&gt;
+&lt;h4&gt;DNS&lt;/h4&gt;
+&lt;p&gt;First, go to DNS section, and set up the records as following:&lt;/p&gt;
+&lt;p&gt;Type | Name | Value | TTL | Status
+-----+------+-------+-----+-------
+A | your-custom-domain.com | 185.199.110.153 | Automatic | pass through CF
+CNAME | www | name-of-your-heroku-app.herokuapp.com | Automatic | pass through CF&lt;/p&gt;
+&lt;p&gt;The IP above may change, but you should use &lt;a href=&quot;https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider&quot;&gt;one of the GitHub pages IPs for A records&lt;/a&gt;.&lt;/p&gt;
+&lt;h4&gt;Crypto&lt;/h4&gt;
+&lt;p&gt;Here you can set up your SSL settings for the certificate provided by Cloudflare. You can configure it as you like, but my recommendation is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;SSL:&lt;/em&gt; Full&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Always use HTTPS:&lt;/em&gt; On&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;HTTP Strict Transport Security (HSTS):&lt;/em&gt; You can leave it disabled and rely on the heroku App, or customize it here (it would take precedence)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Minimum TLS Version:&lt;/em&gt; 1.2 - there is no reason to serve the deprecated ones, unless you need to support some very old browsers.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Opportunistic Encryption:&lt;/em&gt; On&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;TLS 1.3:&lt;/em&gt; Enabled&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Testing the domain&lt;/h4&gt;
+&lt;p&gt;If you did everything correctly, you should be able to visit your domain and see your custom headers:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -v -I https://www.your-custom-domain.com/ &lt;span class=&quot;token comment&quot;&gt;# to check the headers&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; https://www.your-custom-domain.com/ &lt;span class=&quot;token comment&quot;&gt;# to see if page responds correctly&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;I strongly recommend visiting &lt;a href=&quot;https://securityheaders.com&quot;&gt;securityheaders.com&lt;/a&gt; service as well, which can validate your setup and point out any broken or missing parts.&lt;/p&gt;
+&lt;h3&gt;Step 4: Keeping heroku alive&lt;/h3&gt;
+&lt;p&gt;One disadvantage of free heroku applications is &lt;a href=&quot;https://devcenter.heroku.com/articles/free-dyno-hours&quot;&gt;they are put to sleep when inactive&lt;/a&gt;. However, if you wish to use heroku for this purpose only - you can keep the application alive all the time. To do that, you simply need to ping it at least once in 30 minutes.&lt;/p&gt;
+&lt;p&gt;This can be achieved by using one of the page monitoring services. Personally I use UptimeRobot, but if you have or like the other one - that&apos;s fine as long as you fit this time window.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;As you can see, the whole process is somehow cumbersome, but if you manage to follow it, you&apos;re GitHub page can get any HTTP header you like, along with the secure ones (&lt;code class=&quot;language-text&quot;&gt;Access-Control-Allow-Origin&lt;/code&gt; anyone? :-)). I&apos;m personally using this setup for &lt;a href=&quot;https://securityheaders.com/?q=www.rzegocki.pl&amp;#x26;followRedirects=on&quot;&gt;my homepage&lt;/a&gt; and never experienced any troubles.&lt;/p&gt;
+&lt;p&gt;And that&apos;s it - enjoy your free, SSL-supported GitHub page with custom domain and all the security headers!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to make gnupg2 to fall in love with Docker]]></title><description><![CDATA[While developing my  new replacement  of  self-hosted-mailserver ,
 I noticed a funny problem - I couldn't make gnupg2 to work
 with docker…]]></description><link>https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Mon, 03 Apr 2017 20:19:00 GMT</pubDate><content:encoded>&lt;p&gt;While developing my &lt;a href=&quot;https://www.github.com/wombatapp&quot;&gt;new replacement&lt;/a&gt; of &lt;a href=&quot;https://github.com/ajgon/self-hosted-mailserver&quot;&gt;self-hosted-mailserver&lt;/a&gt;,
 I noticed a funny problem - I couldn&apos;t make gnupg2 to work

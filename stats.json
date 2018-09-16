@@ -16,6 +16,10 @@
       "path---blog-adding-email-server-autoconfig-and-autodiscover-6e9d0c7a8b25e331107c.js",
       "path---blog-adding-email-server-autoconfig-and-autodiscover-6e9d0c7a8b25e331107c.js.map"
     ],
+    "path---blog-custom-http-headers-with-gihub-pages": [
+      "path---blog-custom-http-headers-with-gihub-pages-b43a186e11fd51bd0364.js",
+      "path---blog-custom-http-headers-with-gihub-pages-b43a186e11fd51bd0364.js.map"
+    ],
     "path---": [
       "path----685e96727363ede1a3eb.js",
       "path----685e96727363ede1a3eb.js.map"
@@ -37,8 +41,8 @@
       "path---blog-setting-secure-cloud-based-backup-system-using-git-and-box-com-4e88c70e12948adfd024.js.map"
     ],
     "path---index": [
-      "path---index-8bb8c36e93256701d499.js",
-      "path---index-8bb8c36e93256701d499.js.map"
+      "path---index-42b85bb17bdf6397a62e.js",
+      "path---index-42b85bb17bdf6397a62e.js.map"
     ],
     "path---blog-add-more-complexity-to-your-emails-use-dkim-and-spf": [
       "path---blog-add-more-complexity-to-your-emails-use-dkim-and-spf-8eaaf122c7daa73fce20.js",
@@ -83,9 +87,9 @@
       "path---blog-turn-your-raspberry-pi-to-powerful-htpc-with-osmc-a5acb00f898ea950ecb5.js.map"
     ],
     "app": [
-      "app-6051eb558d408e0296b9.js",
+      "app-882d3131b977f40fdce9.js",
       "build-js-styles.css",
-      "app-6051eb558d408e0296b9.js.map",
+      "app-882d3131b977f40fdce9.js.map",
       "build-js-styles.css.map"
     ],
     "path---blog-build-your-own-cloud-fast-thanks-to-ansible-and-automation": [
