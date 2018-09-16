@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Sep 2018 08:42:53 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2018. Igor Rzegocki]]></copyright><item><title><![CDATA[Custom HTTP headers with GitHub pages]]></title><description><![CDATA[At some point when I was developing  my new homepage  I ran into an issue with GitHub Pages. What I wanted, was to follow security best…]]></description><link>https://www.rzegocki.pl/blog/custom-http-headers-with-gihub-pages</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/custom-http-headers-with-gihub-pages</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Fri, 14 Sep 2018 15:06:00 GMT</pubDate><content:encoded>&lt;p&gt;At some point when I was developing &lt;a href=&quot;https://www.rzegocki.pl/&quot;&gt;my new homepage&lt;/a&gt; I ran into an issue with GitHub Pages. What I wanted, was to follow security best practices, and serve &lt;a href=&quot;https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers&quot;&gt;OWASP recommended Security Headers&lt;/a&gt;. Unfortunatelly, it looks like &lt;a href=&quot;https://stackoverflow.com/questions/14798589/github-pages-http-headers&quot;&gt;GitHub Pages does not support setting anything like this&lt;/a&gt;, which is kinda dissapointing. But hey! We are re developers, and we love to solve problems!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Sep 2018 08:58:35 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2018. Igor Rzegocki]]></copyright><item><title><![CDATA[Custom HTTP headers with GitHub pages]]></title><description><![CDATA[At some point when I was developing  my new homepage  I ran into an issue with GitHub Pages. What I wanted, was to follow security best…]]></description><link>https://www.rzegocki.pl/blog/custom-http-headers-with-gihub-pages</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/custom-http-headers-with-gihub-pages</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Fri, 14 Sep 2018 15:06:00 GMT</pubDate><content:encoded>&lt;p&gt;At some point when I was developing &lt;a href=&quot;/&quot;&gt;my new homepage&lt;/a&gt; I ran into an issue with GitHub Pages. What I wanted, was to follow security best practices, and serve &lt;a href=&quot;https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers&quot;&gt;OWASP recommended Security Headers&lt;/a&gt;. Unfortunatelly, it looks like &lt;a href=&quot;https://stackoverflow.com/questions/14798589/github-pages-http-headers&quot;&gt;GitHub Pages does not support setting anything like this&lt;/a&gt;, which is kinda dissapointing. But hey! We are re developers, and we love to solve problems!&lt;/p&gt;
 &lt;p&gt;And sure I did - with a help of a small chunk of third party services.&lt;/p&gt;
 &lt;h2&gt;Prerequisites&lt;/h2&gt;
 &lt;p&gt;To make this work you would need:&lt;/p&gt;
@@ -20,7 +20,7 @@
 &lt;/ul&gt;
 &lt;h3&gt;Step 2: Create the custom HTTP reverse proxy on heroku&lt;/h3&gt;
 &lt;p&gt;This is the place where we add our custom headers. We&apos;ll leverage the power of &lt;a href=&quot;https://devcenter.heroku.com/articles/buildpack-api&quot;&gt;heroku custom buildpacks&lt;/a&gt;. What we need, is a nginx reverse proxy with one purpose only - route all traffic back and forth to our GitHub page, and append extra information (which are our headers) to response.&lt;/p&gt;
-&lt;p&gt;Fortunatelly, I already did most of the work and created a buildpack just for that. All you need to do is add it to your app and properly configure it. Let&apos;s do this!&lt;/p&gt;
+&lt;p&gt;Fortunatelly, I already did most of the work and &lt;a href=&quot;https://github.com/ajgon/github-proxy-buildpack&quot;&gt;created a buildpack&lt;/a&gt; just for that. All you need to do is add it to your app and properly configure it. Let&apos;s do this!&lt;/p&gt;
 &lt;h4&gt;Create a heroku app&lt;/h4&gt;
 &lt;p&gt;You need a &lt;a href=&quot;https://devcenter.heroku.com/articles/heroku-cli&quot;&gt;heroku CLI&lt;/a&gt; installed and configured. If you have never used heroku before, please refer to the documentation on how to do this. On OSX it&apos;s as easy as:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
@@ -45,7 +45,7 @@ heroku git:remote --app name-of-your-heroku-app
 heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;h4&gt;Configure headers&lt;/h4&gt;
-&lt;p&gt;The most sane configuration of the headers is &lt;a href=&quot;https://github.com/ajgon/github-proxy-buildpack/blob/master/config/nginx.conf.erb#L52&quot;&gt;already included in the buildpack&lt;/a&gt;, however you can customize it any way you like, using the environment variables. The format is &lt;code class=&quot;language-text&quot;&gt;HTTP_YOUR_HEADER_UNDERSCORED&lt;/code&gt;. For example: &lt;code class=&quot;language-text&quot;&gt;X-Frame-Options&lt;/code&gt; becomes &lt;code class=&quot;language-text&quot;&gt;HTTP_X_FRAME_OPTIONS&lt;/code&gt;. You can set it, using the following command:&lt;/p&gt;
+&lt;p&gt;The most sane configuration of the headers is &lt;a href=&quot;https://github.com/ajgon/github-proxy-buildpack/blob/master/config/nginx.conf.erb#L62&quot;&gt;already included in the buildpack&lt;/a&gt;, however you can customize it any way you like, using the environment variables. The format is &lt;code class=&quot;language-text&quot;&gt;HTTP_YOUR_HEADER_UNDERSCORED&lt;/code&gt;. For example: &lt;code class=&quot;language-text&quot;&gt;X-Frame-Options&lt;/code&gt; becomes &lt;code class=&quot;language-text&quot;&gt;HTTP_X_FRAME_OPTIONS&lt;/code&gt;. You can set it, using the following command:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
       &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HTTP_X_FRAME_OPTIONS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;deny --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
@@ -84,10 +84,33 @@ heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;
 &lt;p&gt;Technically you can do this with your DNS provider and completely skip this step. However Cloudflare provides SSL certificate, and powerful CDN free of charge. I don&apos;t see any reason why you shouldn&apos;t use it.&lt;/p&gt;
 &lt;h4&gt;DNS&lt;/h4&gt;
 &lt;p&gt;First, go to DNS section, and set up the records as following:&lt;/p&gt;
-&lt;p&gt;Type | Name | Value | TTL | Status
------+------+-------+-----+-------
-A | your-custom-domain.com | 185.199.110.153 | Automatic | pass through CF
-CNAME | www | name-of-your-heroku-app.herokuapp.com | Automatic | pass through CF&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;TTL&lt;/th&gt;
+&lt;th&gt;Status&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;your-custom-domain.com&lt;/td&gt;
+&lt;td&gt;185.199.110.153&lt;/td&gt;
+&lt;td&gt;Automatic&lt;/td&gt;
+&lt;td&gt;pass through CF&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;www&lt;/td&gt;
+&lt;td&gt;name-of-your-heroku-app.herokuapp.com&lt;/td&gt;
+&lt;td&gt;Automatic&lt;/td&gt;
+&lt;td&gt;pass through CF&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;The IP above may change, but you should use &lt;a href=&quot;https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider&quot;&gt;one of the GitHub pages IPs for A records&lt;/a&gt;.&lt;/p&gt;
 &lt;h4&gt;Crypto&lt;/h4&gt;
 &lt;p&gt;Here you can set up your SSL settings for the certificate provided by Cloudflare. You can configure it as you like, but my recommendation is:&lt;/p&gt;
@@ -110,7 +133,7 @@ CNAME | www | name-of-your-heroku-app.herokuapp.com | Automatic | pass through C
 &lt;p&gt;One disadvantage of free heroku applications is &lt;a href=&quot;https://devcenter.heroku.com/articles/free-dyno-hours&quot;&gt;they are put to sleep when inactive&lt;/a&gt;. However, if you wish to use heroku for this purpose only - you can keep the application alive all the time. To do that, you simply need to ping it at least once in 30 minutes.&lt;/p&gt;
 &lt;p&gt;This can be achieved by using one of the page monitoring services. Personally I use UptimeRobot, but if you have or like the other one - that&apos;s fine as long as you fit this time window.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;As you can see, the whole process is somehow cumbersome, but if you manage to follow it, you&apos;re GitHub page can get any HTTP header you like, along with the secure ones (&lt;code class=&quot;language-text&quot;&gt;Access-Control-Allow-Origin&lt;/code&gt; anyone? :-)). I&apos;m personally using this setup for &lt;a href=&quot;https://securityheaders.com/?q=www.rzegocki.pl&amp;#x26;followRedirects=on&quot;&gt;my homepage&lt;/a&gt; and never experienced any troubles.&lt;/p&gt;
+&lt;p&gt;As you can see, the whole process is somehow cumbersome, but if you manage to follow it, your GitHub page can get any HTTP header you like, along with the secure ones (&lt;code class=&quot;language-text&quot;&gt;Access-Control-Allow-Origin&lt;/code&gt; anyone? :-)). I&apos;m personally using this setup for &lt;a href=&quot;https://securityheaders.com/?q=www.rzegocki.pl&amp;#x26;followRedirects=on&quot;&gt;my homepage&lt;/a&gt; and never experienced any troubles.&lt;/p&gt;
 &lt;p&gt;And that&apos;s it - enjoy your free, SSL-supported GitHub page with custom domain and all the security headers!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to make gnupg2 to fall in love with Docker]]></title><description><![CDATA[While developing my  new replacement  of  self-hosted-mailserver ,
 I noticed a funny problem - I couldn't make gnupg2 to work
 with docker…]]></description><link>https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Mon, 03 Apr 2017 20:19:00 GMT</pubDate><content:encoded>&lt;p&gt;While developing my &lt;a href=&quot;https://www.github.com/wombatapp&quot;&gt;new replacement&lt;/a&gt; of &lt;a href=&quot;https://github.com/ajgon/self-hosted-mailserver&quot;&gt;self-hosted-mailserver&lt;/a&gt;,
