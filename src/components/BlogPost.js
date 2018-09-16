@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import urljoin from 'url-join'
 
 import Disqus from 'disqus-react'
 
@@ -32,7 +33,7 @@ class BlogPost extends React.Component {
     const { classes, post, siteUrl, shares } = this.props
     const disqusShortname = 'ajgon'
     const disqusConfig = {
-      url: `${siteUrl}${post.frontmatter.path}`,
+      url: `${urljoin(siteUrl, post.frontmatter.path)}/`.replace(/\/+$/, '/'),
       title: post.title
     }
 
