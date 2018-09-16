@@ -50,7 +50,7 @@ module.exports = {
     }, {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        policy: [{ userAgent: '*', disallow: ['/v1', '/v2', '/v3', '/v4', '/v5', '/v6', '/v7', '/v8', '/v9', '/DeeDee'] }],
+        policy: [{ userAgent: '*', disallow: ['/DeeDee'] }],
         sitemap: urljoin(config.siteUrl, config.pathPrefix, '/sitemap.xml')
       }
     }, {
