@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth'
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import CloseIcon from '@material-ui/icons/Close'
 import MenuIcon from '@material-ui/icons/Menu'
 
@@ -27,7 +28,10 @@ const styles = theme => {
     root: {
       zIndex: '1500',
       paddingLeft: 'env(safe-area-inset-left)',
-      paddingRight: 'env(safe-area-inset-right)'
+      paddingRight: 'env(safe-area-inset-right)',
+      [theme.breakpoints.up('md')]: {
+        paddingTop: '20px'
+      }
     },
     flex: {
       flexGrow: 1
@@ -40,6 +44,11 @@ const styles = theme => {
     },
     noUnderline: {
       textDecoration: 'none'
+    },
+    pageName: {
+      fontWeight: '600',
+      paddingLeft: '10px',
+      fontSize: '1.6rem'
     },
     underAppBar: {
       marginTop: '56px',
@@ -83,19 +92,29 @@ class MenuAppBar extends React.Component {
         >
           <Toolbar>
             <Hidden mdUp>
-              <IconButton
-                onClick={this.toggleDrawer(!this.state.drawer)}
-                aria-label='Menu'
-                style={{ justifyContent: 'left' }}
-              >
-                <CloseIcon
-                  className={this.state.drawer ? '' : classes.hidden}
-                />
-                <MenuIcon className={this.state.drawer ? classes.hidden : ''} />
-              </IconButton>
+              { mainPage &&
+                <IconButton
+                  onClick={this.toggleDrawer(!this.state.drawer)}
+                  aria-label='Menu'
+                  style={{ justifyContent: 'left' }}
+                >
+                  <CloseIcon
+                    className={this.state.drawer ? '' : classes.hidden}
+                  />
+                  <MenuIcon className={this.state.drawer ? classes.hidden : ''} />
+                </IconButton>
+              }
+              {
+                !mainPage &&
+                <Link to='/'>
+                  <IconButton aria-label='Back' style={{ justifyContent: 'left' }}>
+                    <ArrowBackIcon />
+                  </IconButton>
+                </Link>
+              }
             </Hidden>
             <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}>
-              <Typography variant='title'>Igor Rzegocki</Typography>
+              <Typography variant='title' className={classes.pageName}>Igor Rzegocki</Typography>
             </Link>
             <Hidden xsDown>
               <Social />
@@ -132,9 +151,11 @@ class MenuAppBar extends React.Component {
             </ListItem>
           </List>
         </Drawer>
-        <Hidden smDown>
-          <SideMenu mainPage={mainPage} menuItems={menuItems} />
-        </Hidden>
+        { mainPage &&
+          <Hidden smDown>
+            <SideMenu mainPage={mainPage} menuItems={menuItems} />
+          </Hidden>
+        }
       </React.Fragment>
     )
   }

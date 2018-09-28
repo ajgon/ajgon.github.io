@@ -11,37 +11,43 @@ import BlogPostShare from './BlogPostShare'
 
 const styles = {
   cardCoverSmall: {
-    maxHeight: '140px'
+    maxHeight: '200px'
   },
   cardCoverLarge: {
-    maxHeight: '280px'
+    maxHeight: '450px'
+  },
+  cardTitle: {
+    fontSize: '3.5rem',
+    fontWeight: '500'
   }
 }
 
 class BlogPostHeader extends React.Component {
   render () {
     const { classes, post, siteUrl, showShare, heading, shares } = this.props
+    const cardHeader = <CardHeader
+      title={post.frontmatter.title}
+      titleTypographyProps={{ component: heading || 'span', className: (showShare ? classes.cardTitle : '') }}
+      subheader={showShare ? post.frontmatter.date : null}
+      action={
+        showShare ? (
+          <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} />
+        ) : null
+      }
+    />
+    const cardMedia = <CardMedia
+      component={Image}
+      sizes={post.frontmatter.cover.childImageSharp.sizes}
+      className={
+        showShare ? classes.cardCoverLarge : classes.cardCoverSmall
+      }
+      src={post.frontmatter.cover.childImageSharp.sizes.base64}
+    />
 
     return (
       <React.Fragment>
-        <CardMedia
-          component={Image}
-          sizes={post.frontmatter.cover.childImageSharp.sizes}
-          className={
-            showShare ? classes.cardCoverLarge : classes.cardCoverSmall
-          }
-          src={post.frontmatter.cover.childImageSharp.sizes.base64}
-        />
-        <CardHeader
-          title={post.frontmatter.title}
-          titleTypographyProps={{ component: heading || 'span' }}
-          subheader={showShare ? post.frontmatter.date : null}
-          action={
-            showShare ? (
-              <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} />
-            ) : null
-          }
-        />
+      { showShare ? cardHeader : cardMedia }
+      { showShare ? cardMedia : cardHeader }
       </React.Fragment>
     )
   }

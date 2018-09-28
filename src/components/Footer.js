@@ -10,13 +10,21 @@ import { withStyles } from '@material-ui/core/styles'
 const styles = theme => ({
   root: {
     background: '#ffc400',
-    padding: '7.5rem 5px',
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
       marginTop: '3rem'
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.down('md')]: {
+      padding: '7.5rem 5px',
       marginTop: '15rem'
+    },
+    [theme.breakpoints.up('md')]: {
+      margin: '40vh 0 0',
+      height: '60vh',
+      minHeight: '250px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
     }
   },
   strongHeader: {

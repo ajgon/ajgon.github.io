@@ -12,19 +12,18 @@ import { withStyles } from '@material-ui/core/styles'
 import BlogPostHeader from './BlogPostHeader'
 
 const styles = theme => ({
-  cardSpacing: {
+  root: {
     marginBottom: '2.5em',
+    boxShadow: 'none',
     [theme.breakpoints.down('sm')]: {
       marginBottom: '0'
     }
   },
   postContent: {
-    [theme.breakpoints.down('sm')]: {
-      '& p': {
+      '& p, & li': {
         fontSize: '1.125rem',
         lineHeight: '1.46429em'
       }
-    }
   }
 })
 
@@ -38,7 +37,7 @@ class BlogPost extends React.Component {
     }
 
     return (
-      <Card className={classes.cardSpacing}>
+      <Card className={classes.root}>
         <BlogPostHeader
           post={post}
           siteUrl={siteUrl}

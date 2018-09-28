@@ -20,11 +20,12 @@ import IconRuby from '../icons/ruby/ruby-plain-wordmark.svg'
 
 const styles = {
   root: {
-    marginTop: '1em',
-    marginBottom: '2.5em'
+    marginTop: '1em'
   },
-  cellPadding: {
-    padding: '1rem'
+  techIcon: {
+    padding: '1.5rem',
+    boxShadow: 'none',
+    border: 'solid 1px #ccc'
   },
   block: {
     display: 'block'
@@ -38,62 +39,62 @@ class Technologies extends React.Component {
     return (
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconRuby className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconRails className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconJavaScript className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconReact className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconAWS className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconDocker className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconGit className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconHtml className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconCSS className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconLinux className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconPostgreSql className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.cellPadding}>
+          <Paper className={classes.techIcon}>
             <IconNginx className={classes.block} />
           </Paper>
         </Grid>

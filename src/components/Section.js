@@ -7,12 +7,23 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    padding: '5rem 5px 0',
     [theme.breakpoints.down('xs')]: {
       marginTop: '5rem'
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: '15rem'
+    },
+    [theme.breakpoints.up('md')]: {
+      height: '100vh',
+      minHeight: '600px',
+      padding: '0 5px',
+      margin: '0',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
+    },
+    [theme.breakpoints.down('sm')]: {
+      padding: '5rem 5px 0'
     }
   },
   strongHeader: {

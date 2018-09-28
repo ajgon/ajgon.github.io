@@ -15,9 +15,6 @@ import BlogPostHeader from './BlogPostHeader'
 const styles = {
   cardSpacing: {
     marginBottom: '2.5em'
-  },
-  pushRight: {
-    flexGrow: '1'
   }
 }
 
@@ -45,12 +42,6 @@ class BlogExcerpt extends React.Component {
           />
         </Link>
         {cardContent}
-        <CardActions>
-          <div className={classes.pushRight} />
-          <Link to={post.frontmatter.path}>
-            <Button size='small'>View More</Button>
-          </Link>
-        </CardActions>
       </Card>
     )
   }

@@ -16,20 +16,32 @@ import SEO from '../components/SEO.js'
 import TagLine from '../components/TagLine.js'
 import Technologies from '../components/Technologies.js'
 
-const styles = theme => ({
-  noTop: {
-    marginTop: '0',
-    [theme.breakpoints.down('xs')]: {
-      paddingTop: '5rem'
+const styles = theme => {
+  return {
+    underAppBar: {
+      marginTop: '0',
+      [theme.breakpoints.down('xs')]: {
+        paddingTop: '5rem'
+      },
+      [theme.breakpoints.up('sm')]: {
+        paddingTop: '10rem'
+      },
+      [theme.breakpoints.up('md')]: {
+        height: 'calc(100vh - 84px)',
+        padding: '0 5px 84px'
+      }
     },
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: '10rem'
+    dynamicBlogContent: {
+      [theme.breakpoints.up('md')]: {
+        height: 'auto',
+        minHeight: '0'
+      }
+    },
+    hidden: {
+      display: 'none'
     }
-  },
-  hidden: {
-    display: 'none'
   }
-})
+}
 
 class Index extends React.Component {
   constructor (props) {
@@ -44,9 +56,28 @@ class Index extends React.Component {
     this.setState({ showMoreBlogPosts: true })
   }
 
+  componentDidMount () {
+    let dynamicBlog = document.getElementById('blog')
+    dynamicBlog.style.height = 'auto'
+    dynamicBlog.style.minHeight = '0'
+
+    setTimeout(() => {
+      const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+      const blogPadding = Math.max((viewportHeight - dynamicBlog.offsetHeight) / 2)
+
+      if (blogPadding < 0) {
+        return
+      }
+
+      dynamicBlog.style.paddingTop = `${blogPadding}px`
+      dynamicBlog.style.paddingBottom = `${blogPadding}px`
+    }, 0)
+  }
+
   render () {
     const { classes, data } = this.props
     const posts = data.allMarkdownRemark.edges
+    const initialPostsNumber = 4
 
     return (
       <React.Fragment>
@@ -54,7 +85,7 @@ class Index extends React.Component {
         <Section
           headline='Yo Developers!'
           idName='yodevelopers'
-          className={classes.noTop}
+          className={classes.underAppBar}
         >
           <TagLine />
         </Section>
@@ -66,17 +97,17 @@ class Index extends React.Component {
           </Typography>
           <Technologies />
         </Section>
-        <Section headline='Blog'>
+        <Section headline='Blog' className={classes.dynamicBlogContent}>
           <Grid container spacing={24}>
             {posts.map((post, index) => {
               return (
                 <Grid
                   item
                   xs={12}
-                  md={4}
+                  md={6}
                   key={post.node.frontmatter.id}
                   className={
-                    index < 3 || this.state.showMoreBlogPosts
+                    index < initialPostsNumber || this.state.showMoreBlogPosts
                       ? ''
                       : classes.hidden
                   }

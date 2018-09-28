@@ -13,14 +13,16 @@ import Section from '../components/Section'
 import SEO from '../components/SEO'
 
 const styles = theme => ({
-  noTop: {
+  noFixedHeight: {
     [theme.breakpoints.up('md')]: {
       padding: '5rem 0 0'
     },
     [theme.breakpoints.down('sm')]: {
       padding: '0'
     },
-    marginTop: '0'
+    marginTop: '0',
+    height: 'auto',
+    display: 'block'
   }
 })
 
@@ -29,7 +31,7 @@ class BlogPostTemplate extends React.Component {
     const { classes, data } = this.props
 
     return (
-      <Section className={classes.noTop}>
+      <Section className={classes.noFixedHeight}>
         <Helmet
           title={`${data.markdownRemark.frontmatter.title} | ${
             config.siteTitle

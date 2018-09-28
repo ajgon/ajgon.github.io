@@ -34,7 +34,7 @@ class Layout extends React.Component {
     }
 
     const { location } = this.props
-    const mainPage = location.pathname === `${config.pathPrefix}/`
+    const mainPage = location.pathname === `${config.pathPrefix}/`.replace('//', '/')
     this.setState({ mainPage })
   }
   render () {

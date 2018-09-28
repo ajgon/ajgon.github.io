@@ -54,7 +54,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf .cache public && gatsby build --prefix-paths && ruby alter_build.rb",
-    "develop": "gatsby develop",
+    "develop": "rm -rf .cache public && gatsby develop",
     "serve": "npm run build && gatsby serve",
     "lint": "standard",
     "format": "prettier --write 'src/**/*.js'",

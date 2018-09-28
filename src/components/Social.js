@@ -12,9 +12,14 @@ import IconLinkedIn from '../icons/social-linkedin.svg'
 import IconTwitter from '../icons/social-twitter.svg'
 
 const styles = {
+  mediumButton: {
+    width: '60px',
+    height: '60px'
+  },
   mediumIcon: {
-    width: '32px',
-    height: '32px'
+    width: '40px',
+    height: '40px',
+    color: '#333'
   }
 }
 
@@ -31,7 +36,7 @@ class Social extends React.Component {
           id='link-github'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-github'>
+          <IconButton aria-labelledby='link-github' className={classes.mediumButton}>
             <SvgIcon className={classes.mediumIcon}>
               <IconGithub />
             </SvgIcon>
@@ -44,7 +49,7 @@ class Social extends React.Component {
           id='link-linkedin'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-linkedin'>
+          <IconButton aria-labelledby='link-linkedin' className={classes.mediumButton}>
             <SvgIcon className={classes.mediumIcon}>
               <IconLinkedIn />
             </SvgIcon>
@@ -57,7 +62,7 @@ class Social extends React.Component {
           id='link-twitter'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-twitter'>
+          <IconButton aria-labelledby='link-twitter' className={classes.mediumButton}>
             <SvgIcon className={classes.mediumIcon}>
               <IconTwitter />
             </SvgIcon>
@@ -70,7 +75,7 @@ class Social extends React.Component {
           id='link-keybase'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-keybase'>
+          <IconButton aria-labelledby='link-keybase' className={classes.mediumButton}>
             <SvgIcon className={classes.mediumIcon}>
               <IconKeybase />
             </SvgIcon>
