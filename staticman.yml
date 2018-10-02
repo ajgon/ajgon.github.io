@@ -1,0 +1,16 @@
+comments:
+  allowedFields: ["name", "message"]
+  branch: "source"
+  commitMessage: "Add Staticman data"
+  filename: "entry-{@id}"
+  format: "json"
+  generatedFields:
+    slug: "{options.slug}"
+    timestamp:
+      type: date
+      options:
+        format: "timestamp-seconds"
+  moderation: true
+  name: "rzegocki.pl"
+  path: "src/comments"
+  requiredFields: ["name", "message"]
