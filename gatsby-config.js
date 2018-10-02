@@ -171,8 +171,9 @@ module.exports = {
         'src/raw/hackers.txt': 'public/hackers.txt',
         'src/raw/keybase.txt': 'public/keybase.txt',
         'src/raw/public-key.txt': 'public/public-key.txt',
-        'src/raw/.well-known/security.txt': 'public/.well-known/security.txt',
-        'src/raw/.well-known/security.txt.sig': 'public/.well-known/security.txt.sig'
+        'src/raw/_nojekyll': 'public/.nojekyll',
+        'src/raw/_well-known/security.txt': 'public/.well-known/security.txt',
+        'src/raw/_well-known/security.txt.sig': 'public/.well-known/security.txt.sig'
       }
     }, {
       resolve: 'gatsby-transformer-remark',
