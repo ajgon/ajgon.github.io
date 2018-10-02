@@ -1,4 +1,0 @@
-Contact: https://www.rzegocki.pl/
-Encryption: https://keybase.io/ajgon/pgp_keys.asc?fingerprint=0fe719b8e5e6f6833825749adbf5e35526b27548
-Permission: none
-Signature: https://www.rzegocki.pl/.well-known/security.txt.sig
