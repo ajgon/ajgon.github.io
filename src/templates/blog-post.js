@@ -39,15 +39,15 @@ class BlogPostTemplate extends React.Component {
               config.siteTitle
             }`}
           />
-          <SEO
-            postPath={data.markdownRemark.frontmatter.path}
-            postNode={data.markdownRemark}
-            postSEO
-          />
           <BlogPost
             post={data.markdownRemark}
             siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
             shares={data.allShareJson.edges}
+          />
+          <SEO
+            postPath={data.markdownRemark.frontmatter.path}
+            postNode={data.markdownRemark}
+            postSEO
           />
         </Section>
       </Layout>

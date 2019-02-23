@@ -46,7 +46,7 @@ class BlogPost extends React.Component {
           heading='h1'
         />
         <CardContent>
-          <Typography
+          <div
             dangerouslySetInnerHTML={{ __html: post.html }}
             className={classes.postContent}
           />
