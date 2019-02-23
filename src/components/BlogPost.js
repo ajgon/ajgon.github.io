@@ -20,10 +20,10 @@ const styles = theme => ({
     }
   },
   postContent: {
-      '& p, & li': {
-        fontSize: '1.125rem',
-        lineHeight: '1.46429em'
-      }
+    '& p, & li': {
+      fontSize: '1.125rem',
+      lineHeight: '1.46429em'
+    }
   }
 })
 

@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/build-your-own-cloud-fast-thanks-to-ansible-and-automation.png"
 tags:
  - administration
-path: /blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation
+path: /blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/
 ---
 
 Last year I wrote an [article about installing custom linux distro on Raspberry Pi 2](/blog/installing-custom-linux-on-raspberry-pi-2).

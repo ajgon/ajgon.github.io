@@ -1,4 +1,4 @@
-/* global graphql */
+import { graphql } from 'gatsby'
 import config from '../config'
 import urljoin from 'url-join'
 import React from 'react'
@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 import withRoot from '../withRoot'
 
 import BlogPost from '../components/BlogPost'
+import Layout from '../components/Layout'
 import Section from '../components/Section'
 import SEO from '../components/SEO'
 
@@ -28,26 +29,28 @@ const styles = theme => ({
 
 class BlogPostTemplate extends React.Component {
   render () {
-    const { classes, data } = this.props
+    const { classes, data, location } = this.props
 
     return (
-      <Section className={classes.noFixedHeight}>
-        <Helmet
-          title={`${data.markdownRemark.frontmatter.title} | ${
-            config.siteTitle
-          }`}
-        />
-        <SEO
-          postPath={data.markdownRemark.frontmatter.path}
-          postNode={data.markdownRemark}
-          postSEO
-        />
-        <BlogPost
-          post={data.markdownRemark}
-          siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
-          shares={data.allShareJson.edges}
-        />
-      </Section>
+      <Layout data={data} location={location}>
+        <Section className={classes.noFixedHeight}>
+          <Helmet
+            title={`${data.markdownRemark.frontmatter.title} | ${
+              config.siteTitle
+            }`}
+          />
+          <SEO
+            postPath={data.markdownRemark.frontmatter.path}
+            postNode={data.markdownRemark}
+            postSEO
+          />
+          <BlogPost
+            post={data.markdownRemark}
+            siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
+            shares={data.allShareJson.edges}
+          />
+        </Section>
+      </Layout>
     )
   }
 }
@@ -59,7 +62,28 @@ BlogPostTemplate.propTypes = {
 export default withRoot(withStyles(styles)(BlogPostTemplate))
 
 export const query = graphql`
-  query BlogPostByPath($path: String!) {
+  query SiteDataAndBlogPostByPath($path: String!) {
+    allFile(filter: { base: { eq: "browserconfig.xml" } }) {
+      edges {
+        node {
+          publicURL
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+    allMenuJson {
+      edges {
+        node {
+          id
+          name
+          to
+        }
+      }
+    }
     allShareJson {
       edges {
         node {
@@ -80,8 +104,8 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         cover {
           childImageSharp {
-            sizes(maxWidth: 1000) {
-              ...GatsbyImageSharpSizes
+            fluid(maxWidth: 1000) {
+              ...GatsbyImageSharpFluid
             }
           }
         }

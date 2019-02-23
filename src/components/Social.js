@@ -36,7 +36,10 @@ class Social extends React.Component {
           id='link-github'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-github' className={classes.mediumButton}>
+          <IconButton
+            aria-labelledby='link-github'
+            className={classes.mediumButton}
+          >
             <SvgIcon className={classes.mediumIcon}>
               <IconGithub />
             </SvgIcon>
@@ -49,7 +52,10 @@ class Social extends React.Component {
           id='link-linkedin'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-linkedin' className={classes.mediumButton}>
+          <IconButton
+            aria-labelledby='link-linkedin'
+            className={classes.mediumButton}
+          >
             <SvgIcon className={classes.mediumIcon}>
               <IconLinkedIn />
             </SvgIcon>
@@ -62,7 +68,10 @@ class Social extends React.Component {
           id='link-twitter'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-twitter' className={classes.mediumButton}>
+          <IconButton
+            aria-labelledby='link-twitter'
+            className={classes.mediumButton}
+          >
             <SvgIcon className={classes.mediumIcon}>
               <IconTwitter />
             </SvgIcon>
@@ -75,7 +84,10 @@ class Social extends React.Component {
           id='link-keybase'
           rel='noopener'
         >
-          <IconButton aria-labelledby='link-keybase' className={classes.mediumButton}>
+          <IconButton
+            aria-labelledby='link-keybase'
+            className={classes.mediumButton}
+          >
             <SvgIcon className={classes.mediumIcon}>
               <IconKeybase />
             </SvgIcon>

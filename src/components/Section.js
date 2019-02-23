@@ -34,14 +34,21 @@ const styles = theme => ({
 
 class Section extends React.Component {
   render () {
-    const { children, classes, headline, idName, className } = this.props
+    const {
+      children,
+      classes,
+      component,
+      headline,
+      idName,
+      className
+    } = this.props
     const headlineLabel = `arialabel-${(headline || '')
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '')}`
 
     if (!headline) {
       return (
-        <section className={`${classes.root} ${className || ''}`} role='region'>
+        <section className={`${classes.root} ${className || ''}`}>
           {children}
         </section>
       )
@@ -51,23 +58,24 @@ class Section extends React.Component {
       <section
         className={`${classes.root} ${className || ''}`}
         id={idName || headline.toLowerCase()}
-        role='region'
         aria-labelledby={headlineLabel}
       >
         <Hidden smUp>
           <Typography
-            variant='display2'
+            variant='h3'
             className={classes.strongHeader}
             id={headlineLabel}
+            component={component || 'h2'}
           >
             {headline}
           </Typography>
         </Hidden>
         <Hidden xsDown>
           <Typography
-            variant='display4'
+            variant='h1'
             className={classes.strongHeader}
             id={headlineLabel}
+            component={component || 'h2'}
           >
             {headline}
           </Typography>

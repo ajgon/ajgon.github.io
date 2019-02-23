@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/custom-http-headers-with-github-pages.png"
 tags:
   - administration
-path: /blog/custom-http-headers-with-github-pages
+path: /blog/custom-http-headers-with-github-pages/
 ---
 
 At some point when I was developing [my new homepage](/) I ran into an issue with GitHub Pages. What I wanted, was to follow security best practices, and serve [OWASP recommended Security Headers](https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers). Unfortunatelly, it looks like [GitHub Pages does not support setting anything like this](https://stackoverflow.com/questions/14798589/github-pages-http-headers), which is kinda dissapointing. But hey! We are re developers, and we love to solve problems!

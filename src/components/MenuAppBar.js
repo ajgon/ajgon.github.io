@@ -92,7 +92,7 @@ class MenuAppBar extends React.Component {
         >
           <Toolbar>
             <Hidden mdUp>
-              { mainPage &&
+              {mainPage && (
                 <IconButton
                   onClick={this.toggleDrawer(!this.state.drawer)}
                   aria-label='Menu'
@@ -101,20 +101,26 @@ class MenuAppBar extends React.Component {
                   <CloseIcon
                     className={this.state.drawer ? '' : classes.hidden}
                   />
-                  <MenuIcon className={this.state.drawer ? classes.hidden : ''} />
+                  <MenuIcon
+                    className={this.state.drawer ? classes.hidden : ''}
+                  />
                 </IconButton>
-              }
-              {
-                !mainPage &&
+              )}
+              {!mainPage && (
                 <Link to='/'>
-                  <IconButton aria-label='Back' style={{ justifyContent: 'left' }}>
+                  <IconButton
+                    aria-label='Back'
+                    style={{ justifyContent: 'left' }}
+                  >
                     <ArrowBackIcon />
                   </IconButton>
                 </Link>
-              }
+              )}
             </Hidden>
             <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}>
-              <Typography variant='title' className={classes.pageName}>Igor Rzegocki</Typography>
+              <Typography variant='h6' className={classes.pageName}>
+                Igor Rzegocki
+              </Typography>
             </Link>
             <Hidden xsDown>
               <Social />
@@ -151,11 +157,11 @@ class MenuAppBar extends React.Component {
             </ListItem>
           </List>
         </Drawer>
-        { mainPage &&
+        {mainPage && (
           <Hidden smDown>
             <SideMenu mainPage={mainPage} menuItems={menuItems} />
           </Hidden>
-        }
+        )}
       </React.Fragment>
     )
   }

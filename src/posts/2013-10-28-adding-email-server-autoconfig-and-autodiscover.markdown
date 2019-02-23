@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/adding-email-server-autoconfig-and-autodiscover.jpg"
 tags:
   - administration
-path: /blog/adding-email-server-autoconfig-and-autodiscover
+path: /blog/adding-email-server-autoconfig-and-autodiscover/
 ---
 
 One of the nicest, yet badly documented features in new MUAs is email servers autodiscovering. When you type your e-mail address in configuration window, modern MUA is trying to determine what IMAP/POP3 servers are, and how to connect to them. To do so, they assume, that your email contains a server domain name. A nice assumption, but often not relevant (google apps is a good example here). Thankfully, there is also another way - asking an original server on a specially configured domain what those parameters are.

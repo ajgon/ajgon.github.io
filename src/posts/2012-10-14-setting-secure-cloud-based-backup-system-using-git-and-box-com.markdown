@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/setting-secure-cloud-based-backup-system-using-git-and-box-com.jpg"
 tags:
   - administration
-path: /blog/setting-secure-cloud-based-backup-system-using-git-and-box-com
+path: /blog/setting-secure-cloud-based-backup-system-using-git-and-box-com/
 ---
 
 After giving up my [spying e-mail provider](https://gmail.com/), and moving

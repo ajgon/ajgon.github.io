@@ -16,25 +16,26 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    display4: {
+    useNextVariants: true,
+    h1: {
       color: '#333'
     },
-    display3: {
+    h2: {
       color: '#333'
     },
-    display2: {
+    h3: {
       color: '#333'
     },
-    display1: {
+    h4: {
       color: '#333'
     },
-    headline: {
+    h5: {
       color: '#333'
     },
-    subheading: {
+    subtitle1: {
       color: '#333'
     },
-    title: {
+    h6: {
       color: '#333'
     }
   }

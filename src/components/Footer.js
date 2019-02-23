@@ -44,14 +44,9 @@ class Footer extends React.Component {
     const { classes } = this.props
 
     return (
-      <section
-        className={classes.root}
-        id='contact'
-        role='region'
-        aria-label='Contact'
-      >
+      <section className={classes.root} id='contact' aria-label='Contact'>
         <Hidden mdUp>
-          <Typography variant='display2' className={classes.strongHeader}>
+          <Typography variant='h3' className={classes.strongHeader}>
             <Obfuscate
               email='igor@rzegocki.pl'
               headers={{ subject: 'Yo Igor!' }}
@@ -59,7 +54,7 @@ class Footer extends React.Component {
           </Typography>
         </Hidden>
         <Hidden smDown>
-          <Typography variant='display4' className={classes.strongHeader}>
+          <Typography variant='h1' className={classes.strongHeader}>
             <Obfuscate
               email='igor@rzegocki.pl'
               headers={{ subject: 'Yo Igor!' }}

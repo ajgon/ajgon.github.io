@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/add-more-complexity-to-your-emails-use-dkim-and-spf.jpg"
 tags:
   - administration
-path: /blog/add-more-complexity-to-your-emails-use-dkim-and-spf
+path: /blog/add-more-complexity-to-your-emails-use-dkim-and-spf/
 ---
 
 The next thing my paranoid me couldn't stand of is that my emails can be easily

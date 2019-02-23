@@ -27,6 +27,7 @@ class BlogPostShare extends React.Component {
     }
 
     props.shares.forEach(share => {
+      // eslint-disable-next-line
       this.state.opened[share.node.slug] = false
     })
   }
@@ -91,12 +92,12 @@ class BlogPostShare extends React.Component {
           {shares.map(share => {
             return (
               <MenuItem onClick={() => this.handleClose()} key={share.node.id}>
-                <a
+                <button
                   className={classes.menuItemLink}
                   onClick={() => this.toggleOpened(share.node.slug)}
                 >
                   {share.node.name}
-                </a>
+                </button>
               </MenuItem>
             )
           })}

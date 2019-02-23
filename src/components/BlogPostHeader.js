@@ -25,29 +25,34 @@ const styles = {
 class BlogPostHeader extends React.Component {
   render () {
     const { classes, post, siteUrl, showShare, heading, shares } = this.props
-    const cardHeader = <CardHeader
-      title={post.frontmatter.title}
-      titleTypographyProps={{ component: heading || 'span', className: (showShare ? classes.cardTitle : '') }}
-      subheader={showShare ? post.frontmatter.date : null}
-      action={
-        showShare ? (
-          <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} />
-        ) : null
-      }
-    />
-    const cardMedia = <CardMedia
-      component={Image}
-      sizes={post.frontmatter.cover.childImageSharp.sizes}
-      className={
-        showShare ? classes.cardCoverLarge : classes.cardCoverSmall
-      }
-      src={post.frontmatter.cover.childImageSharp.sizes.base64}
-    />
+    const cardHeader = (
+      <CardHeader
+        title={post.frontmatter.title}
+        titleTypographyProps={{
+          component: heading || 'span',
+          className: showShare ? classes.cardTitle : ''
+        }}
+        subheader={showShare ? post.frontmatter.date : null}
+        action={
+          showShare ? (
+            <BlogPostShare post={post} siteUrl={siteUrl} shares={shares} />
+          ) : null
+        }
+      />
+    )
+    const cardMedia = (
+      <CardMedia
+        component={Image}
+        sizes={post.frontmatter.cover.childImageSharp.fluid}
+        className={showShare ? classes.cardCoverLarge : classes.cardCoverSmall}
+        src={post.frontmatter.cover.childImageSharp.fluid.base64}
+      />
+    )
 
     return (
       <React.Fragment>
-      { showShare ? cardHeader : cardMedia }
-      { showShare ? cardMedia : cardHeader }
+        {showShare ? cardHeader : cardMedia}
+        {showShare ? cardMedia : cardHeader}
       </React.Fragment>
     )
   }

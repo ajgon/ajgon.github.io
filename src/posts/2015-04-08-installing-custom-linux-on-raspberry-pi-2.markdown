@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/installing-custom-linux-on-raspberry-pi-2.jpg"
 tags:
  - administration
-path: /blog/installing-custom-linux-on-raspberry-pi-2
+path: /blog/installing-custom-linux-on-raspberry-pi-2/
 ---
 
 Few days ago, [I gave myself a present](../images/upload/rpi.jpeg), which (at the very beginning) I was planning to power

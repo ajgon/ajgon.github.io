@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/setting-development-environment-on-your-mac.jpg"
 tags:
   - PHP
-path: /blog/setting-development-environment-on-your-mac
+path: /blog/setting-development-environment-on-your-mac/
 ---
 
 Recently I bought an

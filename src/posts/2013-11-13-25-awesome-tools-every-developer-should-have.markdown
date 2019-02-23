@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/25-awesome-tools-every-developer-should-have.jpg"
 tags:
   - workflow
-path: /blog/25-awesome-tools-every-developer-should-have
+path: /blog/25-awesome-tools-every-developer-should-have/
 ---
 
 <blockquote>

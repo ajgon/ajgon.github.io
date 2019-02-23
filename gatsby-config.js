@@ -258,13 +258,13 @@ module.exports = {
           }
         ]
       }
-    },
-    //{
-      //resolve: 'gatsby-plugin-offline',
-      //options: {
-        //navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/],
-      //}
-    //},
-    'gatsby-plugin-remove-trailing-slashes'
+    }
+    // {
+    // resolve: 'gatsby-plugin-offline',
+    // options: {
+    // navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/],
+    // }
+    // },
+    // 'gatsby-plugin-remove-trailing-slashes'
   ]
 }

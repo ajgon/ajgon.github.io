@@ -1,4 +1,4 @@
-/* global graphql */
+import { graphql } from 'gatsby'
 import config from '../config'
 import urljoin from 'url-join'
 import React from 'react'
@@ -11,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles'
 import withRoot from '../withRoot'
 
 import BlogExcerpt from '../components/BlogExcerpt'
+import Layout from '../components/Layout'
 import Section from '../components/Section.js'
 import SEO from '../components/SEO.js'
 import TagLine from '../components/TagLine.js'
@@ -62,8 +63,13 @@ class Index extends React.Component {
     dynamicBlog.style.minHeight = '0'
 
     setTimeout(() => {
-      const viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-      const blogPadding = Math.max((viewportHeight - dynamicBlog.offsetHeight) / 2)
+      const viewportHeight = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight || 0
+      )
+      const blogPadding = Math.max(
+        (viewportHeight - dynamicBlog.offsetHeight) / 2
+      )
 
       if (blogPadding < 0) {
         return
@@ -75,22 +81,23 @@ class Index extends React.Component {
   }
 
   render () {
-    const { classes, data } = this.props
+    const { classes, data, location } = this.props
     const posts = data.allMarkdownRemark.edges
     const initialPostsNumber = 4
 
     return (
-      <React.Fragment>
+      <Layout data={data} location={location}>
         <SEO />
         <Section
           headline='Yo Developers!'
           idName='yodevelopers'
           className={classes.underAppBar}
+          component='h1'
         >
           <TagLine />
         </Section>
         <Section headline='Technologies'>
-          <Typography variant='headline' gutterBottom>
+          <Typography variant='h5' gutterBottom component='h3'>
             I have over 10 years of professional experience with Ruby, Rails,
             JavaScript and Linux, but&nbsp;I'm also familiar with other cool
             technologies.
@@ -135,7 +142,7 @@ class Index extends React.Component {
             </Button>
           </Grid>
         </Section>
-      </React.Fragment>
+      </Layout>
     )
   }
 }
@@ -147,7 +154,28 @@ Index.propTypes = {
 export default withRoot(withStyles(styles)(Index))
 
 export const query = graphql`
-  query BlogPostsQuery {
+  query SiteDataAndBlogPostsQuery {
+    allFile(filter: { base: { eq: "browserconfig.xml" } }) {
+      edges {
+        node {
+          publicURL
+        }
+      }
+    }
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+    allMenuJson {
+      edges {
+        node {
+          id
+          name
+          to
+        }
+      }
+    }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       limit: 1000
@@ -163,8 +191,8 @@ export const query = graphql`
             date(formatString: "MMMM DD, YYYY")
             cover {
               childImageSharp {
-                sizes(maxWidth: 1000) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 1000) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

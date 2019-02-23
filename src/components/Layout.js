@@ -1,10 +1,8 @@
-/* global graphql */
 import 'typeface-roboto'
 import 'prismjs/themes/prism-tomorrow.css'
 import config from '../config'
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -34,7 +32,8 @@ class Layout extends React.Component {
     }
 
     const { location } = this.props
-    const mainPage = location.pathname === `${config.pathPrefix}/`.replace('//', '/')
+    const mainPage =
+      location.pathname === `${config.pathPrefix}/`.replace('//', '/')
     this.setState({ mainPage })
   }
   render () {
@@ -64,41 +63,11 @@ class Layout extends React.Component {
           menuItems={data.allMenuJson.edges}
         />
         <Heart />
-        <Container location={location}>{children()}</Container>
+        <Container location={location}>{children}</Container>
         <Footer />
       </React.Fragment>
     )
   }
 }
 
-Layout.propTypes = {
-  children: PropTypes.func
-}
-
 export default withRoot(Layout)
-
-export const query = graphql`
-  query SiteDataQuery {
-    allFile(filter: { id: { regex: "/browserconfig.xml/" } }) {
-      edges {
-        node {
-          publicURL
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-    allMenuJson {
-      edges {
-        node {
-          id
-          name
-          to
-        }
-      }
-    }
-  }
-`

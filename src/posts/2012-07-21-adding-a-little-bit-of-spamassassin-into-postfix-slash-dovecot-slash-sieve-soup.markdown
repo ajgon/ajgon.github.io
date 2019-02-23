@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/adding-a-little-bit-of-spamassassin-into-postfix-slash-dovecot-slash-sieve-soup.jpg"
 tags:
   - administration
-path: /blog/adding-a-little-bit-of-spamassassin-into-postfix-slash-dovecot-slash-sieve-soup
+path: /blog/adding-a-little-bit-of-spamassassin-into-postfix-slash-dovecot-slash-sieve-soup/
 ---
 
 I was always prefering "stay in the shadows" policy in terms of email address.

@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/how-to-make-gnupg2-to-fall-in-love-with-docker.png"
 tags:
  - administration
-path: /blog/how-to-make-gnupg2-to-fall-in-love-with-docker
+path: /blog/how-to-make-gnupg2-to-fall-in-love-with-docker/
 ---
 
 While developing my [new replacement](https://www.github.com/wombatapp) of [self-hosted-mailserver](https://github.com/ajgon/self-hosted-mailserver),

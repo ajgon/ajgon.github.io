@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/setting-server-side-mail-filtering-with-sieve-and-dovecot.jpg"
 tags:
   - administration
-path: /blog/setting-server-side-mail-filtering-with-sieve-and-dovecot
+path: /blog/setting-server-side-mail-filtering-with-sieve-and-dovecot/
 ---
 
 Leaving GMail was of the best decisions for my mail I made recently. But also a

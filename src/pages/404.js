@@ -2,7 +2,7 @@ import config from '../config'
 import React from 'react'
 import withRoot from '../withRoot'
 
-import './404.css'
+import './404.module.css'
 
 class PageNotFound extends React.Component {
   render () {

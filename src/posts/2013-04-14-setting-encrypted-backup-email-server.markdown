@@ -7,7 +7,7 @@ author: Igor Rzegocki
 cover: "../images/covers/setting-encrypted-backup-email-server.jpg"
 tags:
   - administration
-path: /blog/setting-encrypted-backup-email-server
+path: /blog/setting-encrypted-backup-email-server/
 ---
 
 There is a popular Internet saying that people are divided into two groups -
