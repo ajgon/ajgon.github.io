@@ -20,12 +20,17 @@ module.exports = {
     'gatsby-transformer-json',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-svg',
     'gatsby-plugin-sri',
+    'gatsby-plugin-postcss',
     {
+      resolve: 'gatsby-plugin-postcss',
+      options: {
+        printRejected: true
+      }
+    }, {
       resolve: 'gatsby-plugin-sentry',
       options: {
         dsn: 'https://7da25cbb214e4f2f9874a9dffc895d99@sentry.io/1275167'

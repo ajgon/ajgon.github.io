@@ -48,6 +48,14 @@ class SEO extends Component {
               '@type': 'ListItem',
               position: 1,
               item: {
+                '@id': blogURL,
+                name: 'Blog',
+                image
+              }
+            }, {
+              '@type': 'ListItem',
+              position: 2,
+              item: {
                 '@id': postURL,
                 name: title,
                 image

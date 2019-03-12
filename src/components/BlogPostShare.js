@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import ShareIcon from '@material-ui/icons/Share'
+import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
 
 import WebShare from './WebShare'
@@ -92,12 +93,13 @@ class BlogPostShare extends React.Component {
           {shares.map(share => {
             return (
               <MenuItem onClick={() => this.handleClose()} key={share.node.id}>
-                <button
+                <Typography
+                  variant='button'
                   className={classes.menuItemLink}
                   onClick={() => this.toggleOpened(share.node.slug)}
                 >
                   {share.node.name}
-                </button>
+                </Typography>
               </MenuItem>
             )
           })}
