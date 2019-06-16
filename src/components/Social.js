@@ -9,7 +9,6 @@ import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import IconGithub from '../icons/social-github.svg'
 import IconKeybase from '../icons/social-keybase.svg'
 import IconLinkedIn from '../icons/social-linkedin.svg'
-import IconTwitter from '../icons/social-twitter.svg'
 
 const styles = {
   mediumButton: {
@@ -58,22 +57,6 @@ class Social extends React.Component {
           >
             <SvgIcon className={classes.mediumIcon}>
               <IconLinkedIn />
-            </SvgIcon>
-          </IconButton>
-        </OutboundLink>
-        <OutboundLink
-          href='https://twitter.com/ajgon'
-          target='_blank'
-          aria-label='Twitter'
-          id='link-twitter'
-          rel='noopener'
-        >
-          <IconButton
-            aria-labelledby='link-twitter'
-            className={classes.mediumButton}
-          >
-            <SvgIcon className={classes.mediumIcon}>
-              <IconTwitter />
             </SvgIcon>
           </IconButton>
         </OutboundLink>

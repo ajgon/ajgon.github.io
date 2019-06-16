@@ -12,6 +12,7 @@ module.exports = {
   disqusShortname: 'ajgon',
   copyright: `Copyright © ${new Date().getFullYear()}. Igor Rzegocki`,
   userName: 'Igor Rzegocki',
+  userTwitter: 'ajgon',
   themeColor: '#a2cf6e',
   backgroundColor: '#a2cf6e'
 }
