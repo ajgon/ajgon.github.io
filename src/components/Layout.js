@@ -50,7 +50,7 @@ class Layout extends React.Component {
         >
           <html lang='en' />
           <body id='about' />
-          <style type='text/css'>{`body, #___gatsby { position: relative }`}</style>
+          <style type='text/css'>{`body, #___gatsby { position: relative; font-family: Roboto, sans-serif }`}</style>
           <meta
             name='msapplication-config'
             content={data.allFile.edges[0].node.publicURL}

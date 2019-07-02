@@ -7,6 +7,8 @@ Dir['public/*.map'].each do |path|
 end
 
 Dir['public/**/*.html'].each do |path|
+  next if File.directory?(path)
+
   File.write(
     path,
     File.read(path).gsub('<script', "<script nonce=\"#{CSP_NONCE}\"")
