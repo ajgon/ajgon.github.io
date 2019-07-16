@@ -1,4 +1,182 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki personal webpage and blog]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog. Webdev, devops, Ruby on Rails, JavaScript and react, AWS and docker.]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki personal webpage and blog</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Sun, 16 Jun 2019 17:10:22 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2019. Igor Rzegocki]]></copyright><item><title><![CDATA[Custom HTTP headers with GitHub pages]]></title><description><![CDATA[At some point when I was developing  my new homepage  I ran into an issue with GitHub Pages. What I wanted, was to follow security best…]]></description><link>https://www.rzegocki.pl/blog/custom-http-headers-with-github-pages/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/custom-http-headers-with-github-pages/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Fri, 14 Sep 2018 15:06:00 GMT</pubDate><content:encoded>&lt;p&gt;At some point when I was developing &lt;a href=&quot;/&quot;&gt;my new homepage&lt;/a&gt; I ran into an issue with GitHub Pages. What I wanted, was to follow security best practices, and serve &lt;a href=&quot;https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers&quot;&gt;OWASP recommended Security Headers&lt;/a&gt;. Unfortunatelly, it looks like &lt;a href=&quot;https://stackoverflow.com/questions/14798589/github-pages-http-headers&quot;&gt;GitHub Pages does not support setting anything like this&lt;/a&gt;, which is kinda dissapointing. But hey! We are re developers, and we love to solve problems!&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki personal webpage and blog]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog. Webdev, devops, Ruby on Rails, JavaScript and react, AWS and docker.]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki personal webpage and blog</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Tue, 16 Jul 2019 13:44:25 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2019. Igor Rzegocki]]></copyright><item><title><![CDATA[Create Parrot OS pendrive with encrypted persistence volume]]></title><description><![CDATA[Apart from working as a developer, I also do some server administration in my spare time. Mostly as a devops for projects which I write, but…]]></description><link>https://www.rzegocki.pl/blog/create-parrot-os-pendrive-with-encrypted-persistence-volume/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/create-parrot-os-pendrive-with-encrypted-persistence-volume/</guid><category><![CDATA[security]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Tue, 16 Jul 2019 16:17:34 GMT</pubDate><content:encoded>&lt;p&gt;Apart from working as a developer, I also do some server administration in my spare time. Mostly as a devops for projects which I write, but also I &lt;a href=&quot;/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/&quot;&gt;host&lt;/a&gt; &lt;a href=&quot;/blog/adding-email-server-autoconfig-and-autodiscover/&quot;&gt;my&lt;/a&gt; &lt;a href=&quot;/blog/setting-encrypted-backup-email-server/&quot;&gt;own&lt;/a&gt; &lt;a href=&quot;/blog/installing-custom-linux-on-raspberry-pi-2/&quot;&gt;server&lt;/a&gt; with mail, git etc. I keep a lot of private info there, so naturally I had to learn a lot about securing it and keeping it as safe as possible.&lt;/p&gt;
+&lt;p&gt;However I always did it from &quot;defendant&quot; perspective, and learned techniques connected mostly with that (closing ports, configuring firewalls etc.). Recently I came to conclusion, that this may be not enough - I have to start thinking as an attacker, to better understand the tools and tricks used in todays cyberworld.&lt;/p&gt;
+&lt;p&gt;To do that, I started reading security blogs, collecting tools and playing with self-prepared vulnerable virtual machines. Really quickly my laptop got filled with a lot of stuff which I used to play with, adding more and more mess. And as a programmer, with strong belief in &quot;Single responsibility principle&quot;, I didn&apos;t like that - my base system should be used only for my daily needs and I need to separate my &quot;hacker wanna be&quot; activities. So, naturally I started looking for some specialised Linux distro just for that.&lt;/p&gt;
+&lt;p&gt;Everybody heard about Kali Linux (formerly known as BackTrack), so naturally I started there. And I didn&apos;t like what I found - it felt bloated, sluggish - more like &quot;Debian + pentesting friends&quot; instead of a distro built from scratch with hacking principle in mind. A lot of people use it, and are happy for it - but for me it didn&apos;t feel right.&lt;/p&gt;
+&lt;p&gt;And then I discovered Parrot OS, and immediately felt in love with it. It&apos;s beautiful (when you work a lot with designers, at some point you start noticing things like that), fast, has all the tools and as a bonus - it&apos;s built from scratch with privacy in mind.&lt;/p&gt;
+&lt;p&gt;Setting up a pendrive with Live distro is a breeze - just download ISO, and flash it. However it gets a little wild, when you want to set a permanent, encrypted storage for it. Hence this guide.&lt;/p&gt;
+&lt;h2&gt;Step 1: Flash Parrot OS to pendrive&lt;/h2&gt;
+&lt;p&gt;This step is pretty simple and self explanatory - just download the ISO and flash it. There are plenty, fancy tools for that, but good, old &lt;code class=&quot;language-text&quot;&gt;dd&lt;/code&gt; is still best suited for the job.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; if&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;Parrot-security-4.6_amd64.iso of&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/rdisk2 bs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1m&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;On OSX, it is important to use &lt;code class=&quot;language-text&quot;&gt;/dev/rdiskX&lt;/code&gt; instead of &lt;code class=&quot;language-text&quot;&gt;/dev/diskX&lt;/code&gt; as it provides raw (thus way faster) access to the device. On Linux, just pass &lt;code class=&quot;language-text&quot;&gt;/dev/sdX&lt;/code&gt; as you normally do.&lt;/p&gt;
+&lt;h2&gt;Step 2: Partition the pendrive&lt;/h2&gt;
+&lt;p&gt;Okay, we have our distro set up, let&apos;s give it a spin! You may notice many &lt;code class=&quot;language-text&quot;&gt;GRUB&lt;/code&gt; options, but for now - let&apos;s go with basic, Live USB.&lt;/p&gt;
+&lt;h3&gt;Dealing with gparted and ISO partition&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This was an issue at the time of writing this article, with &lt;code class=&quot;language-text&quot;&gt;gparted&lt;/code&gt; versions above &lt;code class=&quot;language-text&quot;&gt;0.28&lt;/code&gt;. If it doesn&apos;t apply to you, you can skip this section.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can also create a partition using good, old &lt;code class=&quot;language-text&quot;&gt;fdisk&lt;/code&gt; which handles this case properly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The next step is to partition the disk - you will notice something odd, immediately after starting &lt;code class=&quot;language-text&quot;&gt;gparted&lt;/code&gt; and switching to your pendrive.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 800px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2396fcd5d6059a37579a11b7fee2ec98/2d8c3/parrot-gparted-1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 68.36734693877551%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB8ElEQVQ4y52R3U4TQRTH90XaLRJoZ3ZLa1tkd7GlH4QgYnwAH8J4ZwyJWIJtKYXSqHABIRiDMd5pW9w2tCPBhMQrQrjzLZQbne7xzLQbegOkXPxyPub8/3Mmo8ynZsqPn2RODCvdihgZFjO7RI00M+Kz7H5qnpmJB8xKzrF4+hGbTD5k1tScnAnHplgolkBkPEJsZcLInFjJGYga0xC+l0HSEBpHYimJFo6DfjcBY9GkjKKmoTiQsUlZRyZQh/MR1IfGU6C8//CpZTcYVGuNv1+rNnep1Ru8WrN5/aDJ9z9+5ts7e/xL9Zvs1+pNeXZgH/L29x/8sH3EW+zYsZvt38pybpW929qB0vobXq5swlr5LRSKG7C4VIDX+TVYWa3Ai4UsPH32HHIr67CcK8FitgD5YhnPNuBlNg+vlgpOsVTBPHeh+P2EaZoOhFAeIBRGR/0wgni8Kng8KgwPj0AgQME3dAdU1Qde2feCF/PLWnVU35DILxRCCKOUoCjAETQWEKCUSkQuemLG7Wm92IfTi8KQ4oaaEPKu+BJxgRgMBoPQvYxchdOL7ob0SsPr6oEMXbGILteYDr5hv+mtDQeg35C2e4b/kA7+aAc36ZBBIAJp+EdB8bEwvOFJN+IupZiWtWua5i/kFDnTdf22nCM//wNhK9AwNR543wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;parrot gparted 1&quot;
+        title=&quot;parrot gparted 1&quot;
+        src=&quot;/static/2396fcd5d6059a37579a11b7fee2ec98/8ff1e/parrot-gparted-1.png&quot;
+        srcset=&quot;/static/2396fcd5d6059a37579a11b7fee2ec98/9ec3c/parrot-gparted-1.png 200w,
+/static/2396fcd5d6059a37579a11b7fee2ec98/c7805/parrot-gparted-1.png 400w,
+/static/2396fcd5d6059a37579a11b7fee2ec98/8ff1e/parrot-gparted-1.png 800w,
+/static/2396fcd5d6059a37579a11b7fee2ec98/6ff5e/parrot-gparted-1.png 1200w,
+/static/2396fcd5d6059a37579a11b7fee2ec98/2d8c3/parrot-gparted-1.png 1568w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Whole disk is occupied by mysterious &quot;iso&quot; volume, despite the fact the image was only 4GB! Clearly, something is wrong with partition table. Let&apos;s check offsets with wipefs:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# wipefs /dev/sdb&lt;/span&gt;
+DEVICE OFFSET      TYPE    UUID                   LABEL
+sdb    0x8001      iso9660 2019-04-25-11-04-24-00 Parrot OS
+sdb    0x1fe       dos
+sdb    0x3ba2ffe00 gpt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You may notice, that &lt;code class=&quot;language-text&quot;&gt;/dev/sdb&lt;/code&gt; contains signatures of two (or three) different data structures - an ISO image written to the whole disk, a DOS partition table, and optinally - a GPT partition scheme signature. When you check your drive with &lt;code class=&quot;language-text&quot;&gt;blkid&lt;/code&gt;...&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# blkid /dev/sdb&lt;/span&gt;
+/dev/sdb: UUID&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;2019-04-25-11-04-24-00&quot;&lt;/span&gt; LABEL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Parrot OS&quot;&lt;/span&gt; TYPE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;iso9660&quot;&lt;/span&gt; PTUUID&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;f3dc8ed4&quot;&lt;/span&gt; PTTYPE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dos&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;... you will notice, that ISO partition is the preferred one. That&apos;s why gparted gets crazy and reports it as a whole drive. Thankfully, the fix is pretty easy - just wipe out information about ISO:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# wipefs -o 0x8001 -f /dev/sdb&lt;/span&gt;
+/dev/sdb: 5 bytes were erased at offset 0x00008001 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;iso9660&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: 43 44 30 30 31&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Since you will be altering already mounted partition, don&apos;t forget &lt;code class=&quot;language-text&quot;&gt;-f&lt;/code&gt; flag to force the overwrite. After that, &lt;code class=&quot;language-text&quot;&gt;gparted&lt;/code&gt; should start reporting partition and free space correctly.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 800px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7b0f9cb8379258cea257b980d29040a0/2d8c3/parrot-gparted-2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 68.36734693877551%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACQklEQVQ4y52QX0/TUBiH+12MstN2ZV3Xde3soBsMEBISxT/JwGQjyKCAI4hRiQLTgSAI0RsvNMYYuTDGK03kBk6MFyReGeOd30J2o2f9eVo3XfRC4OLJ85635/2dNxX6nOxmfy69Z5jOjmqkaczMUC2RplHDocbJLLXae2nC7qZW2ymadHqpmeoJzv4dRUtRJWpz277fc28LRiKzZzlZGMkuRBMdUPUMdLMLutWFmJlFRE//Ro1nEDU6AitaO1QjA8Pugc5nE9wxsxPC8xcvd95t7+Lxk2fft7Zesddv37C5tXm2MF9hi7eX2MIid7nCyry+eavMStOz7Oq1Od5bYncqK2xtfZOtrK6zlXv3vbura98E3qQPHj7CzJUbbHl5HasbG3BnS3DdEgojYxifKGG0OInhkXGMjk1gcCiP3GAeLu/75IeLuFSc9PhDyBdGq0JEM6hhpiDHNGY4KYiSClmJQVHjONYiI6zqsGwHkqKhRWqFFk9CatVwgiiIxBJQonGEI7rHc3A8FK4KnRemaH/hOrK5y6x7qISe3DTaz7qwT48jdcZF5vwU+i7OBPbPaW7nHK8HXDhBPenf9Wz+rW3ArQqiJFFJliGKEuPwDSW/BgkQ/4XUEZssSl59pioQQqgoEoRCIcbBQRB5yF89j/xyI9B/jTAODkI4HA4c+tPz6j54oL9Jww2a+ocP/A/NgeJuPfAHp0ZIqMZfrZHDQHyCwH2BD39o/slH3bKxlGBa1lPTNL9yPnE+y7J8VL5wPv4EvC7QD942z1AAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;parrot gparted 2&quot;
+        title=&quot;parrot gparted 2&quot;
+        src=&quot;/static/7b0f9cb8379258cea257b980d29040a0/8ff1e/parrot-gparted-2.png&quot;
+        srcset=&quot;/static/7b0f9cb8379258cea257b980d29040a0/9ec3c/parrot-gparted-2.png 200w,
+/static/7b0f9cb8379258cea257b980d29040a0/c7805/parrot-gparted-2.png 400w,
+/static/7b0f9cb8379258cea257b980d29040a0/8ff1e/parrot-gparted-2.png 800w,
+/static/7b0f9cb8379258cea257b980d29040a0/6ff5e/parrot-gparted-2.png 1200w,
+/static/7b0f9cb8379258cea257b980d29040a0/2d8c3/parrot-gparted-2.png 1568w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3&gt;Partition the free space&lt;/h3&gt;
+&lt;p&gt;This is pretty straightforward - create a new partition over free space, set it&apos;s type to &lt;code class=&quot;language-text&quot;&gt;ext4&lt;/code&gt; and label to &lt;code class=&quot;language-text&quot;&gt;persistence&lt;/code&gt;. Then apply the changes.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 800px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6d1dbc3dc06af2ff94161bd54288c10e/a6f9d/parrot-gparted-3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 67.5392670157068%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACQ0lEQVQoz5WRb0/TUBTG+0Ukioz29t7b9ra3Xdd/W7d2RiYOBBn701UcvNAYEjNNjBEkKiFixmQoH0ITv4C+0Eh84afybJXhS3nyy8lzes9ze5oKtherZknlYzQzhKrnK0YhNuwKL0QczNhHcER0H2veFMI8wQsXi1HdKy26xZpbugU4QY3bMbejCbHpxOMr8pHlVMPqMlCKlys3VvzKbeHn2a9Pn798+/r9x++z/dODweFwMHx/NDweHE3qYPhi5+XO7l7Wjk4+AsejD5kRHm33N3oP+k+eb/efJpu9TtK7u95J7m0m6eZas9tsp+vttL7caDS76cbW6lp7da0DptnqLq00hLwTYF3XeF6UKKG6TLQrM9dmZ+cx0a7n0MzVubkcAjM3j+EIE4YpU5iJqZ6TqHBz/SHL+5hqisYRVrxitLt/tP/u5PXh6NXb0ZvDk4PB6eNnexAglBncJkTVCmW/vuXX7wtIkhRKGdM0VTV0Pa7GnbTXStJGq9NO0nbSbSXdJO2VwrJpWYzBCMcES6IIQQEhZBiG47iAZVmcc0VlEkKYUBikhMCAV1qo1hpAGN8Jq6vMsEVxHiFZkCTJNE3f9z3Ps/JWlufctmw3CALHcXSDh9Ulv1J3ijX4r365rjLrIgxvhjylVFVV+IRxrLxg2q5pckKIoqi24zte0SoUDcuDSmE1WBuh8dqyLOOJMiOfC59LRogQ6gaR7YZuEKvMEKfhTNKFshb9+wCAVTP+TkBYnGja/4fkqRPYRJrG8OX1B2PX0NbqMW+fAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;parrot gparted 3&quot;
+        title=&quot;parrot gparted 3&quot;
+        src=&quot;/static/6d1dbc3dc06af2ff94161bd54288c10e/8ff1e/parrot-gparted-3.png&quot;
+        srcset=&quot;/static/6d1dbc3dc06af2ff94161bd54288c10e/9ec3c/parrot-gparted-3.png 200w,
+/static/6d1dbc3dc06af2ff94161bd54288c10e/c7805/parrot-gparted-3.png 400w,
+/static/6d1dbc3dc06af2ff94161bd54288c10e/8ff1e/parrot-gparted-3.png 800w,
+/static/6d1dbc3dc06af2ff94161bd54288c10e/6ff5e/parrot-gparted-3.png 1200w,
+/static/6d1dbc3dc06af2ff94161bd54288c10e/a6f9d/parrot-gparted-3.png 1528w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2&gt;Step 3: Encrypt the partition&lt;/h2&gt;
+&lt;p&gt;This step is optional - however, it&apos;s a good habit to encrypt everything. I see no reason for exceptions here.&lt;/p&gt;
+&lt;p&gt;First, set encrypted luks volume over a newly created partition:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# cryptsetup --verbose --verify-passphrase luksFormat /dev/sdb3&lt;/span&gt;
+WARNING: Device /dev/sdb3 already contains a &lt;span class=&quot;token string&quot;&gt;&apos;ext4&apos;&lt;/span&gt; superblock signature.
+
+WARNING&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;
+This will overwrite data on /dev/sdb3 irrevocably.
+
+Are you sure? &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Type uppercase yes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: YES
+Enter passphrase &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; /dev/sdb3:
+Verify passphrase:
+Existing &lt;span class=&quot;token string&quot;&gt;&apos;ext4&apos;&lt;/span&gt; superblock signature on device /dev/sdb3 will be wiped.
+Key slot 0 created.
+Command successful.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, attach it:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# cryptsetup luksOpen /dev/sdb3 my_part&lt;/span&gt;
+Enter passphrase &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; /dev/sdb3:&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we can format it or create multiple LVMs - it&apos;s up to you. Since it&apos;s a pendrive, I decided to not go crazy, and just created one &lt;code class=&quot;language-text&quot;&gt;ext4&lt;/code&gt; partition, filling up all the space (don&apos;t forget to label it):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# mkfs.ext4 -L persistence /dev/mapper/my_part&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;mke2fs&lt;/span&gt; 1.44.5 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;15-Dec-2018&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Creating filesystem with 2931456 4k blocks and 732960 inodes
+Filesystem UUID: 592d5d84-f630-4e80-9ea9-0c9973be68f4
+Superblock backups stored on blocks:
+    32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208
+
+Allocating group tables: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+Writing inode tables: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+Creating journal &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;16384 blocks&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+Writing superblocks and filesystem accounting information: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# e2label /dev/mapper/my_part persistence&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# mount /dev/mapper/my_part /mnt&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, we need to configure Parrot to treat this new partition as a volume which would store it&apos;s data. This is done by one line in persistence configuration file.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# echo &quot;/ union&quot; &gt; /mnt/persistence.conf&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That&apos;s it! Umount the partition, and close the luks volume.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# umount /mnt&lt;/span&gt;
+cryptsetup luksClose /dev/mapper/my_part&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Optional: Set a nuke password&lt;/h3&gt;
+&lt;p&gt;Newer versions of luks provide interesting functionality - a &quot;nuke&quot; password. The idea is simple - if you are forced to reveal the password, you can provide the &quot;nuke&quot; one instead of the real thing, and your partition will be unrecoverably destroyed (thus &quot;nuke&quot;).&lt;/p&gt;
+&lt;p&gt;Personally I don&apos;t see any sense in it - if the forensic is smart, he would make a one to one copy as a first thing which would render nuking pointless - but hey, you can always meet somebody less sharp, and it may actually help.&lt;/p&gt;
+&lt;p&gt;To add a nuke, simply invoke:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# cryptsetup luksAddNuke /dev/sdb3&lt;/span&gt;
+Enter any existing passphrase:
+Enter new passphrase &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; key slot:
+Verify passphrase:&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Do not mix those passwords yourself, as nuked partition is unrecoverable.&lt;/p&gt;
+&lt;h2&gt;Step 4: Reboot&lt;/h2&gt;
+&lt;p&gt;We&apos;re done. Reboot Parrot, and select &lt;code class=&quot;language-text&quot;&gt;Encrypted persistence&lt;/code&gt; option. In this mode, everything you do, will be saved to the pendrive.&lt;/p&gt;
+&lt;p&gt;Now, you can wear your obligatory hoodie, play some hacker music and start nuking Gibsons!&lt;/p&gt;
+&lt;h3&gt;Sources&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bugzilla.gnome.org/show_bug.cgi?id=789898&quot;&gt;https://bugzilla.gnome.org/show_bug.cgi?id=789898&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://community.parrotsec.org/t/live-usb-with-persistence/3359/5&quot;&gt;https://community.parrotsec.org/t/live-usb-with-persistence/3359/5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Custom HTTP headers with GitHub pages]]></title><description><![CDATA[At some point when I was developing my new homepage I ran into an issue with GitHub Pages. What I wanted, was to follow security best…]]></description><link>https://www.rzegocki.pl/blog/custom-http-headers-with-github-pages/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/custom-http-headers-with-github-pages/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Fri, 14 Sep 2018 15:06:00 GMT</pubDate><content:encoded>&lt;p&gt;At some point when I was developing &lt;a href=&quot;/&quot;&gt;my new homepage&lt;/a&gt; I ran into an issue with GitHub Pages. What I wanted, was to follow security best practices, and serve &lt;a href=&quot;https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers&quot;&gt;OWASP recommended Security Headers&lt;/a&gt;. Unfortunatelly, it looks like &lt;a href=&quot;https://stackoverflow.com/questions/14798589/github-pages-http-headers&quot;&gt;GitHub Pages does not support setting anything like this&lt;/a&gt;, which is kinda dissapointing. But hey! We are re developers, and we love to solve problems!&lt;/p&gt;
 &lt;p&gt;And sure I did - with a help of a small chunk of third party services.&lt;/p&gt;
 &lt;h2&gt;Prerequisites&lt;/h2&gt;
 &lt;p&gt;To make this work you would need:&lt;/p&gt;
@@ -30,7 +208,7 @@
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init
 heroku apps:create --buildpack https://github.com/ajgon/github-proxy-buildpack &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; .keep
-&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add -A &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&apos;Initial commit&apos;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -A &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&apos;Initial commit&apos;&lt;/span&gt;
 heroku git:remote --app name-of-your-heroku-app
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push heroku master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Configure GitHub page URL&lt;/h4&gt;
@@ -48,7 +226,7 @@ heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;
 &lt;p&gt;The actual CSP nonce will be held by nginx in &lt;code class=&quot;language-text&quot;&gt;$cspNonce&lt;/code&gt; variable. Which means, you need to use this variable, when you set a CSP header:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HTTP_CONTENT_SECURITY_POLICY&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;default-src &apos;self&apos;; script-src &apos;self&apos; &apos;nonce-&lt;span class=&quot;token variable&quot;&gt;$cspNonce&lt;/span&gt;&apos;;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Lastly, you need add the &quot;ID&quot; string as a nonce to all the &lt;code class=&quot;language-text&quot;&gt;&amp;lt;script /&amp;gt;&lt;/code&gt; tags in your HTML:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;nonce&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;**CSP_NONCE**&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World!!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;nonce&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;**CSP_NONCE**&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token script&quot;&gt;&lt;span class=&quot;token language-javascript&quot;&gt;&lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World!!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Sprinkle on top&lt;/h4&gt;
 &lt;p&gt;As a bonus, you can tell the buildpack, to completely hide the custom GitHub headers in response, to completely disguise your site. Nice!&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HIDE_GITHUB_HEADERS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1 --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -112,15 +290,15 @@ heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;
 &lt;p&gt;This can be achieved by using one of the page monitoring services. Personally I use UptimeRobot, but if you have or like the other one - that&apos;s fine as long as you fit this time window.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;As you can see, the whole process is somehow cumbersome, but if you manage to follow it, your GitHub page can get any HTTP header you like, along with the secure ones (&lt;code class=&quot;language-text&quot;&gt;Access-Control-Allow-Origin&lt;/code&gt; anyone? :-)). I&apos;m personally using this setup for &lt;a href=&quot;https://securityheaders.com/?q=www.rzegocki.pl&amp;#x26;followRedirects=on&quot;&gt;my homepage&lt;/a&gt; and never experienced any troubles.&lt;/p&gt;
-&lt;p&gt;And that&apos;s it - enjoy your free, SSL-supported GitHub page with custom domain and all the security headers!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to make gnupg2 to fall in love with Docker]]></title><description><![CDATA[While developing my  new replacement  of  self-hosted-mailserver ,
+&lt;p&gt;And that&apos;s it - enjoy your free, SSL-supported GitHub page with custom domain and all the security headers!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to make gnupg2 to fall in love with Docker]]></title><description><![CDATA[While developing my new replacement of self-hosted-mailserver,
 I noticed a funny problem - I couldn't make gnupg2 to work
-with docker…]]></description><link>https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Mon, 03 Apr 2017 20:19:00 GMT</pubDate><content:encoded>&lt;p&gt;While developing my &lt;a href=&quot;https://www.github.com/wombatapp&quot;&gt;new replacement&lt;/a&gt; of &lt;a href=&quot;https://github.com/ajgon/self-hosted-mailserver&quot;&gt;self-hosted-mailserver&lt;/a&gt;,
+with docker non…]]></description><link>https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/how-to-make-gnupg2-to-fall-in-love-with-docker/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Mon, 03 Apr 2017 20:19:00 GMT</pubDate><content:encoded>&lt;p&gt;While developing my &lt;a href=&quot;https://www.github.com/wombatapp&quot;&gt;new replacement&lt;/a&gt; of &lt;a href=&quot;https://github.com/ajgon/self-hosted-mailserver&quot;&gt;self-hosted-mailserver&lt;/a&gt;,
 I noticed a funny problem - I couldn&apos;t make gnupg2 to work
 with docker non-interactively. At first, the problem was with an import:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg --import &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/private.key&quot;&lt;/span&gt;
 Step 1/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; FROM alpine
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 4a415e366388
-Step 2/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN apk add --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
+Step 2/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN apk &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 724679f224aa
 Step 3/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; ADD private.key /tmp/
@@ -144,7 +322,7 @@ which forces gnupg2 to work in non-interactive mode:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg --batch --import &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/private.key&quot;&lt;/span&gt;
 Step 1/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; FROM alpine
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 4a415e366388
-Step 2/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN apk add --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
+Step 2/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN apk &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 724679f224aa
 Step 3/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; ADD private.key /tmp/
@@ -239,7 +417,7 @@ the app. But hey! We&apos;re talking cryptography here - you SHOULD use the most
 in Docker containers:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; PASSPHRASE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; duplicity \
 --gpg-options &lt;span class=&quot;token string&quot;&gt;&quot;--pinentry-mode loopback --command-fd 0&quot;&lt;/span&gt; \
---encrypt-key &lt;span class=&quot;token string&quot;&gt;&quot;KEY-ID&quot;&lt;/span&gt; /backup/source protocol://host/backup/destination&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Build Your Own Cloud Fast, Thanks to Ansible and Automation]]></title><description><![CDATA[Last year I wrote an  article about installing custom linux distro on Raspberry Pi 2 .
+--encrypt-key &lt;span class=&quot;token string&quot;&gt;&quot;KEY-ID&quot;&lt;/span&gt; /backup/source protocol://host/backup/destination&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Build Your Own Cloud Fast, Thanks to Ansible and Automation]]></title><description><![CDATA[Last year I wrote an article about installing custom linux distro on Raspberry Pi 2.
 Since then I configured it as my personal cloud, with…]]></description><link>https://www.rzegocki.pl/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 22 May 2016 09:43:06 GMT</pubDate><content:encoded>&lt;p&gt;Last year I wrote an &lt;a href=&quot;/blog/installing-custom-linux-on-raspberry-pi-2&quot;&gt;article about installing custom linux distro on Raspberry Pi 2&lt;/a&gt;.
 Since then I configured it as my personal cloud, with &lt;a href=&quot;https://bit.ly/2LGNWiS&quot;&gt;email daemon&lt;/a&gt;,
 &lt;a href=&quot;https://owncloud.org/&quot;&gt;dropbox alternative&lt;/a&gt;, &lt;a href=&quot;https://roundcube.net/&quot;&gt;webmail&lt;/a&gt;,
@@ -656,8 +834,8 @@ pip &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --user tra
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;*/30 * * * * /home/osmc/.local/bin/flexget --cron execute&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I think 30-minutes is a very safe time-window - Your FlexGet scripts shouldn&apos;t overlap.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Phew! That was the long one! I&apos;m aware, that some things are not as easy as they should be, but trust me - it&apos;s worth the effort. Kodi can be a pretty powerful tool if you give it a chance, and in return it will pay you back with a Media Center you will find hard to take your eyes off.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Installing custom Linux on Raspberry Pi 2]]></title><description><![CDATA[Few days ago,  I gave myself a present , which (at the very beginning) I was planning to power
-up with  OSMC  and use it as HTPC. However…]]></description><link>https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 19 Apr 2015 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Few days ago, &lt;a href=&quot;/files/rpi-3548ad80f20fd5b3c1ebb1c1c3eeeda4.jpeg&quot;&gt;I gave myself a present&lt;/a&gt;, which (at the very beginning) I was planning to power
+&lt;p&gt;Phew! That was the long one! I&apos;m aware, that some things are not as easy as they should be, but trust me - it&apos;s worth the effort. Kodi can be a pretty powerful tool if you give it a chance, and in return it will pay you back with a Media Center you will find hard to take your eyes off.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Installing custom Linux on Raspberry Pi 2]]></title><description><![CDATA[Few days ago, I gave myself a present, which (at the very beginning) I was planning to power
+up with OSMC and use it as HTPC. However, in a…]]></description><link>https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 19 Apr 2015 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Few days ago, &lt;a href=&quot;/files/rpi-3548ad80f20fd5b3c1ebb1c1c3eeeda4.jpeg&quot;&gt;I gave myself a present&lt;/a&gt;, which (at the very beginning) I was planning to power
 up with &lt;a href=&quot;https://osmc.tv/&quot;&gt;OSMC&lt;/a&gt; and use it as HTPC. However, in a meantime I had to switch my apartment, and put
 my worn ATOM server offline for couple of hours - necessity I didn&apos;t like very much. This, and the fact that my server
 got very noisy (I suspected power supply fan) convinced me to start looking for something new. And then I thought -
@@ -687,7 +865,7 @@ RPI expects a FAT partition with firmware files at the very beginning of the SD 
 install all the necessary packages:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as root&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update
-&lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; binfmt-support qemu qemu-user-static debootstrap kpartx lvm2 dosfstools&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; binfmt-support qemu qemu-user-static &lt;span class=&quot;token function&quot;&gt;debootstrap&lt;/span&gt; kpartx lvm2 dosfstools&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we can setup the initial partitioning.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as root&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; if&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/zero of&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img bs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1M count&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;768
@@ -725,7 +903,7 @@ desired distro (Debian). Now, it&apos;s just a typical Debian bootstrapping. Sin
 supports ARMv7, we can safely use Debian &lt;code class=&quot;language-text&quot;&gt;armhf&lt;/code&gt; architecture, and have all goodies like hardware floating points,
 out of the box.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as root&lt;/span&gt;
-debootstrap --arch armhf --foreign wheezy root http://ftp.debian.org/debian/
+&lt;span class=&quot;token function&quot;&gt;debootstrap&lt;/span&gt; --arch armhf --foreign wheezy root http://ftp.debian.org/debian/
 &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /usr/bin/qemu-arm-static root/usr/bin/ &lt;span class=&quot;token comment&quot;&gt;# needed for syscall emulation&lt;/span&gt;
 LANG&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;C &lt;span class=&quot;token function&quot;&gt;chroot&lt;/span&gt; root /debootstrap/debootstrap --second-stage
 &lt;span class=&quot;token function&quot;&gt;chroot&lt;/span&gt; root /bin/bash -c &lt;span class=&quot;token string&quot;&gt;&quot;echo \&quot;root:raspberry\&quot; | chpasswd&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# This will set root password to &apos;raspberry&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -890,575 +1068,556 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;Most developers have a list somewhere (sometimes just in their heads) of favorite applications they use every day. In X-Team, every hero has his own list as well, and I&apos;d like to share with you the most common tools on those lists.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://www.iterm2.com/&quot;&gt;iTerm&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 423px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/93a7fc85d71dc62162dc29866d6ededb/68319/iTerm.png&quot;
+    href=&quot;/static/93a7fc85d71dc62162dc29866d6ededb/2d85a/iTerm.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 423px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB/klEQVQoz71QyW7TUBR9z85znLGJMzh27DynGWxnaoNxpEAkt4EKQmGB2PIPSBWgVuoqU8NQQqlgiYj4AjaMdUlqs6hIJD4JB6pQxJ6ju3jvnnPP1T1g+v7DD+vdyfTj6ffT8WRsHpufv3w6sa0j88g0jy3Ltqxvs9nMtuzJxHIwHn+1bWs2m9q2DQb9/qDT7bXbOw+2t+8/3Lq3tbuz2213B/3BaPT61csXw+GT4fDpwfNn+/uPDw8P3oze9nqPOp3e3t4A4Mzyyu0L5TsrSkvJGTn1lqq2Cvk1OV0VMa7KlZZc3pTVK8XyZqFwDUvVSoVdM3hNSwgCC4LhcEkv+ZkA8iFIQhTyO0V6KEAhEkAfADSAYA4IKS8kETgPJZO7ajR1TRcFkQSglko10lKeja0KvMDGi5hXME8lOEcZr9e5ZpMgXWdeEAJJr0mqygRDNE07/2wKyxKOIFfMUQuiurGR0qqSptEUoiKRJUUh3e4/m7F2MVsuRWMRLsEKcp4xDMTzhJd2qOhyrnL9BpvCS76A2+0BZxsBQczLeQAmFLp891L2Zh6vY05PckYyuhpiioxf8HiD6XjGiCbrwXAhxuosV/MFcDwOVMUligRFAeDx+RvrDYTQIhdIEudDIZwYCXJ+InT6cwr+xf8+f87+isFxWRgRC+Gi+88Y+P/4CZAxcdF5WkdqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB/klEQVQoz71QyW7TUBR9z85znLGJMzh27DynGWxnaoNxpEAkt4EKQmGB2PIPSBWgVuoqU8NQQqlgiYj4AjaMdUlqs6hIJD4JB6pQxJ6ju3jvnnPP1T1g+v7DD+vdyfTj6ffT8WRsHpufv3w6sa0j88g0jy3Ltqxvs9nMtuzJxHIwHn+1bWs2m9q2DQb9/qDT7bXbOw+2t+8/3Lq3tbuz2213B/3BaPT61csXw+GT4fDpwfNn+/uPDw8P3oze9nqPOp3e3t4A4Mzyyu0L5TsrSkvJGTn1lqq2Cvk1OV0VMa7KlZZc3pTVK8XyZqFwDUvVSoVdM3hNSwgCC4LhcEkv+ZkA8iFIQhTyO0V6KEAhEkAfADSAYA4IKS8kETgPJZO7ajR1TRcFkQSglko10lKeja0KvMDGi5hXME8lOEcZr9e5ZpMgXWdeEAJJr0mqygRDNE07/2wKyxKOIFfMUQuiurGR0qqSptEUoiKRJUUh3e4/m7F2MVsuRWMRLsEKcp4xDMTzhJd2qOhyrnL9BpvCS76A2+0BZxsBQczLeQAmFLp891L2Zh6vY05PckYyuhpiioxf8HiD6XjGiCbrwXAhxuosV/MFcDwOVMUligRFAeDx+RvrDYTQIhdIEudDIZwYCXJ+InT6cwr+xf8+f87+isFxWRgRC+Gi+88Y+P/4CZAxcdF5WkdqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;iTerm&quot;
-        title=&quot;&quot;
-        src=&quot;/static/93a7fc85d71dc62162dc29866d6ededb/68319/iTerm.png&quot;
-        srcset=&quot;/static/93a7fc85d71dc62162dc29866d6ededb/89020/iTerm.png 200w,
-/static/93a7fc85d71dc62162dc29866d6ededb/c48b6/iTerm.png 400w,
-/static/93a7fc85d71dc62162dc29866d6ededb/68319/iTerm.png 423w&quot;
+        title=&quot;iTerm&quot;
+        src=&quot;/static/93a7fc85d71dc62162dc29866d6ededb/2d85a/iTerm.png&quot;
+        srcset=&quot;/static/93a7fc85d71dc62162dc29866d6ededb/9ec3c/iTerm.png 200w,
+/static/93a7fc85d71dc62162dc29866d6ededb/c7805/iTerm.png 400w,
+/static/93a7fc85d71dc62162dc29866d6ededb/2d85a/iTerm.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Like it or not, terminal is the most important developer tool. It makes doing a lot of tasks way easier and faster than GUI. As somebody said: &quot;GUI makes easy tasks trivial, and hard tasks impossible to make.&quot; So learn to love your terminal, and it&apos;ll thank you later.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://brew.sh/&quot;&gt;homebrew&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 423px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/68319/brew.png&quot;
+    href=&quot;/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/2d85a/brew.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 423px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACWklEQVQoz52Q204TURSGdzvTmT3T0s7MboeeoMx59szuiSKtcrK0QFu9MMYX8EmMpZ2YCIIYjEaNXvgKJoRAC9iAJNR44QM5CL6AX/6s9efPylrJAuODg9/n3y5+HV39vBqNRqdnp4Ph8fnF+WA4ODw8HA5PBsOTyx+Xvjk+HlzXo6Pvo7PxeOwPg/3Xe18/f3m792Zna3dn69Xu1s72y+13++8/fvjU72/2es99ed6m1+9udp95Xr/X87pdr99/4QMUXS0/qeBHxO5gfdnIPy5abcdYMXPlqWya2M4aJh3Duo9J2813pqbLDkZLC5OlkpxJJ0BkQsjPF91yXrPVwmwxq0ybjslNQJaHHAzzfIymeQjDLMNTFAdhBMJQJMzwPENTFEBILRWr9ZVGs9580HlYrzdr1VqlXG5ttNbXW+1Oe3Hx3traRmO1MTdXqddXa7WF5aXlavWugx1gGDohrqEb6VRaiAqpZJoNMWE+jCQkioIoinICoXhclmWERIQQx/GxmOAHgiCAyaRpWmSj1SYkn81kDF23bcfHsrGpG5Zlm4ZpY4e4xD+gqJphmJIkghtKWCeW6/gyXRc7rk2wiQtuwfFXYFtVpjVtBmNLVXKV2ZKmKa6Tl+UUkhLZTBbkclP2vAXTHJyEIYGBSY5JsCGRoSPBYJCDnMywcQgTkE8yjERREZYFghAQxSBNB4EgocbTZvJOSiRSVItJhbjoSlElyskQsnFBMsQ4icYUQbJRgkAuKUlgZoZGKEhTANB0SMuplP/3/yYQCIBr/XW3BoCbFviX3hpwI58/10uJ/MP6ub8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACWklEQVQoz52Q204TURSGdzvTmT3T0s7MboeeoMx59szuiSKtcrK0QFu9MMYX8EmMpZ2YCIIYjEaNXvgKJoRAC9iAJNR44QM5CL6AX/6s9efPylrJAuODg9/n3y5+HV39vBqNRqdnp4Ph8fnF+WA4ODw8HA5PBsOTyx+Xvjk+HlzXo6Pvo7PxeOwPg/3Xe18/f3m792Zna3dn69Xu1s72y+13++8/fvjU72/2es99ed6m1+9udp95Xr/X87pdr99/4QMUXS0/qeBHxO5gfdnIPy5abcdYMXPlqWya2M4aJh3Duo9J2813pqbLDkZLC5OlkpxJJ0BkQsjPF91yXrPVwmwxq0ybjslNQJaHHAzzfIymeQjDLMNTFAdhBMJQJMzwPENTFEBILRWr9ZVGs9580HlYrzdr1VqlXG5ttNbXW+1Oe3Hx3traRmO1MTdXqddXa7WF5aXlavWugx1gGDohrqEb6VRaiAqpZJoNMWE+jCQkioIoinICoXhclmWERIQQx/GxmOAHgiCAyaRpWmSj1SYkn81kDF23bcfHsrGpG5Zlm4ZpY4e4xD+gqJphmJIkghtKWCeW6/gyXRc7rk2wiQtuwfFXYFtVpjVtBmNLVXKV2ZKmKa6Tl+UUkhLZTBbkclP2vAXTHJyEIYGBSY5JsCGRoSPBYJCDnMywcQgTkE8yjERREZYFghAQxSBNB4EgocbTZvJOSiRSVItJhbjoSlElyskQsnFBMsQ4icYUQbJRgkAuKUlgZoZGKEhTANB0SMuplP/3/yYQCIBr/XW3BoCbFviX3hpwI58/10uJ/MP6ub8AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;homebrew&quot;
-        title=&quot;&quot;
-        src=&quot;/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/68319/brew.png&quot;
-        srcset=&quot;/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/89020/brew.png 200w,
-/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/c48b6/brew.png 400w,
-/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/68319/brew.png 423w&quot;
+        title=&quot;homebrew&quot;
+        src=&quot;/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/2d85a/brew.png&quot;
+        srcset=&quot;/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/9ec3c/brew.png 200w,
+/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/c7805/brew.png 400w,
+/static/fdbc03a95e74b83e0b6df4c0cdc66c6a/2d85a/brew.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A package manager for OSX. Think of it as &lt;a href=&quot;https://en.wikipedia.org/wiki/Advanced_Packaging_Tool&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;apt-get&lt;/code&gt;&lt;/a&gt; for Mac. It was written by the guys who had enough of MacPorts and decided to do it better. And they did - brew shines everywhere where MacPorts fails, starting from logical directory structure, through simple packaging system (everything is git based) to great simplicity of the tool itself.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;oh-my-zsh&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 423px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d88802d082129644d6db43f2b6d26ccb/68319/oh-my-zsh.png&quot;
+    href=&quot;/static/d88802d082129644d6db43f2b6d26ccb/2d85a/oh-my-zsh.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 423px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAABJklEQVQoz2M4u2PH5WNbjl/Yc+bcmcNHDh84dHDf/r3HThzft3/frl279u8/sG//gZMnTgIZe/fuA5F79hw+cujs2bNHjhxh6O/pmT9z9pyZMyf0Tujt7J3Q3d/f0wdkz5oxq7W1uampoaWlsbW1qbWlqampvrW1pbm5tbGxtaWlvb29g0FWSVE32Fgn1FDLR1vJXlUzQFfLR1fP00DGUFZWRl9bz0Nb11tDy0VHDyjqo6hkoqsj5mAnZWwsISMjziAuKGRkpKGsJKupp66roWxhom9gqGtra8nNxMDGyMLAyMzAwMIAAowMDExghARkeHm1BQXVBIV42Tk1hISMxMRl+AWEODgNRUWk+PkYGBmRFTNCCRBiRJUiHTDCEDqbYpNHAQYAAG4LX7Uq3y2RAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAABJklEQVQoz2M4u2PH5WNbjl/Yc+bcmcNHDh84dHDf/r3HThzft3/frl279u8/sG//gZMnTgIZe/fuA5F79hw+cujs2bNHjhxh6O/pmT9z9pyZMyf0Tujt7J3Q3d/f0wdkz5oxq7W1uampoaWlsbW1qbWlqampvrW1pbm5tbGxtaWlvb29g0FWSVE32Fgn1FDLR1vJXlUzQFfLR1fP00DGUFZWRl9bz0Nb11tDy0VHDyjqo6hkoqsj5mAnZWwsISMjziAuKGRkpKGsJKupp66roWxhom9gqGtra8nNxMDGyMLAyMzAwMIAAowMDExghARkeHm1BQXVBIV42Tk1hISMxMRl+AWEODgNRUWk+PkYGBmRFTNCCRBiRJUiHTDCEDqbYpNHAQYAAG4LX7Uq3y2RAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;oh-my-zsh&quot;
-        title=&quot;&quot;
-        src=&quot;/static/d88802d082129644d6db43f2b6d26ccb/68319/oh-my-zsh.png&quot;
-        srcset=&quot;/static/d88802d082129644d6db43f2b6d26ccb/89020/oh-my-zsh.png 200w,
-/static/d88802d082129644d6db43f2b6d26ccb/c48b6/oh-my-zsh.png 400w,
-/static/d88802d082129644d6db43f2b6d26ccb/68319/oh-my-zsh.png 423w&quot;
+        title=&quot;oh-my-zsh&quot;
+        src=&quot;/static/d88802d082129644d6db43f2b6d26ccb/2d85a/oh-my-zsh.png&quot;
+        srcset=&quot;/static/d88802d082129644d6db43f2b6d26ccb/9ec3c/oh-my-zsh.png 200w,
+/static/d88802d082129644d6db43f2b6d26ccb/c7805/oh-my-zsh.png 400w,
+/static/d88802d082129644d6db43f2b6d26ccb/2d85a/oh-my-zsh.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A very nice addition to zsh shell - it comes bundled with a ton of helpful functions, helpers, plugins and themes. Want to see your current git branch in your shell prompt? You got it. RVM version? No problem. Weather? You bet. And still, it has ZShell under it, so it comes along with a nice path completion, history browsing and ton of other stuff.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://beyondgrep.com/&quot;&gt;ack&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 423px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cc25a894642e61ca62f7d27f2c680540/68319/ack.png&quot;
+    href=&quot;/static/cc25a894642e61ca62f7d27f2c680540/2d85a/ack.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 423px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACsElEQVQoz02R20+ScRjHf4f3CLzQy+kV3pezwMtBRRTPJjBMSxPEUowKUmtrq3VX3ZQpkG3mITdbLS+86LpaW5tzCmpOc5PWRX9Q6Frr2bPPvhfPvvtsD6hubf0++nb8a+f05+nh4eH+wX65snt0fFSulLe3tyuVvXJl7+THSS3s7pbPuLPz/fCgWq3WjsH62puPm5vra2srS6vLi8urSytLi6/fvX2/8WGjWJwvFOaKxblSqVAqzs/Pz5ZKxUKhNDdXKhYXFhZeAYfTGU63BFON8qDP0+sJjjT6BgO+mOyOOFy25qbQlVB4JBBMNIaGm5qHna5IY4MQi0qtrSZJEoCSV/t7goK7ztJg80Q8ng7Z2mDXO60WWRbrAy45XF/fKooeACAA6Jz/TfCSxdVt1nh1Or+el3mxx+7utaTv6ycfarOPDQNJMt4H4jHU1QmbQ/gCb+R5Sa+3KBRahGiQSFi9br7WguBZK4aUUatMDaHxNMhmiEcPxNs3uakc8/Uz/PKJelmSZp/ZXzx3Pn0i5XMcmL6jjMdtkqVe9nltditB4H9SEGKdzkzTHMuykRZ4sRfGoqCnC3R3ga5O0BaBIJ/T9ieMKpXWYNDrdFqSJDFGNRAExJjSaESVygCBOnqRuDuD7s2gW1k8lUPTeTgxDkBmgh4d1docXn/AFwgGWAWj5FTtne2iZBNNYHiIujxI9CfQaBKPpnAqicfSINqnsFr1TocOhMMup6XuXPKvLULYLJg0nMHrQdlJcCMDMtfBtTGQvFpbmE7BtohKMDpsNjswCCZ5wG/qNRtajbxfa+yo04UNnFvNmmkEBZJuIJkQQfppRZhmmxEWlUogiUgQAK49jtNoxvJpzqQmeYpUkRRPUxqK5CiCxRjTLKthFTxNqxhGXcskyTIM4DjEMAgj+AdAOpyzjf6F3QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACsElEQVQoz02R20+ScRjHf4f3CLzQy+kV3pezwMtBRRTPJjBMSxPEUowKUmtrq3VX3ZQpkG3mITdbLS+86LpaW5tzCmpOc5PWRX9Q6Frr2bPPvhfPvvtsD6hubf0++nb8a+f05+nh4eH+wX65snt0fFSulLe3tyuVvXJl7+THSS3s7pbPuLPz/fCgWq3WjsH62puPm5vra2srS6vLi8urSytLi6/fvX2/8WGjWJwvFOaKxblSqVAqzs/Pz5ZKxUKhNDdXKhYXFhZeAYfTGU63BFON8qDP0+sJjjT6BgO+mOyOOFy25qbQlVB4JBBMNIaGm5qHna5IY4MQi0qtrSZJEoCSV/t7goK7ztJg80Q8ng7Z2mDXO60WWRbrAy45XF/fKooeACAA6Jz/TfCSxdVt1nh1Or+el3mxx+7utaTv6ycfarOPDQNJMt4H4jHU1QmbQ/gCb+R5Sa+3KBRahGiQSFi9br7WguBZK4aUUatMDaHxNMhmiEcPxNs3uakc8/Uz/PKJelmSZp/ZXzx3Pn0i5XMcmL6jjMdtkqVe9nltditB4H9SEGKdzkzTHMuykRZ4sRfGoqCnC3R3ga5O0BaBIJ/T9ieMKpXWYNDrdFqSJDFGNRAExJjSaESVygCBOnqRuDuD7s2gW1k8lUPTeTgxDkBmgh4d1docXn/AFwgGWAWj5FTtne2iZBNNYHiIujxI9CfQaBKPpnAqicfSINqnsFr1TocOhMMup6XuXPKvLULYLJg0nMHrQdlJcCMDMtfBtTGQvFpbmE7BtohKMDpsNjswCCZ5wG/qNRtajbxfa+yo04UNnFvNmmkEBZJuIJkQQfppRZhmmxEWlUogiUgQAK49jtNoxvJpzqQmeYpUkRRPUxqK5CiCxRjTLKthFTxNqxhGXcskyTIM4DjEMAgj+AdAOpyzjf6F3QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;ack&quot;
-        title=&quot;&quot;
-        src=&quot;/static/cc25a894642e61ca62f7d27f2c680540/68319/ack.png&quot;
-        srcset=&quot;/static/cc25a894642e61ca62f7d27f2c680540/89020/ack.png 200w,
-/static/cc25a894642e61ca62f7d27f2c680540/c48b6/ack.png 400w,
-/static/cc25a894642e61ca62f7d27f2c680540/68319/ack.png 423w&quot;
+        title=&quot;ack&quot;
+        src=&quot;/static/cc25a894642e61ca62f7d27f2c680540/2d85a/ack.png&quot;
+        srcset=&quot;/static/cc25a894642e61ca62f7d27f2c680540/9ec3c/ack.png 200w,
+/static/cc25a894642e61ca62f7d27f2c680540/c7805/ack.png 400w,
+/static/cc25a894642e61ca62f7d27f2c680540/2d85a/ack.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This is how grep would look like if it was created 20 years later; a great, blazing fast tool for finding contents of the file. And it is written with developers in mind, which means (for example), you can narrow results of the search only to the source files of the language you prefer. Or ignore VCS files. Or use regular expressions out of the box. This is a find-in-file Swiss Army Knife.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://rvm.io/&quot;&gt;rvm&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 423px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3447c4b362bfaab6ca569e5add50462c/68319/rvm.png&quot;
+    href=&quot;/static/3447c4b362bfaab6ca569e5add50462c/2d85a/rvm.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 423px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB1klEQVQoz72JXU/TYBTHz9Pnre26ru26rSt7IVsZbKPrJGaCJibGCyFcEP1CYtfFN6ZAYkymN3rhNzAhC1tpHBNEYkz8QHZoCBdeecEvJ//zO/8D5wcHv6afT36Ozn98n0y+RNHROBxNv07H4Xg4HIZhfB6dnpyGYXh4OIqiKM7Yz86+HR9P4M3e/qcPH/d39/rP+zvPdl6/3H31oj94O3g3eB8EftffDoInvZ4fBNu+/zj2OLvduOkFwVMoVcrLW17jkbu4seTcdepbzdr60sK9WrUzP19uL3vrzdZmvXG/deNhs/Wg7m647c2K06k6xbVVC/J5sewkMeOiLGJCJFlOJBVKGfxFACDxQiBdCJ7pJVperbaKtmOVvTlrwayslNxbzdpKRbQxMwWWQVRDREU0jVh2llRHzIp7gagC8EVEbBAUEAzABlAbgIOQAl5CNAskNysFFciFkzTgNPAC0AxCGoJkQTY7pnnTSrcyakUz2znDNVNVTcqJHGcNzdV1L6XWzHRHUxtayjV0V2RzskSLeQQFW/Rul5gucYOTJGU6ZxojCYK5gDGjLMFEjTJFlEwu6YwnmagSKmEiKAoCOZG4s7pGCIX/B/1rrjz+cPWHLmu4fn4Dm8JpgX/yeSkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB1klEQVQoz72JXU/TYBTHz9Pnre26ru26rSt7IVsZbKPrJGaCJibGCyFcEP1CYtfFN6ZAYkymN3rhNzAhC1tpHBNEYkz8QHZoCBdeecEvJ//zO/8D5wcHv6afT36Ozn98n0y+RNHROBxNv07H4Xg4HIZhfB6dnpyGYXh4OIqiKM7Yz86+HR9P4M3e/qcPH/d39/rP+zvPdl6/3H31oj94O3g3eB8EftffDoInvZ4fBNu+/zj2OLvduOkFwVMoVcrLW17jkbu4seTcdepbzdr60sK9WrUzP19uL3vrzdZmvXG/deNhs/Wg7m647c2K06k6xbVVC/J5sewkMeOiLGJCJFlOJBVKGfxFACDxQiBdCJ7pJVperbaKtmOVvTlrwayslNxbzdpKRbQxMwWWQVRDREU0jVh2llRHzIp7gagC8EVEbBAUEAzABlAbgIOQAl5CNAskNysFFciFkzTgNPAC0AxCGoJkQTY7pnnTSrcyakUz2znDNVNVTcqJHGcNzdV1L6XWzHRHUxtayjV0V2RzskSLeQQFW/Rul5gucYOTJGU6ZxojCYK5gDGjLMFEjTJFlEwu6YwnmagSKmEiKAoCOZG4s7pGCIX/B/1rrjz+cPWHLmu4fn4Dm8JpgX/yeSkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;rvm&quot;
-        title=&quot;&quot;
-        src=&quot;/static/3447c4b362bfaab6ca569e5add50462c/68319/rvm.png&quot;
-        srcset=&quot;/static/3447c4b362bfaab6ca569e5add50462c/89020/rvm.png 200w,
-/static/3447c4b362bfaab6ca569e5add50462c/c48b6/rvm.png 400w,
-/static/3447c4b362bfaab6ca569e5add50462c/68319/rvm.png 423w&quot;
+        title=&quot;rvm&quot;
+        src=&quot;/static/3447c4b362bfaab6ca569e5add50462c/2d85a/rvm.png&quot;
+        srcset=&quot;/static/3447c4b362bfaab6ca569e5add50462c/9ec3c/rvm.png 200w,
+/static/3447c4b362bfaab6ca569e5add50462c/c7805/rvm.png 400w,
+/static/3447c4b362bfaab6ca569e5add50462c/2d85a/rvm.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A tool no Ruby developer can live without. RVM is a command-line gadget which allows you to easily install, manage, and work with multiple Ruby environments from interpreters to sets of gems. Recently, Ruby experienced a thing called &quot;fragmentation hell.&quot; There are two major versions of it, two major versions of its biggest framework (Hey! Rails! I&apos;m talking about you!), and a lot of concurrent gems. RVM helps you to catch up with all of that, and manage Ruby/Rails projects more efficiently.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://gruntjs.com/&quot;&gt;Grunt&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 423px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9dfd7b48484d2549509897a2de388e8c/68319/grunt.png&quot;
+    href=&quot;/static/9dfd7b48484d2549509897a2de388e8c/2d85a/grunt.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 423px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB20lEQVQoz71QXW/SYBh9n7dfdKPrRoF2QIE52mJZ6VwhTkKGcWq2eKHGK/0vJpYW1LmpkHljphf+B5OFpB+ZTlyyLTHxB9liVPTKq52c5Dl58+Y55zzo7PDw+/jj+Jt3en56fPz56NORH3hfxmM/8EejURCEfhCefD2JhOcFYRj6vhcG/vlZ/Bm9GQ4/vHs/fDUY7L3efb670995+WJvf7B/8PbAdbuuY/fcbq/Xdd0ntv04enGcnm27jvO033+GipeW6vdXVx6Y+p2a0lH1uzVtW49Eea1UyBv6yu2qvlXVbxnmvbXmo2WlbRiZTiffbuVUVUSphbTVtsrqUlEp1wxdzGeJBEkyJJWgGZqlKJZleQKTCGEABiASMQAmQzGWG5bVsJqr5pXWtZZh1NevrhdluVKpaJomy4XLVY3jOPQHMEUGGDoh8ALHcvwsn2STwnwKY4z+B0wOYwERGUSXgRQRnQdSQpgGwBgwgTEZK0wARMRxXkAEgSIZJ5/LzpkPTXm7JN2Q0g1hcTMnbUipempWnkkwuYxkZcSmkDbFxVahdJPj1WwWaVVSqRAL84Bm2GTn+gZFUQh+V5pGZEXGdpEZpqIIP6/1d61J/0muKf4a/ywFmNoMAOji8QO2zWyKE7x2TAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.57446808510638%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB20lEQVQoz71QXW/SYBh9n7dfdKPrRoF2QIE52mJZ6VwhTkKGcWq2eKHGK/0vJpYW1LmpkHljphf+B5OFpB+ZTlyyLTHxB9liVPTKq52c5Dl58+Y55zzo7PDw+/jj+Jt3en56fPz56NORH3hfxmM/8EejURCEfhCefD2JhOcFYRj6vhcG/vlZ/Bm9GQ4/vHs/fDUY7L3efb670995+WJvf7B/8PbAdbuuY/fcbq/Xdd0ntv04enGcnm27jvO033+GipeW6vdXVx6Y+p2a0lH1uzVtW49Eea1UyBv6yu2qvlXVbxnmvbXmo2WlbRiZTiffbuVUVUSphbTVtsrqUlEp1wxdzGeJBEkyJJWgGZqlKJZleQKTCGEABiASMQAmQzGWG5bVsJqr5pXWtZZh1NevrhdluVKpaJomy4XLVY3jOPQHMEUGGDoh8ALHcvwsn2STwnwKY4z+B0wOYwERGUSXgRQRnQdSQpgGwBgwgTEZK0wARMRxXkAEgSIZJ5/LzpkPTXm7JN2Q0g1hcTMnbUipempWnkkwuYxkZcSmkDbFxVahdJPj1WwWaVVSqRAL84Bm2GTn+gZFUQh+V5pGZEXGdpEZpqIIP6/1d61J/0muKf4a/ywFmNoMAOji8QO2zWyKE7x2TAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Grunt&quot;
-        title=&quot;&quot;
-        src=&quot;/static/9dfd7b48484d2549509897a2de388e8c/68319/grunt.png&quot;
-        srcset=&quot;/static/9dfd7b48484d2549509897a2de388e8c/89020/grunt.png 200w,
-/static/9dfd7b48484d2549509897a2de388e8c/c48b6/grunt.png 400w,
-/static/9dfd7b48484d2549509897a2de388e8c/68319/grunt.png 423w&quot;
+        title=&quot;Grunt&quot;
+        src=&quot;/static/9dfd7b48484d2549509897a2de388e8c/2d85a/grunt.png&quot;
+        srcset=&quot;/static/9dfd7b48484d2549509897a2de388e8c/9ec3c/grunt.png 200w,
+/static/9dfd7b48484d2549509897a2de388e8c/c7805/grunt.png 400w,
+/static/9dfd7b48484d2549509897a2de388e8c/2d85a/grunt.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This is a tool that our front-end guys love. It&apos;s a JavaScript task runner. It takes all the repeatable tasks off your shoulders. Thanks to its huge plugins database, it can minify CSS/JS files, compress images, compile LESS/SASS scripts, lint your source and even set a live-preview server for you. All in an easy-to-use JavaScript environment.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://www.alfredapp.com/&quot;&gt;Alfred 2&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/c23a1508771778aaf9f6f0e4491c35f3/5cc07/alfred.png&quot;
+    href=&quot;/static/c23a1508771778aaf9f6f0e4491c35f3/a5ed1/alfred.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 36.774193548387096%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsSAAALEgHS3X78AAABNElEQVQY03WP3U7CQBBG98G81+fxEbw1mhijwUhpQoJCum3pllikUAprihhD7Q/dLS0qUJQYTPsILjV4Yzg5+fLNXM2Aw4uT6n2DQ5BTII8gr8ASgkUkllSJb0hFBFnJu8ypIhvLmlLW6gVYOSoXAC/WkCDKojShYUTDCaFbSS6dBGQ7UuKPv1ars+PT/b0D1GoCXhbskW10uy+O47ouzSEMlv8cB8Hr+5vebMGKrBg6uLqtDDHW27qqqp2OMcpxd+M4Dg3DaTTVsAl4oRbT8GEDxv2+63mLRbJcLpMkWexwNp9Hfqz1euC6qgzNTkj8KIrZwdOYEc1ns+/1OvslTbM025j9LdKP+NOwHsE5VxCMy3bPHAyfTIyxZXVZDizb83xCPEJ89iqlLL2tLglGz/6NevcD7VxLpfMj5poAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 36.774193548387096%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsSAAALEgHS3X78AAABNElEQVQY03WP3U7CQBBG98G81+fxEbw1mhijwUhpQoJCum3pllikUAprihhD7Q/dLS0qUJQYTPsILjV4Yzg5+fLNXM2Aw4uT6n2DQ5BTII8gr8ASgkUkllSJb0hFBFnJu8ypIhvLmlLW6gVYOSoXAC/WkCDKojShYUTDCaFbSS6dBGQ7UuKPv1ars+PT/b0D1GoCXhbskW10uy+O47ouzSEMlv8cB8Hr+5vebMGKrBg6uLqtDDHW27qqqp2OMcpxd+M4Dg3DaTTVsAl4oRbT8GEDxv2+63mLRbJcLpMkWexwNp9Hfqz1euC6qgzNTkj8KIrZwdOYEc1ns+/1OvslTbM025j9LdKP+NOwHsE5VxCMy3bPHAyfTIyxZXVZDizb83xCPEJ89iqlLL2tLglGz/6NevcD7VxLpfMj5poAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Alfred 2&quot;
-        title=&quot;&quot;
-        src=&quot;/static/c23a1508771778aaf9f6f0e4491c35f3/5cc07/alfred.png&quot;
-        srcset=&quot;/static/c23a1508771778aaf9f6f0e4491c35f3/51b23/alfred.png 200w,
-/static/c23a1508771778aaf9f6f0e4491c35f3/209de/alfred.png 400w,
-/static/c23a1508771778aaf9f6f0e4491c35f3/5cc07/alfred.png 620w&quot;
+        title=&quot;Alfred 2&quot;
+        src=&quot;/static/c23a1508771778aaf9f6f0e4491c35f3/a5ed1/alfred.png&quot;
+        srcset=&quot;/static/c23a1508771778aaf9f6f0e4491c35f3/9ec3c/alfred.png 200w,
+/static/c23a1508771778aaf9f6f0e4491c35f3/c7805/alfred.png 400w,
+/static/c23a1508771778aaf9f6f0e4491c35f3/a5ed1/alfred.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Alfred is a task launcher, designed to find files and operate on them quickly and easily. The application itself doesn&apos;t differ much from Spotlight, and careful reader may ask, what is the advantage of it.&lt;/p&gt;
 &lt;p&gt;That&apos;s where &lt;a href=&quot;https://www.alfredapp.com/powerpack/&quot;&gt;Powerpack&lt;/a&gt; kicks in. It enables things called &quot;workflows.&quot; And workflows are huge advantage - think of them as Alfred on steroids. They are community written extensions which allows the base app to do almost everything. And there are &lt;a href=&quot;https://bit.ly/2NB2AdD&quot;&gt;hundreds&lt;/a&gt; of them. Below is the short list of the ones we are using in X-Team.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/willfarrell/alfred-caniuse-workflow&quot;&gt;Can I Use...&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a17430aba30e9403700732a4a9f70932/5cc07/alfred-caniuse.png&quot;
+    href=&quot;/static/a17430aba30e9403700732a4a9f70932/a5ed1/alfred-caniuse.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABSElEQVQY0y2NbWuCYBSG/WH7vv2e/YTBPg0aIxgxVjZbZKFWOl/SfJ5HrdRsme9loz45YlHtJ+wRdjhcXDcczk3cPlfokdgQWEoevst8Sxy0ZL4hcHWBIz+4V57B3ii9XxdYHPEZJQ9qTPuOqhEk2xP7wx5Nsz2G7fYUUWo1Kc9x99uvPFtv15stZinlZlHyczg8PVSur254VSFIjl44lg4ARBAAYJqmJMm240RxFARBGIb/DMM4SdIs2+33mqIy7f4QaESTftnN3kZqOboOVFXTtDEGMpA1mZiWCSA0LQsTf1wFwdL3kzTJN7loQoLhyItPLT99b+4u3Pmn57kze+kt4ijMcFWcRKtVGsVpHH0Xxe/5fDmdTsdjkReG7RD31UdL70oAyBDICIwMpCAoIyiVEQtSIFQMNJ5OdHsGHBtzbE81NK12On9B4wyYSCd4tAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABSElEQVQY0y2NbWuCYBSG/WH7vv2e/YTBPg0aIxgxVjZbZKFWOl/SfJ5HrdRsme9loz45YlHtJ+wRdjhcXDcczk3cPlfokdgQWEoevst8Sxy0ZL4hcHWBIz+4V57B3ii9XxdYHPEZJQ9qTPuOqhEk2xP7wx5Nsz2G7fYUUWo1Kc9x99uvPFtv15stZinlZlHyczg8PVSur254VSFIjl44lg4ARBAAYJqmJMm240RxFARBGIb/DMM4SdIs2+33mqIy7f4QaESTftnN3kZqOboOVFXTtDEGMpA1mZiWCSA0LQsTf1wFwdL3kzTJN7loQoLhyItPLT99b+4u3Pmn57kze+kt4ijMcFWcRKtVGsVpHH0Xxe/5fDmdTsdjkReG7RD31UdL70oAyBDICIwMpCAoIyiVEQtSIFQMNJ5OdHsGHBtzbE81NK12On9B4wyYSCd4tAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Can I Use...&quot;
-        title=&quot;&quot;
-        src=&quot;/static/a17430aba30e9403700732a4a9f70932/5cc07/alfred-caniuse.png&quot;
-        srcset=&quot;/static/a17430aba30e9403700732a4a9f70932/51b23/alfred-caniuse.png 200w,
-/static/a17430aba30e9403700732a4a9f70932/209de/alfred-caniuse.png 400w,
-/static/a17430aba30e9403700732a4a9f70932/5cc07/alfred-caniuse.png 620w&quot;
+        title=&quot;Can I Use...&quot;
+        src=&quot;/static/a17430aba30e9403700732a4a9f70932/a5ed1/alfred-caniuse.png&quot;
+        srcset=&quot;/static/a17430aba30e9403700732a4a9f70932/9ec3c/alfred-caniuse.png 200w,
+/static/a17430aba30e9403700732a4a9f70932/c7805/alfred-caniuse.png 400w,
+/static/a17430aba30e9403700732a4a9f70932/a5ed1/alfred-caniuse.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Full &lt;a href=&quot;https://caniuse.com/&quot;&gt;caniuse.com&lt;/a&gt; database under your fingertips. No extra browsing needed.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/TylerEich/Alfred-Extras/tree/master/Source/Colors&quot;&gt;Colors&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/a7ab1061c4f02e02212da911f6beea8b/5cc07/alfred-colors.png&quot;
+    href=&quot;/static/a7ab1061c4f02e02212da911f6beea8b/a5ed1/alfred-colors.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 43.064516129032256%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsSAAALEgHS3X78AAABeElEQVQoz32Py07CQBSG5wnd6jO4MfoCPoEbE4QCicVbLG16k15OZSEQBQO9JLaUMjS0EQqNGA0X1w4mslL+fDn5JnP+TAaVKkKGvSrKHK2IBZ6hhDU5sVyUOEpcS15iKZElk3hOuKVVsSizBYk5yp4ggWFymWzpnL6+uORZbjgI+34P/0Pgem/T9HD/YG9nV6gCMp+bumHcV6uaptXr9a7vu57rdb0/IVc4xHSBvsjfXCkSyqsmAGiqZtuO3/O7XbLluVuDMY6jiAEFnUqtRqNRqz08Pj5ZltVutx3HibYkjnAf+3ZQBhVlVatjdizLDIKAvDkIw2SczLbkfZam6SseswYgSjObzVbHXJdt247iOJlMkiSZ/mbyw0Ym6XQ0GoduVAYdncGLY9vkl/1eb9DH8XAY+D5pf61Wi/l8uVisftjIarmYf3zOolnloYYoRizLMq9UeEURNU02DBkMSQcRdMkAchR0AkhEAHgdeABO1bk7/fg08w04F6vXqtprawAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.064516129032256%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsSAAALEgHS3X78AAABeElEQVQoz32Py07CQBSG5wnd6jO4MfoCPoEbE4QCicVbLG16k15OZSEQBQO9JLaUMjS0EQqNGA0X1w4mslL+fDn5JnP+TAaVKkKGvSrKHK2IBZ6hhDU5sVyUOEpcS15iKZElk3hOuKVVsSizBYk5yp4ggWFymWzpnL6+uORZbjgI+34P/0Pgem/T9HD/YG9nV6gCMp+bumHcV6uaptXr9a7vu57rdb0/IVc4xHSBvsjfXCkSyqsmAGiqZtuO3/O7XbLluVuDMY6jiAEFnUqtRqNRqz08Pj5ZltVutx3HibYkjnAf+3ZQBhVlVatjdizLDIKAvDkIw2SczLbkfZam6SseswYgSjObzVbHXJdt247iOJlMkiSZ/mbyw0Ym6XQ0GoduVAYdncGLY9vkl/1eb9DH8XAY+D5pf61Wi/l8uVisftjIarmYf3zOolnloYYoRizLMq9UeEURNU02DBkMSQcRdMkAchR0AkhEAHgdeABO1bk7/fg08w04F6vXqtprawAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Colors&quot;
-        title=&quot;&quot;
-        src=&quot;/static/a7ab1061c4f02e02212da911f6beea8b/5cc07/alfred-colors.png&quot;
-        srcset=&quot;/static/a7ab1061c4f02e02212da911f6beea8b/51b23/alfred-colors.png 200w,
-/static/a7ab1061c4f02e02212da911f6beea8b/209de/alfred-colors.png 400w,
-/static/a7ab1061c4f02e02212da911f6beea8b/5cc07/alfred-colors.png 620w&quot;
+        title=&quot;Colors&quot;
+        src=&quot;/static/a7ab1061c4f02e02212da911f6beea8b/a5ed1/alfred-colors.png&quot;
+        srcset=&quot;/static/a7ab1061c4f02e02212da911f6beea8b/9ec3c/alfred-colors.png 200w,
+/static/a7ab1061c4f02e02212da911f6beea8b/c7805/alfred-colors.png 400w,
+/static/a7ab1061c4f02e02212da911f6beea8b/a5ed1/alfred-colors.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Great tool for front-end developers. It converts colors between RGB, HSL and hexadecimal format. But the true power is the integration with color picker. By simply typing &lt;code class=&quot;language-text&quot;&gt;#&lt;/code&gt; it allows you to choose any pixel from your desktop, and then Colors will automatically return hex/rgb/hsl values for it, ready to be copied or pasted.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/willfarrell/alfred-dash-workflow&quot;&gt;Dash&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/4fa8394f5a547c5d881700fd7c118ab6/5cc07/alfred-dash.png&quot;
+    href=&quot;/static/4fa8394f5a547c5d881700fd7c118ab6/a5ed1/alfred-dash.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABPElEQVQY003My07CQBiG4V6Ye70eL8CFWxOMITEsECiIQKEtpWV6mOm0YOsMBTlJD1SjbkhAAnoJDi6IyZM337/5ufPbTN3UiqpYUMUKUPKywMoDpaBKRU3Kd1ps/G35ThXZWdaVst7OtaqX5RyXbzwoLalSKgFVa9YboiDc87wiyW/L9DVZMmkUp3GSxofGi/Brvb65ypyenHUsgyuIQuD5yEaUUoSQ5/sQQozx/GU+mU4X4SJOkqMwit4/P6BhtaqygiGX5Stm04QIImSblgUAYIu1C4DW1R49bzqbsS9H48kkjMJ0mXb7Dleqi47UG1AyHj0HlA4Hg4BQ4vsBJaNguN1sfvb7/W73/c9uu12lqx6h3MV1ttk2AcaG4+iuoztYdzHANmP0XYcSxqWU1SYEH/qEiA9dP1ur/QLa3g0UwtRaAgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABPElEQVQY003My07CQBiG4V6Ye70eL8CFWxOMITEsECiIQKEtpWV6mOm0YOsMBTlJD1SjbkhAAnoJDi6IyZM337/5ufPbTN3UiqpYUMUKUPKywMoDpaBKRU3Kd1ps/G35ThXZWdaVst7OtaqX5RyXbzwoLalSKgFVa9YboiDc87wiyW/L9DVZMmkUp3GSxofGi/Brvb65ypyenHUsgyuIQuD5yEaUUoSQ5/sQQozx/GU+mU4X4SJOkqMwit4/P6BhtaqygiGX5Stm04QIImSblgUAYIu1C4DW1R49bzqbsS9H48kkjMJ0mXb7Dleqi47UG1AyHj0HlA4Hg4BQ4vsBJaNguN1sfvb7/W73/c9uu12lqx6h3MV1ttk2AcaG4+iuoztYdzHANmP0XYcSxqWU1SYEH/qEiA9dP1ur/QLa3g0UwtRaAgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Dash&quot;
-        title=&quot;&quot;
-        src=&quot;/static/4fa8394f5a547c5d881700fd7c118ab6/5cc07/alfred-dash.png&quot;
-        srcset=&quot;/static/4fa8394f5a547c5d881700fd7c118ab6/51b23/alfred-dash.png 200w,
-/static/4fa8394f5a547c5d881700fd7c118ab6/209de/alfred-dash.png 400w,
-/static/4fa8394f5a547c5d881700fd7c118ab6/5cc07/alfred-dash.png 620w&quot;
+        title=&quot;Dash&quot;
+        src=&quot;/static/4fa8394f5a547c5d881700fd7c118ab6/a5ed1/alfred-dash.png&quot;
+        srcset=&quot;/static/4fa8394f5a547c5d881700fd7c118ab6/9ec3c/alfred-dash.png 200w,
+/static/4fa8394f5a547c5d881700fd7c118ab6/c7805/alfred-dash.png 400w,
+/static/4fa8394f5a547c5d881700fd7c118ab6/a5ed1/alfred-dash.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Allows you to browse &lt;a href=&quot;https://kapeli.com/dash&quot;&gt;Dash&lt;/a&gt; docsets database way faster. More about Dash, below.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/ajgon/alfred2-datauri&quot;&gt;Data URI Scheme&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8feb87e794a55a0fb74e1220e8e821b7/5cc07/alfred-datauri.png&quot;
+    href=&quot;/static/8feb87e794a55a0fb74e1220e8e821b7/a5ed1/alfred-datauri.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAABHElEQVQY0xXH207CMADG8T2dl/oocmN8BuOFNwQQOTTtDu26DXeAthubG3SDQWKIV8QQNg4mPoYz+fLL/1MMHox8GzIX+M7IpYh5kHlg5mrCR9wbT9+bi4QP+b9gNjGiad/GvYnR6jwrE0I1iBxi8hlzqEUxsQmxMIFjYBrEMSkEgGLK/akKQDKPL3V9d3P7cP/I8kwpVyvGmQjDYrVeSilCEcVxnCSWZXlBUBRFGEVNpFnGhUjSdP+977cHtuXpIlA+N5tCykLm2UeSL5cyW6zzQi4W23KzLcuv3e56Ol/q0+lYnRur6ng4/F5/6mPlpnNlqGtdFfZ01NhRYRuBnq52NfRG8NDEI4sMaDM8pLiJvmk0vhp6R1dbL09/udfRdz3OyIAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAABHElEQVQY0xXH207CMADG8T2dl/oocmN8BuOFNwQQOTTtDu26DXeAthubG3SDQWKIV8QQNg4mPoYz+fLL/1MMHox8GzIX+M7IpYh5kHlg5mrCR9wbT9+bi4QP+b9gNjGiad/GvYnR6jwrE0I1iBxi8hlzqEUxsQmxMIFjYBrEMSkEgGLK/akKQDKPL3V9d3P7cP/I8kwpVyvGmQjDYrVeSilCEcVxnCSWZXlBUBRFGEVNpFnGhUjSdP+977cHtuXpIlA+N5tCykLm2UeSL5cyW6zzQi4W23KzLcuv3e56Ol/q0+lYnRur6ng4/F5/6mPlpnNlqGtdFfZ01NhRYRuBnq52NfRG8NDEI4sMaDM8pLiJvmk0vhp6R1dbL09/udfRdz3OyIAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Data URI Scheme&quot;
-        title=&quot;&quot;
-        src=&quot;/static/8feb87e794a55a0fb74e1220e8e821b7/5cc07/alfred-datauri.png&quot;
-        srcset=&quot;/static/8feb87e794a55a0fb74e1220e8e821b7/51b23/alfred-datauri.png 200w,
-/static/8feb87e794a55a0fb74e1220e8e821b7/209de/alfred-datauri.png 400w,
-/static/8feb87e794a55a0fb74e1220e8e821b7/5cc07/alfred-datauri.png 620w&quot;
+        title=&quot;Data URI Scheme&quot;
+        src=&quot;/static/8feb87e794a55a0fb74e1220e8e821b7/a5ed1/alfred-datauri.png&quot;
+        srcset=&quot;/static/8feb87e794a55a0fb74e1220e8e821b7/9ec3c/alfred-datauri.png 200w,
+/static/8feb87e794a55a0fb74e1220e8e821b7/c7805/alfred-datauri.png 400w,
+/static/8feb87e794a55a0fb74e1220e8e821b7/a5ed1/alfred-datauri.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Another front-end dev tool. It can convert any given file to its representation in base64 data uri scheme. And for image and vector files it also does compression on the fly.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/cdraeger/alfred2-flushdns-workflow&quot;&gt;Flush DNS cache&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/5cc07/alfred-flush.png&quot;
+    href=&quot;/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/a5ed1/alfred-flush.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAAA9klEQVQY023OvU7DMBSG4dwdI9wJXRDXgBiY+kvsAGmTtLVT1Y6ooEGAVKIi2k7xcWrHCQNIXAamgMSA9OjoHb7hOMGMYU4RIx6j3pRgRhCjiMcXycTlBHGKeYyT2EtitJuF6XWXRp1J2GidOnxMsYvv07tK60KAgkJJSyqQP/EN5BZkuVW11gd7+0eHx7OnR+dl+Xw7n683G1kUlgDIhcjhf1BIAaLXRJSw4CZxKmXWq9Uyy7LFwoI8r0tjtP6j/KXtd7UxH2/vr1U9fUgdn5J2/8rqDPymf9ke+O4oQtZ4aHl06O7CJZGN89HX7YZhK+g3zk4+ARid3a8Aoju8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAAA9klEQVQY023OvU7DMBSG4dwdI9wJXRDXgBiY+kvsAGmTtLVT1Y6ooEGAVKIi2k7xcWrHCQNIXAamgMSA9OjoHb7hOMGMYU4RIx6j3pRgRhCjiMcXycTlBHGKeYyT2EtitJuF6XWXRp1J2GidOnxMsYvv07tK60KAgkJJSyqQP/EN5BZkuVW11gd7+0eHx7OnR+dl+Xw7n683G1kUlgDIhcjhf1BIAaLXRJSw4CZxKmXWq9Uyy7LFwoI8r0tjtP6j/KXtd7UxH2/vr1U9fUgdn5J2/8rqDPymf9ke+O4oQtZ4aHl06O7CJZGN89HX7YZhK+g3zk4+ARid3a8Aoju8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Flush DNS cache&quot;
-        title=&quot;&quot;
-        src=&quot;/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/5cc07/alfred-flush.png&quot;
-        srcset=&quot;/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/51b23/alfred-flush.png 200w,
-/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/209de/alfred-flush.png 400w,
-/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/5cc07/alfred-flush.png 620w&quot;
+        title=&quot;Flush DNS cache&quot;
+        src=&quot;/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/a5ed1/alfred-flush.png&quot;
+        srcset=&quot;/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/9ec3c/alfred-flush.png 200w,
+/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/c7805/alfred-flush.png 400w,
+/static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/a5ed1/alfred-flush.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Mac OS X can be very stubborn sometimes when it comes to adding new entries to &lt;code class=&quot;language-text&quot;&gt;/etc/hosts&lt;/code&gt;. This little extension is an excellent solution.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/ajgon/alfred2-html-entity-lookup&quot;&gt;HTML Entity Lookup&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/6bef6b80f0c4fea0fdb4f921b8e35915/5cc07/alfred-entity.png&quot;
+    href=&quot;/static/6bef6b80f0c4fea0fdb4f921b8e35915/a5ed1/alfred-entity.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABOklEQVQY002OXUvCUBzG98G6r+/TN4jugiKCEtIJgpk1dW66d8/Z1rYzyHb2fuYUywtBUkv6BB27kODHj//zXDz8mdO7q5YismKnPuiyfa4ucKzAVYUOK3ZpU6VR7P7dvZrYobEh9xsyX+GaZ40KU3160AaSKksWMOfT2bSYzIpiSiHUk5IUZU72JnuTNPtcra4vLo+PTgRNYWpcOw5DF3mv43GAgzihKYriKEmTKIpyQkhRHMjyfP7xrisa1+z1gc7cP7djjGVFsWyb53ndMBRVHQ4l07JGANBFOoXD8ECAcZZn5aQc2pB5HIjLxSKOYvwWuI5D3/NeHBwEeZoWOfnZ7b42m+/t9j/b9XpZLi3kM+e3FQt5EgCqCSUINNuSIZAh1B3HcB3oI4rp+9QjhMDenoFc3XRvWq1f3goTOLU5imsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABOklEQVQY002OXUvCUBzG98G6r+/TN4jugiKCEtIJgpk1dW66d8/Z1rYzyHb2fuYUywtBUkv6BB27kODHj//zXDz8mdO7q5YismKnPuiyfa4ucKzAVYUOK3ZpU6VR7P7dvZrYobEh9xsyX+GaZ40KU3160AaSKksWMOfT2bSYzIpiSiHUk5IUZU72JnuTNPtcra4vLo+PTgRNYWpcOw5DF3mv43GAgzihKYriKEmTKIpyQkhRHMjyfP7xrisa1+z1gc7cP7djjGVFsWyb53ndMBRVHQ4l07JGANBFOoXD8ECAcZZn5aQc2pB5HIjLxSKOYvwWuI5D3/NeHBwEeZoWOfnZ7b42m+/t9j/b9XpZLi3kM+e3FQt5EgCqCSUINNuSIZAh1B3HcB3oI4rp+9QjhMDenoFc3XRvWq1f3goTOLU5imsAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;HTML Entity Lookup&quot;
-        title=&quot;&quot;
-        src=&quot;/static/6bef6b80f0c4fea0fdb4f921b8e35915/5cc07/alfred-entity.png&quot;
-        srcset=&quot;/static/6bef6b80f0c4fea0fdb4f921b8e35915/51b23/alfred-entity.png 200w,
-/static/6bef6b80f0c4fea0fdb4f921b8e35915/209de/alfred-entity.png 400w,
-/static/6bef6b80f0c4fea0fdb4f921b8e35915/5cc07/alfred-entity.png 620w&quot;
+        title=&quot;HTML Entity Lookup&quot;
+        src=&quot;/static/6bef6b80f0c4fea0fdb4f921b8e35915/a5ed1/alfred-entity.png&quot;
+        srcset=&quot;/static/6bef6b80f0c4fea0fdb4f921b8e35915/9ec3c/alfred-entity.png 200w,
+/static/6bef6b80f0c4fea0fdb4f921b8e35915/c7805/alfred-entity.png 400w,
+/static/6bef6b80f0c4fea0fdb4f921b8e35915/a5ed1/alfred-entity.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Alfred version of Remy&apos;s Sharp &lt;a href=&quot;https://leftlogic.com/projects/entity-lookup/&quot;&gt;excellent tool&lt;/a&gt; - it allows the user to quickly find the entity based on how it looks.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/superkam/iOS_Simulator_Kit&quot;&gt;iOS Simulator Kit&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/e4a7206483d6ecaf0168d3fbc297cfa6/5cc07/alfred-ios.png&quot;
+    href=&quot;/static/e4a7206483d6ecaf0168d3fbc297cfa6/a5ed1/alfred-ios.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 36.774193548387096%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsSAAALEgHS3X78AAABLklEQVQY032I/UrCUBiHd19dgPfTJfRnIAQRSOpWQthqH3pcWulqw7EPnbHPc7ZzFnRmKWEW5A00zf6THh5ent/L7J+U+bubauuq3hY4IHBtgQVCDYhsR+IUqQaEIjYt1ztiMRu9dqPXqggXB40KcybyYpN/UNVnTFAUJxAlMUwh2ikMo/f5/OiwXNorgftbhpMF152M3UmWZYQQjDHJsuKmu0RJ8kKp2h/IPADagDmVFX2EQt8LNkRh6Hn+22y2XC4/drFYLL5Xq8/Zl2pZzHFTuuwa6qCvrdF1TTNNM/wX3/cDL1AeVeb8WgpMd+TY7niNY9lpkrxOpznNt1D6Z/77pJRmUdY3DKbKsrmhDy3btG3TcYaWGUKICEEYw8I0LQKRtRBvjXHqPcVNpfsD4aNMmWpdJcgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 36.774193548387096%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAAsSAAALEgHS3X78AAABLklEQVQY032I/UrCUBiHd19dgPfTJfRnIAQRSOpWQthqH3pcWulqw7EPnbHPc7ZzFnRmKWEW5A00zf6THh5ent/L7J+U+bubauuq3hY4IHBtgQVCDYhsR+IUqQaEIjYt1ztiMRu9dqPXqggXB40KcybyYpN/UNVnTFAUJxAlMUwh2ikMo/f5/OiwXNorgftbhpMF152M3UmWZYQQjDHJsuKmu0RJ8kKp2h/IPADagDmVFX2EQt8LNkRh6Hn+22y2XC4/drFYLL5Xq8/Zl2pZzHFTuuwa6qCvrdF1TTNNM/wX3/cDL1AeVeb8WgpMd+TY7niNY9lpkrxOpznNt1D6Z/77pJRmUdY3DKbKsrmhDy3btG3TcYaWGUKICEEYw8I0LQKRtRBvjXHqPcVNpfsD4aNMmWpdJcgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;iOS Simulator Kit&quot;
-        title=&quot;&quot;
-        src=&quot;/static/e4a7206483d6ecaf0168d3fbc297cfa6/5cc07/alfred-ios.png&quot;
-        srcset=&quot;/static/e4a7206483d6ecaf0168d3fbc297cfa6/51b23/alfred-ios.png 200w,
-/static/e4a7206483d6ecaf0168d3fbc297cfa6/209de/alfred-ios.png 400w,
-/static/e4a7206483d6ecaf0168d3fbc297cfa6/5cc07/alfred-ios.png 620w&quot;
+        title=&quot;iOS Simulator Kit&quot;
+        src=&quot;/static/e4a7206483d6ecaf0168d3fbc297cfa6/a5ed1/alfred-ios.png&quot;
+        srcset=&quot;/static/e4a7206483d6ecaf0168d3fbc297cfa6/9ec3c/alfred-ios.png 200w,
+/static/e4a7206483d6ecaf0168d3fbc297cfa6/c7805/alfred-ios.png 400w,
+/static/e4a7206483d6ecaf0168d3fbc297cfa6/a5ed1/alfred-ios.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;For some reason, Alfred and Spotlight search results don&apos;t include iOS Simulator application in their results. With this workflow - it&apos;s not an issue anymore. Also, you can choose with device you wish to emulate from the very beginning.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/DavidStaron/alfred-workflow-stripClipboardFormatting&quot;&gt;Strip clipboard&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0f6334901642b35ab91b2af88f3074ec/5cc07/alfred-sclip.png&quot;
+    href=&quot;/static/0f6334901642b35ab91b2af88f3074ec/a5ed1/alfred-sclip.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAAA9UlEQVQY023LP0+DQBgGcL6do34Tuxg/g3Fwakv1DgylQNvjCHBomnTQEEjTqFPvD3dQHDRxbgdXr6Q6mfzy5Mnz5jWCRQbjuZWGVoLsGOmESQhTfE8ikCKo9xRbBNsE6w4T5C8fRmFgRn5vcG0QHNnAKvOikbJiXHLR4fLY+RHj+lpXslXq7OT04vzysXg2VmVJsmy1XnMhKGPahtIN+x8TnDJ624chSrwFMXb77yLP315epTh8V1w0qu6oX/XfslWqbZqvj8/3bRs/LQ0/JabrDCeO6bnDybg/dsAsgHNtqtnhFHQFoECXu9khR74/8NzezdUPb13ecyMHwf0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAAA9UlEQVQY023LP0+DQBgGcL6do34Tuxg/g3Fwakv1DgylQNvjCHBomnTQEEjTqFPvD3dQHDRxbgdXr6Q6mfzy5Mnz5jWCRQbjuZWGVoLsGOmESQhTfE8ikCKo9xRbBNsE6w4T5C8fRmFgRn5vcG0QHNnAKvOikbJiXHLR4fLY+RHj+lpXslXq7OT04vzysXg2VmVJsmy1XnMhKGPahtIN+x8TnDJ624chSrwFMXb77yLP315epTh8V1w0qu6oX/XfslWqbZqvj8/3bRs/LQ0/JabrDCeO6bnDybg/dsAsgHNtqtnhFHQFoECXu9khR74/8NzezdUPb13ecyMHwf0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Strip clipboard&quot;
-        title=&quot;&quot;
-        src=&quot;/static/0f6334901642b35ab91b2af88f3074ec/5cc07/alfred-sclip.png&quot;
-        srcset=&quot;/static/0f6334901642b35ab91b2af88f3074ec/51b23/alfred-sclip.png 200w,
-/static/0f6334901642b35ab91b2af88f3074ec/209de/alfred-sclip.png 400w,
-/static/0f6334901642b35ab91b2af88f3074ec/5cc07/alfred-sclip.png 620w&quot;
+        title=&quot;Strip clipboard&quot;
+        src=&quot;/static/0f6334901642b35ab91b2af88f3074ec/a5ed1/alfred-sclip.png&quot;
+        srcset=&quot;/static/0f6334901642b35ab91b2af88f3074ec/9ec3c/alfred-sclip.png 200w,
+/static/0f6334901642b35ab91b2af88f3074ec/c7805/alfred-sclip.png 400w,
+/static/0f6334901642b35ab91b2af88f3074ec/a5ed1/alfred-sclip.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This is one of the tools, that when installed - you can&apos;t live without them. It strips all the formatting from the clipboard content, leaving only raw text inside.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://github.com/zhaocai/alfred2-sourcetree-workflow&quot;&gt;Source Tree&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3a4a29da8986393b52aaeb93dca93627/5cc07/alfred-stree.png&quot;
+    href=&quot;/static/3a4a29da8986393b52aaeb93dca93627/a5ed1/alfred-stree.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABLklEQVQY012My26CQBhGebDu2/fpAzTptomJbWJM6iUhMWgcVBC5CngpDNggaoHBMVW7MCqU+god7cp+OTk5/+an7gs5Ru6WOs0y16zybJUDFR6UeLbSbVWFVokHJC7dLndZctISR0udIqg90kWq0qyrPRE06r7nf+LVKl6eQTFGCEcIk/gzOhsFYXI45J9ytzd3vCpTZbYxnfqGaXieN18sCGRBEMTLmAxdE0bRervRZBXU2pyhUXmmAawPVVVEUVIUpSeKgiBIsuxOJuSdP5v9Y+r7YRTiJe6NTOq1xcvzL2/ivruua8PtepMck+N+/31MsiQ9ZdlPlp2uydJ0h3dD6FAPzwXQH0uGLum6aBrKcKCOR9rb2HSg6dgXw4HjEOsQGmfbfWhpA+uFYX4BIy0UGc1N6KUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABLklEQVQY012My26CQBhGebDu2/fpAzTptomJbWJM6iUhMWgcVBC5CngpDNggaoHBMVW7MCqU+god7cp+OTk5/+an7gs5Ru6WOs0y16zybJUDFR6UeLbSbVWFVokHJC7dLndZctISR0udIqg90kWq0qyrPRE06r7nf+LVKl6eQTFGCEcIk/gzOhsFYXI45J9ytzd3vCpTZbYxnfqGaXieN18sCGRBEMTLmAxdE0bRervRZBXU2pyhUXmmAawPVVVEUVIUpSeKgiBIsuxOJuSdP5v9Y+r7YRTiJe6NTOq1xcvzL2/ivruua8PtepMck+N+/31MsiQ9ZdlPlp2uydJ0h3dD6FAPzwXQH0uGLum6aBrKcKCOR9rb2HSg6dgXw4HjEOsQGmfbfWhpA+uFYX4BIy0UGc1N6KUAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Source Tree&quot;
-        title=&quot;&quot;
-        src=&quot;/static/3a4a29da8986393b52aaeb93dca93627/5cc07/alfred-stree.png&quot;
-        srcset=&quot;/static/3a4a29da8986393b52aaeb93dca93627/51b23/alfred-stree.png 200w,
-/static/3a4a29da8986393b52aaeb93dca93627/209de/alfred-stree.png 400w,
-/static/3a4a29da8986393b52aaeb93dca93627/5cc07/alfred-stree.png 620w&quot;
+        title=&quot;Source Tree&quot;
+        src=&quot;/static/3a4a29da8986393b52aaeb93dca93627/a5ed1/alfred-stree.png&quot;
+        srcset=&quot;/static/3a4a29da8986393b52aaeb93dca93627/9ec3c/alfred-stree.png 200w,
+/static/3a4a29da8986393b52aaeb93dca93627/c7805/alfred-stree.png 400w,
+/static/3a4a29da8986393b52aaeb93dca93627/a5ed1/alfred-stree.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;As the name suggests - it&apos;s a workflow for SourceTree application. It lists all the repositories and allows you to view them in Source Tree or in Finder.&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://www.alfredforum.com/topic/491-timezones-a-world-clock-script-filter-updated-to-v161/&quot;&gt;TimeZones&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/1146cfe28bd813a38f6fe04215b99b32/5cc07/alfred-tz.png&quot;
+    href=&quot;/static/1146cfe28bd813a38f6fe04215b99b32/a5ed1/alfred-tz.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAABAUlEQVQY023Oy06DQBgFYN7Opb6J3RifwbhwJS0F2nKZGUiAKddqIYCUqgslXcjAUCouNL6Go65MTL6cnJz8i5+DK2+KzUWI1RDrkatGSyVyZd9ZBFjyLdm3Z74zC5x54LAuexZKIsE2JhiN+EtuHd4ARZmLItLg0rIZ18EdaShpur8oIT2lw74/OTo+Oz1fbe+46vkpy/M4idM0W8cx60WxqQn5F2mbmtTTa9m2PHgbcI/blyzN7styV1UPZVkWm77raNMwLTv+eeG3MPuWDofD5/vH2+vg5gknQUOA+hioE6jzQBsDTUCALSzZIppwgnRGMMB3mlCyTAFBHuqjq4sv/K/Y6tgo790AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 24.193548387096772%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAAsSAAALEgHS3X78AAABAUlEQVQY023Oy06DQBgFYN7Opb6J3RifwbhwJS0F2nKZGUiAKddqIYCUqgslXcjAUCouNL6Go65MTL6cnJz8i5+DK2+KzUWI1RDrkatGSyVyZd9ZBFjyLdm3Z74zC5x54LAuexZKIsE2JhiN+EtuHd4ARZmLItLg0rIZ18EdaShpur8oIT2lw74/OTo+Oz1fbe+46vkpy/M4idM0W8cx60WxqQn5F2mbmtTTa9m2PHgbcI/blyzN7styV1UPZVkWm77raNMwLTv+eeG3MPuWDofD5/vH2+vg5gknQUOA+hioE6jzQBsDTUCALSzZIppwgnRGMMB3mlCyTAFBHuqjq4sv/K/Y6tgo790AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;TimeZones&quot;
-        title=&quot;&quot;
-        src=&quot;/static/1146cfe28bd813a38f6fe04215b99b32/5cc07/alfred-tz.png&quot;
-        srcset=&quot;/static/1146cfe28bd813a38f6fe04215b99b32/51b23/alfred-tz.png 200w,
-/static/1146cfe28bd813a38f6fe04215b99b32/209de/alfred-tz.png 400w,
-/static/1146cfe28bd813a38f6fe04215b99b32/5cc07/alfred-tz.png 620w&quot;
+        title=&quot;TimeZones&quot;
+        src=&quot;/static/1146cfe28bd813a38f6fe04215b99b32/a5ed1/alfred-tz.png&quot;
+        srcset=&quot;/static/1146cfe28bd813a38f6fe04215b99b32/9ec3c/alfred-tz.png 200w,
+/static/1146cfe28bd813a38f6fe04215b99b32/c7805/alfred-tz.png 400w,
+/static/1146cfe28bd813a38f6fe04215b99b32/a5ed1/alfred-tz.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;X-Team is spread around the globe. Most of the projects are handled simultaneously by developers from different timezones. This extension is a great tool to check if someone on the team is awake yet :)&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://www.dropbox.com/s/51pyuuj051pydn2/VirtualBox.alfredworkflow&quot;&gt;VirtualBox Control&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 620px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/371961a76722b9da0ac3f90da1bd5464/5cc07/alfred-vm.png&quot;
+    href=&quot;/static/371961a76722b9da0ac3f90da1bd5464/a5ed1/alfred-vm.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 620px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABCUlEQVQY033MbUvCUBQH8PvBeu9X6gtE0AuhNwmSq4GJ5d3GNpvzYbvT5rbbwqu17h5YGSQIuotfoTuRgqAOP/6cczgccFyrwqEh6rKgdgQVChq80qHYlcuNLvGRN9clRdhvmqbG1aXWabMORKXTlRV34i7zt5TGWZxwaZnffZwdJPFLtFmvz8+qlaOKOuiDhtSOCPExXjwvKKVJksR/e6X0/WM5NAfwRtHRCFzCdk6J0Td5+UEwI4TM5//gB/xFlma9BwTuDK34zMOncBaGNIrYttgxtivYIX9hJbbZrtLVOMDgpFGb4Knh2PfI6jmW5bl24KE9B/vOo4/wDyuYIuzZ2BuN3Yvb1hewDxfrvGbnkQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 30.483870967741932%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAABCUlEQVQY033MbUvCUBQH8PvBeu9X6gtE0AuhNwmSq4GJ5d3GNpvzYbvT5rbbwqu17h5YGSQIuotfoTuRgqAOP/6cczgccFyrwqEh6rKgdgQVChq80qHYlcuNLvGRN9clRdhvmqbG1aXWabMORKXTlRV34i7zt5TGWZxwaZnffZwdJPFLtFmvz8+qlaOKOuiDhtSOCPExXjwvKKVJksR/e6X0/WM5NAfwRtHRCFzCdk6J0Td5+UEwI4TM5//gB/xFlma9BwTuDK34zMOncBaGNIrYttgxtivYIX9hJbbZrtLVOMDgpFGb4Knh2PfI6jmW5bl24KE9B/vOo4/wDyuYIuzZ2BuN3Yvb1hewDxfrvGbnkQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;VirtualBox Control&quot;
-        title=&quot;&quot;
-        src=&quot;/static/371961a76722b9da0ac3f90da1bd5464/5cc07/alfred-vm.png&quot;
-        srcset=&quot;/static/371961a76722b9da0ac3f90da1bd5464/51b23/alfred-vm.png 200w,
-/static/371961a76722b9da0ac3f90da1bd5464/209de/alfred-vm.png 400w,
-/static/371961a76722b9da0ac3f90da1bd5464/5cc07/alfred-vm.png 620w&quot;
+        title=&quot;VirtualBox Control&quot;
+        src=&quot;/static/371961a76722b9da0ac3f90da1bd5464/a5ed1/alfred-vm.png&quot;
+        srcset=&quot;/static/371961a76722b9da0ac3f90da1bd5464/9ec3c/alfred-vm.png 200w,
+/static/371961a76722b9da0ac3f90da1bd5464/c7805/alfred-vm.png 400w,
+/static/371961a76722b9da0ac3f90da1bd5464/a5ed1/alfred-vm.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Very useful extension for a QA team. They usually have a few VMs configured (mostly for IE8, IE9 and IE10) - and with this extension they can manage them faster.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://www.sublimetext.com/&quot;&gt;Sublime Text&lt;/a&gt; &lt;a href=&quot;https://www.sublimetext.com/2&quot;&gt;2&lt;/a&gt; (or &lt;a href=&quot;https://www.sublimetext.com/3&quot;&gt;3&lt;/a&gt;)&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 427px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/4b20e6b0272d4fc8e1d0a6f22b683851/28b3b/sublime.png&quot;
+    href=&quot;/static/4b20e6b0272d4fc8e1d0a6f22b683851/8928d/sublime.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 427px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 60.421545667447305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACZElEQVQozz2R227aQBCG/Rit1IAxNvbi82Ft7MUHINhrgxeMISHkpKTtRR+tFw1q0jaJ0lxUFTxXt4naX3MxF/PN/PqH+f3lZv/4+fHXdrff7V/09PS0vdne3d1tt9vnn88/vn+7/Xp7f3+/o9r/Hdq96OHhgcmyvFrUBSFBP0ZRQos2ZxdXl1cfLt9/LBfLrCTFrMJkxra4g4NGo9FsshzLtlmWY1REhpPjPC+CMFENWzMdw3bLqq5Wx1V9RHCZDiZ4VObJtCMaPLD5rsnyQoNtsVybMWDgZue4IDb0KGZBX9XVrtyWFaEjNOKOnHnCDHVWEZ8RdXzu4w1OiyzHg8EQMaZlG34aFacpxl4QGranGbooNiXASaDVFppRKqMRB6N3sP/WT954IR9F/uEYhZHLmI5n2tCM64wcl7M5Nd9VZNtWoKsDwIlyeyo6J6Jbhpjk5zg7lHkOiBIQuwAIL7Dj6g7ys80Y56bTU3VNlnlF7UgS1wEcFNpxz8/OVuv58nTxaQyzMrkuB9dFcvIKewb0YXqBizJKRoqmUs9dmRelFj3OigdAl2xVA2zLMjTXNTRVkWVJkbv/YNuDaDglFalq07FMS4ZQpyuAwvsA5Ip5MRhvSL7eJEWseLZvGz3LNP7DruP2hodpMZ0FKKAHado0MBFwOt9CqE//vBxR51eZX6ZonUdnw37BWLD3CrtBOCHVvF75gW+YMrUnAfqwjtYVkKot3XCKwsWij2PX1B1LdwxDY8JkNEqL4TjPCjIh8zGeoDBBYdyPB34/9FCYD/CyqEhdz+tlMSVJEJeTI5wtozj9A+n8wg6r32i8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.421545667447305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAACZElEQVQozz2R227aQBCG/Rit1IAxNvbi82Ft7MUHINhrgxeMISHkpKTtRR+tFw1q0jaJ0lxUFTxXt4naX3MxF/PN/PqH+f3lZv/4+fHXdrff7V/09PS0vdne3d1tt9vnn88/vn+7/Xp7f3+/o9r/Hdq96OHhgcmyvFrUBSFBP0ZRQos2ZxdXl1cfLt9/LBfLrCTFrMJkxra4g4NGo9FsshzLtlmWY1REhpPjPC+CMFENWzMdw3bLqq5Wx1V9RHCZDiZ4VObJtCMaPLD5rsnyQoNtsVybMWDgZue4IDb0KGZBX9XVrtyWFaEjNOKOnHnCDHVWEZ8RdXzu4w1OiyzHg8EQMaZlG34aFacpxl4QGranGbooNiXASaDVFppRKqMRB6N3sP/WT954IR9F/uEYhZHLmI5n2tCM64wcl7M5Nd9VZNtWoKsDwIlyeyo6J6Jbhpjk5zg7lHkOiBIQuwAIL7Dj6g7ys80Y56bTU3VNlnlF7UgS1wEcFNpxz8/OVuv58nTxaQyzMrkuB9dFcvIKewb0YXqBizJKRoqmUs9dmRelFj3OigdAl2xVA2zLMjTXNTRVkWVJkbv/YNuDaDglFalq07FMS4ZQpyuAwvsA5Ip5MRhvSL7eJEWseLZvGz3LNP7DruP2hodpMZ0FKKAHado0MBFwOt9CqE//vBxR51eZX6ZonUdnw37BWLD3CrtBOCHVvF75gW+YMrUnAfqwjtYVkKot3XCKwsWij2PX1B1LdwxDY8JkNEqL4TjPCjIh8zGeoDBBYdyPB34/9FCYD/CyqEhdz+tlMSVJEJeTI5wtozj9A+n8wg6r32i8AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Sublime Text&quot;
-        title=&quot;&quot;
-        src=&quot;/static/4b20e6b0272d4fc8e1d0a6f22b683851/28b3b/sublime.png&quot;
-        srcset=&quot;/static/4b20e6b0272d4fc8e1d0a6f22b683851/cdc26/sublime.png 200w,
-/static/4b20e6b0272d4fc8e1d0a6f22b683851/bdc0c/sublime.png 400w,
-/static/4b20e6b0272d4fc8e1d0a6f22b683851/28b3b/sublime.png 427w&quot;
+        title=&quot;Sublime Text&quot;
+        src=&quot;/static/4b20e6b0272d4fc8e1d0a6f22b683851/8928d/sublime.png&quot;
+        srcset=&quot;/static/4b20e6b0272d4fc8e1d0a6f22b683851/9ec3c/sublime.png 200w,
+/static/4b20e6b0272d4fc8e1d0a6f22b683851/c7805/sublime.png 400w,
+/static/4b20e6b0272d4fc8e1d0a6f22b683851/8928d/sublime.png 427w&quot;
         sizes=&quot;(max-width: 427px) 100vw, 427px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This is the editor of choice for most X-Team developers, and for &lt;a href=&quot;https://net.tutsplus.com/articles/news/perfect-workflow-in-sublime-text-free-course/&quot;&gt;a lot of other people too&lt;/a&gt;. It is not language-oriented, like most of the IDEs, but it&apos;s irreplaceable when it comes to using multiple syntaxes.&lt;/p&gt;
 &lt;p&gt;And since most of web developers constantly switch between HTML, CSS, JavaScript and PHP/Ruby - Sublime shines. Oh! And it&apos;s written in Python so it&apos;s blazing fast (yes, Java, I&apos;m talking to you...). But the real power of ST are the plugins - they are for almost everything, so if you invest some time at the beginning - you will end with the editor tailored exactly for your needs. And that&apos;s a field, where no other editor (except of vim and emacs of course) can compete. Here is an excerpt of the long list of plugins, which X-devs use:&lt;/p&gt;
 &lt;ul&gt;
@@ -1479,184 +1638,178 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 &lt;/ul&gt;
 &lt;p&gt;... and many more.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://kapeli.com/dash&quot;&gt;Dash&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 580px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0d78919f7e56711cdaff8e46ae60282b/4dcfc/dash.png&quot;
+    href=&quot;/static/0d78919f7e56711cdaff8e46ae60282b/54e54/dash.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 580px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 72.75862068965517%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsSAAALEgHS3X78AAACjElEQVQoz3WSWU/bQBSF/e95LE9QJJ5aCYlWJFXbqClhyQKxszjePR5vMx6P7dhkaVJAIQTSSyiIh/bTlX29HPvMPSNorbqqnP+snX4+LB/Xao1mS5QkUeqoqmpZlvkCstEG+/kSHhmGIVhBbIcppkN+9ZsXc1bMoGg+8yjHjuO6bsQiQsjJcV2SpIEs+74fxzF8ptvtCj15IHX7Uk+2HM/xQjgiN9AtrOlGkiRFUeR5PhwOSUiiKGKMZRs459ALquG0e1p3YMiqif2I8WEUZyHlIWXr9RpjfHt7C83j4+N6w9tG8KLhx6+XYldTdET5VVr8SvJplI5onN4tFltbW2AvZkwUJUVRJFFUVK2zYT6fCy5JPpQq1VpjoNksLeJsxIdjnyZxkjebzb29vZ2dnclkPJ1OJ3Aaj0EzGo2gWSwWgk95X643LjqqgaKkYOkV6EOWBSRere6DIID3Xq2+AneWy6XgBrxX/VFvXEp9NYhSlo6gfJqC7TAku7vvy1/KMDkHIUIoCZ+AQUwm09VqJSCfH5yJJ/ULx2NxNiZxHvHCDWLKUghzf3//6Ogo4RzZNgQLRiAqQzfAzkbssU613brsW5ggN/JpFrIcBxz79OHhAeKBFb4d8jOgfLJt4qjx7fS03u5rqK/ayI89mpmYOh6BkEulEgz2+uYapjWbzWBq1zc3y7snNmKHqq32WbPT0xDEhkmCSao7xAtj2IbvtrdL5TK47fZ6lm23mq0kzcDFX7Fu+UbpsHp8rtgBCrjtMSfgOgotHML2qFQqsHLwDz7vX1i+IMi6Wzv49L163hAHsATTZZYXK1ag2S5oXlP5J0LfDKsdpy4OBqavORRKx5Fs+gby4SeLDf8T/wFGNQ6617LRhAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.75862068965517%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsSAAALEgHS3X78AAACjElEQVQoz3WSWU/bQBSF/e95LE9QJJ5aCYlWJFXbqClhyQKxszjePR5vMx6P7dhkaVJAIQTSSyiIh/bTlX29HPvMPSNorbqqnP+snX4+LB/Xao1mS5QkUeqoqmpZlvkCstEG+/kSHhmGIVhBbIcppkN+9ZsXc1bMoGg+8yjHjuO6bsQiQsjJcV2SpIEs+74fxzF8ptvtCj15IHX7Uk+2HM/xQjgiN9AtrOlGkiRFUeR5PhwOSUiiKGKMZRs459ALquG0e1p3YMiqif2I8WEUZyHlIWXr9RpjfHt7C83j4+N6w9tG8KLhx6+XYldTdET5VVr8SvJplI5onN4tFltbW2AvZkwUJUVRJFFUVK2zYT6fCy5JPpQq1VpjoNksLeJsxIdjnyZxkjebzb29vZ2dnclkPJ1OJ3Aaj0EzGo2gWSwWgk95X643LjqqgaKkYOkV6EOWBSRere6DIID3Xq2+AneWy6XgBrxX/VFvXEp9NYhSlo6gfJqC7TAku7vvy1/KMDkHIUIoCZ+AQUwm09VqJSCfH5yJJ/ULx2NxNiZxHvHCDWLKUghzf3//6Ogo4RzZNgQLRiAqQzfAzkbssU613brsW5ggN/JpFrIcBxz79OHhAeKBFb4d8jOgfLJt4qjx7fS03u5rqK/ayI89mpmYOh6BkEulEgz2+uYapjWbzWBq1zc3y7snNmKHqq32WbPT0xDEhkmCSao7xAtj2IbvtrdL5TK47fZ6lm23mq0kzcDFX7Fu+UbpsHp8rtgBCrjtMSfgOgotHML2qFQqsHLwDz7vX1i+IMi6Wzv49L163hAHsATTZZYXK1ag2S5oXlP5J0LfDKsdpy4OBqavORRKx5Fs+gby4SeLDf8T/wFGNQ6617LRhAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Dash&quot;
-        title=&quot;&quot;
-        src=&quot;/static/0d78919f7e56711cdaff8e46ae60282b/4dcfc/dash.png&quot;
-        srcset=&quot;/static/0d78919f7e56711cdaff8e46ae60282b/db2ff/dash.png 200w,
-/static/0d78919f7e56711cdaff8e46ae60282b/35e82/dash.png 400w,
-/static/0d78919f7e56711cdaff8e46ae60282b/4dcfc/dash.png 580w&quot;
+        title=&quot;Dash&quot;
+        src=&quot;/static/0d78919f7e56711cdaff8e46ae60282b/54e54/dash.png&quot;
+        srcset=&quot;/static/0d78919f7e56711cdaff8e46ae60282b/9ec3c/dash.png 200w,
+/static/0d78919f7e56711cdaff8e46ae60282b/c7805/dash.png 400w,
+/static/0d78919f7e56711cdaff8e46ae60282b/54e54/dash.png 580w&quot;
         sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A very nice tool which can be a lifesaver on a plane, bus or any place where you want to work that has no Internet available. It&apos;s  an offline documentation database. Simply download docsets you need, and you&apos;re good to go. Integrates nicely with Alfred and Sublime Text, as mentioned earlier.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://mizage.com/divvy/&quot;&gt;Divvy&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 320px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/16b6f/divvy.png&quot;
+    href=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/01387/divvy.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 320px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 87.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAIAAADUsmlHAAAACXBIWXMAAAsSAAALEgHS3X78AAADmUlEQVQ4yxWP2XLiSBBFFfM03W5WIQmhDQntpVJVSaUFDNgY2is23jHGDgNexz39MB8w/zGfO3LEfcnIODdPMttPi3KOqj1aG+TyZCCN++Jk2D4eC+OhMBm0j/e+Mt1TjkfsXl86GslHI37S339f9f/9hxndnlmLlXh0WCFgCwf1NCrFuJYSvht9w/BHDPkeZXtxvUtqGd6iuJziPyO4u5xv/35mBkT/7/5y9TkNT/b3FvPJctm/vRG38zIN+V5SoaSRx/x2wvfSRpfW8ria01Ia/wFs6+mOESJ0Bc0w9ipp3Mwpn1AuSSoRrhAkdGmrl/F5yuVpczsXejmbUa6X1rLkO4L+05Ihp0ej583w4WHn9na0XBysH+3BoGTbdQA4BBsQNHGopomAYZMgOaEsBDyG5RAaN9dMdno2//zr8u31/Hlzunm++viA452q1eEBEEO0ZRis50mY1ByHD3yZRDXXYYHHRRG4f2DSo5PZ5mX6tDpbr89fXi5eXsDOUAg8NcJmljRBIACoRpR1gYSQnqYiDFsYcRGBi0dmMJvdfnzM1s+z9fry9e3q7d3v93+oGus4KkZ122o4rhTi7+1OyTAlhGu2xbpuA2MwXzDd6fRys5mtVtOHx4vN5my1DvoDobgTQINSKUQKImaayRCLAVYwVRBWCRFIHC6WzPDi8v7X39ev7zevb/P3z+Wv37A/KKta3bBEL6gaJme7SojrpsVZLufAkmbyjscjTO7vGb8/TPcP6ORntn9IJ/v54THo9WUAC0BDseAACSAryRSINBx1aMo7QcvHYkijQpu3grKk19qm6AZbklbTDBWGnGnzlif5uKJa1bYjemEhwluuAjFrWnXdYW0Ep0tGCSLtK9SKu2oQtWHUIZkShFrxapSrIDZQoqO8uKEG2IpzJUA6JmJAwpM7puWiqmKyuqv6pKpabNuRXFxVbNZwJB/W2h2u47ZhXJbtkmS13LDe/lqJAUqvHxgtzDRAZJ8YKFU8rILIwFnBy15sklz2w6LdwKkGsQ5jBSSig4ouOUjSqwdGhVlD9wUTqoBUlA5nuAXf0D2+46sB4TuANz0VfLk0dKfAqorDtj05iLvXa6YTD3XU02DXokPZTySfyiDhzVCwkBpQwQpbDtZgLJiBYBYWEWcGTQvVdYSndwzYnYHRhb97DsdX5GAeHdyFk+tidAZTd3hqdQ+NdGJkY69/UMTu/jSSSZuOjXgUn33+DymWzlplKnaIAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 87.5%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAIAAADUsmlHAAAACXBIWXMAAAsSAAALEgHS3X78AAADmUlEQVQ4yxWP2XLiSBBFFfM03W5WIQmhDQntpVJVSaUFDNgY2is23jHGDgNexz39MB8w/zGfO3LEfcnIODdPMttPi3KOqj1aG+TyZCCN++Jk2D4eC+OhMBm0j/e+Mt1TjkfsXl86GslHI37S339f9f/9hxndnlmLlXh0WCFgCwf1NCrFuJYSvht9w/BHDPkeZXtxvUtqGd6iuJziPyO4u5xv/35mBkT/7/5y9TkNT/b3FvPJctm/vRG38zIN+V5SoaSRx/x2wvfSRpfW8ria01Ia/wFs6+mOESJ0Bc0w9ipp3Mwpn1AuSSoRrhAkdGmrl/F5yuVpczsXejmbUa6X1rLkO4L+05Ihp0ej583w4WHn9na0XBysH+3BoGTbdQA4BBsQNHGopomAYZMgOaEsBDyG5RAaN9dMdno2//zr8u31/Hlzunm++viA452q1eEBEEO0ZRis50mY1ByHD3yZRDXXYYHHRRG4f2DSo5PZ5mX6tDpbr89fXi5eXsDOUAg8NcJmljRBIACoRpR1gYSQnqYiDFsYcRGBi0dmMJvdfnzM1s+z9fry9e3q7d3v93+oGus4KkZ122o4rhTi7+1OyTAlhGu2xbpuA2MwXzDd6fRys5mtVtOHx4vN5my1DvoDobgTQINSKUQKImaayRCLAVYwVRBWCRFIHC6WzPDi8v7X39ev7zevb/P3z+Wv37A/KKta3bBEL6gaJme7SojrpsVZLufAkmbyjscjTO7vGb8/TPcP6ORntn9IJ/v54THo9WUAC0BDseAACSAryRSINBx1aMo7QcvHYkijQpu3grKk19qm6AZbklbTDBWGnGnzlif5uKJa1bYjemEhwluuAjFrWnXdYW0Ep0tGCSLtK9SKu2oQtWHUIZkShFrxapSrIDZQoqO8uKEG2IpzJUA6JmJAwpM7puWiqmKyuqv6pKpabNuRXFxVbNZwJB/W2h2u47ZhXJbtkmS13LDe/lqJAUqvHxgtzDRAZJ8YKFU8rILIwFnBy15sklz2w6LdwKkGsQ5jBSSig4ouOUjSqwdGhVlD9wUTqoBUlA5nuAXf0D2+46sB4TuANz0VfLk0dKfAqorDtj05iLvXa6YTD3XU02DXokPZTySfyiDhzVCwkBpQwQpbDtZgLJiBYBYWEWcGTQvVdYSndwzYnYHRhb97DsdX5GAeHdyFk+tidAZTd3hqdQ+NdGJkY69/UMTu/jSSSZuOjXgUn33+DymWzlplKnaIAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Divvy&quot;
-        title=&quot;&quot;
-        src=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/16b6f/divvy.png&quot;
-        srcset=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/9177a/divvy.png 200w,
-/static/99749a3d5b8607d59f91a736d65b83a9/16b6f/divvy.png 320w&quot;
+        title=&quot;Divvy&quot;
+        src=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/01387/divvy.png&quot;
+        srcset=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/9ec3c/divvy.png 200w,
+/static/99749a3d5b8607d59f91a736d65b83a9/01387/divvy.png 320w&quot;
         sizes=&quot;(max-width: 320px) 100vw, 320px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;A simple click and drag window manager. Very useful on iMacs, which have a huge working space and you can confortably work with many windows on one desktop. It is also a very simple application, which does exactly what it&apos;s designed for very well - aligning windows, and assigning shortcuts for them.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://bit.ly/2LHGpkd&quot;&gt;FontPrep&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 550px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/04d57abb11c4bb9b89447acba114de33/96b4f/fontprep.png&quot;
+    href=&quot;/static/04d57abb11c4bb9b89447acba114de33/2cf63/fontprep.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 550px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 43.63636363636364%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsSAAALEgHS3X78AAABFElEQVQoz42QX0+CUBjGz+eqoWBY4OgP5LI/Ky9Ku2jL0rs+CihwNECUD9AN6OEAopd9ol4wWznX2H7b++45e5732UGtp277rXf63BPvO7XWyw/iQ0fY8FsHpPbryWMG6n58XrgpqxPeDA9yssUIj624Pl4oTnI5WQhDCgqfP1UMIjvJjbe6mi7REaa8Sao4XHOIKfg5I8uC/VsxSOUvXA5i+wGj+rIVNadpYxxfu4lgzhnNL2s+s6HcD3aCIJXV59KI1p1EtmPFjqtmpnAFQFAPBthuvWXDTe+8lTiknL7dcyeIG8xKWiCNQsWOzt6pgMk/Pbdrs4OgpPkiJud2JFu0hglkFTWvB1zbU/19Fb6nqBP4AtNRHXXvViLRAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 43.63636363636364%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsSAAALEgHS3X78AAABFElEQVQoz42QX0+CUBjGz+eqoWBY4OgP5LI/Ky9Ku2jL0rs+CihwNECUD9AN6OEAopd9ol4wWznX2H7b++45e5732UGtp277rXf63BPvO7XWyw/iQ0fY8FsHpPbryWMG6n58XrgpqxPeDA9yssUIj624Pl4oTnI5WQhDCgqfP1UMIjvJjbe6mi7REaa8Sao4XHOIKfg5I8uC/VsxSOUvXA5i+wGj+rIVNadpYxxfu4lgzhnNL2s+s6HcD3aCIJXV59KI1p1EtmPFjqtmpnAFQFAPBthuvWXDTe+8lTiknL7dcyeIG8xKWiCNQsWOzt6pgMk/Pbdrs4OgpPkiJud2JFu0hglkFTWvB1zbU/19Fb6nqBP4AtNRHXXvViLRAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;FontPrep&quot;
-        title=&quot;&quot;
-        src=&quot;/static/04d57abb11c4bb9b89447acba114de33/96b4f/fontprep.png&quot;
-        srcset=&quot;/static/04d57abb11c4bb9b89447acba114de33/5de87/fontprep.png 200w,
-/static/04d57abb11c4bb9b89447acba114de33/3ece6/fontprep.png 400w,
-/static/04d57abb11c4bb9b89447acba114de33/96b4f/fontprep.png 550w&quot;
+        title=&quot;FontPrep&quot;
+        src=&quot;/static/04d57abb11c4bb9b89447acba114de33/2cf63/fontprep.png&quot;
+        srcset=&quot;/static/04d57abb11c4bb9b89447acba114de33/9ec3c/fontprep.png 200w,
+/static/04d57abb11c4bb9b89447acba114de33/c7805/fontprep.png 400w,
+/static/04d57abb11c4bb9b89447acba114de33/2cf63/fontprep.png 550w&quot;
         sizes=&quot;(max-width: 550px) 100vw, 550px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Drag your font into it, click export and you will end up with your font converted to four of the most used formats on the web (otf, ttf, woff and eot) and a CSS file with @font-face directives. Beautiful.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://imageoptim.com/&quot;&gt;ImageOptim&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 427px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/2839ed1c8f54201ca76480b658ebeedd/28b3b/imageoptim.png&quot;
+    href=&quot;/static/2839ed1c8f54201ca76480b658ebeedd/8928d/imageoptim.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 427px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 60.421545667447305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB7klEQVQoz1VRaY/aMBDN//8tPViiVYFNlw8VtKsWFpPTdkKhBEIIYblyOI7tTkCl2qfnp8nzeGYca1Pj6+SbPhgZZgPL/IfBYNjv95+f+8Phd9NqfITQbWuC0ASAkLYIZ7aJKKVRtF6tVnG82cYxMGqwBoRhuN3Gmygaj0e+76e7HcH45eWHT6nWol8W6yXBAcF0HcVKqVrIWoAqqVResHR/APPtcLQsJ5gthFS8FoRQ28XaR/wYLOeu601NZz7/k+z256xgXMACPZ6zOElrqXbpHk0tP5izWuYl8zzier72CT/OlgvsUuLPwlX0e7E8nC5VLcuqBj1d8m2SCqWSdD9BJqZBJVTBKurPPHI9HG5WlARQDOaBUUEr3pDX8pLlyS4FEzqPxq+EBlwoVnGMieMR7YMLnWFs8orMcL1pBi55yWogq8TxlG22Kdw/SdKfv8Ye9sEsispxMbIc7S0/ny8ZrOMJJIfe0PnOikMJDgFjHNJyKAw+F1lewpdWVXA9wbgEQpCX/B0ZL1idF43+T2AcAqB2fRgppbpT3FW9d0TDW37DWmqE+B6mtuPatmvZDjwmxJbtgpqW3Tj2TV0PE0woKPxaUEJ97cl4Mgyj3X5ow3p4aLU+t6/Qdf0ag9O6OZ1OBzK73a6uN7u9Xu8vvBSC9Hzue7YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.421545667447305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB7klEQVQoz1VRaY/aMBDN//8tPViiVYFNlw8VtKsWFpPTdkKhBEIIYblyOI7tTkCl2qfnp8nzeGYca1Pj6+SbPhgZZgPL/IfBYNjv95+f+8Phd9NqfITQbWuC0ASAkLYIZ7aJKKVRtF6tVnG82cYxMGqwBoRhuN3Gmygaj0e+76e7HcH45eWHT6nWol8W6yXBAcF0HcVKqVrIWoAqqVResHR/APPtcLQsJ5gthFS8FoRQ28XaR/wYLOeu601NZz7/k+z256xgXMACPZ6zOElrqXbpHk0tP5izWuYl8zzier72CT/OlgvsUuLPwlX0e7E8nC5VLcuqBj1d8m2SCqWSdD9BJqZBJVTBKurPPHI9HG5WlARQDOaBUUEr3pDX8pLlyS4FEzqPxq+EBlwoVnGMieMR7YMLnWFs8orMcL1pBi55yWogq8TxlG22Kdw/SdKfv8Ye9sEsispxMbIc7S0/ny8ZrOMJJIfe0PnOikMJDgFjHNJyKAw+F1lewpdWVXA9wbgEQpCX/B0ZL1idF43+T2AcAqB2fRgppbpT3FW9d0TDW37DWmqE+B6mtuPatmvZDjwmxJbtgpqW3Tj2TV0PE0woKPxaUEJ97cl4Mgyj3X5ow3p4aLU+t6/Qdf0ag9O6OZ1OBzK73a6uN7u9Xu8vvBSC9Hzue7YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;ImageOptim&quot;
-        title=&quot;&quot;
-        src=&quot;/static/2839ed1c8f54201ca76480b658ebeedd/28b3b/imageoptim.png&quot;
-        srcset=&quot;/static/2839ed1c8f54201ca76480b658ebeedd/cdc26/imageoptim.png 200w,
-/static/2839ed1c8f54201ca76480b658ebeedd/bdc0c/imageoptim.png 400w,
-/static/2839ed1c8f54201ca76480b658ebeedd/28b3b/imageoptim.png 427w&quot;
+        title=&quot;ImageOptim&quot;
+        src=&quot;/static/2839ed1c8f54201ca76480b658ebeedd/8928d/imageoptim.png&quot;
+        srcset=&quot;/static/2839ed1c8f54201ca76480b658ebeedd/9ec3c/imageoptim.png 200w,
+/static/2839ed1c8f54201ca76480b658ebeedd/c7805/imageoptim.png 400w,
+/static/2839ed1c8f54201ca76480b658ebeedd/8928d/imageoptim.png 427w&quot;
         sizes=&quot;(max-width: 427px) 100vw, 427px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Image files generated by graphics programs (such as Photoshop or GIMP), can be huge. The reason is that they add alot of unnecessary data and they handle color and alpha management poorly.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ImageOptim&lt;/strong&gt; is a solution for that - it comes bundled with many image-optimization tools (like pngcrush for PNG or jpegtran for JPG), compresses an image with each of them, and returns the best result. It saves 30-40% of image space on average - which is a huge improvement, especially today, for graphically overloaded sites.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://bit.ly/2PluIl5&quot;&gt;Marked&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 427px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3ac70394d06f471adf4d9c2a3a2e36a2/28b3b/marked.png&quot;
+    href=&quot;/static/3ac70394d06f471adf4d9c2a3a2e36a2/8928d/marked.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 427px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 60.421545667447305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB00lEQVQoz31SCXOaQBTm//+RJkZNtB2nU7RWJZkx4gGicmg5VvEOGllQPMjHmk4mM20/2MfuY9/73sV1+B/y47e69EtVB6qqacnSej1FqNaKPF8s/axUKq1WS1GU7h/I3W5TFB+fnjhv/UL919HIUNj/jiTJkqxp+nK5fGXYbraQu8/wPG/jeVx0PMZx3Gw833y5yabTt7d3mbt0ofB9tVpBf7lc4r/hzMAdYXy5BGGYkGy3vu9jA7eHw+H8D8DjiYGLogie5vO5aVqEOI5DhsPhaDSEi/8wvxuDGTcgA7CHIUSQIKSUIpBrtvgmW0hWhf1+D/4PY1ydTaeLxWLK4BCyXq/cydh1p3jciWvbDi4kgRHH22w+Ge8Z/N0OOWMT0ACELATq+zRk4ZxOZ+SIWnzkjANysG0bfZJlSWyIKjo+6Pd6vUG/r2u6oaP3alNsWpYFzXg8OUZHWIKVVTuOCSHtVsey7aFhoMmObSMFyzShn01n5m9T1w2AOITS4FqwpFUYBhQGNs/1eocBnJ12G68oNiWc2+1GQ8SQwYVPqccAKwwCl8vnC4VCPv+VL/K1Wq1arWIeBaHG83wmk8neZ3O5nCAIV325XIYslUqpVOr+4eENnH2Fe0OzHAQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 60.421545667447305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAAB00lEQVQoz31SCXOaQBTm//+RJkZNtB2nU7RWJZkx4gGicmg5VvEOGllQPMjHmk4mM20/2MfuY9/73sV1+B/y47e69EtVB6qqacnSej1FqNaKPF8s/axUKq1WS1GU7h/I3W5TFB+fnjhv/UL919HIUNj/jiTJkqxp+nK5fGXYbraQu8/wPG/jeVx0PMZx3Gw833y5yabTt7d3mbt0ofB9tVpBf7lc4r/hzMAdYXy5BGGYkGy3vu9jA7eHw+H8D8DjiYGLogie5vO5aVqEOI5DhsPhaDSEi/8wvxuDGTcgA7CHIUSQIKSUIpBrtvgmW0hWhf1+D/4PY1ydTaeLxWLK4BCyXq/cydh1p3jciWvbDi4kgRHH22w+Ge8Z/N0OOWMT0ACELATq+zRk4ZxOZ+SIWnzkjANysG0bfZJlSWyIKjo+6Pd6vUG/r2u6oaP3alNsWpYFzXg8OUZHWIKVVTuOCSHtVsey7aFhoMmObSMFyzShn01n5m9T1w2AOITS4FqwpFUYBhQGNs/1eocBnJ12G68oNiWc2+1GQ8SQwYVPqccAKwwCl8vnC4VCPv+VL/K1Wq1arWIeBaHG83wmk8neZ3O5nCAIV325XIYslUqpVOr+4eENnH2Fe0OzHAQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;Marked&quot;
-        title=&quot;&quot;
-        src=&quot;/static/3ac70394d06f471adf4d9c2a3a2e36a2/28b3b/marked.png&quot;
-        srcset=&quot;/static/3ac70394d06f471adf4d9c2a3a2e36a2/cdc26/marked.png 200w,
-/static/3ac70394d06f471adf4d9c2a3a2e36a2/bdc0c/marked.png 400w,
-/static/3ac70394d06f471adf4d9c2a3a2e36a2/28b3b/marked.png 427w&quot;
+        title=&quot;Marked&quot;
+        src=&quot;/static/3ac70394d06f471adf4d9c2a3a2e36a2/8928d/marked.png&quot;
+        srcset=&quot;/static/3ac70394d06f471adf4d9c2a3a2e36a2/9ec3c/marked.png 200w,
+/static/3ac70394d06f471adf4d9c2a3a2e36a2/c7805/marked.png 400w,
+/static/3ac70394d06f471adf4d9c2a3a2e36a2/8928d/marked.png 427w&quot;
         sizes=&quot;(max-width: 427px) 100vw, 427px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;MarkDown documents viewer. Great, when you need to edit a *.md file in your favorite editor (for example Sublime Text, with which it integrates smoothly) and see the live preview.&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://www.sourcetreeapp.com/&quot;&gt;SourceTree&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 640px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/fda70e6b2023202561d0f3f37d081336/10e05/sourcetree.png&quot;
+    href=&quot;/static/fda70e6b2023202561d0f3f37d081336/e49a9/sourcetree.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 640px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 50.9375%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAAsSAAALEgHS3X78AAACDklEQVQozxVSa2+bMADk//+IaVOrteq2pnm3aUNCQ2sSHrYBYx7GGAghSaWQVOtG+lDH7sPpdJ/udCcxaDgOiFiUphmLeYMwZgnnlkMNC1oWdB03bnyRhHGSpWmSiEQInoggDCVlNmu3O71e90FVf/bbsqJcDvuTiTydzkayMriX7zrd3sXl4Hb09eS7LE9+XfW6g+tWZzC4vpEeNPNuoiqqZmEyluXT05Or1lW30zk/Oxv2+63W5a8fF6PrG0WZQkOHCJqmCSGybRtjLK3KXcTSVOT76uAHkTafx3F8/wjaw5GqW3PDGo/HhHiGYWBsN4F9Si3LCvygKSh9mfIzlZ9rxTdQ3iFxeH7e7Q/YCzVEAHTdkCPsiKygfrjQzSCMs7xwXM8jfqOl7kKM0PIWr4ZoNXf5Ms/r43G/223W5Wa9fvn9wqIIIxRFcRPWMK2FrlsQPQJgmFCiPiM0Whbr1Wq73T7tqqqu69fX4/vHx9vbe8PbdQHub8osK4SgTVNDjwPfhZBRKi0wBYbjsSwUJfGoBoCmAdd1AAAIQse2EcKEkGN1+Pxb17uqjDiD9jIIiyiWTJdp0EeU02TDyKOmTrHjVftniPB8YbiEaHMd2071pzp+1vu6yjeZKEW6TpZPuTSdgWYnVTPlB6ibuuPBIGD5Mv//BJ7wJIl5wjh3A5sygoilakp/1L1VRtAx/gG//e4RXBkrdgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50.9375%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAAsSAAALEgHS3X78AAACDklEQVQozxVSa2+bMADk//+IaVOrteq2pnm3aUNCQ2sSHrYBYx7GGAghSaWQVOtG+lDH7sPpdJ/udCcxaDgOiFiUphmLeYMwZgnnlkMNC1oWdB03bnyRhHGSpWmSiEQInoggDCVlNmu3O71e90FVf/bbsqJcDvuTiTydzkayMriX7zrd3sXl4Hb09eS7LE9+XfW6g+tWZzC4vpEeNPNuoiqqZmEyluXT05Or1lW30zk/Oxv2+63W5a8fF6PrG0WZQkOHCJqmCSGybRtjLK3KXcTSVOT76uAHkTafx3F8/wjaw5GqW3PDGo/HhHiGYWBsN4F9Si3LCvygKSh9mfIzlZ9rxTdQ3iFxeH7e7Q/YCzVEAHTdkCPsiKygfrjQzSCMs7xwXM8jfqOl7kKM0PIWr4ZoNXf5Ms/r43G/223W5Wa9fvn9wqIIIxRFcRPWMK2FrlsQPQJgmFCiPiM0Whbr1Wq73T7tqqqu69fX4/vHx9vbe8PbdQHub8osK4SgTVNDjwPfhZBRKi0wBYbjsSwUJfGoBoCmAdd1AAAIQse2EcKEkGN1+Pxb17uqjDiD9jIIiyiWTJdp0EeU02TDyKOmTrHjVftniPB8YbiEaHMd2071pzp+1vu6yjeZKEW6TpZPuTSdgWYnVTPlB6ibuuPBIGD5Mv//BJ7wJIl5wjh3A5sygoilakp/1L1VRtAx/gG//e4RXBkrdgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;SourceTree&quot;
-        title=&quot;&quot;
-        src=&quot;/static/fda70e6b2023202561d0f3f37d081336/10e05/sourcetree.png&quot;
-        srcset=&quot;/static/fda70e6b2023202561d0f3f37d081336/f8645/sourcetree.png 200w,
-/static/fda70e6b2023202561d0f3f37d081336/75b05/sourcetree.png 400w,
-/static/fda70e6b2023202561d0f3f37d081336/10e05/sourcetree.png 640w&quot;
+        title=&quot;SourceTree&quot;
+        src=&quot;/static/fda70e6b2023202561d0f3f37d081336/e49a9/sourcetree.png&quot;
+        srcset=&quot;/static/fda70e6b2023202561d0f3f37d081336/9ec3c/sourcetree.png 200w,
+/static/fda70e6b2023202561d0f3f37d081336/c7805/sourcetree.png 400w,
+/static/fda70e6b2023202561d0f3f37d081336/e49a9/sourcetree.png 640w&quot;
         sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;There are to ways of using git. Conservatives use terminal. New-age programmers use GUI tools. And the most popular GUI for git in our company is SourceTree.&lt;/p&gt;
 &lt;p&gt;Why? It&apos;s free and it supports gpg commits signing, which is vital in our environment. It also has what all good, modern VCS GUI should have, like branch view, diff view, git flow and interactive rebase.&lt;/p&gt;
 &lt;h2&gt;Wrap-up&lt;/h2&gt;
@@ -2008,9 +2161,9 @@ treat those suspicious messages differently than normal spam:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://bit.ly/1uCt6pY&quot;&gt;http://blog.tjitjing.com/index.php/2012/03/guide-to-install-opendkim-for-multiple-domains-with-postfix-and-debian.html&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/&quot;&gt;https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Setting secure, cloud-based backup system using git and box.com]]></title><description><![CDATA[After giving up my  spying e-mail provider , and moving
-everything to my own  DeeDee server , I moved
-smoothly from one paranoia to another…]]></description><link>https://www.rzegocki.pl/blog/setting-secure-cloud-based-backup-system-using-git-and-box-com/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/setting-secure-cloud-based-backup-system-using-git-and-box-com/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 14 Oct 2012 10:57:00 GMT</pubDate><content:encoded>&lt;p&gt;After giving up my &lt;a href=&quot;https://gmail.com/&quot;&gt;spying e-mail provider&lt;/a&gt;, and moving
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Setting secure, cloud-based backup system using git and box.com]]></title><description><![CDATA[After giving up my spying e-mail provider, and moving
+everything to my own DeeDee server, I moved
+smoothly from one paranoia to another. Ok…]]></description><link>https://www.rzegocki.pl/blog/setting-secure-cloud-based-backup-system-using-git-and-box-com/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/setting-secure-cloud-based-backup-system-using-git-and-box-com/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 14 Oct 2012 10:57:00 GMT</pubDate><content:encoded>&lt;p&gt;After giving up my &lt;a href=&quot;https://gmail.com/&quot;&gt;spying e-mail provider&lt;/a&gt;, and moving
 everything to my own &lt;a href=&quot;https://github.com/ajgon/DeeDee&quot;&gt;DeeDee server&lt;/a&gt;, I moved
 smoothly from one paranoia to another. Ok, my e-mail is not read anymore by
 anyone except me, but on the other hand it&apos;s on an ATOM machine staying in my
@@ -2068,7 +2221,7 @@ and copy to box.com. Here is how I do it:&lt;/p&gt;
 &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /mnt/Box/Backups/patches
 &lt;span class=&quot;token function&quot;&gt;ln&lt;/span&gt; -s /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt; /.git
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init
-&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add -A etc root home some/other/important/dirs
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -A etc root home some/other/important/dirs
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Initial&quot;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; gc &lt;span class=&quot;token comment&quot;&gt;# compress repository&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; -cf /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;.initial.tar /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;/*
@@ -2082,7 +2235,7 @@ this initial deploy, make sure that all the files are moved to box.com!&lt;/p&gt
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt; NOW&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;date&lt;/span&gt; -I&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt; MACHINE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DeeDee
 &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /
-&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; add -A
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -A
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;&quot;&lt;/span&gt; -a
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; format-patch -1 --stdout &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch
 gpg -e -r your@key.email /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch
@@ -2114,10 +2267,10 @@ directory, then merge them, decrypt and unpack.&lt;/p&gt;
 solution applied. I have :). And if not, you can always extend it to another
 good-space, webdav supporting clouds. I didn&apos;t find anything as good as
 box.com, but if you do - please, let me know!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Setting development environment on your Mac]]></title><description><![CDATA[Recently I bought an
- awesome piece of hardware 
+awesome piece of hardware
 to my MacBook Pro. Unfortunatelly
- to install it ,
-I had to remove my old HDD and all…]]></description><link>https://www.rzegocki.pl/blog/setting-development-environment-on-your-mac/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/setting-development-environment-on-your-mac/</guid><category><![CDATA[PHP]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sat, 22 Sep 2012 10:33:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I bought an
+to install it,
+I had to remove my old HDD and all system…]]></description><link>https://www.rzegocki.pl/blog/setting-development-environment-on-your-mac/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/setting-development-environment-on-your-mac/</guid><category><![CDATA[PHP]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sat, 22 Sep 2012 10:33:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I bought an
 &lt;a href=&quot;https://www.anandtech.com/show/4253/the-crucial-m4-micron-c400-ssd-review&quot;&gt;awesome piece of hardware&lt;/a&gt;
 to my MacBook Pro. Unfortunatelly
 &lt;a href=&quot;https://www.ifixit.com/Guide/Installing-MacBook-Pro-13-Inch-Unibody-Early-2011-Hard-Drive-Replacement/5119/1&quot;&gt;to install it&lt;/a&gt;,
@@ -2202,34 +2355,33 @@ do this, install &lt;a href=&quot;https://bit.ly/1XAorA4&quot;&gt;dnsmasq&lt;/a&
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;address&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/.dev/127.0.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Last thing left, is setting a nameserver to 127.0.0.1 in your Network prefpane,
 as shown below.&lt;/p&gt;
-&lt;p&gt;&lt;a
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 670px;&quot;
+    &gt;
+      &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/318ee9833ffeb62a6ec7f4b88878e911/a5576/dnsmasq.png&quot;
+    href=&quot;/static/318ee9833ffeb62a6ec7f4b88878e911/9b1de/dnsmasq.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 670px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 86.86567164179105%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAIAAABSJhvpAAAACXBIWXMAAAsSAAALEgHS3X78AAAB+UlEQVQ4y6VT226bQBTk/z+kz3UjRU2bulIMtWKcyGCHm23YGwssYINx32K7AzSRY0VRpY5WhwN75lyWWW1uPT5ZU9f1fN/3PM89w2RyP51OvQ5uZwkhjDFKKec8CAJtNNLH47Gu66NL6IZhnH+HP5/PkcJxHFQyTVNjjC9XIeqEYVgUhVIqTdMsy1Sm8jwv3iLtkCQJwhCvCcFFDMgkSQmlnr+8u9MN3Vgu1y1Wa+yG61DG0nGe0DOYUkqkwAgaF4KSaBV4NFrHMYsFEyzCigURnKBD27Yty0K3SBVFEemAmdvKseC/HoJP149XN7PbL+bwm/3zdjG8mf34aumGy2OJLtFYWW72+33TNLsOmAi5NCnYg5d9t/ZDu7ky68F9PZhUg0n9ebK7NtWuaU6n0/F4PL1FVVUtmTOqys3FZh+82e23VQ3ncDhc8F/InCX59vl4Opyt50MbUVQg7z6szFlabN+tXNb/Q/7HypgJc/213erIzfnMr7ggV+8fWP27qj88bYH/LRXOjCeKyoyIJGSSp4UqaybzJM2qF2w79D7028uzRRhFuFaO484Xi9nM9v0gohRqjTr0quovEyz8lgIy3iFWKKbssNm0tijwQb0i7wA9Q+TtNZASttU2iUJGCdSPLMjHef8E2qA+Di+9A4WjMq4HmsHMfwCjopxXX62e9AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;&lt;/span&gt;
-    &lt;img
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 86.86567164179105%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAIAAABSJhvpAAAACXBIWXMAAAsSAAALEgHS3X78AAAB+UlEQVQ4y6VT226bQBTk/z+kz3UjRU2bulIMtWKcyGCHm23YGwssYINx32K7AzSRY0VRpY5WhwN75lyWWW1uPT5ZU9f1fN/3PM89w2RyP51OvQ5uZwkhjDFKKec8CAJtNNLH47Gu66NL6IZhnH+HP5/PkcJxHFQyTVNjjC9XIeqEYVgUhVIqTdMsy1Sm8jwv3iLtkCQJwhCvCcFFDMgkSQmlnr+8u9MN3Vgu1y1Wa+yG61DG0nGe0DOYUkqkwAgaF4KSaBV4NFrHMYsFEyzCigURnKBD27Yty0K3SBVFEemAmdvKseC/HoJP149XN7PbL+bwm/3zdjG8mf34aumGy2OJLtFYWW72+33TNLsOmAi5NCnYg5d9t/ZDu7ky68F9PZhUg0n9ebK7NtWuaU6n0/F4PL1FVVUtmTOqys3FZh+82e23VQ3ncDhc8F/InCX59vl4Opyt50MbUVQg7z6szFlabN+tXNb/Q/7HypgJc/213erIzfnMr7ggV+8fWP27qj88bYH/LRXOjCeKyoyIJGSSp4UqaybzJM2qF2w79D7028uzRRhFuFaO484Xi9nM9v0gohRqjTr0quovEyz8lgIy3iFWKKbssNm0tijwQb0i7wA9Q+TtNZASttU2iUJGCdSPLMjHef8E2qA+Di+9A4WjMq4HmsHMfwCjopxXX62e9AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
         class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;&quot;
         alt=&quot;dnsmasq configuration&quot;
-        title=&quot;&quot;
-        src=&quot;/static/318ee9833ffeb62a6ec7f4b88878e911/a5576/dnsmasq.png&quot;
-        srcset=&quot;/static/318ee9833ffeb62a6ec7f4b88878e911/a68ae/dnsmasq.png 200w,
-/static/318ee9833ffeb62a6ec7f4b88878e911/1176e/dnsmasq.png 400w,
-/static/318ee9833ffeb62a6ec7f4b88878e911/a5576/dnsmasq.png 670w&quot;
+        title=&quot;dnsmasq configuration&quot;
+        src=&quot;/static/318ee9833ffeb62a6ec7f4b88878e911/9b1de/dnsmasq.png&quot;
+        srcset=&quot;/static/318ee9833ffeb62a6ec7f4b88878e911/9ec3c/dnsmasq.png 200w,
+/static/318ee9833ffeb62a6ec7f4b88878e911/c7805/dnsmasq.png 400w,
+/static/318ee9833ffeb62a6ec7f4b88878e911/9b1de/dnsmasq.png 670w&quot;
         sizes=&quot;(max-width: 670px) 100vw, 670px&quot;
       /&gt;
-  &lt;/span&gt;
-  &lt;/a&gt;&lt;/p&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;From now on all &lt;code class=&quot;language-text&quot;&gt;*.dev&lt;/code&gt; domains will be translated to &lt;code class=&quot;language-text&quot;&gt;127.0.0.1&lt;/code&gt; and from there
 all &lt;code class=&quot;language-text&quot;&gt;wp.dev&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;php.dev&lt;/code&gt; domains will be handled by nginx. Good stuff.&lt;/p&gt;
 &lt;h2&gt;Installing PHP-FPM and MySQL&lt;/h2&gt;
