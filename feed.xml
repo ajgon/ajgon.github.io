@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki personal webpage and blog]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog. Webdev, devops, Ruby on Rails, JavaScript and react, AWS and docker.]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki personal webpage and blog</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Tue, 16 Jul 2019 13:44:25 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2019. Igor Rzegocki]]></copyright><item><title><![CDATA[Create Parrot OS pendrive with encrypted persistence volume]]></title><description><![CDATA[Apart from working as a developer, I also do some server administration in my spare time. Mostly as a devops for projects which I write, but…]]></description><link>https://www.rzegocki.pl/blog/create-parrot-os-pendrive-with-encrypted-persistence-volume/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/create-parrot-os-pendrive-with-encrypted-persistence-volume/</guid><category><![CDATA[security]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Tue, 16 Jul 2019 16:17:34 GMT</pubDate><content:encoded>&lt;p&gt;Apart from working as a developer, I also do some server administration in my spare time. Mostly as a devops for projects which I write, but also I &lt;a href=&quot;/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/&quot;&gt;host&lt;/a&gt; &lt;a href=&quot;/blog/adding-email-server-autoconfig-and-autodiscover/&quot;&gt;my&lt;/a&gt; &lt;a href=&quot;/blog/setting-encrypted-backup-email-server/&quot;&gt;own&lt;/a&gt; &lt;a href=&quot;/blog/installing-custom-linux-on-raspberry-pi-2/&quot;&gt;server&lt;/a&gt; with mail, git etc. I keep a lot of private info there, so naturally I had to learn a lot about securing it and keeping it as safe as possible.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Igor Rzegocki personal webpage and blog]]></title><description><![CDATA[Igor Rzegocki personal webpage and blog. Webdev, devops, Ruby on Rails, JavaScript and react, AWS and docker.]]></description><link>https://www.rzegocki.pl</link><image><url>https://www.rzegocki.pl/icons/icon-512.png</url><title>Igor Rzegocki personal webpage and blog</title><link>https://www.rzegocki.pl</link></image><generator>GatsbyJS</generator><lastBuildDate>Sat, 17 Aug 2019 17:18:27 GMT</lastBuildDate><atom:link href="https://www.rzegocki.pl//feed.xml" rel="self" type="application/rss+xml"/><author><![CDATA[Igor Rzegocki]]></author><copyright><![CDATA[Copyright © 2019. Igor Rzegocki]]></copyright><item><title><![CDATA[Create Parrot OS pendrive with encrypted persistence volume]]></title><description><![CDATA[Apart from working as a developer, I also do some server administration in my spare time. Mostly as a devops for projects which I write, but…]]></description><link>https://www.rzegocki.pl/blog/create-parrot-os-pendrive-with-encrypted-persistence-volume/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/create-parrot-os-pendrive-with-encrypted-persistence-volume/</guid><category><![CDATA[security]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Tue, 16 Jul 2019 16:17:34 GMT</pubDate><content:encoded>&lt;p&gt;Apart from working as a developer, I also do some server administration in my spare time. Mostly as a devops for projects which I write, but also I &lt;a href=&quot;/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/&quot;&gt;host&lt;/a&gt; &lt;a href=&quot;/blog/adding-email-server-autoconfig-and-autodiscover/&quot;&gt;my&lt;/a&gt; &lt;a href=&quot;/blog/setting-encrypted-backup-email-server/&quot;&gt;own&lt;/a&gt; &lt;a href=&quot;/blog/installing-custom-linux-on-raspberry-pi-2/&quot;&gt;server&lt;/a&gt; with mail, git etc. I keep a lot of private info there, so naturally I had to learn a lot about securing it and keeping it as safe as possible.&lt;/p&gt;
 &lt;p&gt;However I always did it from &quot;defendant&quot; perspective, and learned techniques connected mostly with that (closing ports, configuring firewalls etc.). Recently I came to conclusion, that this may be not enough - I have to start thinking as an attacker, to better understand the tools and tricks used in todays cyberworld.&lt;/p&gt;
 &lt;p&gt;To do that, I started reading security blogs, collecting tools and playing with self-prepared vulnerable virtual machines. Really quickly my laptop got filled with a lot of stuff which I used to play with, adding more and more mess. And as a programmer, with strong belief in &quot;Single responsibility principle&quot;, I didn&apos;t like that - my base system should be used only for my daily needs and I need to separate my &quot;hacker wanna be&quot; activities. So, naturally I started looking for some specialised Linux distro just for that.&lt;/p&gt;
 &lt;p&gt;Everybody heard about Kali Linux (formerly known as BackTrack), so naturally I started there. And I didn&apos;t like what I found - it felt bloated, sluggish - more like &quot;Debian + pentesting friends&quot; instead of a distro built from scratch with hacking principle in mind. A lot of people use it, and are happy for it - but for me it didn&apos;t feel right.&lt;/p&gt;
@@ -6,7 +6,7 @@
 &lt;p&gt;Setting up a pendrive with Live distro is a breeze - just download ISO, and flash it. However it gets a little wild, when you want to set a permanent, encrypted storage for it. Hence this guide.&lt;/p&gt;
 &lt;h2&gt;Step 1: Flash Parrot OS to pendrive&lt;/h2&gt;
 &lt;p&gt;This step is pretty simple and self explanatory - just download the ISO and flash it. There are plenty, fancy tools for that, but good, old &lt;code class=&quot;language-text&quot;&gt;dd&lt;/code&gt; is still best suited for the job.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; if&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;Parrot-security-4.6_amd64.iso of&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/rdisk2 bs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1m&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;Parrot-security-4.6_amd64.iso &lt;span class=&quot;token assign-left variable&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/rdisk2 &lt;span class=&quot;token assign-left variable&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1m&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;On OSX, it is important to use &lt;code class=&quot;language-text&quot;&gt;/dev/rdiskX&lt;/code&gt; instead of &lt;code class=&quot;language-text&quot;&gt;/dev/diskX&lt;/code&gt; as it provides raw (thus way faster) access to the device. On Linux, just pass &lt;code class=&quot;language-text&quot;&gt;/dev/sdX&lt;/code&gt; as you normally do.&lt;/p&gt;
 &lt;h2&gt;Step 2: Partition the pendrive&lt;/h2&gt;
 &lt;p&gt;Okay, we have our distro set up, let&apos;s give it a spin! You may notice many &lt;code class=&quot;language-text&quot;&gt;GRUB&lt;/code&gt; options, but for now - let&apos;s go with basic, Live USB.&lt;/p&gt;
@@ -44,21 +44,22 @@
 /static/2396fcd5d6059a37579a11b7fee2ec98/6ff5e/parrot-gparted-1.png 1200w,
 /static/2396fcd5d6059a37579a11b7fee2ec98/2d8c3/parrot-gparted-1.png 1568w&quot;
         sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Whole disk is occupied by mysterious &quot;iso&quot; volume, despite the fact the image was only 4GB! Clearly, something is wrong with partition table. Let&apos;s check offsets with wipefs:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# wipefs /dev/sdb&lt;/span&gt;
 DEVICE OFFSET      TYPE    UUID                   LABEL
-sdb    0x8001      iso9660 2019-04-25-11-04-24-00 Parrot OS
+sdb    0x8001      iso9660 &lt;span class=&quot;token number&quot;&gt;2019&lt;/span&gt;-04-25-11-04-24-00 Parrot OS
 sdb    0x1fe       dos
 sdb    0x3ba2ffe00 gpt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You may notice, that &lt;code class=&quot;language-text&quot;&gt;/dev/sdb&lt;/code&gt; contains signatures of two (or three) different data structures - an ISO image written to the whole disk, a DOS partition table, and optinally - a GPT partition scheme signature. When you check your drive with &lt;code class=&quot;language-text&quot;&gt;blkid&lt;/code&gt;...&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# blkid /dev/sdb&lt;/span&gt;
-/dev/sdb: UUID&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;2019-04-25-11-04-24-00&quot;&lt;/span&gt; LABEL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Parrot OS&quot;&lt;/span&gt; TYPE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;iso9660&quot;&lt;/span&gt; PTUUID&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;f3dc8ed4&quot;&lt;/span&gt; PTTYPE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dos&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+/dev/sdb: &lt;span class=&quot;token assign-left variable&quot;&gt;UUID&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;2019-04-25-11-04-24-00&quot;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;LABEL&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Parrot OS&quot;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;iso9660&quot;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;PTUUID&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;f3dc8ed4&quot;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;PTTYPE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;dos&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;... you will notice, that ISO partition is the preferred one. That&apos;s why gparted gets crazy and reports it as a whole drive. Thankfully, the fix is pretty easy - just wipe out information about ISO:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# wipefs -o 0x8001 -f /dev/sdb&lt;/span&gt;
-/dev/sdb: 5 bytes were erased at offset 0x00008001 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;iso9660&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: 43 44 30 30 31&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+/dev/sdb: &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; bytes were erased at offset 0x00008001 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;iso9660&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;token number&quot;&gt;43&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;44&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;31&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Since you will be altering already mounted partition, don&apos;t forget &lt;code class=&quot;language-text&quot;&gt;-f&lt;/code&gt; flag to force the overwrite. After that, &lt;code class=&quot;language-text&quot;&gt;gparted&lt;/code&gt; should start reporting partition and free space correctly.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -86,6 +87,7 @@ sdb    0x3ba2ffe00 gpt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 /static/7b0f9cb8379258cea257b980d29040a0/6ff5e/parrot-gparted-2.png 1200w,
 /static/7b0f9cb8379258cea257b980d29040a0/2d8c3/parrot-gparted-2.png 1568w&quot;
         sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -117,6 +119,7 @@ sdb    0x3ba2ffe00 gpt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 /static/6d1dbc3dc06af2ff94161bd54288c10e/6ff5e/parrot-gparted-3.png 1200w,
 /static/6d1dbc3dc06af2ff94161bd54288c10e/a6f9d/parrot-gparted-3.png 1528w&quot;
         sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -130,26 +133,26 @@ WARNING&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;
 &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;
 This will overwrite data on /dev/sdb3 irrevocably.
 
-Are you sure? &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Type uppercase yes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: YES
+Are you sure? &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Type uppercase &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: YES
 Enter passphrase &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; /dev/sdb3:
 Verify passphrase:
 Existing &lt;span class=&quot;token string&quot;&gt;&apos;ext4&apos;&lt;/span&gt; superblock signature on device /dev/sdb3 will be wiped.
-Key slot 0 created.
+Key slot &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; created.
 Command successful.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Next, attach it:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# cryptsetup luksOpen /dev/sdb3 my_part&lt;/span&gt;
 Enter passphrase &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; /dev/sdb3:&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we can format it or create multiple LVMs - it&apos;s up to you. Since it&apos;s a pendrive, I decided to not go crazy, and just created one &lt;code class=&quot;language-text&quot;&gt;ext4&lt;/code&gt; partition, filling up all the space (don&apos;t forget to label it):&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# mkfs.ext4 -L persistence /dev/mapper/my_part&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;mke2fs&lt;/span&gt; 1.44.5 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;15-Dec-2018&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-Creating filesystem with 2931456 4k blocks and 732960 inodes
+&lt;span class=&quot;token function&quot;&gt;mke2fs&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.44&lt;/span&gt;.5 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;-Dec-2018&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Creating filesystem with &lt;span class=&quot;token number&quot;&gt;2931456&lt;/span&gt; 4k blocks and &lt;span class=&quot;token number&quot;&gt;732960&lt;/span&gt; inodes
 Filesystem UUID: 592d5d84-f630-4e80-9ea9-0c9973be68f4
 Superblock backups stored on blocks:
-    32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208
+    &lt;span class=&quot;token number&quot;&gt;32768&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;98304&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;163840&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;229376&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;294912&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;819200&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;884736&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;1605632&lt;/span&gt;, &lt;span class=&quot;token number&quot;&gt;2654208&lt;/span&gt;
 
 Allocating group tables: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
 Writing inode tables: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
-Creating journal &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;16384 blocks&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+Creating journal &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;16384&lt;/span&gt; blocks&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
 Writing superblocks and filesystem accounting information: &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# e2label /dev/mapper/my_part persistence&lt;/span&gt;
@@ -204,7 +207,7 @@ Verify passphrase:&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; heroku/brew/heroku &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; heroku login&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After that you need to create a custom heroku app (the most basic one is free of charge) and attach custom buildpack to it.&lt;/p&gt;
 &lt;p&gt;The buildpack would do all the job for you, however, to trigger it, some &quot;application&quot; needs to be deployed. It doesn&apos;t really matter what you put there, as the buildpack would never reach it. So add a file, push it to heroku and you&apos;re good to go.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; my-heroku-app &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; my-heroku-app
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; my-heroku-app &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; my-heroku-app
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init
 heroku apps:create --buildpack https://github.com/ajgon/github-proxy-buildpack &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;touch&lt;/span&gt; .keep
@@ -213,23 +216,23 @@ heroku git:remote --app name-of-your-heroku-app
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; push heroku master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Configure GitHub page URL&lt;/h4&gt;
 &lt;p&gt;First of all, you need to tell the buildpack, where to route the whole traffic. You can do this by setting &lt;code class=&quot;language-text&quot;&gt;ROUTE_TO_URL&lt;/code&gt; environment variable. You can even use a path here, so you can have a root domain pointing to custom GitHub project - you don&apos;t have to create &lt;code class=&quot;language-text&quot;&gt;login.github.io&lt;/code&gt; one!&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io/my-project
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set &lt;span class=&quot;token assign-left variable&quot;&gt;ROUTE_TO_URL&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io/my-project
 &lt;span class=&quot;token comment&quot;&gt;# or just&lt;/span&gt;
-heroku config:set ROUTE_TO_URL&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+heroku config:set &lt;span class=&quot;token assign-left variable&quot;&gt;ROUTE_TO_URL&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;https://my-github-name.github.io&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Configure headers&lt;/h4&gt;
 &lt;p&gt;The most sane configuration of the headers is &lt;a href=&quot;https://github.com/ajgon/github-proxy-buildpack/blob/master/config/nginx.conf.erb#L62&quot;&gt;already included in the buildpack&lt;/a&gt;, however you can customize it any way you like, using the environment variables. The format is &lt;code class=&quot;language-text&quot;&gt;HTTP_YOUR_HEADER_UNDERSCORED&lt;/code&gt;. For example: &lt;code class=&quot;language-text&quot;&gt;X-Frame-Options&lt;/code&gt; becomes &lt;code class=&quot;language-text&quot;&gt;HTTP_X_FRAME_OPTIONS&lt;/code&gt;. You can set it, using the following command:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HTTP_X_FRAME_OPTIONS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;deny --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set &lt;span class=&quot;token assign-left variable&quot;&gt;HTTP_X_FRAME_OPTIONS&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;deny --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Configure CSP nonce&lt;/h4&gt;
 &lt;p&gt;There is also a CSP nonce rewrite support included, which is based on this &lt;a href=&quot;https://scotthelme.co.uk/csp-nonce-support-in-nginx/&quot;&gt;excellent article by Scott Helme&lt;/a&gt;, however, configuring it is slightly more complicated.&lt;/p&gt;
 &lt;p&gt;First of all you need to name the &quot;ID&quot; of your nonce. This is a string which will be replaced in your HTML output by the actual nonce generated by nginx.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set CSP_NONCE_ID&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;**CSP_NONCE**&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set &lt;span class=&quot;token assign-left variable&quot;&gt;CSP_NONCE_ID&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;**CSP_NONCE**&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The actual CSP nonce will be held by nginx in &lt;code class=&quot;language-text&quot;&gt;$cspNonce&lt;/code&gt; variable. Which means, you need to use this variable, when you set a CSP header:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HTTP_CONTENT_SECURITY_POLICY&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;default-src &apos;self&apos;; script-src &apos;self&apos; &apos;nonce-&lt;span class=&quot;token variable&quot;&gt;$cspNonce&lt;/span&gt;&apos;;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set &lt;span class=&quot;token assign-left variable&quot;&gt;HTTP_CONTENT_SECURITY_POLICY&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;default-src &apos;self&apos;; script-src &apos;self&apos; &apos;nonce-&lt;span class=&quot;token variable&quot;&gt;$cspNonce&lt;/span&gt;&apos;;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Lastly, you need add the &quot;ID&quot; string as a nonce to all the &lt;code class=&quot;language-text&quot;&gt;&amp;lt;script /&amp;gt;&lt;/code&gt; tags in your HTML:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;nonce&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;**CSP_NONCE**&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token script&quot;&gt;&lt;span class=&quot;token language-javascript&quot;&gt;&lt;span class=&quot;token function&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World!!!&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Sprinkle on top&lt;/h4&gt;
 &lt;p&gt;As a bonus, you can tell the buildpack, to completely hide the custom GitHub headers in response, to completely disguise your site. Nice!&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set HIDE_GITHUB_HEADERS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1 --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku config:set &lt;span class=&quot;token assign-left variable&quot;&gt;HIDE_GITHUB_HEADERS&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; --app &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;name-of-your-heroku-app&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;Attaching domain to heroku&lt;/h4&gt;
 &lt;p&gt;Last thing you need to do, is tell heroku load balancer to attach your appllication to your domain, by invoking:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;heroku domains:add your-custom-domain.com --app name-of-your-heroku-app&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -296,15 +299,15 @@ with docker non…]]></description><link>https://www.rzegocki.pl/blog/how-to-mak
 I noticed a funny problem - I couldn&apos;t make gnupg2 to work
 with docker non-interactively. At first, the problem was with an import:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg --import &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/private.key&quot;&lt;/span&gt;
-Step 1/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; FROM alpine
+Step &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; FROM alpine
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 4a415e366388
-Step 2/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN apk &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
+Step &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN apk &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 724679f224aa
-Step 3/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; ADD private.key /tmp/
+Step &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; ADD private.key /tmp/
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 49c8b89aecc7
-Step 4/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN gpg --import /tmp/private.key
+Step &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN gpg --import /tmp/private.key
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Running &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 9a45499d851f
 gpg: directory &lt;span class=&quot;token string&quot;&gt;&apos;/root/.gnupg&apos;&lt;/span&gt; created
 gpg: new configuration &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/root/.gnupg/dirmngr.conf&apos;&lt;/span&gt; created
@@ -313,22 +316,22 @@ gpg: keybox &lt;span class=&quot;token string&quot;&gt;&apos;/root/.gnupg/pubrin
 gpg: /root/.gnupg/trustdb.gpg: trustdb created
 gpg: key A7AD7E10789C6F1E: public key &lt;span class=&quot;token string&quot;&gt;&quot;testete &amp;lt;test@example.com&gt;&quot;&lt;/span&gt; imported
 gpg: key A7AD7E10789C6F1E/F7886F60959E549E: error sending to agent: Not a &lt;span class=&quot;token function&quot;&gt;tty&lt;/span&gt;
-gpg: Total number processed: 1
-gpg:               imported: 1
-gpg:       secret keys read: 1
-The &lt;span class=&quot;token function&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/bin/sh -c gpg --import /tmp/private.key&apos;&lt;/span&gt; returned a non-zero code: 2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+gpg: Total number processed: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+gpg:               imported: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+gpg:       secret keys read: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+The &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/bin/sh -c gpg --import /tmp/private.key&apos;&lt;/span&gt; returned a non-zero code: &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You may notice &lt;code class=&quot;language-text&quot;&gt;error sending to agent: Not a tty&lt;/code&gt; error. This one was actually easy, there is &lt;code class=&quot;language-text&quot;&gt;--batch&lt;/code&gt; parameter
 which forces gnupg2 to work in non-interactive mode:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg --batch --import &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/private.key&quot;&lt;/span&gt;
-Step 1/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; FROM alpine
+Step &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; FROM alpine
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 4a415e366388
-Step 2/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN apk &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
+Step &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN apk &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; --no-cache &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; gnupg
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 724679f224aa
-Step 3/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; ADD private.key /tmp/
+Step &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; ADD private.key /tmp/
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 49c8b89aecc7
-Step 4/4 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN gpg --batch --import /tmp/private.key
+Step &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;/4 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN gpg --batch --import /tmp/private.key
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Running &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 986fd9ae42c0
 gpg: directory &lt;span class=&quot;token string&quot;&gt;&apos;/root/.gnupg&apos;&lt;/span&gt; created
 gpg: new configuration &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/root/.gnupg/dirmngr.conf&apos;&lt;/span&gt; created
@@ -337,35 +340,35 @@ gpg: keybox &lt;span class=&quot;token string&quot;&gt;&apos;/root/.gnupg/pubrin
 gpg: /root/.gnupg/trustdb.gpg: trustdb created
 gpg: key A7AD7E10789C6F1E: public key &lt;span class=&quot;token string&quot;&gt;&quot;testete &amp;lt;test@example.com&gt;&quot;&lt;/span&gt; imported
 gpg: key A7AD7E10789C6F1E: secret key imported
-gpg: Total number processed: 1
-gpg:               imported: 1
-gpg:       secret keys read: 1
-gpg:   secret keys imported: 1
+gpg: Total number processed: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+gpg:               imported: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+gpg:       secret keys read: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+gpg:   secret keys imported: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; ba9639723f2c
 Removing intermediate container 986fd9ae42c0
 Successfully built ba9639723f2c&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But the bigger problem arrives, when we try to decrypt something with a password protected key
 (to make codeblocks readable, I will only paste things which changed):&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg -r test@example.com -d &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file.gpg&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file&quot;&lt;/span&gt;
-Step 5/6 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; ADD file.gpg /tmp/
- ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 434115276622
+Step &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;/6 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; ADD file.gpg /tmp/
+ ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;434115276622&lt;/span&gt;
 Removing intermediate container 0ee978044580
-Step 6/6 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN gpg -r test@example.com -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file
+Step &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;/6 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN gpg -r test@example.com -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Running &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; a254a182e0f0
-gpg: encrypted with 2048-bit RSA key, ID F7886F60959E549E, created 2017-04-03
+gpg: encrypted with &lt;span class=&quot;token number&quot;&gt;2048&lt;/span&gt;-bit RSA key, ID F7886F60959E549E, created &lt;span class=&quot;token number&quot;&gt;2017&lt;/span&gt;-04-03
       &lt;span class=&quot;token string&quot;&gt;&quot;testete &amp;lt;test@example.com&gt;&quot;&lt;/span&gt;
 gpg: public key decryption failed: Not a &lt;span class=&quot;token function&quot;&gt;tty&lt;/span&gt;
 gpg: decryption failed: No secret key
-The &lt;span class=&quot;token function&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/bin/sh -c gpg -r test@example.com -d /tmp/file.gpg &gt; /tmp/file&apos;&lt;/span&gt; returned a non-zero code: 2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+The &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/bin/sh -c gpg -r test@example.com -d /tmp/file.gpg &gt; /tmp/file&apos;&lt;/span&gt; returned a non-zero code: &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Well, the most obvious thing to do is to add &lt;code class=&quot;language-text&quot;&gt;--batch&lt;/code&gt; again and hope this helps:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg --batch -r test@example.com -d &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file.gpg&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file&quot;&lt;/span&gt;
-Step 6/6 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN gpg --batch -r test@example.com -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file
+Step &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;/6 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN gpg --batch -r test@example.com -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Running &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 66de260f1bf4
-gpg: encrypted with 2048-bit RSA key, ID F7886F60959E549E, created 2017-04-03
+gpg: encrypted with &lt;span class=&quot;token number&quot;&gt;2048&lt;/span&gt;-bit RSA key, ID F7886F60959E549E, created &lt;span class=&quot;token number&quot;&gt;2017&lt;/span&gt;-04-03
       &lt;span class=&quot;token string&quot;&gt;&quot;testete &amp;lt;test@example.com&gt;&quot;&lt;/span&gt;
 gpg: public key decryption failed: Not a &lt;span class=&quot;token function&quot;&gt;tty&lt;/span&gt;
 gpg: decryption failed: No secret key
-The &lt;span class=&quot;token function&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/bin/sh -c gpg --batch -r test@example.com -d /tmp/file.gpg &gt; /tmp/file&apos;&lt;/span&gt; returned a non-zero code: 2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+The &lt;span class=&quot;token builtin class-name&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/bin/sh -c gpg --batch -r test@example.com -d /tmp/file.gpg &gt; /tmp/file&apos;&lt;/span&gt; returned a non-zero code: &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Still the same error! But why? Wasn&apos;t &lt;code class=&quot;language-text&quot;&gt;--batch&lt;/code&gt; supposed to run gnupg2 in non-interactive mode? Well,
 actually it was, and it did. But still it didn&apos;t know a password - I needed some way to pass it through. Thankfully,
 gnupg2 supports an &lt;code class=&quot;language-text&quot;&gt;PASSPHRASE&lt;/code&gt; environmental variable:&lt;/p&gt;
@@ -394,20 +397,20 @@ Unfortunatelly it still needs to be provided (&lt;code class=&quot;language-text
 passed via given input. The input is identified by the number, so &lt;code class=&quot;language-text&quot;&gt;--command-fd 0&lt;/code&gt; meant STDIN. All which was left,
 was passing the password AGAIN, this time via the pipe.&lt;/p&gt;
 &lt;p&gt;Eventually I ended up with this nice, and simple command:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; PASSPHRASE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; gpg --batch \
---pinentry-mode loopback --command-fd 0 -r test@example.com \
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;PASSPHRASE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; gpg --batch &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+--pinentry-mode loopback --command-fd &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; -r test@example.com &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
 -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And voilla! It worked!&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; PASSPHRASE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; gpg --batch --pinentry-mode loopback --command-fd 0 -r test@example.com -d &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file.gpg&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file&quot;&lt;/span&gt;
-Step 6/8 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; ENV PASSPHRASE key-password
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;PASSPHRASE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; gpg --batch --pinentry-mode loopback --command-fd &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; -r test@example.com -d &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file.gpg&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/tmp/file&quot;&lt;/span&gt;
+Step &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;/8 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; ENV PASSPHRASE key-password
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 0a3bc0bc1d76
-Step 7/8 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; gpg --batch --pinentry-mode loopback --command-fd 0 -r test@example.com -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file
+Step &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;/8 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; gpg --batch --pinentry-mode loopback --command-fd &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; -r test@example.com -d /tmp/file.gpg &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/file
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Using cache
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 0b7caaabda65
-Step 8/8 &lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; RUN &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /tmp/file
+Step &lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt;/8 &lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; RUN &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /tmp/file
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Running &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 598331a9ea4e
-&lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;test&lt;/span&gt;
  ---&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; d14ea6fe5958
 Removing intermediate container 598331a9ea4e
 Successfully built d14ea6fe5958&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -415,8 +418,8 @@ Successfully built d14ea6fe5958&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 the app. But hey! We&apos;re talking cryptography here - you SHOULD use the most recent software available!&lt;/p&gt;
 &lt;p&gt;P.S. As a bonus, here is the full command for duplicity, for those folks, who want to build encrypted backups
 in Docker containers:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; PASSPHRASE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; duplicity \
---gpg-options &lt;span class=&quot;token string&quot;&gt;&quot;--pinentry-mode loopback --command-fd 0&quot;&lt;/span&gt; \
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;PASSPHRASE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;key-password&quot;&lt;/span&gt; duplicity &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+--gpg-options &lt;span class=&quot;token string&quot;&gt;&quot;--pinentry-mode loopback --command-fd 0&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
 --encrypt-key &lt;span class=&quot;token string&quot;&gt;&quot;KEY-ID&quot;&lt;/span&gt; /backup/source protocol://host/backup/destination&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Build Your Own Cloud Fast, Thanks to Ansible and Automation]]></title><description><![CDATA[Last year I wrote an article about installing custom linux distro on Raspberry Pi 2.
 Since then I configured it as my personal cloud, with…]]></description><link>https://www.rzegocki.pl/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/build-your-own-cloud-fast-thanks-to-ansible-and-automation/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 22 May 2016 09:43:06 GMT</pubDate><content:encoded>&lt;p&gt;Last year I wrote an &lt;a href=&quot;/blog/installing-custom-linux-on-raspberry-pi-2&quot;&gt;article about installing custom linux distro on Raspberry Pi 2&lt;/a&gt;.
 Since then I configured it as my personal cloud, with &lt;a href=&quot;https://bit.ly/2LGNWiS&quot;&gt;email daemon&lt;/a&gt;,
@@ -437,7 +440,7 @@ software and dropped all legacy protocols (like SSL, TLS &amp;#x3C; 1.2 etc.).&l
 of the root user on your Raspberry (or any other server) and set &lt;code class=&quot;language-text&quot;&gt;PermitRootLogin&lt;/code&gt;
 to &lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt; (don&apos;t worry though, those scripts will take care of this security risk later on
 and disable it).&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt; MACHINE_IP&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;machine IP&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;MACHINE_IP&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;machine IP&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; root@&lt;span class=&quot;token variable&quot;&gt;${MACHINE_IP}&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;mkdir /root/.ssh &amp;amp;&amp;amp; chmod 700 /root/.ssh &amp;amp;&amp;amp; touch /root/.ssh/authorized_keys &amp;amp;&amp;amp; chmod 600 /root/.ssh/authorized_keys&apos;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;scp&lt;/span&gt; ~/.ssh/id_rsa.pub root@&lt;span class=&quot;token variable&quot;&gt;${MACHINE_IP}&lt;/span&gt;:/root/.ssh/authorized_keys&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Setting up GPG&lt;/h3&gt;
@@ -453,7 +456,7 @@ You will need it in a minute. Also take a note o the Key-Id property.&lt;/p&gt;
 gpg --gen-key
 gpg --export -a -r email@used.to.create.key.com &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; raspberry.public
 gpg --export-secret-key -a -r email@used.to.create.key.com &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; raspberry.private
-gpg --list-keys &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; -B1 &lt;span class=&quot;token string&quot;&gt;&apos;ajgon@irgon.com&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; pub &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;s/.*\/\(.*\)\ .*/\1/&apos;&lt;/span&gt;
+gpg --list-keys &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; -B1 &lt;span class=&quot;token string&quot;&gt;&apos;ajgon@irgon.com&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; pub &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;s/.*\/\(.*\)\ .*/&lt;span class=&quot;token entity&quot; title=&quot;\1&quot;&gt;\1&lt;/span&gt;/&apos;&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# *The last command returns your Key-Id, note it somewhere as well.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Configuration&lt;/h2&gt;
 &lt;p&gt;To make those scripts work, you need to set some of user-based variables (like passwords, emails etc.).
@@ -462,7 +465,7 @@ Those variables are stored in &lt;code class=&quot;language-text&quot;&gt;roles/
 &lt;p&gt;This one is pretty straightforward. The cloud uses MySQL as a database of choice, for email configuration,
 web applications etc. Here you need to set up a mysql &lt;code class=&quot;language-text&quot;&gt;root&lt;/code&gt; user password. If you don&apos;t plan to ever use it
 just type:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;mysql_root_password: \&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;pwgen 30 1&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;\&quot;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; roles/base/vars/main.yml&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;mysql_root_password: &lt;span class=&quot;token entity&quot; title=&quot;\&amp;quot;&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;pwgen &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token entity&quot; title=&quot;\&amp;quot;&quot;&gt;\&quot;&lt;/span&gt;&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; roles/base/vars/main.yml&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;roles/duplicity/vars/main.yml&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://duplicity.nongnu.org/&quot;&gt;Duplicity&lt;/a&gt; is a tool for automated backups.
 It is known that all people can be divided into two groups: those who have never lost important data
@@ -541,9 +544,9 @@ primes manually on better machine (like your laptop). Otherwise your ansible dep
 (i.e. &lt;code class=&quot;language-text&quot;&gt;/etc/ssh&lt;/code&gt;). The simplest solution is to rename &lt;code class=&quot;language-text&quot;&gt;/etc&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;/tmp&lt;/code&gt; and fire them up with this context.
 So for example:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /tmp/ssh /tmp/ssl
-ssh-keygen -G /tmp/ssh/moduli.all -b 4096 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ssh-keygen -T /tmp/ssh/moduli.safe -f /tmp/ssh/moduli.all &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; /tmp/ssh/moduli.safe /tmp/ssh/moduli &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; /tmp/ssh/moduli.all
-&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; /tmp/ssh/ssh_host_*key* &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ssh-keygen -t ed25519 -f /tmp/ssh/ssh_host_ed25519_key &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ssh-keygen -t rsa -b 4096 -f /tmp/ssh/ssh_host_rsa_key &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; 600 /tmp/ssh/ssh_host_*key&quot;
-openssl dhparam -out /tmp/ssl/dhparams.pem 4096&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ssh-keygen -G /tmp/ssh/moduli.all -b &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ssh-keygen -T /tmp/ssh/moduli.safe -f /tmp/ssh/moduli.all &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; /tmp/ssh/moduli.safe /tmp/ssh/moduli &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; /tmp/ssh/moduli.all
+&lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; /tmp/ssh/ssh_host_*key* &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ssh-keygen -t ed25519 -f /tmp/ssh/ssh_host_ed25519_key &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ssh-keygen -t rsa -b &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt; -f /tmp/ssh/ssh_host_rsa_key &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;600&lt;/span&gt; /tmp/ssh/ssh_host_*key&quot;
+openssl dhparam -out /tmp/ssl/dhparams.pem &lt;span class=&quot;token number&quot;&gt;4096&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After some time, you will end up with &lt;code class=&quot;language-text&quot;&gt;/tmp/ssh&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;/tmp/ssl&lt;/code&gt; directories with proper keys. Just copy
 them to the corresponding &lt;code class=&quot;language-text&quot;&gt;/etc&lt;/code&gt; directories on the server and you&apos;re set.&lt;/p&gt;
 &lt;h3&gt;SSL keys&lt;/h3&gt;
@@ -575,7 +578,7 @@ private and public key on the server, and invoke (on remote):&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; gnupg
 gpg --import raspberry.public
 gpg --allow-secret-key-import --import raspberry.private
-gpg --list-keys --fingerprint --with-colons &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -E -n -e &lt;span class=&quot;token string&quot;&gt;&apos;s/^fpr:::::::::([0-9A-F]+):$/\1:6:/p&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; gpg --import-ownertrust&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+gpg --list-keys --fingerprint --with-colons &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -E -n -e &lt;span class=&quot;token string&quot;&gt;&apos;s/^fpr:::::::::([0-9A-F]+):$/&lt;span class=&quot;token entity&quot; title=&quot;\1&quot;&gt;\1&lt;/span&gt;:6:/p&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; gpg --import-ownertrust&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Well, that was a lot of configuration. Thankfully, you have to do this only once. After that, just archive all those files,
 encrypt and store them somewhere safe. If you ever need to redo those steps again, almost everything would be ready and
@@ -677,7 +680,7 @@ prepared, and firing up a new instance will be as simple as typing a few command
 &lt;h2&gt;OSD Auto-hide&lt;/h2&gt;
 &lt;p&gt;Discovering that, was a big suprise for me. At the time of writing this post there is no easy way to auto-hide OSD. When you display it - it will remain on screen until you &quot;unclick&quot; it away. However, you can fix this behavior with a little hack.&lt;/p&gt;
 &lt;p&gt;First of all, you need to download and install a Titan skin helper service - either from &lt;a href=&quot;https://kodi.wiki/view/Add-on:Titan_skin_helper_service&quot;&gt;Kodi Repository&lt;/a&gt;, or from its &lt;a href=&quot;https://github.com/marcelveldt/script.skin.helper.service/releases&quot;&gt;GitHub Page&lt;/a&gt;. This neat tool adds many extra options for skin makers, and one of them is &lt;a href=&quot;https://github.com/marcelveldt/script.skin.helper.service/blob/master/resources/lib/ListItemMonitor.py#L81&quot;&gt;AutoCloseVideoOSD property&lt;/a&gt;. All you need to do, is to add it to the current skin. If you&apos;re using OSMC Skin, the easiest way is to edit its &lt;code class=&quot;language-text&quot;&gt;Startup.xml&lt;/code&gt; file, and add it as &lt;code class=&quot;language-text&quot;&gt;&amp;lt;onload&amp;gt;&lt;/code&gt; property.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -i&lt;span class=&quot;token string&quot;&gt;&apos;~&apos;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;s@&amp;lt;/window&gt;@        &amp;lt;onload&gt;Skin.SetString(SkinHelper.AutoCloseVideoOSD, 4)&amp;lt;/onload&gt;\n&amp;lt;/window&gt;@&apos;&lt;/span&gt; /usr/share/kodi/addons/skin.osmc/16x9/Startup.xml&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -i&lt;span class=&quot;token string&quot;&gt;&apos;~&apos;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;s@&amp;lt;/window&gt;@        &amp;lt;onload&gt;Skin.SetString(SkinHelper.AutoCloseVideoOSD, 4)&amp;lt;/onload&gt;&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;&amp;lt;/window&gt;@&apos;&lt;/span&gt; /usr/share/kodi/addons/skin.osmc/16x9/Startup.xml&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;where &lt;code class=&quot;language-text&quot;&gt;4&lt;/code&gt; is time in seconds you wish to OSD appear on screen, before fading out.&lt;/p&gt;
 &lt;h2&gt;Buffering&lt;/h2&gt;
 &lt;p&gt;If you plan to use some remote data-storage (NAS, another Pi with HDD, or any tool involving remote file system) it&apos;s a good idea to increase buffer size of the video player. Don&apos;t set it too large though, since it will occupy &lt;a href=&quot;https://kodi.wiki/view/HOW-TO:Modify_the_video_cache&quot;&gt;3 times more RAM than the value set&lt;/a&gt; (so if you set it to 100M it will occupy 300M of RAM, etc.). For Raspberry Pi 2 with its 1GB RAM, a safe value is approx. 150MB. And it should be more than sufficient, even for 1080p videos. Increasing buffer size is quite simple - just create a &lt;code class=&quot;language-text&quot;&gt;.kodi/userdata/advancedsettings.xml&lt;/code&gt; file on your OSMC, and fill it as below (altering &lt;code class=&quot;language-text&quot;&gt;cachemembuffersize&lt;/code&gt; to your needs).&lt;/p&gt;
@@ -694,26 +697,26 @@ prepared, and firing up a new instance will be as simple as typing a few command
 &lt;p&gt;Whole idea is actually pretty simple - just create a script &lt;code class=&quot;language-text&quot;&gt;/usr/local/bin/ping-tv.sh&lt;/code&gt; and fill with content below (don&apos;t forget to put your TV IP there).&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/usr/local/bin/ping-tv.sh&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
-TVIP&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;IP of your TV&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;TVIP&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;IP of your TV&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
 
-count&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ping&lt;/span&gt; -c 1 -W 1 $TVIP &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; from &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;wc&lt;/span&gt; -l &lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
-tvon&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /tmp/tvon &lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ping&lt;/span&gt; -c &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; -W &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; $TVIP &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; from &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;wc&lt;/span&gt; -l &lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;tvon&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; /tmp/tvon &lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;
 
-&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$count&lt;/span&gt; -eq 0 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$tvon&lt;/span&gt; -eq 1 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$count&lt;/span&gt; -eq &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$tvon&lt;/span&gt; -eq &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
         xbmc-send -a &lt;span class=&quot;token string&quot;&gt;&apos;PlayerControl(Stop)&apos;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; -n 0 &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/tvon
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/tvon
 &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; -n 1 &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/tvon
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; -n &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /tmp/tvon
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, all it&apos;s left, is adding this script to the cron. Unfortunatelly, cron cannot launch tasks more often than a minute. And losing up to a minute for script to actually notice that TV is switched off - is unacceptable. However, there is another neat trick under my sleeve - using &lt;code class=&quot;language-text&quot;&gt;sleep&lt;/code&gt;. So fire up &lt;code class=&quot;language-text&quot;&gt;crontab -e&lt;/code&gt; and fill it with:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;* * * * * /usr/local/bin/ping-tv.sh
-* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; 10 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
-* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; 20 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
-* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; 30 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
-* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; 40 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
-* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; 50 &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
+* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
+* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
+* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;40&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh
+* * * * * &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;50&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; /usr/local/bin/ping-tv.sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This would force cron to start 6 processes, each one waiting different time before actually pinging the TV. In the end, the maximum waiting time would be shorten to 10 seconds, which is acceptable in my opinion (you can always add more entries following that pattern).&lt;/p&gt;
 &lt;h2&gt;TV Shows&lt;/h2&gt;
 &lt;p&gt;Ok, let&apos;s make it perfectly clear - I&apos;m not responsible if DEA, FBI, KGB or HGW knock to your door one day. &lt;strong class=&quot;warning&quot;&gt;This is for informational purposes only&lt;/strong&gt;. If your country provides a legal alternative like Hulu or Netflix, you should definitely consider it. If not (or you don&apos;t care), continue reading.&lt;/p&gt;
@@ -735,8 +738,8 @@ tvon&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&q
 &lt;p&gt;Next, install latest stable version of subliminal. Do it from &lt;code class=&quot;language-text&quot;&gt;osmc&lt;/code&gt; user, not from &lt;code class=&quot;language-text&quot;&gt;root&lt;/code&gt;! There is no need for polluting the system userspace, and thanks to that, all the files will be stored in one, easy-to-wipe-out directory.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;pip &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --user subliminal&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Also local userspace means, you need to add its path to your &lt;code class=&quot;language-text&quot;&gt;$PATH&lt;/code&gt; env.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;export PATH=&quot;&lt;span class=&quot;token variable&quot;&gt;$HOME&lt;/span&gt;/.local/bin:&lt;span class=&quot;token variable&quot;&gt;$PATH&lt;/span&gt;&quot;&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; ~/.bashrc
-&lt;span class=&quot;token function&quot;&gt;source&lt;/span&gt; ~/.bashrc&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;export PATH=&quot;&lt;span class=&quot;token environment constant&quot;&gt;$HOME&lt;/span&gt;/.local/bin:&lt;span class=&quot;token environment constant&quot;&gt;$PATH&lt;/span&gt;&quot;&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; ~/.bashrc
+&lt;span class=&quot;token builtin class-name&quot;&gt;source&lt;/span&gt; ~/.bashrc&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you don&apos;t want to use &lt;code class=&quot;language-text&quot;&gt;napiprojekt&lt;/code&gt; provider, you&apos;re done. If you do, read next section.&lt;/p&gt;
 &lt;h4&gt;Subliminal - napiprojekt&lt;/h4&gt;
 &lt;p&gt;At the time of writing this article, napiprojekt support for subliminal was in beta stage, and was not included in pip repository. The easiest way to check if napiprojekt is enabled, is to check the list of supported providers:&lt;/p&gt;
@@ -744,10 +747,10 @@ tvon&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&q
 &lt;span class=&quot;token comment&quot;&gt;#  -p, --provider [addic7ed|opensubtitles|podnapisi|thesubdb|tvsubtitles]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If napiprojekt is listed, you can skip this step.&lt;/p&gt;
 &lt;p&gt;Otherwise download the freshest development version (if you don&apos;t have a git, invoke &lt;code class=&quot;language-text&quot;&gt;sudo apt-get install git&lt;/code&gt;) and install it:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone --depth&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1 -b develop https://github.com/Diaoul/subliminal.git ~/subliminal
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; ~/subliminal
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone --depth&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; -b develop https://github.com/Diaoul/subliminal.git ~/subliminal
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; ~/subliminal
 python setup.py &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --user
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; ~
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; ~
 &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -rf ~/subliminal&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now napiprojekt should be displayed as available provider:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;subliminal download --help &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; provider
@@ -761,7 +764,7 @@ pip &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --user tra
 &lt;p&gt;The second package is necessary for all FlexGet transmission-related plugins.&lt;/p&gt;
 &lt;h4&gt;FlexGet - napiprojekt&lt;/h4&gt;
 &lt;p&gt;If you wish to use napiprojekt and &lt;a href=&quot;https://flexget.com/wiki/Plugins/subliminal&quot;&gt;subliminal plugin&lt;/a&gt;, you need to monkey patch it (however, you can safely skip this step, despite the fact you will use subliminal - see below). Also before applying the patch, check the &lt;code class=&quot;language-text&quot;&gt;PROVIDERS&lt;/code&gt; constant in &lt;code class=&quot;language-text&quot;&gt;~/.local/lib/python2.7/site-packages/flexget/plugins/output/subtitles_subliminal.py&lt;/code&gt; file. At the time of writing this article &lt;code class=&quot;language-text&quot;&gt;napiprojekt&lt;/code&gt; wasn&apos;t there, so if it&apos;s absent, do:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -i&lt;span class=&quot;token string&quot;&gt;&apos;~&apos;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;s@&apos;opensubtitles&apos;,@&apos;opensubtitles&apos;,\n    &apos;napiprojekt&apos;,@&quot;&lt;/span&gt; ~/.local/lib/python2.7/site-packages/flexget/plugins/output/subtitles_subliminal.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -i&lt;span class=&quot;token string&quot;&gt;&apos;~&apos;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;s@&apos;opensubtitles&apos;,@&apos;opensubtitles&apos;,&lt;span class=&quot;token entity&quot; title=&quot;\n&quot;&gt;\n&lt;/span&gt;    &apos;napiprojekt&apos;,@&quot;&lt;/span&gt; ~/.local/lib/python2.7/site-packages/flexget/plugins/output/subtitles_subliminal.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;FlexGet - configuration&lt;/h4&gt;
 &lt;p&gt;The most important step - we need to tell FlexGet what to do, what to fetch and where to put it. You should really, REALLY read the &lt;a href=&quot;https://flexget.com/wiki/Configuration&quot;&gt;FlexGet Configuration documenatation&lt;/a&gt; so you know what you&apos;re doing. After that, you can use this template for a good start (put it to &lt;code class=&quot;language-text&quot;&gt;~/.flexget/config.yml&lt;/code&gt;):&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;~/.flexget/config.yml&lt;/code&gt;&lt;/p&gt;
@@ -835,7 +838,7 @@ pip &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; --user tra
 &lt;p&gt;I think 30-minutes is a very safe time-window - Your FlexGet scripts shouldn&apos;t overlap.&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Phew! That was the long one! I&apos;m aware, that some things are not as easy as they should be, but trust me - it&apos;s worth the effort. Kodi can be a pretty powerful tool if you give it a chance, and in return it will pay you back with a Media Center you will find hard to take your eyes off.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Installing custom Linux on Raspberry Pi 2]]></title><description><![CDATA[Few days ago, I gave myself a present, which (at the very beginning) I was planning to power
-up with OSMC and use it as HTPC. However, in a…]]></description><link>https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 19 Apr 2015 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Few days ago, &lt;a href=&quot;/files/rpi-3548ad80f20fd5b3c1ebb1c1c3eeeda4.jpeg&quot;&gt;I gave myself a present&lt;/a&gt;, which (at the very beginning) I was planning to power
+up with OSMC and use it as HTPC. However, in a…]]></description><link>https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</link><guid isPermaLink="false">https://www.rzegocki.pl/blog/installing-custom-linux-on-raspberry-pi-2/</guid><category><![CDATA[administration]]></category><dc:creator><![CDATA[Igor Rzegocki]]></dc:creator><pubDate>Sun, 19 Apr 2015 18:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Few days ago, &lt;a href=&quot;/files/3548ad80f20fd5b3c1ebb1c1c3eeeda4/rpi.jpeg&quot;&gt;I gave myself a present&lt;/a&gt;, which (at the very beginning) I was planning to power
 up with &lt;a href=&quot;https://osmc.tv/&quot;&gt;OSMC&lt;/a&gt; and use it as HTPC. However, in a meantime I had to switch my apartment, and put
 my worn ATOM server offline for couple of hours - necessity I didn&apos;t like very much. This, and the fact that my server
 got very noisy (I suspected power supply fan) convinced me to start looking for something new. And then I thought -
@@ -856,7 +859,7 @@ multi-platform and easy to set up.&lt;/p&gt;
 vagrant up
 vagrant &lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -s &lt;span class=&quot;token comment&quot;&gt;# Change user to root&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /vagrant &lt;span class=&quot;token comment&quot;&gt;# Use a shared folder, all files created here will be visible outside of VM&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /vagrant &lt;span class=&quot;token comment&quot;&gt;# Use a shared folder, all files created here will be visible outside of VM&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you do this, all code examples below (unless stated differently) will reflect to Vagrant root environment.&lt;/p&gt;
 &lt;h2&gt;Preparing SDCard Filesystem&lt;/h2&gt;
 &lt;p&gt;First of all, we need a properly partitioned image file, which later on we will copy to the SD card. Raspberry PI
@@ -868,7 +871,7 @@ install all the necessary packages:&lt;/p&gt;
 &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; binfmt-support qemu qemu-user-static &lt;span class=&quot;token function&quot;&gt;debootstrap&lt;/span&gt; kpartx lvm2 dosfstools&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we can setup the initial partitioning.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as root&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; if&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/zero of&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img bs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1M count&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;768
+&lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/zero &lt;span class=&quot;token assign-left variable&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img &lt;span class=&quot;token assign-left variable&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1M &lt;span class=&quot;token assign-left variable&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;768&lt;/span&gt;
 losetup -f --show rpi.img &lt;span class=&quot;token comment&quot;&gt;# returns loop device used later, usually /dev/loop0&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;fdisk&lt;/span&gt; /dev/loop0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We need to create two partitions. As I mentioned, the first one needs to be FAT16 partition (type &lt;code class=&quot;language-text&quot;&gt;e&lt;/code&gt;), the second one
@@ -905,8 +908,8 @@ out of the box.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as root&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;debootstrap&lt;/span&gt; --arch armhf --foreign wheezy root http://ftp.debian.org/debian/
 &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /usr/bin/qemu-arm-static root/usr/bin/ &lt;span class=&quot;token comment&quot;&gt;# needed for syscall emulation&lt;/span&gt;
-LANG&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;C &lt;span class=&quot;token function&quot;&gt;chroot&lt;/span&gt; root /debootstrap/debootstrap --second-stage
-&lt;span class=&quot;token function&quot;&gt;chroot&lt;/span&gt; root /bin/bash -c &lt;span class=&quot;token string&quot;&gt;&quot;echo \&quot;root:raspberry\&quot; | chpasswd&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# This will set root password to &apos;raspberry&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;LANG&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;C &lt;span class=&quot;token function&quot;&gt;chroot&lt;/span&gt; root /debootstrap/debootstrap --second-stage
+&lt;span class=&quot;token function&quot;&gt;chroot&lt;/span&gt; root /bin/bash -c &lt;span class=&quot;token string&quot;&gt;&quot;echo &lt;span class=&quot;token entity&quot; title=&quot;\&amp;quot;&quot;&gt;\&quot;&lt;/span&gt;root:raspberry&lt;span class=&quot;token entity&quot; title=&quot;\&amp;quot;&quot;&gt;\&quot;&lt;/span&gt; | chpasswd&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# This will set root password to &apos;raspberry&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Next we need to set a minimal set of configuration files, to actually boot our disto.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note: In code headers, I used absolute paths in relation to your RPI root directory, so if you want to set up
 &lt;code class=&quot;language-text&quot;&gt;/etc/fstab&lt;/code&gt; you need to edit &lt;code class=&quot;language-text&quot;&gt;root/etc/fstab&lt;/code&gt; (if you followed this guide).&lt;/em&gt;&lt;/p&gt;
@@ -929,8 +932,8 @@ LANG&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;C &lt;span class=
 &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p root/lib/modules
 &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update
 &lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; +x /usr/bin/rpi-update
-SKIP_BACKUP&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1 UPDATE_SELF&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0 BOOT_PATH&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;boot ROOT_PATH&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;root rpi-update
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; boot/cmdline.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;SKIP_BACKUP&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;UPDATE_SELF&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;BOOT_PATH&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;boot &lt;span class=&quot;token assign-left variable&quot;&gt;ROOT_PATH&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;root rpi-update
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; boot/cmdline.txt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And that&apos;s it! At this point, if you have a monitor, you can flash your SD Card, plug it in to your Raspberry, and see
 if your Debian boots up. If you also have a keyboard, you should be able to log in to it as well, and do the following
 steps from there. Otherwise, keep using your &lt;code class=&quot;language-text&quot;&gt;rpi.img&lt;/code&gt;.&lt;/p&gt;
@@ -947,14 +950,14 @@ steps from there. Otherwise, keep using your &lt;code class=&quot;language-text&
 &lt;p&gt;At first, disable installation of recommended packages - for example, most of the time, we don&apos;t want 3/4 of Xserver
 while installing vim.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as raspberry root&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;APT::Install-Recommends &quot;0&quot;;&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /etc/apt/apt.conf.d/00norecommends&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;APT::Install-Recommends &quot;0&quot;;&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /etc/apt/apt.conf.d/00norecommends&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Next we need to setup a minimal dose of packages, which are necessary to use our distro — &lt;code class=&quot;language-text&quot;&gt;locales&lt;/code&gt; for
 basic UTF8 language support, and &lt;code class=&quot;language-text&quot;&gt;openssh-server&lt;/code&gt; to allow us to actually sign in to the machine. I also
 recommend to install &lt;code class=&quot;language-text&quot;&gt;ntp&lt;/code&gt; to avoid any timestamp-based confusions.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# as raspberry root&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; update
-LANG&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;C &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; locales
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;en_US.UTF-8 UTF-8&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/locale.gen
+&lt;span class=&quot;token assign-left variable&quot;&gt;&lt;span class=&quot;token environment constant&quot;&gt;LANG&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;C &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; locales
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;en_US.UTF-8 UTF-8&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/locale.gen
 locale-gen
 &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; openssh-server openssh-blacklist openssh-blacklist-extra ntp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you plan, to configure your system with Ansible or some other auto-tool, it&apos;s also a good idea to install
@@ -1021,19 +1024,19 @@ network={
 &lt;p&gt;Now you can exit the chroot (and VM if you used it), and flash your SDCard. In OSX you can do this by:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;diskutil list &lt;span class=&quot;token comment&quot;&gt;# Check for you SDCard disk number&lt;/span&gt;
 diskutil umountDisk /dev/diskX &lt;span class=&quot;token comment&quot;&gt;# Where X is a disc number&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; bs&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1m if&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img of&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/rdiskX
+&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1m &lt;span class=&quot;token assign-left variable&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img &lt;span class=&quot;token assign-left variable&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/rdiskX
 diskutil &lt;span class=&quot;token function&quot;&gt;eject&lt;/span&gt; /dev/diskX&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Notice, that for &lt;code class=&quot;language-text&quot;&gt;dd&lt;/code&gt; I&apos;m using &lt;code class=&quot;language-text&quot;&gt;/dev/rdiskX&lt;/code&gt; instead of the &lt;code class=&quot;language-text&quot;&gt;/dev/diskX&lt;/code&gt;. It&apos;s because how OSX handles disk devices.
 &lt;a href=&quot;https://superuser.com/questions/631592/why-is-dev-rdisk-about-20-times-faster-than-dev-disk-in-mac-os-x&quot;&gt;You can read more here&lt;/a&gt;
 if you are intereseted.&lt;/p&gt;
 &lt;p&gt;In Linux it&apos;s as simple as typing:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; if&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img of&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/sdX &lt;span class=&quot;token comment&quot;&gt;# Where X is a disk letter&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dd&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rpi.img &lt;span class=&quot;token assign-left variable&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/dev/sdX &lt;span class=&quot;token comment&quot;&gt;# Where X is a disk letter&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Finishing up&lt;/h2&gt;
 &lt;p&gt;Put your card into your Raspberry and boot it up! If everything goes well, you should be able to SSH to it.
 If you haven&apos;t use monitor and keyboard, you might end not knowing which IP address SSH to. The easiest solution for
 this problem is use &lt;code class=&quot;language-text&quot;&gt;nmap&lt;/code&gt; to detect all open hosts in your subnet, then check which one responds to &lt;code class=&quot;language-text&quot;&gt;root&lt;/code&gt; user
 with &lt;code class=&quot;language-text&quot;&gt;raspberry&lt;/code&gt; password.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nmap -p22 -oG - --open 192.168.0.0/24 &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; Host &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;{print &lt;span class=&quot;token variable&quot;&gt;$2&lt;/span&gt;}&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;uniq&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nmap -p22 -oG - --open &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.0.0/24 &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; Host &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;{print &lt;span class=&quot;token variable&quot;&gt;$2&lt;/span&gt;}&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;uniq&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Don&apos;t forget to change your root password (or disable root login at all) and to secure your system after you sign in!
 The next thing, you might notice is, that your Linux partition is pretty small (768MB). This is due to fact, that
 the original image was created as small as possible, to reduce flashing time. Thankfully, you can expand it pretty
@@ -1041,10 +1044,10 @@ easily.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;fdisk&lt;/span&gt; /dev/mmcblk0
 &lt;span class=&quot;token comment&quot;&gt;# In fdisk&lt;/span&gt;
 d &lt;span class=&quot;token comment&quot;&gt;# Delete partition...&lt;/span&gt;
-2 &lt;span class=&quot;token comment&quot;&gt;# ... the linux partition (don&apos;t worry, you won&apos;t lose your data)&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# ... the linux partition (don&apos;t worry, you won&apos;t lose your data)&lt;/span&gt;
 n &lt;span class=&quot;token comment&quot;&gt;# Create ...&lt;/span&gt;
 p &lt;span class=&quot;token comment&quot;&gt;# ... primary partition ...&lt;/span&gt;
-2 &lt;span class=&quot;token comment&quot;&gt;# number 2&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# number 2&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;enter&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# Start from the beginning of the free space (as the previous did) ...&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;enter&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# ... but end up filling all available space&lt;/span&gt;
 w &lt;span class=&quot;token comment&quot;&gt;# write changes&lt;/span&gt;
@@ -1092,6 +1095,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/93a7fc85d71dc62162dc29866d6ededb/c7805/iTerm.png 400w,
 /static/93a7fc85d71dc62162dc29866d6ededb/2d85a/iTerm.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1121,6 +1125,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/fdbc03a95e74b83e0b6df4c0cdc66c6a/c7805/brew.png 400w,
 /static/fdbc03a95e74b83e0b6df4c0cdc66c6a/2d85a/brew.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1150,6 +1155,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/d88802d082129644d6db43f2b6d26ccb/c7805/oh-my-zsh.png 400w,
 /static/d88802d082129644d6db43f2b6d26ccb/2d85a/oh-my-zsh.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1179,6 +1185,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/cc25a894642e61ca62f7d27f2c680540/c7805/ack.png 400w,
 /static/cc25a894642e61ca62f7d27f2c680540/2d85a/ack.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1208,6 +1215,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/3447c4b362bfaab6ca569e5add50462c/c7805/rvm.png 400w,
 /static/3447c4b362bfaab6ca569e5add50462c/2d85a/rvm.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1237,6 +1245,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/9dfd7b48484d2549509897a2de388e8c/c7805/grunt.png 400w,
 /static/9dfd7b48484d2549509897a2de388e8c/2d85a/grunt.png 423w&quot;
         sizes=&quot;(max-width: 423px) 100vw, 423px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1266,6 +1275,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/c23a1508771778aaf9f6f0e4491c35f3/c7805/alfred.png 400w,
 /static/c23a1508771778aaf9f6f0e4491c35f3/a5ed1/alfred.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1296,6 +1306,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/a17430aba30e9403700732a4a9f70932/c7805/alfred-caniuse.png 400w,
 /static/a17430aba30e9403700732a4a9f70932/a5ed1/alfred-caniuse.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1325,6 +1336,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/a7ab1061c4f02e02212da911f6beea8b/c7805/alfred-colors.png 400w,
 /static/a7ab1061c4f02e02212da911f6beea8b/a5ed1/alfred-colors.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1354,6 +1366,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/4fa8394f5a547c5d881700fd7c118ab6/c7805/alfred-dash.png 400w,
 /static/4fa8394f5a547c5d881700fd7c118ab6/a5ed1/alfred-dash.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1383,6 +1396,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/8feb87e794a55a0fb74e1220e8e821b7/c7805/alfred-datauri.png 400w,
 /static/8feb87e794a55a0fb74e1220e8e821b7/a5ed1/alfred-datauri.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1412,6 +1426,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/c7805/alfred-flush.png 400w,
 /static/7f28d6c27f1e6dcc79f78e2b9dcbd69b/a5ed1/alfred-flush.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1441,6 +1456,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/6bef6b80f0c4fea0fdb4f921b8e35915/c7805/alfred-entity.png 400w,
 /static/6bef6b80f0c4fea0fdb4f921b8e35915/a5ed1/alfred-entity.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1470,6 +1486,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/e4a7206483d6ecaf0168d3fbc297cfa6/c7805/alfred-ios.png 400w,
 /static/e4a7206483d6ecaf0168d3fbc297cfa6/a5ed1/alfred-ios.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1499,6 +1516,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/0f6334901642b35ab91b2af88f3074ec/c7805/alfred-sclip.png 400w,
 /static/0f6334901642b35ab91b2af88f3074ec/a5ed1/alfred-sclip.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1528,6 +1546,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/3a4a29da8986393b52aaeb93dca93627/c7805/alfred-stree.png 400w,
 /static/3a4a29da8986393b52aaeb93dca93627/a5ed1/alfred-stree.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1557,6 +1576,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/1146cfe28bd813a38f6fe04215b99b32/c7805/alfred-tz.png 400w,
 /static/1146cfe28bd813a38f6fe04215b99b32/a5ed1/alfred-tz.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1586,6 +1606,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/371961a76722b9da0ac3f90da1bd5464/c7805/alfred-vm.png 400w,
 /static/371961a76722b9da0ac3f90da1bd5464/a5ed1/alfred-vm.png 620w&quot;
         sizes=&quot;(max-width: 620px) 100vw, 620px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1615,6 +1636,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/4b20e6b0272d4fc8e1d0a6f22b683851/c7805/sublime.png 400w,
 /static/4b20e6b0272d4fc8e1d0a6f22b683851/8928d/sublime.png 427w&quot;
         sizes=&quot;(max-width: 427px) 100vw, 427px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1662,6 +1684,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/0d78919f7e56711cdaff8e46ae60282b/c7805/dash.png 400w,
 /static/0d78919f7e56711cdaff8e46ae60282b/54e54/dash.png 580w&quot;
         sizes=&quot;(max-width: 580px) 100vw, 580px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1690,6 +1713,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
         srcset=&quot;/static/99749a3d5b8607d59f91a736d65b83a9/9ec3c/divvy.png 200w,
 /static/99749a3d5b8607d59f91a736d65b83a9/01387/divvy.png 320w&quot;
         sizes=&quot;(max-width: 320px) 100vw, 320px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1719,6 +1743,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/04d57abb11c4bb9b89447acba114de33/c7805/fontprep.png 400w,
 /static/04d57abb11c4bb9b89447acba114de33/2cf63/fontprep.png 550w&quot;
         sizes=&quot;(max-width: 550px) 100vw, 550px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1748,6 +1773,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/2839ed1c8f54201ca76480b658ebeedd/c7805/imageoptim.png 400w,
 /static/2839ed1c8f54201ca76480b658ebeedd/8928d/imageoptim.png 427w&quot;
         sizes=&quot;(max-width: 427px) 100vw, 427px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1778,6 +1804,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/3ac70394d06f471adf4d9c2a3a2e36a2/c7805/marked.png 400w,
 /static/3ac70394d06f471adf4d9c2a3a2e36a2/8928d/marked.png 427w&quot;
         sizes=&quot;(max-width: 427px) 100vw, 427px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1807,6 +1834,7 @@ in &lt;code class=&quot;language-text&quot;&gt;/etc/ssh/sshd_config&lt;/code&gt;
 /static/fda70e6b2023202561d0f3f37d081336/c7805/sourcetree.png 400w,
 /static/fda70e6b2023202561d0f3f37d081336/e49a9/sourcetree.png 640w&quot;
         sizes=&quot;(max-width: 640px) 100vw, 640px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -1953,14 +1981,14 @@ confirmation - and eventually fail):&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;useradd&lt;/span&gt; -s /bin/false -d /var/gpg -M gpgmap
 &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /var/gpg/.gnupg
 &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; -R gpgmap /var/gpg
-&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; 700 /var/gpg/.gnupg
+&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;700&lt;/span&gt; /var/gpg/.gnupg
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -u gpgmap /usr/bin/gpg --gen-key --homedir&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/var/gpg/.gnupg
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; -u gpgmap gpg --edit-key your@key.email.com trust quit&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Setting gpg-mailgate&lt;/h2&gt;
 &lt;p&gt;Install GnuPG Python library, and gpg-mailgate itself:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /root
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /root
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone https://github.com/ajgon/gpg-mailgate.git
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; gpg-mailgate
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; gpg-mailgate
 &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -R GnuPG /usr/lib/python2.6
 &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; gpg-mailgate.py /usr/local/bin/gpg-mailgate.py
 &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; gpg-mailgate.conf.sample /etc/gpg-mailgate.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2006,17 +2034,17 @@ content_filter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; gpg-m
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/postfix/master.cf&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# gpg-mailgate&lt;/span&gt;
 gpg-mailgate    unix    -       n       n       -       -       pipe
-  flags&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; user&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;gpgmap argv&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/local/bin/gpg-mailgate.py
+  &lt;span class=&quot;token assign-left variable&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;gpgmap &lt;span class=&quot;token assign-left variable&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/local/bin/gpg-mailgate.py
 
-127.0.0.1:10028 inet    n       -       n       -       10      smtpd
-        -o content_filter&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-        -o receive_override_options&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;no_unknown_recipient_checks,no_header_body_checks
-        -o smtpd_helo_restrictions&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-        -o smtpd_client_restrictions&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-        -o smtpd_sender_restrictions&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
-        -o smtpd_recipient_restrictions&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;permit_mynetworks,reject
-        -o mynetworks&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;127.0.0.0/8
-        -o smtpd_authorized_xforward_hosts&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;127.0.0.0/8&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1:10028 inet    n       -       n       -       &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;      smtpd
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;content_filter&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;receive_override_options&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;no_unknown_recipient_checks,no_header_body_checks
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;smtpd_helo_restrictions&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;smtpd_client_restrictions&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;smtpd_sender_restrictions&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;smtpd_recipient_restrictions&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;permit_mynetworks,reject
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;mynetworks&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.0/8
+        -o &lt;span class=&quot;token assign-left variable&quot;&gt;smtpd_authorized_xforward_hosts&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.0/8&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Don&apos;t forget to create &lt;code class=&quot;language-text&quot;&gt;header_checks.db&lt;/code&gt; and restart postfix.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;postmap header_checks
 /etc/init.d/postfix restart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2030,7 +2058,7 @@ spoofed. Yeah, I know I'm not a very famous person, so…]]></description><link>
 spoofed. Yeah, I know I&apos;m not a very famous person, so probability of such
 thing happening is similar to zero, but hey - tell this to my Paranoid me. :)
 I also sign every mail I could (they can be easily verified using
-&lt;a href=&quot;/files/public-key-978fcc6c1d13c23615cc2ed1ca7774ca.txt&quot;&gt;my public key&lt;/a&gt;), but still - DKIM seems to be a fine
+&lt;a href=&quot;/files/978fcc6c1d13c23615cc2ed1ca7774ca/public-key.txt&quot;&gt;my public key&lt;/a&gt;), but still - DKIM seems to be a fine
 solution. And besides, I love to play with new things. So after many
 experiments with &lt;a href=&quot;https://sourceforge.net/projects/dkim-milter/&quot;&gt;dkim-milter&lt;/a&gt;,
 &lt;a href=&quot;https://sourceforge.net/projects/dkimproxy/&quot;&gt;DKIMProxy&lt;/a&gt; and
@@ -2060,24 +2088,24 @@ X-Header           &lt;span class=&quot;token function&quot;&gt;yes&lt;/span&gt;
 daemon you are using). Next we need to tell opendkim which port it will be
 using, so in &lt;code class=&quot;language-text&quot;&gt;/etc/default/opendkim&lt;/code&gt; uncomment:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/default/opendkim&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;SOCKET&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;inet:12345@localhost&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# listen on loopback on port 12345&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;SOCKET&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;inet:12345@localhost&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;# listen on loopback on port 12345&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now we have to populate those extra files we defined. &lt;code class=&quot;language-text&quot;&gt;TrustedHosts&lt;/code&gt; is the
 easiest one, it&apos;s just the list of hosts and domains which are allowed to use
 DKIM. So in most cases:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/mail/dkim/TrustedHosts&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;localhost
-127.0.0.1
-192.168.1.1
-1.2.3.4 &lt;span class=&quot;token comment&quot;&gt;# external IP&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.1
+&lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.1.1
+&lt;span class=&quot;token number&quot;&gt;1.2&lt;/span&gt;.3.4 &lt;span class=&quot;token comment&quot;&gt;# external IP&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Next, we need to create a key and DNS TXT record pair for each domain we want
 to be signed. I suggest to use strong key (&lt;code class=&quot;language-text&quot;&gt;-b&lt;/code&gt; parameter), to avoid
 &lt;a href=&quot;https://www.wired.com/threatlevel/2012/10/dkim-vulnerability-widespread&quot;&gt;some company&apos;s failure&lt;/a&gt;.
 To do this:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /etc/mail/dkim/keys/mydomain.com
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /etc/mail/dkim/keys/mydomain.com
-opendkim-genkey -r -b 2048 -d mydomain.com -s mail
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /etc/mail/dkim/keys/mydomain.com
+opendkim-genkey -r -b &lt;span class=&quot;token number&quot;&gt;2048&lt;/span&gt; -d mydomain.com -s mail
 &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; opendkim:opendkim mail.private
-&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; 600 mail.private&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token function&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;600&lt;/span&gt; mail.private&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This will create two files: &lt;code class=&quot;language-text&quot;&gt;mail.private&lt;/code&gt; - which contains a private RSA key,
 and &lt;code class=&quot;language-text&quot;&gt;mail.txt&lt;/code&gt; which contains a contents for DNS TXT record. So let&apos;s make use
 of them! First keys - they need to be fined in &lt;code class=&quot;language-text&quot;&gt;KeyTable&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;SingingTable&lt;/code&gt;
@@ -2097,7 +2125,7 @@ files.&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/postfix/main.cf&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# DKIM&lt;/span&gt;
 milter_default_action &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; accept
-milter_protocol &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; 6
+milter_protocol &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;
 smtpd_milters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; inet:localhost:12345
 non_smtpd_milters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; inet:localhost:12345&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;then. reload it and you are set.&lt;/p&gt;
@@ -2106,7 +2134,7 @@ non_smtpd_milters &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; in
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; postfix-policyd-spf-python&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;and add service:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/postfix/master.cf&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;policy-spf  unix  -  n  n  -  -  spawn user&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;nobody argv&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/bin/policyd-spf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;policy-spf  unix  -  n  n  -  -  spawn &lt;span class=&quot;token assign-left variable&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;nobody &lt;span class=&quot;token assign-left variable&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/bin/policyd-spf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Add spf timeout to &lt;code class=&quot;language-text&quot;&gt;/etc/postfix/main.cf&lt;/code&gt; and adjust
 &lt;code class=&quot;language-text&quot;&gt;smtpd_recipient_restrictions&lt;/code&gt; to include
 &lt;code class=&quot;language-text&quot;&gt;check_policy_service unix:private/policy-spf&lt;/code&gt;, so in my file it looks like
@@ -2132,11 +2160,11 @@ example my looks like this:&lt;/p&gt;
 &lt;p&gt;To test if everything works fine, just send yourself an email and check it
 headers. You should see something like:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;X-Dkim: OpenDKIM Filter v2.0.1 myexample.com 0224020B8
-Dkim-Signature: v&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; a&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rsa-sha256&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; c&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;relaxed/simple&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; d&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;myexample.com&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; s&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;mail&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; t&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1351357546&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; bh&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;Rskt6Q/nZKmxgXkWUYP6cCBSDJhtkVT0PSrUEVGVgp4&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; h&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;From:Content-Type:Content-Transfer-Encoding:Subject:Message-Id: Date:To:Mime-Version&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; b&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;phPQdG6HYaders4Xv0TsK2mT+PFYVk/brOFpnmCjCZtvbeGJ+XwrNk4Tnc9xGELtAglLOVplSvMV9nTK6xonta1qLTtnLYPsY4o/WPfyZYDgHmp6X9ZYP4otAHYK3jC00PbKGNqhXeD3bCc7CBV/aVGMQX4Bt0TjAAgndeYCI9VnvR2zH0iTEjlAT2OXrh2JV+wrK5UOXae8gRPT28F2Mg325YOiDwD1T5bgFtfc9mh2s/NRcy7lyDiPcb3CNV+nMXKyq/47o22LlALv5g5+OBBZACQYpYtgalM54InQDPoL/udvKtI/YYaiByFLwqeYFh2LXX6et 9dAiNCRLL+EoA&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Dkim-Signature: &lt;span class=&quot;token assign-left variable&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;rsa-sha256&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;relaxed/simple&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;myexample.com&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;mail&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1351357546&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;bh&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;Rskt6Q/nZKmxgXkWUYP6cCBSDJhtkVT0PSrUEVGVgp4&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;From:Content-Type:Content-Transfer-Encoding:Subject:Message-Id: Date:To:Mime-Version&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;phPQdG6HYaders4Xv0TsK2mT+PFYVk/brOFpnmCjCZtvbeGJ+XwrNk4Tnc9xGELtAglLOVplSvMV9nTK6xonta1qLTtnLYPsY4o/WPfyZYDgHmp6X9ZYP4otAHYK3jC00PbKGNqhXeD3bCc7CBV/aVGMQX4Bt0TjAAgndeYCI9VnvR2zH0iTEjlAT2OXrh2JV+wrK5UOXae8gRPT28F2Mg325YOiDwD1T5bgFtfc9mh2s/NRcy7lyDiPcb3CNV+nMXKyq/47o22LlALv5g5+OBBZACQYpYtgalM54InQDPoL/udvKtI/YYaiByFLwqeYFh2LXX6et 9dAiNCRLL+EoA&lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Which means that singing is alive and kicking. To test verification, just send
 yourself an email from DKIM-using provider (like Yahoo or Gmail) and check for
 following header:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;Authentication-Results: myexample.com&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; dkim&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;pass &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;2048-bit key&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; insecure key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; header.i&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;@gmail.com&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; dkim-adsp&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;pass&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;Authentication-Results: myexample.com&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;dkim&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;pass &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2048&lt;/span&gt;-bit key&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; insecure key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; header.i&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;@gmail.com&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; dkim-adsp&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;pass&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Which means, that verfication is working. As the last final test, send email to
 `autorespond+dkim@dk.elandsys.comz. This is automated service, which checks
 your DKIM headers for you and sends back the results. If you get DKIM Signature
@@ -2150,8 +2178,8 @@ properly.&lt;/p&gt;
 spamassassin puts a very little weight to that rules, but you can easily
 increase it by adding:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/mail/spamassassin/local.cf&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;score T_DKIM_INVALID 10
-score DKIM_ADSP_CUSTOM_MED 10&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;score T_DKIM_INVALID &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+score DKIM_ADSP_CUSTOM_MED &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can also add sieve filter based on &lt;code class=&quot;language-text&quot;&gt;Authentication-Results&lt;/code&gt; if you want to
 treat those suspicious messages differently than normal spam:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;.dovecot.sieve&lt;/code&gt;&lt;/p&gt;
@@ -2205,18 +2233,18 @@ all of this together?&lt;/p&gt;
 &lt;p&gt;This step is pretty simple, just install it, add your box.com credentials to
 &lt;code class=&quot;language-text&quot;&gt;/etc/davfs2/secrets&lt;/code&gt;, set &lt;code class=&quot;language-text&quot;&gt;use_locks&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;0&lt;/code&gt; and add proper line to
 &lt;code class=&quot;language-text&quot;&gt;/etc/fstab&lt;/code&gt;. Then just mount it. So:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://www.box.com/dav    login@email.com     my_box_com_password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/davfs2/secrets
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://www.box.com/dav    login@email.com     my_box_com_password&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/davfs2/secrets
 &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -i&lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt; -r &lt;span class=&quot;token string&quot;&gt;&apos;s/#?\s*use_locks\s+0/use_locks 1/g&apos;&lt;/span&gt; /etc/davfs2/davfs2.conf
 &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; /mnt/Box
-&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://www.box.com/dav /mnt/Box davfs rw,noauto 0 0&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/fstab
+&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://www.box.com/dav /mnt/Box davfs rw,noauto 0 0&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; /etc/fstab
 &lt;span class=&quot;token function&quot;&gt;mount&lt;/span&gt; /mnt/Box&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If everything went smooth, you will have access to your box.com account via
 filesystem. Pretty neat.&lt;/p&gt;
 &lt;h2&gt;Setting git-based backup&lt;/h2&gt;
 &lt;p&gt;Firstly you need to set initial repository and backup files. Then encrypt them
 and copy to box.com. Here is how I do it:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /
-&lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt; MACHINE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DeeDee
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;MACHINE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DeeDee
 &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /mnt/Box/Backups/patches
 &lt;span class=&quot;token function&quot;&gt;ln&lt;/span&gt; -s /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt; /.git
@@ -2232,30 +2260,30 @@ gpg -e -r my.key@email.com /home/Backup/&lt;span class=&quot;token variable&quot
 &lt;p&gt;If you have alot of files, some of them may not be copied in a first time - in
 this initial deploy, make sure that all the files are moved to box.com!&lt;/p&gt;
 &lt;p&gt;After that all we need is a daily-snapshot deploy script&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt; NOW&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;date&lt;/span&gt; -I&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt; MACHINE&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DeeDee
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;NOW&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;date&lt;/span&gt; -I&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;MACHINE&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DeeDee
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; -A
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;&quot;&lt;/span&gt; -a
-&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; format-patch -1 --stdout &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch
-gpg -e -r your@key.email /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch
-&lt;span class=&quot;token function&quot;&gt;split&lt;/span&gt; --bytes&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;50m /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch.gpg /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch.
-&lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch.?? /mnt/Box/Backups/patches&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; format-patch -1 --stdout &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch
+gpg -e -r your@key.email /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch
+&lt;span class=&quot;token function&quot;&gt;split&lt;/span&gt; --bytes&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;50m /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch.gpg /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch.
+&lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; /home/Backup/&lt;span class=&quot;token variable&quot;&gt;${MACHINE}&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;${NOW}&lt;/span&gt;.patch.?? /mnt/Box/Backups/patches&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now all you need to do is put this script to some file, and add it to cron:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;txt&quot;&gt;&lt;pre class=&quot;language-txt&quot;&gt;&lt;code class=&quot;language-txt&quot;&gt;0 3 * * * /backup&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Restoring backup&lt;/h2&gt;
 &lt;p&gt;This is pretty simple. First, fetch all the &lt;code class=&quot;language-text&quot;&gt;*.initial.*&lt;/code&gt; files to some
 directory, then merge them, decrypt and unpack.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p /home/Restore/.git
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /home/Restore/.git
-&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /mnt/Box/Backups/*.initial.* &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /home/Restore/.git
+&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /mnt/Box/Backups/*.initial.* &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; *.initial.* &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Backup.initial.tar
 &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; -xf Backup.initial.tar
 &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; -rf Backup.initial.tar&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now you need to apply the patches:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; /home/Restore
-&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /mnt/Box/Backups/patches/* &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; *.patch.aa&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;${i}&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -r &lt;span class=&quot;token string&quot;&gt;&apos;s/.aa$//&apos;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; /home/Restore
+&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; /mnt/Box/Backups/patches/* &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token for-or-select variable&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; *.patch.aa&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;${i}&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sed&lt;/span&gt; -r &lt;span class=&quot;token string&quot;&gt;&apos;s/.aa$//&apos;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;done&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# Don&apos;t forget to concatenate splitted patches, so for example:&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;cat&lt;/span&gt; Backup.2012-10-14.patch.* &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; Backup.2012-10.14.patch
 &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; apply *.patch&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2290,7 +2318,7 @@ Next thing is of course package manager. After alot of nasty fighting and bad
 experiences with &lt;a href=&quot;https://www.macports.org/&quot;&gt;macports&lt;/a&gt; I switched to
 &lt;a href=&quot;https://mxcl.github.com/homebrew/&quot;&gt;Homebrew&lt;/a&gt; and I love it. To install it,
 simply type:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;ruby &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;curl -fsSkL raw.github.com/mxcl/homebrew/go&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;ruby &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -fsSkL raw.github.com/mxcl/homebrew/go&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;After installing it, i suggest to type &lt;code class=&quot;language-text&quot;&gt;brew doctor&lt;/code&gt; and follow the
 instructions if something unexpected occurs. However, in clean
 Mountain Lion+XCode+command line tools installation I didn&apos;t get any warnings,
@@ -2305,7 +2333,7 @@ So just type:&lt;/p&gt;
 &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;oh-my-zsh&lt;/a&gt;. Words can&apos;t describe
 how awesome it is, so watch
 &lt;a href=&quot;https://www.youtube.com/watch?v=m07MiM6rmMc&quot;&gt;this video&lt;/a&gt;, and then type:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; sh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sh&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Installing dnsmasq and nginx&lt;/h2&gt;
 &lt;p&gt;The next step is installing &lt;a href=&quot;https://nginx.org/&quot;&gt;nginx&lt;/a&gt;, which is a great
 alternative to &lt;a href=&quot;https://www.apache.org/&quot;&gt;apache&lt;/a&gt;.&lt;/p&gt;
@@ -2352,7 +2380,7 @@ do this, install &lt;a href=&quot;https://bit.ly/1XAorA4&quot;&gt;dnsmasq&lt;/a&
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;brew --prefix dnsmasq&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now edit newly created &lt;code class=&quot;language-text&quot;&gt;dnsmasq.conf&lt;/code&gt; file and add:
 &lt;code class=&quot;language-text&quot;&gt;/usr/local/etc/dnsmasq.conf&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;address&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/.dev/127.0.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/.dev/127.0.0.1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Last thing left, is setting a nameserver to 127.0.0.1 in your Network prefpane,
 as shown below.&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -2379,6 +2407,7 @@ as shown below.&lt;/p&gt;
 /static/318ee9833ffeb62a6ec7f4b88878e911/c7805/dnsmasq.png 400w,
 /static/318ee9833ffeb62a6ec7f4b88878e911/9b1de/dnsmasq.png 670w&quot;
         sizes=&quot;(max-width: 670px) 100vw, 670px&quot;
+        loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -2397,7 +2426,7 @@ brew tap josegonzalez/homebrew-php
 brew &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; php54 --with-mysql --with-fpm --with-intl &lt;span class=&quot;token comment&quot;&gt;# you can add --with-pgsql if you are using it&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Installing MySQL is a little bit complicated:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; mysql
-unset TMPDIR
+&lt;span class=&quot;token builtin class-name&quot;&gt;unset&lt;/span&gt; TMPDIR
 mysql_install_db --verbose --user&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;whoami&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt; --basedir&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;brew --prefix mysql&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt; --datadir&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/local/var/mysql --tmpdir&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/tmp
 mysql.server start
 /usr/local/opt/mysql/bin/mysqladmin -u root password &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;
@@ -2410,17 +2439,17 @@ script which will launch or disable all the services on demand. Just create
 (and make executable) &lt;code class=&quot;language-text&quot;&gt;/usr/local/bin/dev&amp;lt;&lt;/code&gt; file with following contents:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/usr/local/bin/dev&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token shebang important&quot;&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;$&lt;span class=&quot;token comment&quot;&gt;# -lt 1 ]; then&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Usage: &lt;span class=&quot;token variable&quot;&gt;$0&lt;/span&gt; on|off&quot;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$#&lt;/span&gt; -lt &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
+    &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Usage: &lt;span class=&quot;token variable&quot;&gt;$0&lt;/span&gt; on|off&quot;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;on&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt;
-        &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;brew --prefix php54&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;/sbin/php-fpm --fpm-config /usr/local/etc/php/5.4/php-fpm.conf 2&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;
+        &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;brew --prefix php54&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;/sbin/php-fpm --fpm-config /usr/local/etc/php/5.4/php-fpm.conf &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt; /dev/null &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;
         &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; /usr/local/sbin/nginx
         mysql.server start &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null
     &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
-        &lt;span class=&quot;token function&quot;&gt;killall&lt;/span&gt; php-fpm 2&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null
-        &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;killall&lt;/span&gt; nginx 2&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null
-        mysql.server stop 2&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; /dev/null
+        &lt;span class=&quot;token function&quot;&gt;killall&lt;/span&gt; php-fpm &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt; /dev/null
+        &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;killall&lt;/span&gt; nginx &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt; /dev/null
+        mysql.server stop &lt;span class=&quot;token operator&quot;&gt;&lt;span class=&quot;token file-descriptor important&quot;&gt;2&lt;/span&gt;&gt;&lt;/span&gt; /dev/null
     &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;fi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now when you need to enter &quot;development mode&quot; simply type &lt;code class=&quot;language-text&quot;&gt;dev on&lt;/code&gt; and to quit
@@ -2454,7 +2483,7 @@ except DCC.&lt;/p&gt;
 &lt;span class=&quot;token function&quot;&gt;useradd&lt;/span&gt; -g dcc -s /bin/false -d /var/dcc dcc
 &lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; http://www.dcc-servers.net/dcc/source/dcc-dccproc.tar.Z
 &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; xzvf dcc-dccproc.tar.Z
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; dcc-dccproc-1.3.142
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; dcc-dccproc-1.3.142
 ./configure --with-uid&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;dcc
 &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;
@@ -2468,13 +2497,13 @@ except DCC.&lt;/p&gt;
 &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; spamd:spamd /var/lib/spamassassin -R&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/default/spamassassin&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Spamassassin home&lt;/span&gt;
-SAHOME&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/var/lib/spamassassin&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;SAHOME&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/var/lib/spamassassin&quot;&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Where imap stores user emails&lt;/span&gt;
-USERACCOUNTS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/home/vmail&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;USERACCOUNTS&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/home/vmail&quot;&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Change to one to enable spamd&lt;/span&gt;
-ENABLED&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1
+&lt;span class=&quot;token assign-left variable&quot;&gt;ENABLED&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Options&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# See man spamd for possible options. The -d option is automatically added.&lt;/span&gt;
@@ -2483,7 +2512,7 @@ ENABLED&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1
 &lt;span class=&quot;token comment&quot;&gt;# make sure --max-children is not set to anything higher than 5,&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# unless you know what you&apos;re doing.&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# For -A use the IP address of spamc client (probably IP of primary interface)&lt;/span&gt;
-OPTIONS&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;--create-prefs -x --max-children 3 --username spamd --helper-home-dir &lt;span class=&quot;token variable&quot;&gt;${SAHOME}&lt;/span&gt; -s &lt;span class=&quot;token variable&quot;&gt;${SAHOME}&lt;/span&gt;/spamd.log --virtual-config-dir=&lt;span class=&quot;token variable&quot;&gt;${USERACCOUNTS}&lt;/span&gt;/%l@%d/spamassassin -A 192.168.1.1&quot;&lt;/span&gt;
+&lt;span class=&quot;token assign-left variable&quot;&gt;OPTIONS&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;--create-prefs -x --max-children 3 --username spamd --helper-home-dir &lt;span class=&quot;token variable&quot;&gt;${SAHOME}&lt;/span&gt; -s &lt;span class=&quot;token variable&quot;&gt;${SAHOME}&lt;/span&gt;/spamd.log --virtual-config-dir=&lt;span class=&quot;token variable&quot;&gt;${USERACCOUNTS}&lt;/span&gt;/%l@%d/spamassassin -A 192.168.1.1&quot;&lt;/span&gt;
 
 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;virtual-config-dir&lt;/code&gt; allows us to have separate user preferences and bayes
@@ -2493,16 +2522,16 @@ databases for each virtual user. The next thing is to edit
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# Save spam messages as a message/rfc822 MIME attachment instead of&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# modifying the original message (0: off, 2: use text/plain instead)&lt;/span&gt;
-report_safe 0
+report_safe &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 
-use_dcc 1
+use_dcc &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
 dcc_path /usr/local/bin/dccproc
 
-use_pyzor 1
+use_pyzor &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
 pyzor_path /usr/bin/pyzor
 
-use_razor2 1
+use_razor2 &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
 razor_config /etc/razor/razor-agent.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Afterwards, edit &lt;code class=&quot;language-text&quot;&gt;/etc/spamassassin/v310.pre&lt;/code&gt; and check that the DCC, Razor and
 Pyzor plugins are enabled (DCC is disabled by default). After that, the only
@@ -2516,7 +2545,7 @@ to old working configuration) or &lt;code class=&quot;language-text&quot;&gt;mai
 line looks like this:&lt;/p&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/etc/postfix/master.cf&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;dovecot-spam   unix  -       n       n       -       -       pipe
-    flags&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DRhu user&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;vmail:vmail argv&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/bin/spamc -u &lt;span class=&quot;token variable&quot;&gt;${recipient}&lt;/span&gt; -e /usr/lib/dovecot/deliver -d &lt;span class=&quot;token variable&quot;&gt;${recipient}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;token assign-left variable&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;DRhu &lt;span class=&quot;token assign-left variable&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;vmail:vmail &lt;span class=&quot;token assign-left variable&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/bin/spamc -u &lt;span class=&quot;token variable&quot;&gt;${recipient}&lt;/span&gt; -e /usr/lib/dovecot/deliver -d &lt;span class=&quot;token variable&quot;&gt;${recipient}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And this is the line I&apos;ve been looking for. SpamAssassin takes message, pushes
 it through his intestines, adds headers, and output is pushed further to
 &lt;code class=&quot;language-text&quot;&gt;deliver&lt;/code&gt; command. From that point, it can be taken by Sieve. To make this
@@ -2568,7 +2597,7 @@ build it manually. I also had to install &lt;code class=&quot;language-text&quot
 sieve configurator, which needs a &lt;code class=&quot;language-text&quot;&gt;dovecot-config&lt;/code&gt; file.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;wget&lt;/span&gt; http://www.rename-it.nl/dovecot/1.2/dovecot-1.2-sieve-0.1.19.tar.gz
 &lt;span class=&quot;token function&quot;&gt;tar&lt;/span&gt; -xzvf dovecot-1.2-sieve-0.1.19.tar.gz
-&lt;span class=&quot;token function&quot;&gt;cd&lt;/span&gt; dovecot-1.2-sieve-0.1.19
+&lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; dovecot-1.2-sieve-0.1.19
 ./configure --with-dovecot&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr/lib/dovecot/ --prefix&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;/usr
 &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2604,7 +2633,7 @@ require &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span c
 
 &lt;span class=&quot;token comment&quot;&gt;# If messages are not from a list (most of the lists sets mail header &quot;Precedence&quot; either to &quot;list&quot; or &quot;bulk&quot;) then send a vacation email&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; not header :contains &lt;span class=&quot;token string&quot;&gt;&quot;Precedence&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;bulk&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;list&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    vacation :days 7 :addresses &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;igor@email1.com&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;igor@email2.com&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; :subject &lt;span class=&quot;token string&quot;&gt;&quot;Vacation 15.07 - 22.07&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot; ..... &quot;&lt;/span&gt;
+    vacation :days &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; :addresses &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;igor@email1.com&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;igor@email2.com&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; :subject &lt;span class=&quot;token string&quot;&gt;&quot;Vacation 15.07 - 22.07&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot; ..... &quot;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;token comment&quot;&gt;# Move all messages from my father to one directory&lt;/span&gt;
