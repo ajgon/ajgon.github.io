@@ -8,7 +8,6 @@ module.exports = {
   siteDescription:
     'Igor Rzegocki personal webpage and blog. Webdev, devops, Ruby on Rails, JavaScript and react, AWS and docker.',
   siteRss: '/feed.xml',
-  googleAnalyticsID: 'UA-65616575-1',
   disqusShortname: 'ajgon',
   copyright: `Copyright © ${new Date().getFullYear()}. Igor Rzegocki`,
   userName: 'Igor Rzegocki',

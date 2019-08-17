@@ -46,13 +46,6 @@ module.exports = {
         exclude: ['/avatar*']
       }
     }, {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: config.googleAnalyticsID,
-        head: false,
-        anonymize: true
-      }
-    }, {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         policy: [{ userAgent: '*', disallow: ['/DeeDee'] }],

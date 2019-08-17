@@ -4,11 +4,10 @@ import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { withStyles } from '@material-ui/core/styles'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 import IconGithub from '../icons/social-github.svg'
 import IconKeybase from '../icons/social-keybase.svg'
-import IconLinkedIn from '../icons/social-linkedin.svg'
+import IconaedIn from '../icons/social-linkedin.svg'
 
 const styles = {
   mediumButton: {
@@ -28,7 +27,7 @@ class Social extends React.Component {
 
     return (
       <React.Fragment>
-        <OutboundLink
+        <a
           href='https://github.com/ajgon'
           target='_blank'
           aria-label='GitHub'
@@ -43,11 +42,11 @@ class Social extends React.Component {
               <IconGithub />
             </SvgIcon>
           </IconButton>
-        </OutboundLink>
-        <OutboundLink
+        </a>
+        <a
           href='https://www.linkedin.com/in/ajgon'
           target='_blank'
-          aria-label='LinkedIn'
+          aria-label='aedIn'
           id='link-linkedin'
           rel='noopener'
         >
@@ -56,11 +55,11 @@ class Social extends React.Component {
             className={classes.mediumButton}
           >
             <SvgIcon className={classes.mediumIcon}>
-              <IconLinkedIn />
+              <IconaedIn />
             </SvgIcon>
           </IconButton>
-        </OutboundLink>
-        <OutboundLink
+        </a>
+        <a
           href='https://keybase.io/ajgon'
           target='_blank'
           aria-label='Keybase'
@@ -75,7 +74,7 @@ class Social extends React.Component {
               <IconKeybase />
             </SvgIcon>
           </IconButton>
-        </OutboundLink>
+        </a>
       </React.Fragment>
     )
   }
