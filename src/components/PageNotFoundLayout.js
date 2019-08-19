@@ -20,8 +20,8 @@ class PageNotFoundLayout extends React.Component {
             { rel: 'shortcut icon', type: 'image/png', href: `${FavIcon}` }
           ]}
         >
-          <html lang='en' className={styles.page404html}/>
-          <body className={styles.page404}/>
+          <html lang='en' className={styles.page404html} />
+          <body className={styles.page404} />
         </Helmet>
         <CssBaseline />
         <div className={styles.info}>

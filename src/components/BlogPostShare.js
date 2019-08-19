@@ -24,7 +24,8 @@ class BlogPostShare extends React.Component {
 
     this.state = {
       anchorEl: null,
-      opened: {}
+      opened: {},
+      visible: false
     }
 
     props.shares.forEach(share => {
@@ -55,12 +56,18 @@ class BlogPostShare extends React.Component {
     this.setState({ opened })
   }
 
+  componentDidMount () {
+    this.setState({ visible: true })
+  }
+
   render () {
     const { classes, post, siteUrl, shares } = this.props
-    const { anchorEl, opened } = this.state
+    const { anchorEl, opened, visible } = this.state
     const postUrl = `${siteUrl}${post.frontmatter.path}`
     const encodedPostUrl = encodeURIComponent(postUrl)
     const shareButtonId = `share-button-${post.frontmatter.id}`
+
+    if (!visible) { return (<React.Fragment />) }
 
     return (
       <nav aria-labelledby={shareButtonId}>

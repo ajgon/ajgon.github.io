@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Link from 'gatsby-link'
 import { Link as ScrollLink } from 'react-scroll'
+import withRoot from '../withRoot'
 
 import AppBar from '@material-ui/core/AppBar'
 import Drawer from '@material-ui/core/Drawer'
@@ -14,7 +15,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core/styles'
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth'
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import CloseIcon from '@material-ui/icons/Close'
@@ -57,8 +57,12 @@ const styles = theme => {
       }
     },
     cleanBar: {
-      background: theme.palette.background.paper,
-      boxShadow: 'none'
+      position: 'fixed',
+      [theme.breakpoints.up('md')]: {
+        position: 'static',
+        background: theme.palette.background.paper,
+        boxShadow: 'none'
+      }
     }
   }
 }
@@ -82,16 +86,14 @@ class MenuAppBar extends React.Component {
 
   render () {
     const { classes, mainPage, menuItems } = this.props
-    const largeScreen = isWidthUp('md', this.props.width)
 
     return (
       <React.Fragment>
         <AppBar
-          position={largeScreen ? 'static' : 'fixed'}
-          className={`${largeScreen ? classes.cleanBar : ''} ${classes.root}`}
+          className={`${classes.cleanBar} ${classes.root}`}
         >
           <Toolbar>
-            <Hidden mdUp>
+            <Hidden mdUp implementation='css'>
               {mainPage && (
                 <IconButton
                   onClick={this.toggleDrawer(!this.state.drawer)}
@@ -122,7 +124,7 @@ class MenuAppBar extends React.Component {
                 Igor Rzegocki
               </Typography>
             </Link>
-            <Hidden xsDown>
+            <Hidden xsDown implementation='css'>
               <Social />
             </Hidden>
           </Toolbar>
@@ -158,7 +160,7 @@ class MenuAppBar extends React.Component {
           </List>
         </Drawer>
         {mainPage && (
-          <Hidden smDown>
+          <Hidden smDown implementation='css'>
             <SideMenu mainPage={mainPage} menuItems={menuItems} />
           </Hidden>
         )}
@@ -171,4 +173,4 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withWidth()(withStyles(styles)(MenuAppBar))
+export default withRoot(withStyles(styles)(MenuAppBar))

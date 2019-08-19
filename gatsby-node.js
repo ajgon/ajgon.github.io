@@ -68,4 +68,4 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
       devtool: 'source-map'
     })
   }
-};
+}

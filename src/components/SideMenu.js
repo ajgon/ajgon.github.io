@@ -27,14 +27,27 @@ const styles = {
 }
 
 class SideMenu extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      scrollLink: false
+    }
+  }
+
+  componentDidMount () {
+    this.setState({ scrollLink: true })
+  }
+
   render () {
     const { classes, mainPage, menuItems } = this.props
+    const { scrollLink } = this.state
 
     return (
       <Paper className={classes.sideMenu} role='navigation'>
         <MenuList>
           {menuItems.map(menuItem => {
-            if (mainPage) {
+            if (scrollLink && mainPage) {
               return (
                 <ScrollLink to={menuItem.node.to} smooth key={menuItem.node.id}>
                   <MenuItem>{menuItem.node.name}</MenuItem>

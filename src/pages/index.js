@@ -49,7 +49,7 @@ class Index extends React.Component {
     super(props)
 
     this.state = {
-      showMoreBlogPosts: false
+      showMoreBlogPosts: true
     }
   }
 
@@ -70,6 +70,7 @@ class Index extends React.Component {
       const blogPadding = Math.max(
         (viewportHeight - dynamicBlog.offsetHeight) / 2
       )
+      this.setState({ showMoreBlogPosts: false })
 
       if (blogPadding < 0) {
         return

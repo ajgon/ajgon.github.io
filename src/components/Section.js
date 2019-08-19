@@ -60,7 +60,7 @@ class Section extends React.Component {
         id={idName || headline.toLowerCase()}
         aria-labelledby={headlineLabel}
       >
-        <Hidden smUp>
+        <Hidden smUp implementation='css'>
           <Typography
             variant='h3'
             className={classes.strongHeader}
@@ -70,7 +70,7 @@ class Section extends React.Component {
             {headline}
           </Typography>
         </Hidden>
-        <Hidden xsDown>
+        <Hidden xsDown implementation='css'>
           <Typography
             variant='h1'
             className={classes.strongHeader}

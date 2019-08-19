@@ -17,13 +17,13 @@ class TagLine extends React.Component {
 
     return (
       <React.Fragment>
-        <Hidden smUp>
+        <Hidden smUp implementation='css'>
           <Typography variant='h5' gutterBottom component='h2'>
             I handle impossible cases on the spot, miracles take me a few
             minutes.
           </Typography>
         </Hidden>
-        <Hidden xsDown>
+        <Hidden xsDown implementation='css'>
           <Typography variant='h2' className={classes.tagLineSize} gutterBottom>
             I handle impossible cases on the spot, miracles take me a few
             minutes.

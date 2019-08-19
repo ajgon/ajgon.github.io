@@ -45,7 +45,7 @@ class Footer extends React.Component {
 
     return (
       <section className={classes.root} id='contact' aria-label='Contact'>
-        <Hidden mdUp>
+        <Hidden mdUp implementation='css'>
           <Typography variant='h3' className={classes.strongHeader}>
             <Obfuscate
               email='igor@rzegocki.pl'
@@ -53,7 +53,7 @@ class Footer extends React.Component {
             />
           </Typography>
         </Hidden>
-        <Hidden smDown>
+        <Hidden smDown implementation='css'>
           <Typography variant='h1' className={classes.strongHeader}>
             <Obfuscate
               email='igor@rzegocki.pl'
