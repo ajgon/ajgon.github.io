@@ -19,7 +19,10 @@ class SEO extends Component {
         ? postMeta.description
         : postNode.excerpt
       image = postMeta.cover.childImageSharp.fluid.src
-      postURL = urljoin(config.siteUrl, config.pathPrefix, postPath).replace(/\/\//g, '/')
+      postURL = urljoin(config.siteUrl, config.pathPrefix, postPath).replace(
+        /\/\//g,
+        '/'
+      )
     } else {
       title = config.siteTitle
       description = config.siteDescription
@@ -28,7 +31,10 @@ class SEO extends Component {
 
     image = urljoin(config.siteUrl, image)
     logo = urljoin(config.siteUrl, config.pathPrefix, '/icons/icon-512x512.png')
-    const blogURL = urljoin(config.siteUrl, config.pathPrefix).replace(/\/\//g, '/')
+    const blogURL = urljoin(config.siteUrl, config.pathPrefix).replace(
+      /\/\//g,
+      '/'
+    )
     const schemaOrgJSONLD = [
       {
         '@context': 'http://schema.org',
@@ -52,7 +58,8 @@ class SEO extends Component {
                 name: 'Blog',
                 image
               }
-            }, {
+            },
+            {
               '@type': 'ListItem',
               position: 2,
               item: {

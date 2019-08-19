@@ -35,9 +35,7 @@ class BlogPostTemplate extends React.Component {
       <Layout data={data} location={location}>
         <Section className={classes.noFixedHeight}>
           <Helmet
-            title={`${data.markdownRemark.frontmatter.title} | ${
-              config.siteTitle
-            }`}
+            title={`${data.markdownRemark.frontmatter.title} | ${config.siteTitle}`}
           />
           <BlogPost
             post={data.markdownRemark}

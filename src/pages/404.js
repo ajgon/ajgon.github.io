@@ -5,9 +5,7 @@ import PageNotFoundLayout from '../components/PageNotFoundLayout'
 
 class PageNotFound extends React.Component {
   render () {
-    return (
-      <PageNotFoundLayout />
-    )
+    return <PageNotFoundLayout />
   }
 }
 

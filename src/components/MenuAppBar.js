@@ -89,9 +89,7 @@ class MenuAppBar extends React.Component {
 
     return (
       <React.Fragment>
-        <AppBar
-          className={`${classes.cleanBar} ${classes.root}`}
-        >
+        <AppBar className={`${classes.cleanBar} ${classes.root}`}>
           <Toolbar>
             <Hidden mdUp implementation='css'>
               {mainPage && (

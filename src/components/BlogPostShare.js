@@ -67,7 +67,9 @@ class BlogPostShare extends React.Component {
     const encodedPostUrl = encodeURIComponent(postUrl)
     const shareButtonId = `share-button-${post.frontmatter.id}`
 
-    if (!visible) { return (<React.Fragment />) }
+    if (!visible) {
+      return <React.Fragment />
+    }
 
     return (
       <nav aria-labelledby={shareButtonId}>
