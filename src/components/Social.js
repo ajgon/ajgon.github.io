@@ -32,7 +32,7 @@ class Social extends React.Component {
           target='_blank'
           aria-label='GitHub'
           id='link-github'
-          rel='noopener'
+          rel='noopener noreferrer'
         >
           <IconButton
             aria-labelledby='link-github'
@@ -48,7 +48,7 @@ class Social extends React.Component {
           target='_blank'
           aria-label='aedIn'
           id='link-linkedin'
-          rel='noopener'
+          rel='noopener noreferrer'
         >
           <IconButton
             aria-labelledby='link-linkedin'
@@ -64,7 +64,7 @@ class Social extends React.Component {
           target='_blank'
           aria-label='Keybase'
           id='link-keybase'
-          rel='noopener'
+          rel='noopener noreferrer'
         >
           <IconButton
             aria-labelledby='link-keybase'

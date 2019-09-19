@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import BlogPostShare from './BlogPostShare'
 
-const styles = {
+const styles = theme => ({
   cardCoverSmall: {
     maxHeight: '200px'
   },
@@ -18,9 +18,12 @@ const styles = {
   },
   cardTitle: {
     fontSize: '3.5rem',
-    fontWeight: '500'
+    fontWeight: '500',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5rem'
+    }
   }
-}
+})
 
 class BlogPostHeader extends React.Component {
   render () {
