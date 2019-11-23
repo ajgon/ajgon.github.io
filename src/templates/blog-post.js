@@ -11,7 +11,7 @@ import withRoot from '../withRoot'
 import BlogPost from '../components/BlogPost'
 import Layout from '../components/Layout'
 import Section from '../components/Section'
-import SEO from '../components/SEO'
+import Seo from '../components/Seo'
 
 const styles = theme => ({
   noFixedHeight: {
@@ -42,10 +42,10 @@ class BlogPostTemplate extends React.Component {
             siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
             shares={data.allShareJson.edges}
           />
-          <SEO
+          <Seo
             postPath={data.markdownRemark.frontmatter.path}
             postNode={data.markdownRemark}
-            postSEO
+            postSeo
           />
         </Section>
       </Layout>
@@ -100,6 +100,7 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        isoDate: date
         cover {
           childImageSharp {
             fluid(maxWidth: 1000) {

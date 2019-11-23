@@ -36,7 +36,7 @@ class BlogPost extends React.Component {
     }
 
     return (
-      <Card className={classes.root}>
+      <Card className={`${classes.root} h-entry`}>
         <BlogPostHeader
           post={post}
           siteUrl={siteUrl}
@@ -47,7 +47,7 @@ class BlogPost extends React.Component {
         <CardContent>
           <div
             dangerouslySetInnerHTML={{ __html: post.html }}
-            className={classes.postContent}
+            className={`${classes.postContent} e-content`}
           />
           <Disqus.DiscussionEmbed
             shortname={disqusShortname}

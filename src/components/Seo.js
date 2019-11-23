@@ -3,16 +3,15 @@ import Helmet from 'react-helmet'
 import urljoin from 'url-join'
 import config from '../config'
 
-class SEO extends Component {
+class Seo extends Component {
   render () {
-    const { postNode, postPath, postSEO } = this.props
+    const { postNode, postPath, postSeo } = this.props
     let title
     let description
     let image
-    let logo
     let postURL
     let postMeta
-    if (postSEO) {
+    if (postSeo) {
       postMeta = postNode.frontmatter
       ;({ title } = postMeta)
       description = postMeta.description
@@ -30,7 +29,11 @@ class SEO extends Component {
     }
 
     image = urljoin(config.siteUrl, image)
-    logo = urljoin(config.siteUrl, config.pathPrefix, '/icons/icon-512x512.png')
+    const logo = urljoin(
+      config.siteUrl,
+      config.pathPrefix,
+      '/icons/icon-512x512.png'
+    )
     const blogURL = urljoin(config.siteUrl, config.pathPrefix).replace(
       /\/\//g,
       '/'
@@ -44,7 +47,7 @@ class SEO extends Component {
         alternateName: config.siteTitleAlt ? config.siteTitleAlt : ''
       }
     ]
-    if (postSEO) {
+    if (postSeo) {
       schemaOrgJSONLD.push(
         {
           '@context': 'http://schema.org',
@@ -102,7 +105,7 @@ class SEO extends Component {
     }
     return (
       <Helmet>
-        <link rel='canonical' href={postSEO ? postURL : blogURL} />
+        <link rel='canonical' href={postSeo ? postURL : blogURL} />
 
         {/* General tags */}
         <meta name='description' content={description} />
@@ -114,8 +117,8 @@ class SEO extends Component {
         </script>
 
         {/* OpenGraph tags */}
-        <meta property='og:url' content={postSEO ? postURL : blogURL} />
-        <meta property='og:type' content={postSEO ? 'article' : 'webpage'} />
+        <meta property='og:url' content={postSeo ? postURL : blogURL} />
+        <meta property='og:type' content={postSeo ? 'article' : 'webpage'} />
         <meta property='og:title' content={title} />
         <meta property='og:description' content={description} />
         <meta property='og:image' content={image} />
@@ -134,4 +137,4 @@ class SEO extends Component {
   }
 }
 
-export default SEO
+export default Seo

@@ -33,14 +33,17 @@ global system with packages, which you probably won't need anymore. The easiest 
 [Vagrant](https://www.vagrantup.com/) with [VirtualBox](https://www.virtualbox.org/) since they are both
 multi-platform and easy to set up.
 
-```bash
+```bash{promptUser: alice}
 vagrant init ubuntu/trusty64
 vagrant up
 vagrant ssh
 ```
 
-```bash
+```bash{promptUser: alice}
 sudo -s # Change user to root
+```
+
+```bash{promptUser: root}
 cd /vagrant # Use a shared folder, all files created here will be visible outside of VM
 ```
 
@@ -53,16 +56,14 @@ doesn't come with any kind of BIOS or low level boot-up system - everything is l
 RPI expects a FAT partition with firmware files at the very beginning of the SD Disk. But first things first - let's
 install all the necessary packages:
 
-```bash
-# as root
+```bash{promptUser: root}
 apt-get update
 apt-get install -y git binfmt-support qemu qemu-user-static debootstrap kpartx lvm2 dosfstools
 ```
 
 Now we can setup the initial partitioning.
 
-```bash
-# as root
+```bash{promptUser: root}
 dd if=/dev/zero of=rpi.img bs=1M count=768
 losetup -f --show rpi.img # returns loop device used later, usually /dev/loop0
 fdisk /dev/loop0
@@ -71,7 +72,7 @@ fdisk /dev/loop0
 We need to create two partitions. As I mentioned, the first one needs to be FAT16 partition (type `e`), the second one
 a Linux one (type `83`). So, to do this in fdisk invoke:
 
-```txt
+```bash
 n # Create new partition
 p # Set it as primary...
 1 # ...and first
@@ -89,8 +90,7 @@ w # Write all changes to the image
 
 Next step is mounting those partitions as virtual devices and make filesystems on them:
 
-```bash
-# as root
+```bash{promptUser: root}
 losetup -d /dev/loop0
 kpartx -va rpi.img # This will create two /dev/mapper devices, usually loop0p1 and loop0p2
 mkfs.fat /dev/mapper/loop0p1
@@ -110,8 +110,7 @@ desired distro (Debian). Now, it's just a typical Debian bootstrapping. Since Ra
 supports ARMv7, we can safely use Debian `armhf` architecture, and have all goodies like hardware floating points,
 out of the box.
 
-```bash
-# as root
+```bash{promptUser: root}
 debootstrap --arch armhf --foreign wheezy root http://ftp.debian.org/debian/
 cp /usr/bin/qemu-arm-static root/usr/bin/ # needed for syscall emulation
 LANG=C chroot root /debootstrap/debootstrap --second-stage
@@ -126,7 +125,7 @@ _Note: In code headers, I used absolute paths in relation to your RPI root direc
 First is `/etc/fstab` which is used to mount initial partitions (boot and proc system).
 
 `/etc/fstab`
-```txt
+```none
 proc            /proc           proc    defaults        0       0
 /dev/mmcblk0p1  /boot           vfat    defaults        0       0
 ```
@@ -134,12 +133,12 @@ proc            /proc           proc    defaults        0       0
 Next is hostname.
 
 `/etc/hostname`
-```txt
+```none
 raspberrypi2
 ```
 
 `/etc/hosts`
-```txt
+```none
 127.0.0.1 raspberrypi2
 ::1 raspberrypi2
 ```
@@ -147,7 +146,7 @@ raspberrypi2
 We also need to set up urls for Debian repositories, so we can download and manage system packages.
 
 `/etc/apt/sources.list`
-```txt
+```none
 deb http://ftp.debian.org/debian/ wheezy main contrib non-free
 ```
 
@@ -155,8 +154,7 @@ deb http://ftp.debian.org/debian/ wheezy main contrib non-free
 
 You can do it manually, but I strongly recommend to use [Hexxeh excellent tool](https://github.com/Hexxeh/rpi-update).
 
-```bash
-# as root
+```bash{promptUser: root}
 mkdir -p root/lib/modules
 curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update
 chmod +x /usr/bin/rpi-update
@@ -174,16 +172,14 @@ steps from there. Otherwise, keep using your `rpi.img`.
 
 Beforehand we need to mount `/dev` and `/proc` filesystems, to create a fully functional chrooted environment.
 
-```bash
-# as root
+```bash{promptUser: root}
 mount -t proc proc root/proc
 mount --rbind /dev root/dev
 ```
 
 Then, all is left is to simply type:
 
-```bash
-# as root
+```bash{promptUser: root}
 chroot root /bin/bash
 ```
 
@@ -192,8 +188,7 @@ chroot root /bin/bash
 At first, disable installation of recommended packages - for example, most of the time, we don't want 3/4 of Xserver
 while installing vim.
 
-```bash
-# as raspberry root
+```bash{promptUser: root}{promptHost: raspberrypi2}
 echo 'APT::Install-Recommends "0";' > /etc/apt/apt.conf.d/00norecommends
 ```
 
@@ -201,8 +196,7 @@ Next we need to setup a minimal dose of packages, which are necessary to use our
 basic UTF8 language support, and `openssh-server` to allow us to actually sign in to the machine. I also
 recommend to install `ntp` to avoid any timestamp-based confusions.
 
-```bash
-# as raspberry root
+```bash{promptUser: root}{promptHost: raspberrypi2}
 apt-get update
 LANG=C apt-get install locales
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -213,8 +207,7 @@ apt-get install openssh-server openssh-blacklist openssh-blacklist-extra ntp
 If you plan, to configure your system with Ansible or some other auto-tool, it's also a good idea to install
 sudo, python and aptitude.
 
-```bash
-# as raspberry root
+```bash{promptUser: root}{promptHost: raspberrypi2}
 apt-get install sudo python aptitude
 ```
 
@@ -225,7 +218,7 @@ you should skip this step, as it will slow down boot up of Pi significantly (the
 connection for over 60s). Otherwise, all you need to do is add following lines to `/etc/network/interfaces`:
 
 `/etc/network/interfaces` on Raspberry
-```txt
+```none
 auto lo
 iface lo inet loopback
 
@@ -239,8 +232,7 @@ servers to Google DNS, [which is not the best choice](https://developers.google.
 
 To make `dns-nameservers` directive actually work, you would need a `resolvconf` package.
 
-```bash
-# as raspberry root
+```bash{promptUser: root}{promptHost: raspberrypi2}
 apt-get install resolvconf
 ```
 
@@ -254,8 +246,7 @@ instead of the one which I used.
 
 At first, you need to install all necessary dependencies...
 
-```bash
-# as raspberry root
+```bash{promptUser: root}{promptHost: raspberrypi2}
 apt-get install firmware-ralink # Use your firmware driver here
 apt-get install wireless-tools wpasupplicant
 ```
@@ -263,7 +254,7 @@ apt-get install wireless-tools wpasupplicant
 ... and configure a network interface:
 
 `/etc/network/interfaces` on Raspberry
-```txt
+```none
 # Add those lines at the end of the file
 
 allow-hotplug wlan0
@@ -278,7 +269,7 @@ your machine between home, work etc. - you can configure all trusted networks cr
 and be online.
 
 `/etc/wpa_supplicant/wpa_supplicant.conf` on Raspberry
-```txt
+```none
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
@@ -299,15 +290,14 @@ network={
 
 It's good idea, to do the cleanup after finishing the image.
 
-```bash
-# as raspberry root
+```bash{promptUser: root}{promptHost: raspberrypi2}
 apt-get autoremove --purge
 apt-get clean
 ```
 
 Now you can exit the chroot (and VM if you used it), and flash your SDCard. In OSX you can do this by:
 
-```bash
+```bash{promptUser: alice}
 diskutil list # Check for you SDCard disk number
 diskutil umountDisk /dev/diskX # Where X is a disc number
 sudo dd bs=1m if=rpi.img of=/dev/rdiskX
@@ -320,7 +310,7 @@ if you are intereseted.
 
 In Linux it's as simple as typing:
 
-```bash
+```bash{promptUser: alice}
 sudo dd if=rpi.img of=/dev/sdX # Where X is a disk letter
 ```
 
@@ -331,7 +321,7 @@ If you haven't use monitor and keyboard, you might end not knowing which IP addr
 this problem is use `nmap` to detect all open hosts in your subnet, then check which one responds to `root` user
 with `raspberry` password.
 
-```bash
+```bash{promptUser: alice}
 nmap -p22 -oG - --open 192.168.0.0/24 | grep Host | awk '{print $2}' | sort | uniq
 ```
 
@@ -340,7 +330,7 @@ The next thing, you might notice is, that your Linux partition is pretty small (
 the original image was created as small as possible, to reduce flashing time. Thankfully, you can expand it pretty
 easily.
 
-```bash
+```bash{promptUser: root}{promptHost: raspberrypi2}
 fdisk /dev/mmcblk0
 # In fdisk
 d # Delete partition...

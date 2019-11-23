@@ -10,7 +10,7 @@ tags:
 path: /blog/setting-secure-cloud-based-backup-system-using-git-and-box-com/
 ---
 
-After giving up my [spying e-mail provider](https://gmail.com/), and moving
+After giving up my [spying e-mail provider](https://www.google.com/intl/en-GB/gmail/about/), and moving
 everything to my own [DeeDee server](https://github.com/ajgon/DeeDee), I moved
 smoothly from one paranoia to another. Ok, my e-mail is not read anymore by
 anyone except me, but on the other hand it's on an ATOM machine staying in my
@@ -59,7 +59,7 @@ This step is pretty simple, just install it, add your box.com credentials to
 `/etc/davfs2/secrets`, set `use_locks` to `0` and add proper line to
 `/etc/fstab`. Then just mount it. So:
 
-```bash
+```bash{promptUser: root}
 echo "https://www.box.com/dav    login@email.com     my_box_com_password" >> /etc/davfs2/secrets
 sed -i'' -r 's/#?\s*use_locks\s+0/use_locks 1/g' /etc/davfs2/davfs2.conf
 mkdir /mnt/Box
@@ -75,7 +75,7 @@ filesystem. Pretty neat.
 Firstly you need to set initial repository and backup files. Then encrypt them
 and copy to box.com. Here is how I do it:
 
-```bash
+```bash{promptUser: root}
 cd /
 export MACHINE=DeeDee
 mkdir -p /home/Backup/${MACHINE}
@@ -98,6 +98,7 @@ this initial deploy, make sure that all the files are moved to box.com!
 After that all we need is a daily-snapshot deploy script
 
 ```bash
+#!/bin/bash
 export NOW=`date -I`
 export MACHINE=DeeDee
 cd /
@@ -111,7 +112,7 @@ mv /home/Backup/${MACHINE}.${NOW}.patch.?? /mnt/Box/Backups/patches
 
 Now all you need to do is put this script to some file, and add it to cron:
 
-```txt
+```bash
 0 3 * * * /backup
 ```
 
@@ -120,7 +121,7 @@ Now all you need to do is put this script to some file, and add it to cron:
 This is pretty simple. First, fetch all the `*.initial.*` files to some
 directory, then merge them, decrypt and unpack.
 
-```bash
+```bash{promptUser: root}
 mkdir -p /home/Restore/.git
 cd /home/Restore/.git
 cp /mnt/Box/Backups/*.initial.* .
@@ -131,7 +132,7 @@ rm -rf Backup.initial.tar
 
 Now you need to apply the patches:
 
-```bash
+```bash{promptUser: root}
 cd /home/Restore
 cp /mnt/Box/Backups/patches/* .
 for i in *.patch.aa; do mv ${i} `echo ${i} | sed -r 's/.aa$//'`; done
@@ -141,7 +142,7 @@ git apply *.patch
 ```
 
 And the last thing is simply to restore repo to it's current state:
-```bash
+```bash{promptUser: root}
 git reset --hard master
 ```
 

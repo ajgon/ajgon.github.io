@@ -23,6 +23,7 @@ class Layout extends React.Component {
         props.location.pathname === `${config.pathPrefix}/`.replace('//', '/')
     }
   }
+
   componentDidUpdate (prevProps) {
     if (
       prevProps.location.pathname ===
@@ -36,12 +37,13 @@ class Layout extends React.Component {
       location.pathname === `${config.pathPrefix}/`.replace('//', '/')
     this.setState({ mainPage })
   }
+
   render () {
     const { children, data, location } = this.props
     const { mainPage } = this.state
 
     return (
-      <React.Fragment>
+      <>
         <Helmet
           title={config.siteTitle}
           link={[
@@ -50,7 +52,11 @@ class Layout extends React.Component {
         >
           <html lang='en' />
           <body id='about' />
-          <style type='text/css'>{`body, #___gatsby { position: relative; font-family: Roboto, sans-serif }`}</style>
+          <style type='text/css'>
+            {
+              'body, #___gatsby { position: relative; font-family: Roboto, sans-serif }'
+            }
+          </style>
           <meta
             name='msapplication-config'
             content={data.allFile.edges[0].node.publicURL}
@@ -65,7 +71,7 @@ class Layout extends React.Component {
         <Heart />
         <Container location={location}>{children}</Container>
         <Footer />
-      </React.Fragment>
+      </>
     )
   }
 }

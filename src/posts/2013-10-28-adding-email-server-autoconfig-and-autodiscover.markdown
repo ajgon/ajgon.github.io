@@ -61,7 +61,7 @@ This one is (im my opinion) is more clean and advanced. To use it, just make you
 If you have an email server on a different domain than your email account, simply add redirect to your httpd server. For example in nginx:
 
 `/etc/nginx.conf`
-```txt
+```nginx
 server {
     server_name autoconfig.myotherdomain.com;
     rewrite ^.* https://mydomain.com/config-v1.1.xml permanent;
@@ -119,7 +119,7 @@ Procedure is very similar here. You just have to set `autodiscover.` domain, and
 And again, if your email domain differs from server domain, add proper redirect:
 
 `/etc/nginx.conf`
-```txt
+```nginx
 server {
     server_name autodiscover.myotherdomain.com;
     rewrite ^.* https://mydomain.com/autodiscover.xml permanent;

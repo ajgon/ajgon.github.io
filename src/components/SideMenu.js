@@ -44,7 +44,7 @@ class SideMenu extends React.Component {
     const { scrollLink } = this.state
 
     return (
-      <Paper className={classes.sideMenu} role='navigation'>
+      <Paper elevation={2} className={classes.sideMenu} role='navigation'>
         <MenuList>
           {menuItems.map(menuItem => {
             if (scrollLink && mainPage) {

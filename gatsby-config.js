@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     'gatsby-transformer-json',
     'gatsby-transformer-sharp',
+    'gatsby-plugin-material-ui',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
@@ -26,9 +27,9 @@ module.exports = {
     'gatsby-plugin-sri',
     'gatsby-plugin-postcss',
     {
-      resolve: 'gatsby-plugin-postcss',
+      resolve: 'gatsby-plugin-purgecss',
       options: {
-        printRejected: true
+        ignore: ['prismjs/']
       }
     }, {
       resolve: 'gatsby-plugin-sentry',
@@ -114,48 +115,49 @@ module.exports = {
               }
             }
           `,
-            output: config.siteRss
+            output: config.siteRss,
+            title: 'Igor Rzegocki Blog'
           }
         ]
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/images/covers`,
         name: 'covers'
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/images/upload`,
         name: 'upload'
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/data`,
         name: 'data'
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/files`,
         name: 'files'
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/icons`,
         name: 'icons'
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/posts`,
         name: 'posts'
       }
     }, {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/raw`,
         name: 'raw'
@@ -178,10 +180,10 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: 'gatsby-remark-prismjs',
             options: {}
           }, {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 800
             }
@@ -206,63 +208,62 @@ module.exports = {
         icon: config.siteLogo,
         icons: [
           {
-            src: `icons/icon-48x48.png`,
-            sizes: `48x48`,
-            type: `image/png`
+            src: 'icons/icon-48x48.png',
+            sizes: '48x48',
+            type: 'image/png'
           }, {
-            src: `icons/icon-70x70.png`,
-            sizes: `70x70`,
-            type: `image/png`
+            src: 'icons/icon-70x70.png',
+            sizes: '70x70',
+            type: 'image/png'
           }, {
-            src: `icons/icon-72x72.png`,
-            sizes: `72x72`,
-            type: `image/png`
+            src: 'icons/icon-72x72.png',
+            sizes: '72x72',
+            type: 'image/png'
           }, {
-            src: `icons/icon-96x96.png`,
-            sizes: `96x96`,
-            type: `image/png`
+            src: 'icons/icon-96x96.png',
+            sizes: '96x96',
+            type: 'image/png'
           }, {
-            src: `icons/icon-144x144.png`,
-            sizes: `144x144`,
-            type: `image/png`
+            src: 'icons/icon-144x144.png',
+            sizes: '144x144',
+            type: 'image/png'
           }, {
-            src: `icons/icon-150x150.png`,
-            sizes: `150x150`,
-            type: `image/png`
+            src: 'icons/icon-150x150.png',
+            sizes: '150x150',
+            type: 'image/png'
           }, {
-            src: `icons/icon-310x150.png`,
-            sizes: `310x150`,
-            type: `image/png`
+            src: 'icons/icon-310x150.png',
+            sizes: '310x150',
+            type: 'image/png'
           }, {
-            src: `icons/icon-192x192.png`,
-            sizes: `192x192`,
-            type: `image/png`
+            src: 'icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
           }, {
-            src: `icons/icon-256x256.png`,
-            sizes: `256x256`,
-            type: `image/png`
+            src: 'icons/icon-256x256.png',
+            sizes: '256x256',
+            type: 'image/png'
           }, {
-            src: `icons/icon-310x310.png`,
-            sizes: `310x310`,
-            type: `image/png`
+            src: 'icons/icon-310x310.png',
+            sizes: '310x310',
+            type: 'image/png'
           }, {
-            src: `icons/icon-384x384.png`,
-            sizes: `384x384`,
-            type: `image/png`
+            src: 'icons/icon-384x384.png',
+            sizes: '384x384',
+            type: 'image/png'
           }, {
-            src: `icons/icon-512x512.png`,
-            sizes: `512x512`,
-            type: `image/png`
+            src: 'icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           }
         ]
       }
+    }, {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/]
+      }
     }
-    // {
-    // resolve: 'gatsby-plugin-offline',
-    // options: {
-    // navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/],
-    // }
-    // },
     // 'gatsby-plugin-remove-trailing-slashes'
   ]
 }

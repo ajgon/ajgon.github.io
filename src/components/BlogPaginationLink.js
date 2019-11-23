@@ -13,30 +13,30 @@ class BlogPaginationLink extends React.Component {
     if (!test) {
       if (rel === 'prev') {
         return (
-          <React.Fragment>
+          <>
             <Link to={url} aria-label='Newer posts' id='blog-newer-posts'>
               <IconButton aria-labelledby='blog-newer-posts'>
                 <ArrowBackIcon />
               </IconButton>
             </Link>
-          </React.Fragment>
+          </>
         )
       }
 
       if (rel === 'next') {
         return (
-          <React.Fragment>
+          <>
             <Link to={url} aria-label='Older posts' id='blog-older-posts'>
               <IconButton aria-labelledby='blog-older-posts'>
                 <ArrowForwardIcon />
               </IconButton>
             </Link>
-          </React.Fragment>
+          </>
         )
       }
     }
 
-    return <React.Fragment />
+    return <></>
   }
 }
 

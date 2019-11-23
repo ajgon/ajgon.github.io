@@ -26,13 +26,13 @@ class Social extends React.Component {
     const { classes } = this.props
 
     return (
-      <React.Fragment>
+      <>
         <a
           href='https://github.com/ajgon'
           target='_blank'
           aria-label='GitHub'
           id='link-github'
-          rel='noopener noreferrer'
+          rel='noopener noreferrer me'
         >
           <IconButton
             aria-labelledby='link-github'
@@ -48,7 +48,7 @@ class Social extends React.Component {
           target='_blank'
           aria-label='aedIn'
           id='link-linkedin'
-          rel='noopener noreferrer'
+          rel='noopener noreferrer me'
         >
           <IconButton
             aria-labelledby='link-linkedin'
@@ -64,7 +64,7 @@ class Social extends React.Component {
           target='_blank'
           aria-label='Keybase'
           id='link-keybase'
-          rel='noopener noreferrer'
+          rel='noopener noreferrer me'
         >
           <IconButton
             aria-labelledby='link-keybase'
@@ -75,7 +75,7 @@ class Social extends React.Component {
             </SvgIcon>
           </IconButton>
         </a>
-      </React.Fragment>
+      </>
     )
   }
 }

@@ -37,64 +37,64 @@ class Technologies extends React.Component {
     const { classes } = this.props
 
     return (
-      <Grid container spacing={24} className={classes.root}>
+      <Grid container spacing={3} className={classes.root}>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconRuby className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconRails className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconJavaScript className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconReact className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconAWS className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconDocker className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconGit className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconHtml className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconCSS className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconLinux className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconPostgreSql className={classes.block} />
           </Paper>
         </Grid>
         <Grid item xs={4} sm={2}>
-          <Paper className={classes.techIcon}>
+          <Paper elevation={2} className={classes.techIcon}>
             <IconNginx className={classes.block} />
           </Paper>
         </Grid>

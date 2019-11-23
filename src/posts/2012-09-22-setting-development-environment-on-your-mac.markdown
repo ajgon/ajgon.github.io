@@ -13,12 +13,12 @@ path: /blog/setting-development-environment-on-your-mac/
 Recently I bought an
 [awesome piece of hardware](https://www.anandtech.com/show/4253/the-crucial-m4-micron-c400-ssd-review)
 to my MacBook Pro. Unfortunatelly
-[to install it](https://www.ifixit.com/Guide/Installing-MacBook-Pro-13-Inch-Unibody-Early-2011-Hard-Drive-Replacement/5119/1),
+[to install it](https://www.ifixit.com/Guide/MacBook+Pro+13-Inch+Unibody+Early+2011+Hard+Drive+Replacement/5119),
 I had to remove my old HDD and all system files with it as well. So for that
 occasion I made myself double gift (Christmas are earlier this year ;)) and
-also bought a [new OS](https://www.apple.com/osx/). After smooth installation,
+also bought a [new OS](https://web.archive.org/web/20121113032138/http://www.apple.com/osx/). After smooth installation,
 [some tweaks](https://bit.ly/1HWbY6S)
-and [huge performance boost](https://bit.ly/2omWcLS)
+and [huge performance boost](https://web.archive.org/web/20130406190356/http://mobilityupdate.com/mac/crucal-m4-macbook-pro-2011/)
 I started setting my developer environment once again - nice and clean.
 
 <!--more-->
@@ -27,14 +27,14 @@ I started setting my developer environment once again - nice and clean.
 
 Firstly, two most important things are a terminal emulator - in my case, it is
 [iTerm2](https://www.iterm2.com/#/section/home), and
-[XCode](https://developer.apple.com/technologies/tools/) with
-[command line tools](https://stackoverflow.com/questions/9329243/xcode-4-4-command-line-tools).
+[XCode](https://developer.apple.com/xcode/) with
+[command line tools](https://stackoverflow.com/questions/9329243/xcode-install-command-line-tools).
 Next thing is of course package manager. After alot of nasty fighting and bad
 experiences with [macports](https://www.macports.org/) I switched to
-[Homebrew](https://mxcl.github.com/homebrew/) and I love it. To install it,
+[Homebrew](https://brew.sh/) and I love it. To install it,
 simply type:
 
-```bash
+```bash{promptUser: alice}
 ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)
 ```
 
@@ -48,17 +48,17 @@ use it (but I strongly recommend this tool), install it, because a lot of
 software depends on it these days. Especially if you are a Ruby developer.
 So just type:
 
-```bash
+```bash{promptUser: alice}
 brew install git
 ```
 
 and you're set. Another thing, which I really like is
 [Z Shell](https://www.zsh.org/) with it's excellent extension
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). Words can't describe
+[oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh). Words can't describe
 how awesome it is, so watch
 [this video](https://www.youtube.com/watch?v=m07MiM6rmMc), and then type:
 
-```bash
+```bash{promptUser: alice}
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 ```
 
@@ -67,7 +67,7 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 The next step is installing [nginx](https://nginx.org/), which is a great
 alternative to [apache](https://www.apache.org/).
 
-```bash
+```bash{promptUser: alice}
 brew install nginx
 sudo ln -s /usr/local/etc/nginx /etc/nginx
 ```
@@ -81,7 +81,7 @@ nginx configuration files lives) and add following section at the bottom
 (before the last closing bracket) of the `nginx.conf` file:
 
 `/usr/local/etc/nginx/nginx.conf`
-```txt
+```nginx
 server {
     server_name ~^(www.)?(?<project>[^.]+).php.dev;
     # This is the path, where your projects lives.
@@ -112,7 +112,7 @@ a proper message.
 Next thing we need to do is to make those wp.dev and php.dev domains work. To
 do this, install [dnsmasq](https://bit.ly/1XAorA4):
 
-```bash
+```bash{promptUser: alice}
 brew install dnsmasq
 cp $(brew --prefix dnsmasq)/dnsmasq.conf.example /usr/local/etc/dnsmasq.conf
 sudo cp $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons
@@ -120,7 +120,7 @@ sudo cp $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaem
 
 Now edit newly created `dnsmasq.conf` file and add:
 `/usr/local/etc/dnsmasq.conf`
-```bash
+```none
 address=/.dev/127.0.0.1
 ```
 
@@ -140,9 +140,9 @@ PHPcgi called PHP-FPM. Not only it sets all the hard work for us, but it also
 watches PHP for unexpected crashes (well.. yeah, it's PHP after all) and
 restarts it immediately - so it saves our time. Unfortunately, brew doesn't
 contain PHP recipes out of box, so we need
-[a little help](https://github.com/josegonzalez/homebrew-php). To install PHP:
+[a little help](https://github.com/Homebrew/homebrew-php). To install PHP:
 
-```bash
+```bash{promptUser: alice}
 brew tap homebrew/dupes
 brew tap josegonzalez/homebrew-php
 brew install php54 --with-mysql --with-fpm --with-intl # you can add --with-pgsql if you are using it
@@ -150,7 +150,7 @@ brew install php54 --with-mysql --with-fpm --with-intl # you can add --with-pgsq
 
 Installing MySQL is a little bit complicated:
 
-```bash
+```bash{promptUser: alice}
 brew install mysql
 unset TMPDIR
 mysql_install_db --verbose --user=`whoami` --basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp

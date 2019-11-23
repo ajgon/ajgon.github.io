@@ -51,7 +51,7 @@ class BlogPostShare extends React.Component {
   }
 
   newWindowUnloaded (site) {
-    let opened = JSON.parse(JSON.stringify(this.state.opened))
+    const opened = JSON.parse(JSON.stringify(this.state.opened))
     opened[site] = false
     this.setState({ opened })
   }
@@ -68,7 +68,7 @@ class BlogPostShare extends React.Component {
     const shareButtonId = `share-button-${post.frontmatter.id}`
 
     if (!visible) {
-      return <React.Fragment />
+      return <></>
     }
 
     return (

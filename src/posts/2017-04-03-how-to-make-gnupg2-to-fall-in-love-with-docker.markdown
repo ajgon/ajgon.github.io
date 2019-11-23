@@ -10,12 +10,12 @@ tags:
 path: /blog/how-to-make-gnupg2-to-fall-in-love-with-docker/
 ---
 
-While developing my [new replacement](https://www.github.com/wombatapp) of [self-hosted-mailserver](https://github.com/ajgon/self-hosted-mailserver),
+While developing my [new replacement](https://github.com/wombatapp) of [self-hosted-mailserver](https://github.com/ajgon/self-hosted-mailserver),
 I noticed a funny problem - I couldn't make gnupg2 to work
 with docker non-interactively. At first, the problem was with an import:
 
 ```bash
-$ gpg --import "/tmp/private.key"
+# gpg --import "/tmp/private.key"
 Step 1/4 : FROM alpine
  ---> 4a415e366388
 Step 2/4 : RUN apk add --no-cache wget gnupg
@@ -43,7 +43,7 @@ You may notice `error sending to agent: Not a tty` error. This one was actually 
 which forces gnupg2 to work in non-interactive mode:
 
 ```bash
-$ gpg --batch --import "/tmp/private.key"
+# gpg --batch --import "/tmp/private.key"
 Step 1/4 : FROM alpine
  ---> 4a415e366388
 Step 2/4 : RUN apk add --no-cache wget gnupg
@@ -74,7 +74,7 @@ But the bigger problem arrives, when we try to decrypt something with a password
 (to make codeblocks readable, I will only paste things which changed):
 
 ```bash
-$ gpg -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
+# gpg -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
 Step 5/6 : ADD file.gpg /tmp/
  ---> 434115276622
 Removing intermediate container 0ee978044580
@@ -90,7 +90,7 @@ The command '/bin/sh -c gpg -r test@example.com -d /tmp/file.gpg > /tmp/file' re
 Well, the most obvious thing to do is to add `--batch` again and hope this helps:
 
 ```bash
-$ gpg --batch -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
+# gpg --batch -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
 Step 6/6 : RUN gpg --batch -r test@example.com -d /tmp/file.gpg > /tmp/file
  ---> Running in 66de260f1bf4
 gpg: encrypted with 2048-bit RSA key, ID F7886F60959E549E, created 2017-04-03
@@ -104,8 +104,8 @@ Still the same error! But why? Wasn't `--batch` supposed to run gnupg2 in non-in
 actually it was, and it did. But still it didn't know a password - I needed some way to pass it through. Thankfully,
 gnupg2 supports an `PASSPHRASE` environmental variable:
 
-```
-$ PASSPHRASE="key-password" gpg --batch -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
+```bash
+# PASSPHRASE="key-password" gpg --batch -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
 Step 6/7 : ENV PASSPHRASE key-password
  ---> Running in 306b5791abcb
  ---> 0a3bc0bc1d76
@@ -145,7 +145,7 @@ echo "key-password" | PASSPHRASE="key-password" gpg --batch \
 And voilla! It worked!
 
 ```bash
-$ echo "key-password" | PASSPHRASE="key-password" gpg --batch --pinentry-mode loopback --command-fd 0 -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
+echo "key-password" | PASSPHRASE="key-password" gpg --batch --pinentry-mode loopback --command-fd 0 -r test@example.com -d "/tmp/file.gpg" > "/tmp/file"
 Step 6/8 : ENV PASSPHRASE key-password
  ---> Using cache
  ---> 0a3bc0bc1d76

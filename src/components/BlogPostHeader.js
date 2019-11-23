@@ -10,6 +10,9 @@ import { withStyles } from '@material-ui/core/styles'
 import BlogPostShare from './BlogPostShare'
 
 const styles = theme => ({
+  hidden: {
+    display: 'none'
+  },
   cardCoverSmall: {
     maxHeight: '200px'
   },
@@ -33,7 +36,7 @@ class BlogPostHeader extends React.Component {
         title={post.frontmatter.title}
         titleTypographyProps={{
           component: heading || 'span',
-          className: showShare ? classes.cardTitle : ''
+          className: showShare ? `${classes.cardTitle} p-name` : 'p-name'
         }}
         subheader={showShare ? post.frontmatter.date : null}
         action={
@@ -47,16 +50,26 @@ class BlogPostHeader extends React.Component {
       <CardMedia
         component={Image}
         sizes={post.frontmatter.cover.childImageSharp.fluid}
-        className={showShare ? classes.cardCoverLarge : classes.cardCoverSmall}
+        className={
+          (showShare ? classes.cardCoverLarge : classes.cardCoverSmall) +
+        ' u-photo'
+        }
         src={post.frontmatter.cover.childImageSharp.fluid.base64}
       />
     )
 
     return (
-      <React.Fragment>
+      <>
         {showShare ? cardHeader : cardMedia}
         {showShare ? cardMedia : cardHeader}
-      </React.Fragment>
+        <time
+          className={`${classes.hidden} dt-published`}
+          itemprop='datepublished'
+          datetime={post.frontmatter.isoDate}
+        >
+          {post.frontmatter.isoDate}
+        </time>
+      </>
     )
   }
 }

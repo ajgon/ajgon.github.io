@@ -88,9 +88,9 @@ class MenuAppBar extends React.Component {
     const { classes, mainPage, menuItems } = this.props
 
     return (
-      <React.Fragment>
+      <>
         <AppBar className={`${classes.cleanBar} ${classes.root}`}>
-          <Toolbar>
+          <Toolbar className='h-card'>
             <Hidden mdUp implementation='css'>
               {mainPage && (
                 <IconButton
@@ -118,7 +118,7 @@ class MenuAppBar extends React.Component {
               )}
             </Hidden>
             <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}>
-              <Typography variant='h6' className={classes.pageName}>
+              <Typography variant='h6' className={`${classes.pageName} p-name`}>
                 Igor Rzegocki
               </Typography>
             </Link>
@@ -162,7 +162,7 @@ class MenuAppBar extends React.Component {
             <SideMenu mainPage={mainPage} menuItems={menuItems} />
           </Hidden>
         )}
-      </React.Fragment>
+      </>
     )
   }
 }

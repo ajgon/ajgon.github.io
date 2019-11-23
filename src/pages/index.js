@@ -13,7 +13,7 @@ import withRoot from '../withRoot'
 import BlogExcerpt from '../components/BlogExcerpt'
 import Layout from '../components/Layout'
 import Section from '../components/Section.js'
-import SEO from '../components/SEO.js'
+import Seo from '../components/Seo.js'
 import TagLine from '../components/TagLine.js'
 import Technologies from '../components/Technologies.js'
 
@@ -58,7 +58,7 @@ class Index extends React.Component {
   }
 
   componentDidMount () {
-    let dynamicBlog = document.getElementById('blog')
+    const dynamicBlog = document.getElementById('blog')
     dynamicBlog.style.height = 'auto'
     dynamicBlog.style.minHeight = '0'
 
@@ -88,7 +88,7 @@ class Index extends React.Component {
 
     return (
       <Layout data={data} location={location}>
-        <SEO />
+        <Seo />
         <Section
           headline='Yo Developers!'
           idName='yodevelopers'
@@ -106,7 +106,7 @@ class Index extends React.Component {
           <Technologies />
         </Section>
         <Section headline='Blog' className={classes.dynamicBlogContent}>
-          <Grid container spacing={24}>
+          <Grid container spacing={3}>
             {posts.map((post, index) => {
               return (
                 <Grid
@@ -190,6 +190,7 @@ export const query = graphql`
             author
             path
             date(formatString: "MMMM DD, YYYY")
+            isoDate: date
             cover {
               childImageSharp {
                 fluid(maxWidth: 1000) {

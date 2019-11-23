@@ -23,7 +23,7 @@ class WebShare extends React.Component {
     return this.state.isSupported ? (
       <button onClick={() => this.share()}>{children}</button>
     ) : (
-      fallbackComponent || <React.Fragment />
+      fallbackComponent || <></>
     )
   }
 }

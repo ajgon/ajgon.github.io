@@ -29,7 +29,7 @@ software and dropped all legacy protocols (like SSL, TLS < 1.2 etc.).
 
 First of all, you need ansible.
 
-```bash
+```bash{promptUser: alice}
 brew install ansible
 ```
 
@@ -38,7 +38,7 @@ of the root user on your Raspberry (or any other server) and set `PermitRootLogi
 to `true` (don't worry though, those scripts will take care of this security risk later on
 and disable it).
 
-```bash
+```bash{promptUser: alice}
 export MACHINE_IP=<machine IP>
 ssh root@${MACHINE_IP} 'mkdir /root/.ssh && chmod 700 /root/.ssh && touch /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys'
 scp ~/.ssh/id_rsa.pub root@${MACHINE_IP}:/root/.ssh/authorized_keys
@@ -57,14 +57,15 @@ but in general all you have to do is invoke `gpg --gen-key` and answer its quest
 4096 bits size, and never expiring key. Then export it and store it somewhere safe.
 You will need it in a minute. Also take a note o the Key-Id property.
 
-```bash
+```bash{promptUser: alice}
 brew install gpg
 gpg --gen-key
 gpg --export -a -r email@used.to.create.key.com > raspberry.public
 gpg --export-secret-key -a -r email@used.to.create.key.com > raspberry.private
 gpg --list-keys | grep -B1 'ajgon@irgon.com' | grep pub | sed 's/.*\/\(.*\)\ .*/\1/'
-# *The last command returns your Key-Id, note it somewhere as well.
 ```
+
+The last command returns your Key-Id, note it somewhere as well.
 
 ## Configuration
 
@@ -77,17 +78,17 @@ This one is pretty straightforward. The cloud uses MySQL as a database of choice
 web applications etc. Here you need to set up a mysql `root` user password. If you don't plan to ever use it
 just type:
 
-```bash
+```bash{promptUser: alice}
 echo "mysql_root_password: \"$(pwgen 30 1)\"" > roles/base/vars/main.yml
 ```
 
 ### roles/duplicity/vars/main.yml
 
-[Duplicity](https://duplicity.nongnu.org/) is a tool for automated backups.
+[Duplicity](https://bit.ly/2D8IO5r/) is a tool for automated backups.
 It is known that all people can be divided into two groups: those who have never lost important data
 and those who regularly perform data backups. This task, encrypts all the important
 data (emails, owncloud files etc.) and stores them on WebDav-based remote (personally
-I use [box.com](https://box.com)).
+I use [box.com](https://www.box.com)).
 
 Here (besides the WebDav host, username and password) you need to put the GPG Key-Id which you
 noted earlier, under the `encrypt_key` property.
@@ -168,7 +169,7 @@ primes manually on better machine (like your laptop). Otherwise your ansible dep
 
 First of all, take look on commands you need to invoke:
 
-```bash
+```bash{promptUser: alice}
 cat roles/*/tasks/main.yml | grep -B1 'when: security.strong_primes' | grep shell
 ```
 
@@ -176,7 +177,7 @@ You need to slightly alter them, as they normally invoked on remote environment,
 (i.e. `/etc/ssh`). The simplest solution is to rename `/etc` to `/tmp` and fire them up with this context.
 So for example:
 
-```bash
+```bash{promptUser: alice}
 mkdir /tmp/ssh /tmp/ssl
 ssh-keygen -G /tmp/ssh/moduli.all -b 4096 && ssh-keygen -T /tmp/ssh/moduli.safe -f /tmp/ssh/moduli.all && mv /tmp/ssh/moduli.safe /tmp/ssh/moduli && rm /tmp/ssh/moduli.all
 rm /tmp/ssh/ssh_host_*key* && ssh-keygen -t ed25519 -f /tmp/ssh/ssh_host_ed25519_key < /dev/null && ssh-keygen -t rsa -b 4096 -f /tmp/ssh/ssh_host_rsa_key < /dev/null && chmod 600 /tmp/ssh/ssh_host_*key"
@@ -208,7 +209,7 @@ If you don't want to use this feature (or have a Static IP), just remove `ddclie
 ## Deploy
 
 Phew! After all this configuration, you are ready to deploy. First, you need to set an
-[Ansible Inventory](https://docs.ansible.com/ansible/intro_inventory.html) files. Since we set our public
+[Ansible Inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html) files. Since we set our public
 key as authorized on the remote host, all we have to put in this file is:
 
 ```ini
@@ -218,7 +219,7 @@ key as authorized on the remote host, all we have to put in this file is:
 
 where `1.2.3.4` is remote IP of your machine obviously. And then, we can fire it up!
 
-```bash
+```bash{promptUser: alice}
 ansible-playbook -s -i ansible-inventory main.yml
 ```
 
@@ -229,7 +230,7 @@ Hopefully everything go well, and you will end up with your self-hosted, automat
 We still have one thing to do - install gpg and import our keys, to make duplicity actually work. So put your
 private and public key on the server, and invoke (on remote):
 
-```bash
+```bash{promptUser: alice}
 apt-get install gnupg
 gpg --import raspberry.public
 gpg --allow-secret-key-import --import raspberry.private

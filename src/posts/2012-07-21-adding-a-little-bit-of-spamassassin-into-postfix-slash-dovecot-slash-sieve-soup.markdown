@@ -26,8 +26,8 @@ Thanks to that, I can have full control over spam and even categorize it (yeah,
 I'm a picky bastard ;)). Thankfully
 [SpamAssassin](https://spamassassin.apache.org/) can do this, so I didn't have
 to look further. I also decided to inlcude
-[Pyzor](https://sourceforge.net/apps/trac/pyzor/),
-[Razor](https://razor.sourceforge.net/) and
+[Pyzor](https://sourceforge.net/projects/pyzor/),
+[Razor](https://sourceforge.net/projects/razor/) and
 [DCC](https://www.dcc-servers.net/dcc/). No mercy!
 
 ## Installing packets
@@ -35,13 +35,13 @@ to look further. I also decided to inlcude
 But first - necessary packets. Thankfully, debian has everything out of box,
 except DCC.
 
-```bash
+```bash{promptUser: root}
 apt-get install spamc spamassassin pyzor razor
 ```
 
 Next is DCC, which has to be build manually:
 
-```bash
+```bash{promptUser: root}
 groupadd dcc
 useradd -g dcc -s /bin/false -d /var/dcc dcc
 wget http://www.dcc-servers.net/dcc/source/dcc-dccproc.tar.Z
@@ -58,7 +58,7 @@ ln -s /var/dcc/libexec/dccifd /usr/local/bin/dccif
 
 The next step is to configure `spamd` to run as a daemon:
 
-```bash
+```bash{promptUser: root}
 groupdd spamd
 useradd -g spamd -s /bin/false -d /var/lib/spamassassin spamd
 mkdir -p /var/lib/spamassassin
@@ -66,7 +66,7 @@ chown spamd:spamd /var/lib/spamassassin -R
 ```
 
 `/etc/default/spamassassin`
-```bash
+```none
 # Spamassassin home
 SAHOME="/var/lib/spamassassin"
 
@@ -93,7 +93,7 @@ databases for each virtual user. The next thing is to edit
 `/etc/spamassassin/local.cf` file:
 
 `/etc/spamassassin/local.cf`
-```bash
+```none
 [...]
 # Save spam messages as a message/rfc822 MIME attachment instead of
 # modifying the original message (0: off, 2: use text/plain instead)
@@ -114,7 +114,7 @@ Afterwards, edit `/etc/spamassassin/v310.pre` and check that the DCC, Razor and
 Pyzor plugins are enabled (DCC is disabled by default). After that, the only
 thing left is to update SA databases and start it:
 
-```bash
+```bash{promptUser: root}
 sa-update --no-gpg
 /etc/init.d/spamassassin start
 ```
@@ -127,7 +127,7 @@ to old working configuration) or `mailbox_command`. For transport, the magic
 line looks like this:
 
 `/etc/postfix/master.cf`
-```bash
+```none
 dovecot-spam   unix  -       n       n       -       -       pipe
     flags=DRhu user=vmail:vmail argv=/usr/bin/spamc -u ${recipient} -e /usr/lib/dovecot/deliver -d ${recipient}
 ```
@@ -138,13 +138,13 @@ it through his intestines, adds headers, and output is pushed further to
 work, don't forget to change the transport!
 
 `/etc/postfix/main.cf`
-```bash
+```none
 mailbox_transport = dovecot-spam
 ```
 
 Restart postfix:
 
-```bash
+```bash{promptUser: root}
 /etc/init.d/postfix restart
 ```
 
@@ -155,7 +155,7 @@ After all of that, all you have to do is configure Sieve. For example like that
 change it of course):
 
 `.dovecot.sieve`
-```bash
+```none
 if header :contains "X-Spam-Flag" ["YES"] { fileinto "Junk"; stop; }
 ```
 
@@ -175,4 +175,4 @@ chance, that you'll find your answers there.
 
 ### Sources
 
-* [https://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/](https://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/)
+* [https://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/](https://web.archive.org/web/20130917110312/http://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot)

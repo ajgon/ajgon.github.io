@@ -30,7 +30,7 @@ messages as it does currently, but also forward them to zoho.com. Of course I
 wasn't THAT crazy, to send my private emails over the Internet as they are, so
 I also needed some kind of encryption before that. It appeared that somebody
 had the same problem, and there is a tool for that called
-[gpg-mailgate](https://code.google.com/p/gpg-mailgate/). Unfortunately it's a
+[gpg-mailgate](https://code.google.com/archive/p/gpg-mailgate/). Unfortunately it's a
 very unfinished application, and lots of things doesn't work (multipart
 messages support, attachmenets encryption, extra email encryption and so on),
 so I needed to do
@@ -49,7 +49,7 @@ installed.
 
 Install GPG:
 
-```bash
+```bash{promptUser: root}
 apt-get install gpg
 ```
 
@@ -57,7 +57,7 @@ Create a gpg user and give him the key (don't forget to disable the password,
 and set trust to ultimate - otherwise tour scripts will stop to ask about
 confirmation - and eventually fail):
 
-```bash
+```bash{promptUser: root}
 useradd -s /bin/false -d /var/gpg -M gpgmap
 mkdir -p /var/gpg/.gnupg
 chown -R gpgmap /var/gpg
@@ -70,7 +70,7 @@ sudo -u gpgmap gpg --edit-key your@key.email.com trust quit
 
 Install GnuPG Python library, and gpg-mailgate itself:
 
-```bash
+```bash{promptUser: root}
 cd /root
 git clone https://github.com/ajgon/gpg-mailgate.git
 cd gpg-mailgate
@@ -119,19 +119,19 @@ make it appear - simply add `X-GPG-Encrypt-Cc` header to your message. So, the
 configuration will present as follows:
 
 `/etc/postfix/main.cf`
-```bash
+```none
 # gpg
 header_checks = regexp:/etc/postfix/header_checks
 content_filter = gpg-mailgate
 ```
 
 `/etc/postfix/header_checks`
-```txt
+```none
 /^From: .*/ PREPEND X-GPG-Encrypt-Cc: email.which.will.receive.encrypted.content@zoho.com
 ```
 
 `/etc/postfix/master.cf`
-```bash
+```none
 # gpg-mailgate
 gpg-mailgate    unix    -       n       n       -       -       pipe
   flags= user=gpgmap argv=/usr/local/bin/gpg-mailgate.py
@@ -149,7 +149,7 @@ gpg-mailgate    unix    -       n       n       -       -       pipe
 
 Don't forget to create `header_checks.db` and restart postfix.
 
-```bash
+```bash{promptUser: root}
 postmap header_checks
 /etc/init.d/postfix restart
 ```

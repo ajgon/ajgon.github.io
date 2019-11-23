@@ -13,7 +13,7 @@ import styles from './PageNotFoundLayout.module.css'
 class PageNotFoundLayout extends React.Component {
   render () {
     return (
-      <React.Fragment>
+      <>
         <Helmet
           title={`Page Not Found | ${config.siteTitle}`}
           link={[
@@ -28,7 +28,7 @@ class PageNotFoundLayout extends React.Component {
           <h1>404 - Page Not Found</h1>
           <a href={config.pathPrefix}>Take Me Back</a>
         </div>
-      </React.Fragment>
+      </>
     )
   }
 }

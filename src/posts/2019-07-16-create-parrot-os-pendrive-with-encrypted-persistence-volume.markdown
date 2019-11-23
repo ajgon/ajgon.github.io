@@ -26,7 +26,7 @@ Setting up a pendrive with Live distro is a breeze - just download ISO, and flas
 
 This step is pretty simple and self explanatory - just download the ISO and flash it. There are plenty, fancy tools for that, but good, old `dd` is still best suited for the job.
 
-```bash
+```bash{promptUser: alice}
 dd if=Parrot-security-4.6_amd64.iso of=/dev/rdisk2 bs=1m
 ```
 
@@ -48,8 +48,8 @@ The next step is to partition the disk - you will notice something odd, immediat
 
 Whole disk is occupied by mysterious "iso" volume, despite the fact the image was only 4GB! Clearly, something is wrong with partition table. Let's check offsets with wipefs:
 
-```bash
-# wipefs /dev/sdb
+```bash{promptUser: root}{outputLines: 2-5}
+wipefs /dev/sdb
 DEVICE OFFSET      TYPE    UUID                   LABEL
 sdb    0x8001      iso9660 2019-04-25-11-04-24-00 Parrot OS
 sdb    0x1fe       dos
@@ -58,15 +58,15 @@ sdb    0x3ba2ffe00 gpt
 
 You may notice, that `/dev/sdb` contains signatures of two (or three) different data structures - an ISO image written to the whole disk, a DOS partition table, and optinally - a GPT partition scheme signature. When you check your drive with `blkid`...
 
-```bash
-# blkid /dev/sdb
+```bash{promptUser: root}{outputLines: 2}
+blkid /dev/sdb
 /dev/sdb: UUID="2019-04-25-11-04-24-00" LABEL="Parrot OS" TYPE="iso9660" PTUUID="f3dc8ed4" PTTYPE="dos"
 ```
 
 ... you will notice, that ISO partition is the preferred one. That's why gparted gets crazy and reports it as a whole drive. Thankfully, the fix is pretty easy - just wipe out information about ISO:
 
-```bash
-# wipefs -o 0x8001 -f /dev/sdb
+```bash{promptUser: root}{outputLines: 2}
+wipefs -o 0x8001 -f /dev/sdb
 /dev/sdb: 5 bytes were erased at offset 0x00008001 (iso9660): 43 44 30 30 31
 ```
 
@@ -86,8 +86,8 @@ This step is optional - however, it's a good habit to encrypt everything. I see 
 
 First, set encrypted luks volume over a newly created partition:
 
-```bash
-# cryptsetup --verbose --verify-passphrase luksFormat /dev/sdb3
+```bash{promptUser: root}{outputLines: 2-13}
+cryptsetup --verbose --verify-passphrase luksFormat /dev/sdb3
 WARNING: Device /dev/sdb3 already contains a 'ext4' superblock signature.
 
 WARNING!
@@ -104,15 +104,15 @@ Command successful.
 
 Next, attach it:
 
-```bash
-# cryptsetup luksOpen /dev/sdb3 my_part
+```bash{promptUser: root}{outputLines: 2}
+cryptsetup luksOpen /dev/sdb3 my_part
 Enter passphrase for /dev/sdb3:
 ```
 
 Now we can format it or create multiple LVMs - it's up to you. Since it's a pendrive, I decided to not go crazy, and just created one `ext4` partition, filling up all the space (don't forget to label it):
 
-```bash
-# mkfs.ext4 -L persistence /dev/mapper/my_part
+```bash{promptUser: root}{outputLines: 2-12,14}
+mkfs.ext4 -L persistence /dev/mapper/my_part
 mke2fs 1.44.5 (15-Dec-2018)
 Creating filesystem with 2931456 4k blocks and 732960 inodes
 Filesystem UUID: 592d5d84-f630-4e80-9ea9-0c9973be68f4
@@ -124,21 +124,21 @@ Writing inode tables: done
 Creating journal (16384 blocks): done
 Writing superblocks and filesystem accounting information: done
 
-# e2label /dev/mapper/my_part persistence
+e2label /dev/mapper/my_part persistence
 
-# mount /dev/mapper/my_part /mnt
+mount /dev/mapper/my_part /mnt
 ```
 
 Now, we need to configure Parrot to treat this new partition as a volume which would store it's data. This is done by one line in persistence configuration file.
 
-```bash
-# echo "/ union" > /mnt/persistence.conf
+```bash{promptUser: root}
+echo "/ union" > /mnt/persistence.conf
 ```
 
 That's it! Umount the partition, and close the luks volume.
 
-```bash
-# umount /mnt
+```bash{promptUser: root}{outputLines: 2}
+umount /mnt
 cryptsetup luksClose /dev/mapper/my_part
 ```
 
@@ -150,8 +150,8 @@ Personally I don't see any sense in it - if the forensic is smart, he would make
 
 To add a nuke, simply invoke:
 
-```bash
-# cryptsetup luksAddNuke /dev/sdb3
+```bash{promptUser: root}{outputLines: 2-4}
+cryptsetup luksAddNuke /dev/sdb3
 Enter any existing passphrase:
 Enter new passphrase for key slot:
 Verify passphrase:
@@ -168,4 +168,4 @@ Now, you can wear your obligatory hoodie, play some hacker music and start nukin
 ### Sources
 
 * [https://bugzilla.gnome.org/show\_bug.cgi?id=789898](https://bugzilla.gnome.org/show_bug.cgi?id=789898)
-* [https://community.parrotsec.org/t/live-usb-with-persistence/3359/5](https://community.parrotsec.org/t/live-usb-with-persistence/3359/5)
+* [https://community.parrotlinux.org/t/live-usb-with-persistence/3359/5](https://community.parrotlinux.org/t/live-usb-with-persistence/3359/5)

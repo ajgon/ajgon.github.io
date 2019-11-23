@@ -29,12 +29,12 @@ started looking for solution for that problem and found
 
 Ok, so how to do it? Firstly, as for dovecot 1.2.x, sieve was completely
 rewritten as a new plugin. It can be obtained from
-[rename-it.nl website](https://bit.ly/2MC58eS). At the time of
-writing this post, there is no `*.deb` package in repositories, so I have to
-build it manually. I also had to install `dovecot-dev` package, because of
-sieve configurator, which needs a `dovecot-config` file.
+[rename-it.nl website](https://web.archive.org/web/20121217015336/http://www.rename-it.nl/dovecot/1.2/).
+At the time of writing this post, there is no `*.deb` package in repositories,
+so I have to build it manually. I also had to install `dovecot-dev` package,
+because of sieve configurator, which needs a `dovecot-config` file.
 
-```bash
+```bash{promptUser: alice}
 wget http://www.rename-it.nl/dovecot/1.2/dovecot-1.2-sieve-0.1.19.tar.gz
 tar -xzvf dovecot-1.2-sieve-0.1.19.tar.gz
 cd dovecot-1.2-sieve-0.1.19
@@ -45,7 +45,7 @@ sudo make install
 
 After that, it was a time to enable sieve plugin in dovecot.
 `/etc/dovecot/dovecot.conf`
-```bash
+```none
 protocol lda {
     ...
     # Support for dynamically loadable plugins. mail_plugins is a space separated
@@ -72,7 +72,7 @@ filtering, but below is a part of my file which should provide a
 [good example](https://wiki.dovecot.org/LDA/Sieve/) for start:
 
 `.dovecot.sieve`
-```bash
+```none
 # Require plugin for moving messages (fileinto) and vacation responder (vacation)
 require ["fileinto", "vacation"];
 
