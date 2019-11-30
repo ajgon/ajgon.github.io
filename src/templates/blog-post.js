@@ -98,6 +98,7 @@ export const query = graphql`
       html
       excerpt
       frontmatter {
+        id
         title
         date(formatString: "MMMM DD, YYYY")
         isoDate: date

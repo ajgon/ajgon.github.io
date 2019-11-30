@@ -6,7 +6,7 @@ const { JssProvider } = require('react-jss')
 const getPageContext = require('./src/getPageContext')
 const uglifycss = require('uglifycss')
 
-function replaceRenderer ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) {
+export const replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
   // Get the context of the page to collected side effects.
   // Ternary to support Gatsby@1 and Gatsby@2 at the same time.
   const muiPageContext = getPageContext.default ? getPageContext.default() : getPageContext()
@@ -32,5 +32,3 @@ function replaceRenderer ({ bodyComponent, replaceBodyHTMLString, setHeadCompone
     />
   ])
 }
-
-exports.replaceRenderer = replaceRenderer

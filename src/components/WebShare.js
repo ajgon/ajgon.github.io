@@ -1,4 +1,12 @@
 import React from 'react'
+import { withStyles } from '@material-ui/core/styles'
+
+const styles = theme => ({
+  shareButton: {
+    background: 'none',
+    border: 'none'
+  }
+})
 
 class WebShare extends React.Component {
   constructor (props) {
@@ -18,14 +26,16 @@ class WebShare extends React.Component {
   }
 
   render () {
-    const { children, fallbackComponent } = this.props
+    const { children, classes, fallbackComponent } = this.props
 
     return this.state.isSupported ? (
-      <button onClick={() => this.share()}>{children}</button>
+      <button onClick={() => this.share()} className={classes.shareButton}>
+        {children}
+      </button>
     ) : (
       fallbackComponent || <></>
     )
   }
 }
 
-export default WebShare
+export default withStyles(styles)(WebShare)
