@@ -29,6 +29,7 @@ const styles = theme => {
       zIndex: '1500',
       paddingLeft: 'env(safe-area-inset-left)',
       paddingRight: 'env(safe-area-inset-right)',
+      background: '#fff',
       [theme.breakpoints.up('md')]: {
         paddingTop: '20px'
       }
@@ -58,10 +59,12 @@ const styles = theme => {
     },
     cleanBar: {
       position: 'fixed',
+      boxShadow: 'none',
+      borderBottom: 'solid 1px #ccc',
       [theme.breakpoints.up('md')]: {
         position: 'static',
-        background: theme.palette.background.paper,
-        boxShadow: 'none'
+        border: 'none',
+        background: theme.palette.background.paper
       }
     }
   }

@@ -25,6 +25,9 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem'
     }
+  },
+  titlePad: {
+    padding: '20px 30px'
   }
 })
 
@@ -38,6 +41,7 @@ class BlogPostHeader extends React.Component {
           component: heading || 'span',
           className: showShare ? `${classes.cardTitle} p-name` : 'p-name'
         }}
+        className={classes.titlePad}
         subheader={showShare ? post.frontmatter.date : null}
         action={
           showShare ? (
@@ -64,8 +68,8 @@ class BlogPostHeader extends React.Component {
         {showShare ? cardMedia : cardHeader}
         <time
           className={`${classes.hidden} dt-published`}
-          itemprop='datepublished'
-          datetime={post.frontmatter.isoDate}
+          itemProp='datepublished'
+          dateTime={post.frontmatter.isoDate}
         >
           {post.frontmatter.isoDate}
         </time>

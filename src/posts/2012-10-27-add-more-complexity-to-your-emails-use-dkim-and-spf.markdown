@@ -225,5 +225,5 @@ The possibilities are endless :)
 
 ### Sources
 
-* [http://blog.tjitjing.com/index.php/2012/03/guide-to-install-opendkim-for-multiple-domains-with-postfix-and-debian.html](https://bit.ly/1uCt6pY)
-* [https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/](https://web.archive.org/web/20120625134223/https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/)
+* [Guide to Install OpenDKIM for multiple domains with Postfix and Debian](https://bit.ly/1uCt6pY)
+* [Postfix + DK (DomainKeys) + DKIM + SPF on Debian 6/Ubuntu](https://web.archive.org/web/20120625134223/https://syslog.tv/2011/09/17/postfix-dk-dkim-spf/)

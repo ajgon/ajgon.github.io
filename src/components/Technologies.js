@@ -28,6 +28,9 @@ const styles = {
     border: 'solid 1px #ccc'
   },
   block: {
+    '& path, & circle': {
+      fill: '#666'
+    },
     display: 'block'
   }
 }

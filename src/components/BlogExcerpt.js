@@ -13,6 +13,10 @@ import BlogPostHeader from './BlogPostHeader'
 const styles = {
   cardSpacing: {
     marginBottom: '2.5em'
+  },
+  cardBorder: {
+    boxShadow: 'none',
+    border: 'solid 1px #ccc'
   }
 }
 
@@ -30,7 +34,7 @@ class BlogExcerpt extends React.Component {
     }
 
     return (
-      <Card className={`${classes.cardSpacing} h-entry`}>
+      <Card className={`${classes.cardSpacing} ${classes.cardBorder} h-entry`}>
         <Link to={post.frontmatter.path} className='u-url'>
           <BlogPostHeader
             post={post}

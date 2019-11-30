@@ -21,15 +21,23 @@ const styles = theme => {
   return {
     underAppBar: {
       marginTop: '0',
-      [theme.breakpoints.down('xs')]: {
-        paddingTop: '5rem'
-      },
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: '10rem'
-      },
+      height: 'calc(100vh - 84px)',
+      padding: '0 5px 84px'
+    },
+    readMoreButton: {
       [theme.breakpoints.up('md')]: {
-        height: 'calc(100vh - 84px)',
-        padding: '0 5px 84px'
+        minWidth: '50%',
+        width: 'auto',
+        padding: '15px 30px',
+        fontSize: '1.125rem'
+      },
+      color: '#fff',
+      background: '#424242',
+      width: '50%',
+      padding: '10px 30px',
+      textTransform: 'none',
+      '&:hover': {
+        backgroundColor: '#424242'
       }
     },
     dynamicBlogContent: {
@@ -136,7 +144,7 @@ class Index extends React.Component {
           >
             <Button
               variant='outlined'
-              style={{ color: '#fff', background: '#424242', width: '50%' }}
+              className={classes.readMoreButton}
               onClick={() => this.showMoreBlogPosts()}
             >
               Read More
@@ -194,7 +202,7 @@ export const query = graphql`
             cover {
               childImageSharp {
                 fluid(maxWidth: 1000) {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }

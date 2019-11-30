@@ -175,4 +175,4 @@ chance, that you'll find your answers there.
 
 ### Sources
 
-* [https://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot/](https://web.archive.org/web/20130917110312/http://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot)
+* [Integrate Spamassassin into Postfix/Dovecot](https://web.archive.org/web/20130917110312/http://ailoo.net/2009/11/integrate-spamassassin-into-postfix-dovecot)

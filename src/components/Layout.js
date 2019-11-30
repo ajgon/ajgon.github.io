@@ -54,7 +54,7 @@ class Layout extends React.Component {
           <body id='about' />
           <style type='text/css'>
             {
-              'body, #___gatsby { position: relative; font-family: Roboto, sans-serif }'
+              'body, #___gatsby { position: relative; font-family: Roboto, sans-serif } body { background: #fff }'
             }
           </style>
           <meta

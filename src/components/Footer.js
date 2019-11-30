@@ -9,32 +9,32 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    background: '#ffc400',
+    background: '#b5b5b5',
     textAlign: 'center',
-    [theme.breakpoints.down('xs')]: {
-      marginTop: '3rem'
-    },
     [theme.breakpoints.down('md')]: {
-      padding: '7.5rem 5px',
-      marginTop: '15rem'
+      padding: '5rem 5px',
+      marginTop: '7rem'
     },
     [theme.breakpoints.up('md')]: {
-      margin: '40vh 0 0',
-      height: '60vh',
-      minHeight: '250px',
+      margin: '15rem 0 0',
+      height: '40vh',
+      minHeight: '200px',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'
     }
   },
   strongHeader: {
+    [theme.breakpoints.down('sm')]: {
+      '& a': {
+        fontSize: '2rem'
+      }
+    },
     fontWeight: 'bold',
     marginBottom: '20px',
     '& a': {
-      color: '#333'
-    },
-    '& a:hover': {
-      textDecoration: 'underline'
+      color: '#333',
+      textDecoration: 'none'
     }
   }
 })

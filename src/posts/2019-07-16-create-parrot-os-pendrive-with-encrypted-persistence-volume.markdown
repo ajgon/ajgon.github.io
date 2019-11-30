@@ -167,5 +167,5 @@ Now, you can wear your obligatory hoodie, play some hacker music and start nukin
 
 ### Sources
 
-* [https://bugzilla.gnome.org/show\_bug.cgi?id=789898](https://bugzilla.gnome.org/show_bug.cgi?id=789898)
-* [https://community.parrotlinux.org/t/live-usb-with-persistence/3359/5](https://community.parrotlinux.org/t/live-usb-with-persistence/3359/5)
+* [Bug 789898 - GPT disk full of partitions looks like iso9660 with no partitions](https://bugzilla.gnome.org/show_bug.cgi?id=789898)
+* [Live USB with Persistence](https://community.parrotlinux.org/t/live-usb-with-persistence/3359/5)

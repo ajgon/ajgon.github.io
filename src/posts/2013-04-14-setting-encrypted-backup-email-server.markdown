@@ -159,4 +159,4 @@ shiny and secure backup :)
 
 ### Sources
 
-* [https://ultramegaman.wordpress.com/tag/gpg-mailgate/](https://ultramegaman.wordpress.com/tag/gpg-mailgate/)
+* [GPG-Encrypting your incoming mail using Postfix and Google Apps](https://ultramegaman.wordpress.com/tag/gpg-mailgate/)

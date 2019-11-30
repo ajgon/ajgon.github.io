@@ -19,7 +19,8 @@ const styles = theme => ({
       padding: '5rem 0 0'
     },
     [theme.breakpoints.down('sm')]: {
-      padding: '0'
+      padding: '0',
+      marginTop: '16px'
     },
     marginTop: '0',
     height: 'auto',
@@ -105,7 +106,7 @@ export const query = graphql`
         cover {
           childImageSharp {
             fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid_withWebp
             }
           }
         }

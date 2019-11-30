@@ -7,11 +7,11 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    [theme.breakpoints.down('xs')]: {
-      marginTop: '5rem'
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: '15rem'
+    [theme.breakpoints.down('md')]: {
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
     },
     [theme.breakpoints.up('md')]: {
       height: '100vh',

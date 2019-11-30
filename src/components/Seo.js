@@ -35,8 +35,8 @@ class Seo extends Component {
       '/icons/icon-512x512.png'
     )
     const blogURL = urljoin(config.siteUrl, config.pathPrefix).replace(
-      /\/\//g,
-      '/'
+      /([^:])\/\//g,
+      '$1/'
     )
     const schemaOrgJSONLD = [
       {
