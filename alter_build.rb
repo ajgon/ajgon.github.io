@@ -13,5 +13,6 @@ Dir['public/**/*.html'].each do |path|
     path,
     File.read(path).gsub('<script', "<script nonce=\"#{CSP_NONCE}\"")
                    .gsub('<style', "<style nonce=\"#{CSP_NONCE}\"")
+                   .gsub(/(<link[^>]+rel="preload")/, "\\1 nonce=\"#{CSP_NONCE}\"")
   )
 end
