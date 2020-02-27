@@ -1,0 +1,66 @@
+==================================================================
+https://keybase.io/ajgon
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.rzegocki.pl
+  * I am ajgon (https://keybase.io/ajgon) on keybase.
+  * I have a public key with fingerprint 0FE7 19B8 E5E6 F683 3825  749A DBF5 E355 26B2 7548
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101da2cbc956e111d5dab12a60f714fa3ca72e87411a14b0999cf09b60dfd86a0550a",
+      "fingerprint": "0fe719b8e5e6f6833825749adbf5e35526b27548",
+      "host": "keybase.io",
+      "key_id": "dbf5e35526b27548",
+      "kid": "0101da2cbc956e111d5dab12a60f714fa3ca72e87411a14b0999cf09b60dfd86a0550a",
+      "uid": "9741b656f18b4aaf8c4f92f5ffdffb19",
+      "username": "ajgon"
+    },
+    "service": {
+      "hostname": "www.rzegocki.pl",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1582827807,
+  "expire_in": 157680000,
+  "prev": "edb73cf6b11e908ac57b5a8fcf464759de7b85342858767f6c44e47234d98f61",
+  "seqno": 15,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUltIFVEUvTet7EYplUbSgyaNIrE5M3PmnLlRUFTYRw8E0x50PWfmnHtHbeZ2
+73h9ZQXS86OiBz0MelNCVPRTmPkhmGlFFhJB9dHDwsA+oqKIsDOSf312fjZn77XW
+XnuzD09IC2QEX357VzL3VnVR8OEADWwpGzenQaKuVSeFG6RKNhxYlcWSXqTStqSw
+JAMZWEQxqWlAnQEALGgRChSiyxwBjRPVJEhhGGkAEKBR2TAMk8sG1WWLW1gnMoQy
+kQokbjtRlognbMfzZTlDwKCYQaZzHasqViDSDGJRDpkKoaJTBUENC2LMTfoMYY6S
+JCu0XZETn8iwvX/g/7Pv6mE5Q+CoDnUOMNUI4djUuKFwyLnFOQWGD0yyhEO2MoEm
+FVHXkRoLJJFK2Sbzt+qP8bdcU1NTmKhnUdestAvjVYIbT7iea7pVohjzvHgy7JO9
+uvgwmtHIX50ItR1L7FEwUiyRtEWTMBBI07N9YQCxghWEZVQgsdq4nWAR20dApGNZ
+PL8PSwlJZlGkmnyDTgFghoyJCRGFBHOTa7qGoGExRDFUNQVDjHTEdVPTmIYUVbMM
+zHUg+aNtc1xfXBglUSGatKMO8aoTTGoM7Q+q6YFgRmBGzuz0zI/T7vR/+N6E873T
+I8c3epR/eYHQuKyRzLzHY39nr7dYWf7T9rbeVZ/QQnSo521Rz+Ita9GkqV9ftD2f
+P9MY2FW+rHxB7Zcl+oVCqf/SlwMd6eNbcpt+1LuvYk82ntvxa83ulb+CeAC/fpDq
+XeAENoQfHS97ltc3a/7m/qZrxUE29HZm65rOvq7M9p2ZuY3v2g8esrfPejEh533D
+3i7abC09H1x/LFA62N/AYu/HXB8MrSy5YRZkdKcy8ybmNq9bLre2TBws3hmry4mN
+DpJTi9T8Tb33Dl9+2fm1lE0qap0+p/Pj5clnph7ds/ruvhN5WStCFVrJ2W9X4NKr
+AyVpF5NOKHDgzZHvU7pRpKLtZsXPi8rJSx33P2d7t4dOHJ1RO/QH
+=oppS
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ajgon
+
+==================================================================

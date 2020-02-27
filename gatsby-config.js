@@ -172,6 +172,7 @@ module.exports = {
         'src/raw/keybase.txt': 'public/keybase.txt',
         'src/raw/public-key.txt': 'public/public-key.txt',
         'src/raw/_nojekyll': 'public/.nojekyll',
+        'src/raw/_well-known/keybase.txt': 'public/.well-known/keybase.txt',
         'src/raw/_well-known/security.txt': 'public/.well-known/security.txt',
         'src/raw/_well-known/security.txt.sig': 'public/.well-known/security.txt.sig'
       }
