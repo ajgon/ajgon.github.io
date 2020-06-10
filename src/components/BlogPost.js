@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import urljoin from 'url-join'
-
-import Disqus from 'disqus-react'
 
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import { withStyles } from '@material-ui/core/styles'
 
 import BlogPostHeader from './BlogPostHeader'
+import Remark42 from './Remark42'
 
 const styles = theme => ({
   root: {
@@ -29,11 +27,6 @@ const styles = theme => ({
 class BlogPost extends React.Component {
   render () {
     const { classes, post, siteUrl, shares } = this.props
-    const disqusShortname = 'ajgon'
-    const disqusConfig = {
-      url: `${urljoin(siteUrl, post.frontmatter.path)}/`.replace(/\/+$/, '/'),
-      title: post.title
-    }
 
     return (
       <Card className={`${classes.root} h-entry`}>
@@ -49,10 +42,7 @@ class BlogPost extends React.Component {
             dangerouslySetInnerHTML={{ __html: post.html }}
             className={`${classes.postContent} e-content`}
           />
-          <Disqus.DiscussionEmbed
-            shortname={disqusShortname}
-            config={disqusConfig}
-          />
+          <Remark42 />
         </CardContent>
       </Card>
     )

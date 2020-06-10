@@ -169,7 +169,6 @@ module.exports = {
         'src/raw/CNAME': 'public/CNAME',
         'src/raw/googlea7d520b1962f2846.html': 'public/googlea7d520b1962f2846.html',
         'src/raw/hackers.txt': 'public/hackers.txt',
-        'src/raw/keybase.txt': 'public/keybase.txt',
         'src/raw/public-key.txt': 'public/public-key.txt',
         'src/raw/_nojekyll': 'public/.nojekyll',
         'src/raw/_well-known/keybase.txt': 'public/.well-known/keybase.txt',

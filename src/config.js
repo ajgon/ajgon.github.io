@@ -8,10 +8,14 @@ module.exports = {
   siteDescription:
     'Igor Rzegocki personal webpage and blog. Webdev, devops, Ruby on Rails, JavaScript and react, AWS and docker.',
   siteRss: '/feed.xml',
-  disqusShortname: 'ajgon',
   copyright: `Copyright © ${new Date().getFullYear()}. Igor Rzegocki`,
   userName: 'Igor Rzegocki',
   userTwitter: 'ajgon',
   themeColor: '#a2cf6e',
-  backgroundColor: '#a2cf6e'
+  backgroundColor: '#a2cf6e',
+  remark42: {
+    host: 'https://remark42.rzegocki.pl',
+    site_id: 'rzegockipl',
+    components: ['embed', 'last-comments', 'counter']
+  }
 }
