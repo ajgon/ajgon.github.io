@@ -88,12 +88,12 @@ class MenuAppBar extends React.Component {
   }
 
   render () {
-    const { classes, mainPage, menuItems } = this.props
+    const { classes, mainPage, menuItems, social } = this.props
 
     return (
       <>
         <AppBar className={`${classes.cleanBar} ${classes.root}`}>
-          <Toolbar className='h-card'>
+          <Toolbar>
             <Hidden mdUp implementation='css'>
               {mainPage && (
                 <IconButton
@@ -121,12 +121,14 @@ class MenuAppBar extends React.Component {
               )}
             </Hidden>
             <Link to='/' className={`${classes.flex} ${classes.noUnderline}`}>
-              <Typography variant='h6' className={`${classes.pageName} p-name`}>
+              <Typography variant='h6' className={classes.pageName}>
                 Igor Rzegocki
               </Typography>
             </Link>
             <Hidden xsDown implementation='css'>
-              <Social />
+              {(social.map(socialItem => (
+                <Social key={socialItem.node.id} node={socialItem.node} />
+              )))}
             </Hidden>
           </Toolbar>
         </AppBar>

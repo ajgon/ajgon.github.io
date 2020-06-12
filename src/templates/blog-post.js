@@ -39,6 +39,7 @@ class BlogPostTemplate extends React.Component {
             title={`${data.markdownRemark.frontmatter.title} | ${config.siteTitle}`}
           />
           <BlogPost
+            avatar={data.avatar.childImageSharp}
             post={data.markdownRemark}
             siteUrl={urljoin(config.siteUrl, config.pathPrefix)}
             shares={data.allShareJson.edges}
@@ -74,6 +75,13 @@ export const query = graphql`
         siteUrl
       }
     }
+    avatar: file(relativePath: {eq: "ajgon.png"}) {
+      childImageSharp {
+        fixed(width: 192, height: 192) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     allMenuJson {
       edges {
         node {
@@ -95,6 +103,16 @@ export const query = graphql`
         }
       }
     }
+    allSocialJson {
+      edges {
+        node {
+          id
+          name
+          slug
+          url
+        }
+      }
+    }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       excerpt
@@ -103,6 +121,7 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         isoDate: date
+				tags
         cover {
           childImageSharp {
             fluid(maxWidth: 1000) {

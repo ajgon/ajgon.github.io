@@ -1,0 +1,20 @@
+[
+  {
+    "id": "587d3ac1-40e9-4cc1-a610-f8cb9657bfbc",
+    "slug": "github",
+    "name": "GitHub",
+    "url": "https://github.com/ajgon"
+  },
+  {
+    "id": "d97c572d-7410-413c-89bd-ee620e901fce",
+    "slug": "linkedin",
+    "name": "LinkedIn",
+    "url": "https://www.linkedin.com/in/ajgon"
+  },
+  {
+    "id": "6928828d-8198-4387-a5f6-3a1036179c08",
+    "slug": "keybase",
+    "name": "Keybase",
+    "url": "https://keybase.io/ajgon"
+  }
+]

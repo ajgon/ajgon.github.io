@@ -6,7 +6,9 @@ import CardContent from '@material-ui/core/CardContent'
 import { withStyles } from '@material-ui/core/styles'
 
 import BlogPostHeader from './BlogPostHeader'
+import HCard from './HCard'
 import Remark42 from './Remark42'
+import Webmentions from './Webmentions'
 
 const styles = theme => ({
   root: {
@@ -26,10 +28,11 @@ const styles = theme => ({
 
 class BlogPost extends React.Component {
   render () {
-    const { classes, post, siteUrl, shares } = this.props
+    const { avatar, classes, post, siteUrl, shares } = this.props
 
     return (
       <Card className={`${classes.root} h-entry`}>
+        <HCard post={post} avatar={avatar} />
         <BlogPostHeader
           post={post}
           siteUrl={siteUrl}
@@ -37,11 +40,12 @@ class BlogPost extends React.Component {
           showShare
           heading='h1'
         />
-        <CardContent>
+        <CardContent className='e-content'>
           <div
             dangerouslySetInnerHTML={{ __html: post.html }}
-            className={`${classes.postContent} e-content`}
+            className={`${classes.postContent}`}
           />
+          <Webmentions post={post} />
           <Remark42 />
         </CardContent>
       </Card>

@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import withRoot from '../withRoot'
 
 import Container from '../components/Container'
+import HCard from '../components/HCard'
 import Heart from '../components/Heart'
 import MenuAppBar from '../components/MenuAppBar'
 import Footer from '../components/Footer'
@@ -63,10 +64,12 @@ class Layout extends React.Component {
           />
         </Helmet>
         <CssBaseline />
+        <HCard avatar={data.avatar.childImageSharp} social={data.allSocialJson.edges} />
         <MenuAppBar
           location={location}
           mainPage={mainPage}
           menuItems={data.allMenuJson.edges}
+          social={data.allSocialJson.edges}
         />
         <Heart />
         <Container location={location}>{children}</Container>

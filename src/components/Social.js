@@ -5,9 +5,9 @@ import IconButton from '@material-ui/core/IconButton'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { withStyles } from '@material-ui/core/styles'
 
-import IconGithub from '../icons/social-github.svg'
+import IconGitHub from '../icons/social-github.svg'
 import IconKeybase from '../icons/social-keybase.svg'
-import IconaedIn from '../icons/social-linkedin.svg'
+import IconLinkedIn from '../icons/social-linkedin.svg'
 
 const styles = {
   mediumButton: {
@@ -23,59 +23,30 @@ const styles = {
 
 class Social extends React.Component {
   render () {
-    const { classes } = this.props
+    const { classes, node } = this.props
+    const icons = {
+      github: IconGitHub,
+      keybase: IconKeybase,
+      linkedin: IconLinkedIn
+    }
 
     return (
-      <>
-        <a
-          href='https://github.com/ajgon'
-          target='_blank'
-          aria-label='GitHub'
-          id='link-github'
-          rel='noopener noreferrer me'
+      <a
+        href={node.url}
+        target='_blank'
+        aria-label={node.name}
+        id={`link-${node.slug}`}
+        rel='noopener noreferrer'
+      >
+        <IconButton
+          aria-labelledby={`link-${node.slug}`}
+          className={classes.mediumButton}
         >
-          <IconButton
-            aria-labelledby='link-github'
-            className={classes.mediumButton}
-          >
-            <SvgIcon className={classes.mediumIcon}>
-              <IconGithub />
-            </SvgIcon>
-          </IconButton>
-        </a>
-        <a
-          href='https://www.linkedin.com/in/ajgon'
-          target='_blank'
-          aria-label='aedIn'
-          id='link-linkedin'
-          rel='noopener noreferrer me'
-        >
-          <IconButton
-            aria-labelledby='link-linkedin'
-            className={classes.mediumButton}
-          >
-            <SvgIcon className={classes.mediumIcon}>
-              <IconaedIn />
-            </SvgIcon>
-          </IconButton>
-        </a>
-        <a
-          href='https://keybase.io/ajgon'
-          target='_blank'
-          aria-label='Keybase'
-          id='link-keybase'
-          rel='noopener noreferrer me'
-        >
-          <IconButton
-            aria-labelledby='link-keybase'
-            className={classes.mediumButton}
-          >
-            <SvgIcon className={classes.mediumIcon}>
-              <IconKeybase />
-            </SvgIcon>
-          </IconButton>
-        </a>
-      </>
+          <SvgIcon className={classes.mediumIcon}>
+            {icons[node.slug]()}
+          </SvgIcon>
+        </IconButton>
+      </a>
     )
   }
 }

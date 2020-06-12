@@ -116,8 +116,7 @@ class Index extends React.Component {
         <Section headline='Blog' className={classes.dynamicBlogContent}>
           <Grid container spacing={3}>
             {posts.map((post, index) => {
-              return (
-                <Grid
+              return ( <Grid
                   item
                   xs={12}
                   md={6}
@@ -171,9 +170,26 @@ export const query = graphql`
         }
       }
     }
+    avatar: file(relativePath: {eq: "ajgon.png"}) {
+      childImageSharp {
+        fixed(width: 192, height: 192) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     site {
       siteMetadata {
         siteUrl
+      }
+    }
+    allSocialJson {
+      edges {
+        node {
+          id
+          name
+          slug
+          url
+        }
       }
     }
     allMenuJson {
@@ -199,6 +215,7 @@ export const query = graphql`
             path
             date(formatString: "MMMM DD, YYYY")
             isoDate: date
+            tags
             cover {
               childImageSharp {
                 fluid(maxWidth: 1000) {

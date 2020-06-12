@@ -39,7 +39,7 @@ class BlogPostHeader extends React.Component {
         title={post.frontmatter.title}
         titleTypographyProps={{
           component: heading || 'span',
-          className: showShare ? `${classes.cardTitle} p-name` : 'p-name'
+          className: showShare ? classes.cardTitle : ''
         }}
         className={classes.titlePad}
         subheader={showShare ? post.frontmatter.date : null}
@@ -54,10 +54,7 @@ class BlogPostHeader extends React.Component {
       <CardMedia
         component={Image}
         sizes={post.frontmatter.cover.childImageSharp.fluid}
-        className={
-          (showShare ? classes.cardCoverLarge : classes.cardCoverSmall) +
-        ' u-photo'
-        }
+        className={(showShare ? classes.cardCoverLarge : classes.cardCoverSmall)}
         src={post.frontmatter.cover.childImageSharp.fluid.base64}
       />
     )
@@ -67,7 +64,7 @@ class BlogPostHeader extends React.Component {
         {showShare ? cardHeader : cardMedia}
         {showShare ? cardMedia : cardHeader}
         <time
-          className={`${classes.hidden} dt-published`}
+          className={classes.hidden}
           itemProp='datepublished'
           dateTime={post.frontmatter.isoDate}
         >

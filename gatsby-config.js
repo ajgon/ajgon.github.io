@@ -123,6 +123,12 @@ module.exports = {
     }, {
       resolve: 'gatsby-source-filesystem',
       options: {
+        path: `${__dirname}/src/images/avatars`,
+        name: 'avatars'
+      }
+    }, {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/images/covers`,
         name: 'covers'
       }
@@ -258,12 +264,13 @@ module.exports = {
           }
         ]
       }
-    }, {
-      resolve: 'gatsby-plugin-offline',
-      options: {
-        navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/]
-      }
     }
+    //{
+      //resolve: 'gatsby-plugin-offline',
+      //options: {
+        //navigateFallbackWhitelist: [/^.*(?!\.\w?$)/, /^\/v[0-9]+\/?.*$/]
+      //}
+    //}
     // 'gatsby-plugin-remove-trailing-slashes'
   ]
 }

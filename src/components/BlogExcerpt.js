@@ -34,8 +34,8 @@ class BlogExcerpt extends React.Component {
     }
 
     return (
-      <Card className={`${classes.cardSpacing} ${classes.cardBorder} h-entry`}>
-        <Link to={post.frontmatter.path} className='u-url'>
+      <Card className={`${classes.cardSpacing} ${classes.cardBorder}`}>
+        <Link to={post.frontmatter.path}>
           <BlogPostHeader
             post={post}
             siteUrl={siteUrl}

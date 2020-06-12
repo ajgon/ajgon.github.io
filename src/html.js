@@ -11,6 +11,8 @@ export default function HTML (props) {
           name='viewport'
           content='width=device-width, initial-scale=1, shrink-to-fit=no'
         />
+        <link rel="webmention" href="https://webmention.io/www.rzegocki.pl/webmention" />
+        <link rel="pingback" href="https://webmention.io/www.rzegocki.pl/xmlrpc" />
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
