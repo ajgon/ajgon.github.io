@@ -13,6 +13,7 @@ import HCard from '../components/HCard'
 import Heart from '../components/Heart'
 import MenuAppBar from '../components/MenuAppBar'
 import Footer from '../components/Footer'
+import Goatcounter from '../components/Goatcounter'
 
 import FavIcon from '../images/favicon.png'
 
@@ -63,6 +64,7 @@ class Layout extends React.Component {
             content={data.allFile.edges[0].node.publicURL}
           />
         </Helmet>
+        <Goatcounter />
         <CssBaseline />
         <HCard avatar={data.avatar.childImageSharp} social={data.allSocialJson.edges} />
         <MenuAppBar
