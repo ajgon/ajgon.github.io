@@ -158,7 +158,9 @@ class MenuAppBar extends React.Component {
               onClick={this.toggleDrawer(false)}
               className={classes.center}
             >
-              <Social />
+              {(social.map(socialItem => (
+                <Social key={socialItem.node.id} node={socialItem.node} />
+              )))}
             </ListItem>
           </List>
         </Drawer>
