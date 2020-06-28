@@ -157,6 +157,12 @@ Enter new passphrase for key slot:
 Verify passphrase:
 ```
 
+**Note:** Recent versions of Parrot have `luksAddNuke` patch removed in favor of separate `cryptsetup-nuke-password` package. To add nuke password using this, use:
+
+```bash{promptUser: root}
+dpkg-reconfigure cryptsetup-nuke-password
+```
+
 Do not mix those passwords yourself, as nuked partition is unrecoverable.
 
 ## Step 4: Reboot

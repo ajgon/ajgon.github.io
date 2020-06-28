@@ -11,8 +11,8 @@ module.exports = {
   copyright: `Copyright © ${new Date().getFullYear()}. Igor Rzegocki`,
   userName: 'Igor Rzegocki',
   userTwitter: 'ajgon',
-  themeColor: '#a2cf6e',
-  backgroundColor: '#a2cf6e',
+  themeColor: '#bfb9dd',
+  backgroundColor: '#bfb9dd',
   remark42: {
     host: 'https://remark42.rzegocki.pl',
     site_id: 'rzegockipl',
