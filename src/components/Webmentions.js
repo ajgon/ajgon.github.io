@@ -1,3 +1,4 @@
+import 'whatwg-fetch'
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import config from '../config'
